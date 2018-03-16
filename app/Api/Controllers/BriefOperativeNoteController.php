@@ -40,7 +40,7 @@ class BriefOperativeNoteController extends Controller
      */
     public function store(Request $request)
     {
-          $data = $request->all()['breifOperativeNoteData'];
+          $data = $request->all()['briefOperativeNoteData'];
           // dd($data);
           $briefOperativeNoteCreate = BriefOperativeNote::create([
             // 'date' => $request->date,
@@ -50,7 +50,7 @@ class BriefOperativeNoteController extends Controller
             'post_operative_orders' =>$data['post_operative_orders'],
           ]);
         if ($briefOperativeNoteCreate) {
-              return ['code' => '200','breifOperativeNoteData'=>$briefOperativeNoteCreate->id, 'message' => 'Data Sucessfully Inserted'];
+              return ['code' => '200','briefOperativeNoteData'=>$briefOperativeNoteCreate->id, 'message' => 'Data Sucessfully Inserted'];
           }
     }
 
