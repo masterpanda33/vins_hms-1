@@ -26,6 +26,10 @@
 	<div class="row">
 		<h3>Pre-Admission Forms</h3>
 	</div>
+  <!-- <div class="col-md-4 top-buffer">
+  <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('PatientAdmissionSheet')" >Patient Admission Sheet </a>
+</div> -->
+
 	<div class="row">
 		<div class="col-md-4 top-buffer">
 			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('patients_detail_form')">Patients Details Form</a>
@@ -35,15 +39,6 @@
 		</div>
 		<div class="col-md-4 top-buffer">
 			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('PatientValuableForm')"> Patient Valuables Form </a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4 top-buffer">
-			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('PatientAdmissionSheet')" >Patient Admission Sheet </a>
-		</div>
-
-		<div class="col-md-4 top-buffer">
-			<!--   -->
 		</div>
 	</div>
 
@@ -154,6 +149,9 @@
 			<!-- <div class="col-md-4 top-buffer">
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" > JSON Monitoring for Moderate Sedation </a>
 			</div> -->
+      <!-- <div class="col-md-4 top-buffer">
+        <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click = "GetSelectComponent('transfusion_reaction_form')" > Transfusion Reaction </a>
+      </div> -->
     </div>
 
 		<div class="row">
@@ -180,17 +178,11 @@
 			</div>
 		</div>
 		<div class="row">
-
 			<div class="col-md-4 top-buffer">
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('bloodSugarMonitoringChart')" > Blood-Sugar Monitoring Chart </a>
 			</div>
-      <div class="col-md-4 top-buffer">
-        <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click = "GetSelectComponent('transfusion_reaction_form')" > Transfusion Reaction </a>
-      </div>
 		</div>
-		<div class="row">
 
-		</div>
 
 		<hr />
 
@@ -230,9 +222,6 @@
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" >JSON Peripheral Line Bundle Checklist</a>
 			</div> -->
 <!-- <div class="col-md-4 top-buffer">
-				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('appointmentBook')" >Appointment Book</a>
-			</div> -->
-<!-- <div class="col-md-4 top-buffer">
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click = "GetSelectComponent('pre_angiography_angioplasty_checklist')">Pre-Angiography Angioplasty Checklist</a>
 			</div> -->
 <!-- <div class="col-md-4 top-buffer">
@@ -247,7 +236,10 @@
 			<!-- <div class="col-md-4 top-buffer top-buffer">
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('drug_requisition')" > Drug Requisition </a>
 			</div> -->
-      <!-- <div class="col-md-4 top-buffer">
+      <!-- <div class="col-md-4 top-buffer top-buffer">
+      <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('gate_pass')"> Gate Pass </a>
+    </div> -->
+    <!-- <div class="col-md-4 top-buffer">
       <a class="btn btn-default btn-block text-center" style="white-space: normal;" >JSON Checklist</a>
     </div> -->
     </div>
@@ -260,21 +252,15 @@
       <div class="col-md-4 top-buffer">
         <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('centralLineBundleChecklist')" > Central Line Bundle Checklist </a>
       </div>
-      <div class="col-md-4 top-buffer top-buffer">
-        <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('NutritionalScreeningForm')"> Nutritional Screening Form </a>
+      <div class="col-md-4 top-buffer">
+        <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('appointmentBook')" >Appointment Book</a>
       </div>
+
 		</div>
 
-    <div class="row">
-      <div class="col-md-4 top-buffer top-buffer">
-  				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('gate_pass')"> Gate Pass </a>
-  		</div>
-    </div>
 	<hr />
 </div>
-</template>class="col-md-4 top-buffer top-buffer">
-        <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('NutritionalScreeningForm')"> Nutritional Screening Form </a>
-      </di
+</template>
 
 <script type="text/babel">
     export default {
