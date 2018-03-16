@@ -16,27 +16,30 @@
 		</div>
   		<form action="" method="post" >
   			<div class="row form-group">
-  				<div class="col-md-6">
-  					<div class="col-md-6">
+  				<div class="col-md-4">
+  					<div class="col-md-4">
   						<label class="control-label col-md-4" for="unit">Unit:</label>
   					</div>
-  					<div class="col-md-6">
+  					<div class="col-md-4">
   						<input type="text" class="form-control" name="unit" v-validate="'required'" v-model="completeNursingAssessmentData.unit" value="15">
               <span class="help is-danger" v-show="errors.has('unit')">
                 Field is required
               </span>
   					</div>
   				</div>
-  				<div class="col-md-6">
-  					<div class="col-md-6">
+  				<div class="col-md-4">
+  					<div class="col-md-4">
   						<label class="control-label col-md-4" for="date">Date:</label>
   					</div>
-  					<div class="col-md-6">
+  					<div class="col-md-8">
   						<input type="date" class="form-control" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
   					</div>
+  				</div>
+          <div class="col-md-4">
+  					<addressograph></addressograph>
   				</div>
   			</div>
 
@@ -717,6 +720,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -791,6 +795,11 @@
                 }
             }
         },
+
+        components: {
+           addressograph,
+       },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

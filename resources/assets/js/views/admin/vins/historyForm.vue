@@ -26,6 +26,9 @@
 					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required'" />
 				</div>
 			</div>
+			<div class="col-md-4 text-left">
+					<addressograph></addressograph>
+			</div>
 		</div>
 
 		<div class="row form-group">
@@ -494,6 +497,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -545,6 +549,11 @@
                 }
             }
         },
+
+				components: {
+					 addressograph,
+			 },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

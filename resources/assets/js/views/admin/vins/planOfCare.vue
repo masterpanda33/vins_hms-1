@@ -19,11 +19,11 @@
 
 	<form method="post">
 		<div class="row form-group">
-			<div class="col-md-6">
-					<div class="col-md-6">
+			<div class="col-md-4">
+					<div class="col-md-4">
 					<label>Ipd No : </label>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required'" />
 					<span class="help is-danger" v-show="errors.has('ipd_no')">
 									Room number is required
@@ -31,13 +31,17 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<label>Diagnosis</label>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
 			</div>
-		</div></div>
+		</div>
+		<div class="col-md-2">
+			<addressograph></addressograph>
+		</div>
+	</div>
 
 	<div class="row form-group">
 			<div class="col-md-6">
@@ -118,6 +122,7 @@
 
 <script >
 import User from '../../../api/users.js';
+import addressograph from './addressograph.vue';
 	export default {
 			data() {
 					return {
@@ -182,6 +187,11 @@ import User from '../../../api/users.js';
 							}
 					}
 			},
+
+			components: {
+				 addressograph,
+		 },
+
 			methods: {
 			GetSelectComponent(componentName) {
 				 this.$router.push({name: componentName})
