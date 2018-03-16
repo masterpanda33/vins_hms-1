@@ -104,7 +104,6 @@
 				</div>
 				<div class="col-md-4">
 					<addressograph></addressograph>
-					
 				</div>
 			</div>
 
@@ -168,7 +167,7 @@
 						<tr>
 							<th>Time</th>
 							<th v-for="tm in timeArray">{{tm}}</th>
-							
+
 						</tr>
 					</thead>
 
@@ -214,20 +213,20 @@
                 'timeArray': ['08-00','10-00','12-00','14-00','16-00','18-00','20-00','22-00','24-00','02-00','04-00','06-00'],
                 'mar_options': ['temp','pulse','blood_pressure','resp_rate','pain','intake4_line1','intake4_line2','intake4_line3','intake4_line4','intake4_line5','hourly4','total4','oral_ng','total_oral_ng','hourly_total_intake','total_fluid_intake','output_drains','total_drains','ng_aspirate','urine_output','total_urine_output','hourly_total_output','total_fluid_output','balance','abd_girth'],
                 'MARFlowSheet' : {
-					'et_tube_day':'',
-					'fc_day':'',
-					'teeth_level':'',
-					'central_line':'',
-					'arterial_line_day':'',
-					'other_invasive_line_day':'',
-					'rt_day':'',
-					'date':'',
-					'prev_24_intake':'',
-					'prev_24_output':'',
-					'balance':'',
-					'mar_details': {
-						
-					}
+									'et_tube_day':'',
+									'fc_day':'',
+									'teeth_level':'',
+									'central_line':'',
+									'arterial_line_day':'',
+									'other_invasive_line_day':'',
+									'rt_day':'',
+									'date':'',
+									'prev_24_intake':'',
+									'prev_24_output':'',
+									'balance':'',
+									'mar_details': {
+
+									}
                 }
             }
         },

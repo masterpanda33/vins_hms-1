@@ -15,7 +15,20 @@
   		</div>
   	</div>
   	<hr>
-  	<form>
+  	<form action="" method="post">
+      <div class="row form-group">
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<label>IPD No : </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" value="" />
+					</div>
+				</div>
+        <div class="col-md-6">
+					<addressograph></addressograph>
+				</div>
+			</div>
   		<div class="row">
   			<table class="table table-bordered" >
   				<thead>
@@ -110,11 +123,15 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
+								'type': 'counsellingForm',
+                'patient_id': this.$store.state.Patient.patientId,
+               	'ipd_id': this.$store.state.Patient.ipdId,
                 'counsellingFormData' : {
                   'date_00':'',
                   'time_00':'',
@@ -149,6 +166,13 @@
                 }
             }
         },
+        components: {
+           addressograph,
+        },
+        mounted() {
+          console.log('asdasd')
+        	this.$store.dispatch('SetPatientData',1);
+        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -158,9 +182,10 @@
 	            (response) => {
 	            	if (!this.errors.any()) {
 	            		 $("body .js-loader").removeClass('d-none');
-				    	User.saveCounsellingForm(this.counsellingFormData).then(
+                   var Res = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.counsellingFormData};
+				    	     User.saveCounsellingForm(Res).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Counselling Form Details have been saved', 'Counselling Form', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
