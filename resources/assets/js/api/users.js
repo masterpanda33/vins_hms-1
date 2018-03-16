@@ -173,10 +173,6 @@ export default {
     return api.post('appointmentBook/create',{'appointmentBook':appointmentBook})
   },
 
-  saveCounsellingForm(counsellingFormData) {
-      return api.post('counsellingForm/create',{'counsellingFormData':counsellingFormData})
-    },
-
   saveSurgicalSafetyChecklist(surgicalSafetyChecklistData) {
       return api.post('surgicalSafetyChecklist/create',{'surgicalSafetyChecklistData':surgicalSafetyChecklistData})
     },
