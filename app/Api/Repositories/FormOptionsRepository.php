@@ -459,26 +459,51 @@ class FormOptionsRepository {
 
       $formsRec = '';
 
-    $formId = $this->getFormId($data);
-    // dd($formId);
-    if($formId != '') {
-        foreach ($data['form_data'] as $key => $value) {
-            if($key == 'Plan_Of_Care') {
-                $value = json_encode($value);
-            }
-            // echo "<pre>";print_r($key);echo "</pre>";
-            $formsRec = FormsOptionsData::create([
-                'form_id' => $formId,
-                'patient_id' => $data['patient_id'],
-                'ipd_no' => $data['ipd_id'],
-                'form_key' => $key,
-                'form_value' => $value
-            ]);
-        }
+      $formId = $this->getFormId($data);
+      // dd($formId);
+      if($formId != '') {
+          foreach ($data['form_data'] as $key => $value) {
+              if($key == 'Plan_Of_Care') {
+                  $value = json_encode($value);
+              }
+              // echo "<pre>";print_r($key);echo "</pre>";
+              $formsRec = FormsOptionsData::create([
+                  'form_id' => $formId,
+                  'patient_id' => $data['patient_id'],
+                  'ipd_no' => $data['ipd_id'],
+                  'form_key' => $key,
+                  'form_value' => $value
+              ]);
+          }
 
+      }
+      return $formsRec;
     }
-    return $formsRec;
-}
+
+    public function storeInformationFormData($data)
+    {
+
+      $formsRec = '';
+
+      $formId = $this->getFormId($data);
+      // dd($formId);
+      if($formId != '') {
+          foreach ($data['form_data'] as $key => $value) {
+              // echo "<pre>";print_r($key);echo "</pre>";
+              $formsRec = FormsOptionsData::create([
+                  'form_id' => $formId,
+                  'patient_id' => $data['patient_id'],
+                  'ipd_no' => $data['ipd_id'],
+                  'form_key' => $key,
+                  'form_value' => $value
+              ]);
+          }
+
+      }
+      return $formsRec;
+    }
+
+
 
 
 

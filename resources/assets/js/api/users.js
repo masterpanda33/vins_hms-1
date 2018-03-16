@@ -152,7 +152,7 @@ export default {
   saveHistoryForm(historyFormData) {
     return api.post('historyForm/create',{'resData': historyFormData})
   },
-  saveInformationForm(informationForm) {
+  saveInformationForm(informationFormData) {
     return api.post('informationForm/create',{'resData': informationFormData})
   },
   saveinvestigationSheet(investigationSheet) {
@@ -187,10 +187,6 @@ export default {
 
   saveWardProcedureRecord(wardProcedureRecordData) {
       return api.post('wardProcedureRecord/create',{'wardProcedureRecordData':wardProcedureRecordData})
-    },
-
-  saveInformationForm(informationFormData) {
-      return api.post('informationForm/create',{'informationFormData':informationFormData})
     },
 
   saveIntraoperativeEventManagement(intraoperativeEventManagementData) {
