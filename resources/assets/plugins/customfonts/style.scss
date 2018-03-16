@@ -1,0 +1,239 @@
+@import "variables";
+
+@font-face {
+  font-family: 'jobviewer';
+  src:  url('#{$icomoon-font-path}/jobviewer.eot?jpvk5g');
+  src:  url('#{$icomoon-font-path}/jobviewer.eot?jpvk5g#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/jobviewer.ttf?jpvk5g') format('truetype'),
+    url('#{$icomoon-font-path}/jobviewer.woff?jpvk5g') format('woff'),
+    url('#{$icomoon-font-path}/jobviewer.svg?jpvk5g#jobviewer') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.jv-icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'jobviewer' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.jv-home {
+  &:before {
+    content: $jv-home;
+  }
+}
+.jv-dashboard-app {
+  &:before {
+    content: $jv-dashboard-app;
+  }
+}
+.jv-dashboard {
+  &:before {
+    content: $jv-dashboard;
+  }
+}
+.jv-tools {
+  &:before {
+    content: $jv-tools;
+  }
+}
+.jv-clock {
+  &:before {
+    content: $jv-clock;
+  }
+}
+.jv-car {
+  &:before {
+    content: $jv-car;
+  }
+}
+.jv-chats {
+  &:before {
+    content: $jv-chats;
+  }
+}
+.jv-chat {
+  &:before {
+    content: $jv-chat;
+  }
+}
+.jv-water {
+  &:before {
+    content: $jv-water;
+  }
+}
+.jv-fish {
+  &:before {
+    content: $jv-fish;
+  }
+}
+.jv-pipe {
+  &:before {
+    content: $jv-pipe;
+  }
+}
+.jv-pipe-line {
+  &:before {
+    content: $jv-pipe-line;
+  }
+}
+.jv-calendar {
+  &:before {
+    content: $jv-calendar;
+  }
+}
+.jv-list {
+  &:before {
+    content: $jv-list;
+  }
+}
+.jv-user {
+  &:before {
+    content: $jv-user;
+  }
+}
+.jv-doc {
+  &:before {
+    content: $jv-doc;
+  }
+}
+.jv-edit {
+  &:before {
+    content: $jv-edit;
+  }
+}
+.jv-backward {
+  &:before {
+    content: $jv-backward;
+  }
+}
+.jv-forward {
+  &:before {
+    content: $jv-forward;
+  }
+}
+.jv-previous {
+  &:before {
+    content: $jv-previous;
+  }
+}
+.jv-next {
+  &:before {
+    content: $jv-next;
+  }
+}
+.jv-checked-arrow {
+  &:before {
+    content: $jv-checked-arrow;
+  }
+}
+.jv-checked {
+  &:before {
+    content: $jv-checked;
+  }
+}
+.jv-downarrow-black {
+  &:before {
+    content: $jv-downarrow-black;
+  }
+}
+.jv-uparrow-black {
+  &:before {
+    content: $jv-uparrow-black;
+  }
+}
+.jv-downarrow {
+  &:before {
+    content: $jv-downarrow;
+  }
+}
+.jv-uparrow {
+  &:before {
+    content: $jv-uparrow;
+  }
+}
+.jv-down {
+  &:before {
+    content: $jv-down;
+  }
+}
+.jv-up {
+  &:before {
+    content: $jv-up;
+  }
+}
+.jv-up-down {
+  &:before {
+    content: $jv-up-down;
+  }
+}
+.jv-plus {
+  &:before {
+    content: $jv-plus;
+  }
+}
+.jv-close {
+  &:before {
+    content: $jv-close;
+  }
+}
+.jv-search {
+  &:before {
+    content: $jv-search;
+  }
+}
+.jv-dustbin {
+  &:before {
+    content: $jv-dustbin;
+  }
+}
+.jv-download {
+  &:before {
+    content: $jv-download;
+  }
+}
+.jv-find-doc {
+  &:before {
+    content: $jv-find-doc;
+  }
+}
+.jv-go-up {
+  &:before {
+    content: $jv-go-up;
+  }
+}
+.jv-cloud {
+  &:before {
+    content: $jv-cloud;
+  }
+}
+.jv-reload {
+  &:before {
+    content: $jv-reload;
+  }
+}
+.jv-web {
+  &:before {
+    content: $jv-web;
+  }
+}
+.jv-error {
+  &:before {
+    content: $jv-error;
+  }
+}
+.jv-calendar-time {
+  &:before {
+    content: $jv-calendar-time;
+  }
+}
+

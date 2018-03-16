@@ -1,0 +1,299 @@
+// cards.scss - Custom Cards for Laraspace..
+
+.card {
+    margin-bottom: 1.5rem;
+    //overflow: hidden;
+    .card-header {
+
+        @include clearfix;
+        position: relative;
+
+        i {
+            width: 1.3em;
+        }
+
+        h6 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        h3 {
+            font-weight: normal;
+            margin: 0;
+            font-size: $font-size-section-title;
+        }
+
+        h5 {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        &.bg-dark {
+            background-color: $ls-color-secondary;
+            color: $white;
+        }
+
+        .caption {
+            display: inline-block;
+            padding: 8px 0;
+        }
+
+        .actions {
+            float: right;
+            margin: auto;
+        }
+
+    }
+
+    .section-semi-title {
+        font-size: $font-size-semi-section-title;
+        text-transform: uppercase;
+        font-weight: 400;
+    }
+
+    .card-footer {
+        background-color: $white;
+    }
+
+    &.with-tabs .card-header {
+        padding: 0;
+
+        .caption {
+            padding: 20px;
+        }
+
+        .actions {
+            padding-right: 20px;
+        }
+
+        .nav-tabs {
+            border-bottom: none;
+        }
+
+        .nav-link {
+            padding: 1em 1.5em;
+        }
+    }
+
+    .bg-primary,
+    .bg-info,
+    .bg-primary,
+    .bg-dark,
+    .bg-success,
+    .bg-danger,
+    .bg-warning {
+        h3, h5 ,h6{
+            color: $white;
+        }
+    }
+
+}
+
+
+
+.m_card-panel {
+  transition: box-shadow .25s;
+  padding: 24px;
+  margin: (1.5rem/3) 0 ((1.5rem*2)/3) 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background-color: $white;
+}
+
+.m_card {
+  position: relative;
+  margin: (1.5rem/3) 0 ((1.5rem*2)/3) 0;
+  background-color: $white;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 300;
+    &.activator {
+      cursor: pointer;
+    }
+  }
+
+  // Card Sizes
+  &.small, &.medium, &.large {
+    position: relative;
+
+    .card-image {
+      max-height: 60%;
+      overflow: hidden;
+    }
+    .card-image + .card-content {
+      max-height: 40%;
+    }
+    .card-content {
+      max-height: 100%;
+      overflow: hidden;
+    }
+    .card-action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &.small {
+    height: 300px;
+  }
+
+  &.medium {
+    height: 400px;
+  }
+
+  &.large {
+    height: 500px;
+  }
+
+  // Horizontal Cards
+  &.horizontal {
+    &.small, &.medium, &.large {
+      .card-image {
+        height: 100%;
+        max-height: none;
+        overflow: visible;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+
+    display: flex;
+
+    .card-image {
+      max-width: 50%;
+      img {
+        border-radius: 2px 0 0 2px;
+        max-width: 100%;
+        width: auto;
+      }
+    }
+
+    .card-stacked {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      position: relative;
+
+      .card-content {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  // Sticky Action Section
+  &.sticky-action {
+    .card-action {
+      z-index: 2;
+    }
+
+    .card-reveal {
+      z-index: 1;
+      padding-bottom: 64px;
+    }
+  }
+
+
+
+
+  .card-image {
+    position: relative;
+
+    // Image background for content
+    img {
+      display: block;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .card-title {
+      color: $white;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      max-width: 100%;
+      padding: 24px;
+    }
+  }
+
+  .card-content {
+    padding: $card-spacer-y $card-spacer-x;
+    border-radius: 0 0 2px 2px;
+
+    p {
+      margin: 0;
+      color: inherit;
+      font-size: 14px;
+      &.left {
+        text-align: left;
+      }
+    }
+    .card-title {
+      display: block;
+      line-height: 32px;
+      margin-bottom: 8px;
+
+      i {
+        line-height: 32px;
+      }
+    }
+  }
+
+  .card-action {
+    position: relative;
+    background-color: inherit;
+    border-top: 1px solid rgba(160,160,160,.2);
+    padding: 16px 24px;
+
+    a:not(.btn):not(.btn-large):not(.btn-floating) {
+      color: $ls-color-primary;
+      margin-right: 24px;
+      transition: color .3s ease;
+      text-transform: uppercase;
+
+      &:hover { color: lighten($ls-color-primary, 20%) }
+    }
+  }
+
+  .card-reveal {
+    padding: 24px;
+    position: absolute;
+    background-color: $white;
+    width: 100%;
+    overflow-y: auto;
+    left: 0;
+    top: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+
+    .card-title {
+      cursor: pointer;
+      display: block;
+    }
+  }
+}
+
+.hoverable {
+  transition: box-shadow .25s;
+  box-shadow: 0;
+}
+
+.hoverable:hover {
+  transition: box-shadow .25s;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

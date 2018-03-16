@@ -1,0 +1,13 @@
+/*
+|--------------------------------------------------------------------------
+| Euro Checkbox and Radio
+|--------------------------------------------------------------------------
+*/
+
+$euro-radio-size: 20px !default;
+$euro-checkbox-size: 20px !default;
+$euro-dot-size: 8px !default;
+$euro-border-color: color('grey','base') !default;
+$euro-main-color: color('blue','base') !default;
+$euro-disabled-color: lighten($euro-border-color, 14%) !default;
+$euro-disabled-checked-color: lighten($euro-main-color, 30%) !default;

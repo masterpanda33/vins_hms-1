@@ -1,0 +1,31 @@
+.euro-checkbox + label {
+  &:before {
+    border-radius: 3px;
+  }
+  &:after {
+    top: 4px;
+    left: 7px;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+
+    border-top: 0;
+    border-left: 0;
+  }
+}
+.euro-checkbox:checked + label {
+  &:before {
+    border: $euro-main-color;
+    background: $euro-main-color;
+  }
+}
+.euro-checkbox:checked[disabled] + label {
+  &:before {
+    border: $euro-disabled-checked-color;
+    background: $euro-disabled-checked-color;
+  }
+}

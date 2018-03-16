@@ -1,0 +1,30 @@
+// .modal-dialog {
+// 	max-width: 700px;
+// }
+.delete-modal.modal-dialog {
+	max-width: 400px;
+}
+
+/****************************
+    modal error
+****************************/
+.form-control.is-danger, .textarea.is-danger {
+    border-color: #ff3860;
+    position: relative;
+}
+.form-group .fa-warning {
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+.help.is-danger {
+    color: #ff3860;
+}
+
+.pitch-badge-info {
+  background-color: $pitch-badge-info
+}
+
+.refdel {
+  z-index : 9999
+}

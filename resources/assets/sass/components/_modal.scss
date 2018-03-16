@@ -1,0 +1,11 @@
+  .modal-full {
+      max-width: 100%;
+      @extend .mt-0;
+      @extend .mb-0;
+      .modal-content {
+          height: 100vh;
+          .modal-body {
+              overflow: auto
+          }
+      }
+  }

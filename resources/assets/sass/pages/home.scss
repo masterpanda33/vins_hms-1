@@ -1,0 +1,30 @@
+.welcome-div {
+	background-color: $ls-color-gray--dark;
+	padding: 20px;
+	margin-bottom: 1.5rem;
+
+	p {
+		color: $ls-color-black;
+		text-align: center;
+		margin-bottom: 0;
+	}
+	i {
+		position: absolute;
+	    top: 6%;
+	    right: 2%;
+	}
+}
+.home-content {
+
+	.col-sm-6 {
+
+		.card {
+			min-height: 260px;
+		}
+	}
+}
+.horizontal_line {
+  border-top: 2px solid black;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}

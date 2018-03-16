@@ -1,0 +1,72 @@
+// base.scss - Basic Style Rules..
+
+html, body {
+    // height: 100%;
+}
+
+body {
+    // background-color: $ls-color-gray--light;
+    background-color: color('grey','lighten-3');
+    font-family: $base-font-family;
+    color: $base-font-color;
+    font-size: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $heading-font-color;
+    font-weight: normal;
+}
+
+a {
+    color: $ls-color-black--light;
+
+    &:hover, &:focus {
+        color: lighten($ls-color-black--light, 10%);
+        text-decoration: none;
+        outline: none;
+    }
+
+}
+
+mark, .mark {
+    background-color: $ls-color-primary;
+}
+
+code, .code {
+    background-color: $code-bg;
+    color: $ls-color-primary;
+}
+
+:active, :focus, :hover {
+    outline: 0;
+}
+
+.text-default {
+    color: $ls-color-black !important;
+}
+#frmPitchAvailable .d-flex.flex-nowrap.justify-content-between.align-items-center {
+   position: relative;
+   .align-self-center.p-1 {
+       position: absolute;
+       right: 5px;
+       top: 5px;
+   }
+}
+.datepicker table tr td.day:hover,
+.datepicker table tr td.focused {
+    background: $ls-color-gray--very-dark;
+    color: $white;
+}
+
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover,
+.datepicker table tr td.disabled.day,
+.datepicker table tr td.disabled.day:hover  {
+  background: transparent;
+  color: $ls-color-gray--dark;
+  cursor: not-allowed;
+}
+
+.datepicker table tr td[class=day] {
+    color: $brand-primary;
+}

@@ -1,0 +1,27 @@
+.euro-radio + label {
+  &:before {
+    border-radius: 50%;
+  }
+  &:after {
+    top: 6px;
+    left: 6px;
+    width: $euro-dot-size;
+    height: $euro-dot-size;
+    border-radius: 50%;
+    background: $euro-main-color;
+  }
+}
+
+.euro-radio:checked + label {
+  &:before {
+    border: 1px solid $euro-main-color;
+  }
+}
+.euro-radio:checked[disabled] + label {
+  &:before {
+    border: 1px solid $euro-disabled-checked-color;
+  }
+  &:after {
+    background: $euro-disabled-checked-color;
+  }
+}
