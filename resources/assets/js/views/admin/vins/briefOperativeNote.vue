@@ -12,7 +12,7 @@
 
   		<form action="" method="post">
         <div class="row form-group">
-          <textarea name="briefoperativenote" v-validate="'required'" v-model="breifOperativeNoteData.briefoperativenote" rows="5" cols="80" class="form-control" placeholder="Brief Operative Notes here:"></textarea>
+          <textarea name="briefoperativenote" v-validate="'required'" v-model="briefOperativeNoteData.briefoperativenote" rows="5" cols="80" class="form-control" placeholder="Brief Operative Notes here:"></textarea>
           <span class="help is-danger" v-show="errors.has('briefoperativenote')">
             Field is required
           </span>
@@ -28,13 +28,13 @@
   					<tbody>
   						<tr>
   							<td>
-                  <textarea name="post_operative_clinical_status" v-validate="'required'" v-model="breifOperativeNoteData.post_operative_clinical_status" rows="4" class="form-control"></textarea>
+                  <textarea name="post_operative_clinical_status" v-validate="'required'" v-model="briefOperativeNoteData.post_operative_clinical_status" rows="4" class="form-control"></textarea>
                   <span class="help is-danger" v-show="errors.has('post_operative_clinical_status')">
                     Field is required
                   </span>
   							</td>
   							<td>
-                  <textarea name="post_operative_orders" v-validate="'required'" v-model="breifOperativeNoteData.post_operative_orders" rows="4" class="form-control"></textarea>
+                  <textarea name="post_operative_orders" v-validate="'required'" v-model="briefOperativeNoteData.post_operative_orders" rows="4" class="form-control"></textarea>
                   <span class="help is-danger" v-show="errors.has('post_operative_orders')">
                     Field is required
                   </span>
@@ -56,7 +56,7 @@
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
-                'breifOperativeNoteData' : {
+                'briefOperativeNoteData' : {
                   'briefoperativenote' : '',
                   'post_operative_clinical_status' : '',
                   'post_operative_orders' : '',
@@ -73,7 +73,7 @@
 	            (response) => {
 	            	if (!this.errors.any()) {
 	            		 $("body .js-loader").removeClass('d-none');
-				    	User.saveBreifOperativeNote(this.breifOperativeNoteData).then(
+				    	User.saveBreifOperativeNote(this.briefOperativeNoteData).then(
 		                (response) => {
 		                	if(response.data.code == 200) {
 		                		toastr.success('Brief Operative Note details have been saved', 'brief operative note detail', {timeOut: 5000});
