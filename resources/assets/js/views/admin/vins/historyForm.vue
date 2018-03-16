@@ -139,7 +139,7 @@
 					<label for="date" class="control-label">Date : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
+					<input class="form-control ls-datepicker" type="text" id="history_date" name="history_date" value="" v-model="historyFormData.date" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('date')">
 										Field is required
 									</span>
@@ -544,6 +544,12 @@
 									'testcanvas':''
                 }
             }
+        },
+        mounted() {
+        	$('.ls-datepicker').datepicker({
+			    format: 'dd/mm/yyyy',
+			    'autoclose': true
+			})
         },
         methods: {
 		    GetSelectComponent(componentName) {
