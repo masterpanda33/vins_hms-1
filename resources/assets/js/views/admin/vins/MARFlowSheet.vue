@@ -104,7 +104,7 @@
 				</div>
 				<div class="col-md-4">
 					<addressograph></addressograph>
-					
+
 				</div>
 			</div>
 
@@ -168,7 +168,7 @@
 						<tr>
 							<th>Time</th>
 							<th v-for="tm in timeArray">{{tm}}</th>
-							
+
 						</tr>
 					</thead>
 
@@ -226,7 +226,7 @@
 					'prev_24_output':'',
 					'balance':'',
 					'mar_details': {
-						
+
 					}
                 }
             }
