@@ -196,6 +196,12 @@ export default {
   saveIntraoperativeEventManagement(intraoperativeEventManagementData) {
       return api.post('intraoperativeEventManagement/create',{'intraoperativeEventManagement':intraoperativeEventManagementData})
     },
+    saveMARFlowSheet(MARFlowSheet) {
+    return api.post('MARFlowSheet/create',{'MARFlowSheet': MARFlowSheet})
+  },
+    getpatientDetail(ipdId) {
+    return api.post('patient/getDetails/'+ipdId)
+  },
 
 
 }
