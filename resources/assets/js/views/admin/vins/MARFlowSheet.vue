@@ -253,7 +253,7 @@
             addressograph,
         },
         mounted() {
-        	this.$store.dispatch('SetPatientData',18);
+        	// this.$store.dispatch('SetPatientData',18);
         },
         methods: {
 		    GetSelectComponent(componentName) {
