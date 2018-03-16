@@ -554,7 +554,14 @@
 					 addressograph,
 			 },
 
-        methods: {
+			 mounted() {
++               $('.ls-datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    'autoclose': true
+					})
+				},
+
+				methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
