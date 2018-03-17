@@ -35,9 +35,9 @@
   					<label>IPD No : </label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" id="ipd_no" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required'" value="">
+  					<input class="form-control" id="ipd_no" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value="">
             <span class="help is-danger" v-show="errors.has('ipd_id')">
-              Field is required
+              Numeric Field is required
             </span>
   				</div>
   			</div>
@@ -429,7 +429,7 @@
                    var doctorsDailyNotesData = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.doctorsDailyNotesData};
 				    	User.saveDoctorsDailyNotes(doctorsDailyNotesData).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Doctors Daily Notes have been saved', 'Doctors Daily Notes', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');

@@ -53,9 +53,9 @@
 						<label>IPD No:</label>
 					</div>
 					<div class="col">
-						<input class="form-control" type="text"  name="ipd_no" v-model="ipd_id" v-validate="'required'" id="ipd_id" value="" >
-						<span class="help is-danger" v-show="errors.has('ipd_no')">
-							Field is required
+						<input class="form-control" type="text"  name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" id="ipd_id" value="" >
+						<span class="help is-danger" v-show="errors.has('ipd_id')">
+							Numeric Field is required
 						</span>
 					</div>
 				</div>

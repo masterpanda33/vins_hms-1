@@ -21,9 +21,9 @@
 							<label for="">IPD No.</label>
 						</div>
 						<div class="col">
-							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
+							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
 							<span class="help is-danger" v-show="errors.has('ipd_no')">
-								Field is required
+								Numeric Field is required
 							</span>
 						</div>
 					</div>
@@ -640,7 +640,7 @@
                    User.saveNutritionalAssessmentForm(Res).then(
                          (response) => {
                          	console.log(response)
-                         	if(response.data.code == 200) {
+                         	if(response.data.status == 200) {
                          		toastr.success('Nutritional Assessment Form has been saved', 'Nutritional Assessment Form', {timeOut: 5000});
                          	}
                           $("body .js-loader").addClass('d-none');
