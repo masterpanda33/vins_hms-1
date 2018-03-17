@@ -131,6 +131,11 @@ class FormsOptionsDataController extends Controller
           $resultData = $this->formOptionRepo->storePlanOfCareData($data);
         }
 
+        if($data['type'] == 'informationForm'){
+          $resultData = $this->formOptionRepo->storeInformationFormData($data);
+
+        }
+
 
         return ['status' => '200','data'=>$resultData, 'message' => 'Record Sucessfully created'];
         return $resultData;

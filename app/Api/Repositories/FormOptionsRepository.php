@@ -479,7 +479,7 @@ class FormOptionsRepository {
       return $formsRec;
     }
 
-    public function storeCounsellingFormData($data)
+    public function storeInformationFormData($data)
     {
 
       $formsRec = '';
@@ -488,6 +488,7 @@ class FormOptionsRepository {
       // dd($formId);
       if($formId != '') {
           foreach ($data['form_data'] as $key => $value) {
+              // echo "<pre>";print_r($key);echo "</pre>";
               $formsRec = FormsOptionsData::create([
                   'form_id' => $formId,
                   'patient_id' => $data['patient_id'],
@@ -500,6 +501,8 @@ class FormOptionsRepository {
       }
       return $formsRec;
     }
+
+
 
 
 

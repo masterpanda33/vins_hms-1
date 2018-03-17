@@ -417,7 +417,7 @@
 									 var erObsData = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.erObservationData};
 									 User.saveerObservation(erObsData).then(
 										(response) => {
-											if(response.data.code == 200) {
+											if(response.data.status == 200) {
 												toastr.success('ERObservation has been saved', 'erObservation', {timeOut: 5000});
 											}
 											 $("body .js-loader").addClass('d-none');

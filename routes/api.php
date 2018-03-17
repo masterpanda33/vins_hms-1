@@ -85,7 +85,7 @@ $api->version('v1', function ($api) {
          $api->post('erObservation/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('erObservation.create');
          $api->post('gatePass/create', '\euro_hms\Api\Controllers\GatePassController@store')->name('gatePass.create');
          $api->post('historyForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('historyForm.create');
-         $api->post('informationForm/create', '\euro_hms\Api\Controllers\InformationFormController@store')->name('informationForm.create');
+         $api->post('informationForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('informationForm.create');
          $api->post('durgRequisition/create', '\euro_hms\Api\Controllers\DurgRequisitionController@store')->name('durgRequisition.create');
          $api->post('intraoperativeEventManagement/create', '\euro_hms\Api\Controllers\IntraoperativeEventManagementController@store')->name('intraoperativeEventManagement.create');
          $api->post('counsellingForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('counsellingForm.create');
