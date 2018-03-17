@@ -38,9 +38,9 @@
   						<label for="">IPD No.</label>
   					</div>
   					<div class="col">
-  						<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
+  						<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
   						<span class="help is-danger" v-show="errors.has('ipd_no')">
-  							Field is required
+  							Numeric Field is required
   						</span>
   					</div>
   				</div>
@@ -392,8 +392,8 @@
                    var Res = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.doctorsHandoverData};
 				    	     User.saveDoctorsHandover(Res).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
-		                		toastr.success('Doctor\'s Handover has been saved', 'Doctor\'s Handover', {timeOut: 5000});
+		                	if(response.data.status == 200) {
+		                		toastr.success('Doctors Handover has been saved', 'Doctors Handover', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
 

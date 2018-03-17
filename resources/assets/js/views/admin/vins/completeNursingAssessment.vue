@@ -54,7 +54,7 @@
   				</div>
   				<div class="col-md-6">
   					<div class="col-md-6">
-  						<label class="control-label col-md-6" for="ipd_id">TPD No.:</label>
+  						<label class="control-label col-md-6" for="ipd_id">IPD No.:</label>
   					</div>
   					<div class="col-md-6">
   						<input type="text" class="form-control" name="ipd_id" v-model="ipd_id" v-validate="'required'" id="ipd_id" value="" />

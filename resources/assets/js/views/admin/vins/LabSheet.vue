@@ -23,13 +23,14 @@
 								<div class="col">
 								<label>Ipd No : </label>
 							</div>
-							<div class="col">
-								<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required'" />
-								<span class="help is-danger" v-show="errors.has('ipd_no')">
-			            			Room number is required
-			          			</span>
-							</div></div>
 
+							<div class="col-md-6">
+								<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required|numeric'" />
+								<span class="help is-danger" v-show="errors.has('ipd_no')">
+            			Numeric Field is required
+          			</span>
+							</div>
+						</div>
 
 						<div class="col-md-4">
 							<div class="col">
