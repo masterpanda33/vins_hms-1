@@ -10,6 +10,19 @@
 
     <form action="" method="post">
       <div class="row form-group">
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <label>IPD No. : </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="ipd_id" type="text" v-model="ipd_id" v-validate="'required|numeric'"  />
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
+              Numeric only.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-md-8">
           <div class="row form-group">
             <div class="col-md-4">
