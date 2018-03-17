@@ -689,7 +689,7 @@
   			        <label class="control-label" for="date_nursing">Date:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="date" class="form-control" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" id="date_nursing">
+  			        <input type="text" class="form-control" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" id="date_nursing">
   							<span class="help is-danger" v-show="errors.has('date_nursing')">
     		        	Date of nursing is required
     		        </span>
@@ -799,7 +799,12 @@
         components: {
            addressograph,
        },
-
+       mounted() {
++               $('.ls-datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    'autoclose': true
+					})
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

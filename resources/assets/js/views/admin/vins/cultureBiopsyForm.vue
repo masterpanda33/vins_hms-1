@@ -24,7 +24,7 @@
             <label>Date:</label>
           </div>
           <div class="col-md-8">
-            <input type="date" class="form-control" name="date" v-validate="'required'" v-model="cultureBiopsyData.date" id="date">
+            <input type="date" class="form-control ls-datepicker" name="text" v-validate="'required'" v-model="cultureBiopsyData.date" id="date">
             <span class="help is-danger" v-show="errors.has('date')">
               Field is required
             </span>
@@ -245,7 +245,7 @@
               <label>Date:</label>
             </div>
             <div class="col-md-6">
-              <input type="date" class="form-control" name="date_for_sign" v-validate="'required'" v-model="cultureBiopsyData.date_for_sign" id="date_for_sign">
+              <input type="text" class="form-control ls-datepicker" name="date_for_sign" v-validate="'required'" v-model="cultureBiopsyData.date_for_sign" id="date_for_sign">
               <span class="help is-danger" v-show="errors.has('date_for_sign')">
                 Field is required
               </span>
@@ -307,6 +307,12 @@
         components: {
            addressograph,
        },
+       mounted() {
++               $('.ls-datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    'autoclose': true
+					})
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

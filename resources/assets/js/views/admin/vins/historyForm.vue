@@ -142,7 +142,7 @@
 					<label for="date" class="control-label">Date : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
+					<input class="form-control ls-datepicker" type="" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('date')">
 										Field is required
 									</span>
