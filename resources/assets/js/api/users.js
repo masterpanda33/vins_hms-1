@@ -22,14 +22,14 @@ export default {
   saveBloodTransfusion(bloodTransfusionDetails) {
     return api.post('bloodTransfusionDetails/create',{'resData': bloodTransfusionDetails})
   },
-  saveBreifOperativeNote(breifOperativeNoteData) {
-    return api.post('briefOperativeNote/create',{'resData': breifOperativeNoteData})
+  saveBreifOperativeNote(briefOperativeNoteData) {
+    return api.post('briefOperativeNote/create',{'briefOperativeNoteData': briefOperativeNoteData})
   },
   testFunction(testData) {
     return api.post('testFile/create',{'resData': testData})
   },
   saveCodeBlueEvaluationForm(codeBlueEvaluationData) {
-    return api.post('codeBlueEvaluationForm/create',{'resData': codeBlueEvaluationData})
+    return api.post('codeBlueEvaluationForm/create',{'codeBlueEvaluationData': codeBlueEvaluationData})
   },
   saveCompleteNursingAssessment(completeNursingAssessmentData) {
     return api.post('completeNursingAssessment/create',{'resData': completeNursingAssessmentData})
@@ -61,7 +61,6 @@ export default {
   saveLabSheet(LabSheet) {
     return api.post('LabSheet/create',{'resData': LabSheet})
   },
-
   saveNurseProgressNotes(NurseProgressNotes) {
     return api.post('NurseProgressNotes/create',{'resData':NurseProgressNotes})
   },
@@ -86,8 +85,8 @@ export default {
     return api.post('PatientAdmissionSheet/create',{'resData':PatientAdmissionSheet})
   },
 
-  savePatientDietRecord(PatientDietRecord) {
-    return api.post('PatientDietRecord/create',{'resData':PatientDietRecord})
+  savePatientDietRecord(patientDietRecordData) {
+    return api.post('PatientDietRecord/create',{'resData':patientDietRecordData})
   },
 
   savePatientValuableForm(patientValuableFormData) {
@@ -188,12 +187,16 @@ export default {
   saveIntraoperativeEventManagement(intraoperativeEventManagementData) {
       return api.post('intraoperativeEventManagement/create',{'intraoperativeEventManagement':intraoperativeEventManagementData})
     },
-    saveMARFlowSheet(MARFlowSheet) {
+  saveMARFlowSheet(MARFlowSheet) {
     return api.post('MARFlowSheet/create',{'MARFlowSheet': MARFlowSheet})
   },
-    getpatientDetail(ipdId) {
+  getpatientDetail(ipdId) {
     return api.post('patient/getDetails/'+ipdId)
   },
+  saveCentralLineBundleChecklist(CentralLineBundleChecklistData) {
+      return api.post('centralLineBundleChecklist/create',{'resData':CentralLineBundleChecklistData})
+    },
+
 
 
 }

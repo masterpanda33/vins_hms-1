@@ -502,6 +502,56 @@ class FormOptionsRepository {
       return $formsRec;
     }
 
+    public function storeCounsellingFormData($data)
+    {
+
+      $formsRec = '';
+
+      $formId = $this->getFormId($data);
+
+      // dd($formId);
+      if($formId != '') {
+          foreach ($data['form_data'] as $key => $value) {
+              // echo "<pre>";print_r($key);echo "</pre>";
+              if($key == 'counselling') {
+                  $value = json_encode($value);
+              }
+              $formsRec = FormsOptionsData::create([
+                  'form_id' => $formId,
+                  'patient_id' => $data['patient_id'],
+                  'ipd_no' => $data['ipd_id'],
+                  'form_key' => $key,
+                  'form_value' => $value
+              ]);
+          }
+
+      }
+      return $formsRec;
+    }
+
+    public function storePatientDietRecordData($data)
+    {
+
+      $formsRec = '';
+
+      $formId = $this->getFormId($data);
+
+      // dd($formId);
+      if($formId != '') {
+          foreach ($data['form_data'] as $key => $value) {
+              // echo "<pre>";print_r($key);echo "</pre>";
+              $formsRec = FormsOptionsData::create([
+                  'form_id' => $formId,
+                  'patient_id' => $data['patient_id'],
+                  'ipd_no' => $data['ipd_id'],
+                  'form_key' => $key,
+                  'form_value' => $value
+              ]);
+          }
+
+      }
+      return $formsRec;
+    }
 
 
 

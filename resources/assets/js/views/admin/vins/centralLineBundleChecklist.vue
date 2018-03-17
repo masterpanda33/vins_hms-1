@@ -186,7 +186,7 @@
                    User.saveCentralLineBundleChecklist(Res).then(
                          (response) => {
                          	console.log(response)
-                         	if(response.data.code == 200) {
+                         	if(response.data.status == 200) {
                          		toastr.success('Central Line Bundle Checklist has been saved', 'Central Line Bundle Checklist', {timeOut: 5000});
                          	}
                           $("body .js-loader").addClass('d-none');
