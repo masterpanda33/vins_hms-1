@@ -4743,7 +4743,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   saveHistoryForm: function saveHistoryForm(historyFormData) {
     return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('historyForm/create', { 'resData': historyFormData });
   },
-  saveInformationForm: function saveInformationForm(informationForm) {
+  saveInformationForm: function saveInformationForm(informationFormData) {
     return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('informationForm/create', { 'resData': informationFormData });
   },
   saveinvestigationSheet: function saveinvestigationSheet(investigationSheet) {
@@ -4768,10 +4768,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('NurseProgressNotes/create', { 'NurseProgressNotes': NurseProgressNotes });
 }), _defineProperty(_getUserDetails$getEd, 'saveWardProcedureRecord', function saveWardProcedureRecord(wardProcedureRecordData) {
   return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('wardProcedureRecord/create', { 'wardProcedureRecordData': wardProcedureRecordData });
-}), _defineProperty(_getUserDetails$getEd, 'saveInformationForm', function saveInformationForm(informationFormData) {
-  return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('informationForm/create', { 'informationFormData': informationFormData });
 }), _defineProperty(_getUserDetails$getEd, 'saveIntraoperativeEventManagement', function saveIntraoperativeEventManagement(intraoperativeEventManagementData) {
   return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('intraoperativeEventManagement/create', { 'intraoperativeEventManagement': intraoperativeEventManagementData });
+}), _defineProperty(_getUserDetails$getEd, 'saveMARFlowSheet', function saveMARFlowSheet(MARFlowSheet) {
+  return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('MARFlowSheet/create', { 'MARFlowSheet': MARFlowSheet });
+}), _defineProperty(_getUserDetails$getEd, 'getpatientDetail', function getpatientDetail(ipdId) {
+  return __WEBPACK_IMPORTED_MODULE_0__siteconfig__["a" /* default */].post('patient/getDetails/' + ipdId);
 }), _getUserDetails$getEd;
 
 /***/ }),
@@ -48264,7 +48266,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addressograph: __WEBPACK_IMPORTED_MODULE_1__addressograph_vue___default.a
     },
     mounted: function mounted() {
-        this.$store.dispatch('SetPatientData', 18);
+        // this.$store.dispatch('SetPatientData',18);
     },
 
     methods: {
@@ -55217,7 +55219,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       'bloodSugarMonitoringChart': {
         'patient_name': '',
         'bed_no': '',
-        'ipd_no': '',
         'age': '',
         'sex': '',
         'monitoring': {
@@ -55881,7 +55882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 								return {
 												'footer': 'footer',
 												'currentYear': new Date().getFullYear(),
-												'breifOperativeNoteData': {
+												'briefOperativeNoteData': {
 																'briefoperativenote': '',
 																'post_operative_clinical_status': '',
 																'post_operative_orders': ''
@@ -55900,7 +55901,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 												this.$validator.validateAll().then(function (response) {
 																if (!_this.errors.any()) {
 																				$("body .js-loader").removeClass('d-none');
-																				__WEBPACK_IMPORTED_MODULE_0__api_users_js__["a" /* default */].saveBreifOperativeNote(_this.breifOperativeNoteData).then(function (response) {
+																				__WEBPACK_IMPORTED_MODULE_0__api_users_js__["a" /* default */].saveBreifOperativeNote(_this.briefOperativeNoteData).then(function (response) {
 																								if (response.data.code == 200) {
 																												toastr.success('Brief Operative Note details have been saved', 'brief operative note detail', { timeOut: 5000 });
 																								}
@@ -61388,7 +61389,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					$("body .js-loader").removeClass('d-none');
 					var erObsData = { 'type': _this.type, 'patient_id': _this.patient_id, 'ipd_id': _this.ipd_id, 'form_data': _this.erObservationData };
 					__WEBPACK_IMPORTED_MODULE_0__api_users_js__["a" /* default */].saveerObservation(erObsData).then(function (response) {
-						if (response.data.code == 200) {
+						if (response.data.status == 200) {
 							toastr.success('ERObservation has been saved', 'erObservation', { timeOut: 5000 });
 						}
 						$("body .js-loader").addClass('d-none');
@@ -62452,6 +62453,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}
 		};
 	},
+	mounted: function mounted() {
+		$('.ls-datepicker').datepicker({
+			format: 'dd/mm/yyyy',
+			'autoclose': true
+		});
+
+		$('.ls-timepicker').timepicker();
+		var vm = this;
+		$('.ls-datepicker').datepicker().on('changeDate', function () {
+			vm.historyFormData.date = this.value;
+		});
+		$('.ls-timepicker').on('change', function (e) {
+			//vm.historyFormData.time = this.value;    
+		});
+	},
 
 	methods: {
 		GetSelectComponent: function GetSelectComponent(componentName) {
@@ -62486,6 +62502,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_users_js__ = __webpack_require__(2);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62844,58 +62867,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
-				data: function data() {
-								return {
-												'footer': 'footer',
-												'currentYear': new Date().getFullYear(),
-												'informationFormData': {
-																'date': '',
-																'time': '',
-																'_00': '',
-																'_01': '',
-																'major_illness': '',
-																'_02': '',
-																'_03': '',
-																'_04': '',
-																'_05': '',
-																'_06': '',
-																'_07': '',
-																'_08': '',
-																'_09': '',
-																'operated_in_past': '',
-																'_10': '',
-																'_10a': '',
-																'_10b': '',
-																'taking_drugs_at_present': '',
-																'_11': '',
-																'name_of_patient': '',
-																'name_of_relative': ''
-												}
-								};
-				},
+	data: function data() {
+		var _informationFormData;
 
-				methods: {
-								GetSelectComponent: function GetSelectComponent(componentName) {
-												this.$router.push({ name: componentName });
-								},
-								saveInformationForm: function saveInformationForm() {
-												var _this = this;
+		return {
+			'footer': 'footer',
+			'currentYear': new Date().getFullYear(),
+			'type': 'informationForm',
+			'patient_id': this.$store.state.Patient.patientId,
+			'ipd_id': this.$store.state.Patient.ipdId,
+			'informationFormData': (_informationFormData = {
+				'date': '',
+				'time': '',
+				'pain_chest': '',
+				'bp_heart': '',
+				'major_illness': ''
+			}, _defineProperty(_informationFormData, 'major_illness', ''), _defineProperty(_informationFormData, 'nervous_disorder', ''), _defineProperty(_informationFormData, 'bleeding_clot', ''), _defineProperty(_informationFormData, 'diabetes', ''), _defineProperty(_informationFormData, 'peptic_ulcer', ''), _defineProperty(_informationFormData, 'allergy', ''), _defineProperty(_informationFormData, 'asthama', ''), _defineProperty(_informationFormData, 'difficulty_passing_urine', ''), _defineProperty(_informationFormData, 'operated_in_past', ''), _defineProperty(_informationFormData, 'surgical_complication', ''), _defineProperty(_informationFormData, 'blood_transfusion', ''), _defineProperty(_informationFormData, 'taking_drugs_at_present', ''), _defineProperty(_informationFormData, 'drug_details', ''), _defineProperty(_informationFormData, 'name_of_patient', ''), _defineProperty(_informationFormData, 'name_of_relative', ''), _informationFormData)
+		};
+	},
 
-												this.$validator.validateAll().then(function (response) {
-																if (!_this.errors.any()) {
-																				$("body .js-loader").removeClass('d-none');
-																				__WEBPACK_IMPORTED_MODULE_0__api_users_js__["a" /* default */].saveInformationForm(_this.informationFormData).then(function (response) {
-																								if (response.data.code == 200) {
-																												toastr.success('Information Form has been saved', 'Information Form', { timeOut: 5000 });
-																								}
-																								$("body .js-loader").addClass('d-none');
-																				}, function (error) {
-																								$("body .js-loader").addClass('d-none');
-																				});
-																}
-												}, function (error) {});
-								}
+	methods: {
+		GetSelectComponent: function GetSelectComponent(componentName) {
+			this.$router.push({ name: componentName });
+		},
+		saveInformationForm: function saveInformationForm() {
+			var _this = this;
+
+			this.$validator.validateAll().then(function (response) {
+				if (!_this.errors.any()) {
+					$("body .js-loader").removeClass('d-none');
+					var informationFormData = { 'type': _this.type, 'patient_id': _this.patient_id, 'ipd_id': _this.ipd_id, 'form_data': _this.informationFormData };
+					__WEBPACK_IMPORTED_MODULE_0__api_users_js__["a" /* default */].saveInformationForm(informationFormData).then(function (response) {
+						if (response.data.status == 200) {
+							toastr.success('Information Form has been saved', 'Information Form', { timeOut: 5000 });
+						}
+						$("body .js-loader").addClass('d-none');
+					}, function (error) {
+						$("body .js-loader").addClass('d-none');
+					});
 				}
+			}, function (error) {});
+		}
+	}
 
 };
 
@@ -63705,28 +63718,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_users_js__ = __webpack_require__(2);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -69057,6 +69048,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_SiteFooter_vue__ = __webpack_require__(296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_SiteFooter_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_SiteFooter_vue__);
+//
+//
+//
 //
 //
 //
@@ -87419,7 +87413,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: ('required'),
       expression: "'required'"
     }],
-    staticClass: "form-control",
+    staticClass: "form-control  ls-timepicker",
     attrs: {
       "type": "text",
       "id": "at",
@@ -87459,11 +87453,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: ('required'),
       expression: "'required'"
     }],
-    staticClass: "form-control",
+    staticClass: "form-control ls-datepicker",
     attrs: {
-      "type": "date",
-      "id": "date",
-      "name": "date",
+      "type": "text",
+      "id": "history_date",
+      "name": "history_date",
       "value": ""
     },
     domProps: {
@@ -87483,7 +87477,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('date')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\r\n\t\t\t\t\t\t\t\t\t\tField is required\r\n\t\t\t\t\t\t\t\t\t")])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\r\n\t\t\t\t\t\tField is required\r\n\t\t\t\t\t")])])])]), _vm._v(" "), _c('div', {
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
@@ -88607,7 +88601,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "at"
     }
-  }, [_vm._v("At : ")])])
+  }, [_vm._v("Time : ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-6"
@@ -119773,31 +119767,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.bloodSugarMonitoringChart.ipd_no),
-      expression: "bloodSugarMonitoringChart.ipd_no"
+      value: (_vm.ipd_id),
+      expression: "ipd_id"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "name": "ipd_no",
-      "id": "ipd_no",
+      "name": "ipd_id",
+      "id": "ipd_id",
       "value": ""
     },
     domProps: {
-      "value": (_vm.bloodSugarMonitoringChart.ipd_no)
+      "value": (_vm.ipd_id)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.bloodSugarMonitoringChart, "ipd_no", $event.target.value)
+        _vm.ipd_id = $event.target.value
       }
     }
   }), _vm._v(" "), _c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('ipd_no')),
-      expression: "errors.has('ipd_no')"
+      value: (_vm.errors.has('ipd_id')),
+      expression: "errors.has('ipd_id')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\n            Field is required\n          ")])])]), _vm._v(" "), _c('div', {
@@ -126905,6 +126899,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.ipd_id),
+      expression: "ipd_id"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: ('required'),
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "name": "ipd_id"
+    },
+    domProps: {
+      "value": (_vm.ipd_id)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.ipd_id = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.errors.has('ipd_id')),
+      expression: "errors.has('ipd_id')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\r\n\t\t\t\t\t\tField is required\r\n\t\t\t\t\t")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row form-group"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
       name: "validate",
       rawName: "v-validate",
       value: ('required'),
@@ -126939,9 +126973,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('date')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\r\n\t\t\t\t\t\t\t\t\t\tField is required\r\n\t\t\t\t\t\t\t\t\t")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\r\n\t\t\t\t\t\tField is required\r\n\t\t\t\t\t")])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -126979,9 +127013,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('time')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\r\n\t\t\t\t\t\t\t\t\t\tField is required\r\n\t\t\t\t\t\t\t\t\t")])])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('table', {
+  }, [_vm._v("\r\n\t\t\t\t\t\tField is required\r\n\t\t\t\t\t")])])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('table', {
     staticClass: "table table-bordered"
-  }, [_vm._m(4), _vm._v(" "), _c('tbody', [_c('tr', [_c('td', [_vm._v("1")]), _vm._v(" "), _c('td', [_vm._v("Do you get pain in chest of breathlessness on walking or after exertion?\r\n\r\n\t\t\t\t\t")]), _vm._v(" "), _c('td', [_c('select', {
+  }, [_vm._m(5), _vm._v(" "), _c('tbody', [_c('tr', [_c('td', [_vm._v("1")]), _vm._v(" "), _c('td', [_vm._v("Do you get pain in chest of breathlessness on walking or after exertion?\r\n\r\n\t\t\t\t\t")]), _vm._v(" "), _c('td', [_c('select', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -126990,13 +127024,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._00),
-      expression: "informationFormData._00"
+      value: (_vm.informationFormData.pain_chest),
+      expression: "informationFormData.pain_chest"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_00",
-      "name": "_00",
+      "id": "pain_chest",
+      "name": "pain_chest",
       "value": ""
     },
     on: {
@@ -127007,7 +127041,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_00", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "pain_chest", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127022,11 +127056,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_00')),
-      expression: "errors.has('_00')"
+      value: (_vm.errors.has('pain_chest')),
+      expression: "errors.has('pain_chest')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\r\n                        Field is required\r\n                      ")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("2")]), _vm._v(" "), _c('td', [_vm._v("Have you suffered in past from high blood pressure, heart disease or angina?\r\n\r\n\t\t\t\t")]), _vm._v(" "), _c('td', [_c('select', {
+  }, [_vm._v("\r\n                Field is required\r\n              ")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("2")]), _vm._v(" "), _c('td', [_vm._v("Have you suffered in past from high blood pressure, heart disease or angina?\r\n\r\n\t\t\t\t")]), _vm._v(" "), _c('td', [_c('select', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -127035,13 +127069,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._01),
-      expression: "informationFormData._01"
+      value: (_vm.informationFormData.bp_heart),
+      expression: "informationFormData.bp_heart"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_01",
-      "name": "_01",
+      "id": "bp_heart",
+      "name": "bp_heart",
       "value": ""
     },
     on: {
@@ -127052,7 +127086,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_01", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "bp_heart", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127067,8 +127101,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_01')),
-      expression: "errors.has('_01')"
+      value: (_vm.errors.has('bp_heart')),
+      expression: "errors.has('bp_heart')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n                Field is required\r\n              ")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("3")]), _vm._v(" "), _c('td', [_vm._v("\r\n  \t\t\t\t\tHave you been treated in past or at present for any major illness? If yes, please specify:\r\n\t\t\t\t\t\t"), _c('input', {
@@ -127103,13 +127137,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._02),
-      expression: "informationFormData._02"
+      value: (_vm.informationFormData.major_illness),
+      expression: "informationFormData.major_illness"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_02",
-      "name": "_02",
+      "id": "major_illness",
+      "name": "major_illness",
       "value": ""
     },
     on: {
@@ -127120,7 +127154,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_02", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "major_illness", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127135,8 +127169,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_02')),
-      expression: "errors.has('_02')"
+      value: (_vm.errors.has('major_illness')),
+      expression: "errors.has('major_illness')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("4")]), _vm._v(" "), _c('td', [_vm._v("Have you ever suffered from any previous nervous disorders convulsions or paralysis before?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('select', {
@@ -127148,13 +127182,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._03),
-      expression: "informationFormData._03"
+      value: (_vm.informationFormData.nervous_disorder),
+      expression: "informationFormData.nervous_disorder"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_03",
-      "name": "_03",
+      "id": "nervous_disorder",
+      "name": "nervous_disorder",
       "value": ""
     },
     on: {
@@ -127165,7 +127199,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_03", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "nervous_disorder", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127180,8 +127214,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_03')),
-      expression: "errors.has('_03')"
+      value: (_vm.errors.has('nervous_disorder')),
+      expression: "errors.has('nervous_disorder')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("5")]), _vm._v(" "), _c('td', [_vm._v("Do you have a disorder of bleeding or clotting of blood?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('div', {
@@ -127195,13 +127229,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._04),
-      expression: "informationFormData._04"
+      value: (_vm.informationFormData.bleeding_clot),
+      expression: "informationFormData.bleeding_clot"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_04",
-      "name": "_04",
+      "id": "bleeding_clot",
+      "name": "bleeding_clot",
       "value": ""
     },
     on: {
@@ -127212,7 +127246,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_04", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "bleeding_clot", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127227,8 +127261,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_04')),
-      expression: "errors.has('_04')"
+      value: (_vm.errors.has('bleeding_clot')),
+      expression: "errors.has('bleeding_clot')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("6")]), _vm._v(" "), _c('td', [_vm._v("\r\n  \t\t\t\t\tHave you been treated for diabetes?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('div', {
@@ -127242,13 +127276,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._05),
-      expression: "informationFormData._05"
+      value: (_vm.informationFormData.diabetes),
+      expression: "informationFormData.diabetes"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_05",
-      "name": "_05",
+      "id": "diabetes",
+      "name": "diabetes",
       "value": ""
     },
     on: {
@@ -127259,7 +127293,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_05", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "diabetes", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127274,8 +127308,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_05')),
-      expression: "errors.has('_05')"
+      value: (_vm.errors.has('diabetes')),
+      expression: "errors.has('diabetes')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("7")]), _vm._v(" "), _c('td', [_vm._v("\r\n  \t\t\t\t\tDo you have a history of Peptic Ulcer or hyper acidity?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('div', {
@@ -127289,13 +127323,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._06),
-      expression: "informationFormData._06"
+      value: (_vm.informationFormData.peptic_ulcer),
+      expression: "informationFormData.peptic_ulcer"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_06",
-      "name": "_06",
+      "id": "peptic_ulcer",
+      "name": "peptic_ulcer",
       "value": ""
     },
     on: {
@@ -127306,7 +127340,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_06", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "peptic_ulcer", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127321,8 +127355,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_06')),
-      expression: "errors.has('_06')"
+      value: (_vm.errors.has('peptic_ulcer')),
+      expression: "errors.has('peptic_ulcer')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("8")]), _vm._v(" "), _c('td', [_vm._v("\r\n  \t\t\t\t\tDo you suffer from any allergy or drug hypersensitivity?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('div', {
@@ -127336,13 +127370,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._07),
-      expression: "informationFormData._07"
+      value: (_vm.informationFormData.allergy),
+      expression: "informationFormData.allergy"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_07",
-      "name": "_07",
+      "id": "allergy",
+      "name": "allergy",
       "value": ""
     },
     on: {
@@ -127353,7 +127387,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_07", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "allergy", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127368,8 +127402,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_07')),
-      expression: "errors.has('_07')"
+      value: (_vm.errors.has('allergy')),
+      expression: "errors.has('allergy')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("9")]), _vm._v(" "), _c('td', [_vm._v("\r\n  \t\t\t\t\tDo you suffer from Asthama / breathing difficulty?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('div', {
@@ -127383,13 +127417,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._08),
-      expression: "informationFormData._08"
+      value: (_vm.informationFormData.asthama),
+      expression: "informationFormData.asthama"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_08",
-      "name": "_08",
+      "id": "asthama",
+      "name": "asthama",
       "value": ""
     },
     on: {
@@ -127400,7 +127434,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_08", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "asthama", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127415,8 +127449,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_08')),
-      expression: "errors.has('_08')"
+      value: (_vm.errors.has('asthama')),
+      expression: "errors.has('asthama')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("10")]), _vm._v(" "), _c('td', [_vm._v("Have you had difficulty in passing urine in the past?\r\n\r\n  \t\t\t\t")]), _vm._v(" "), _c('td', [_c('div', {
@@ -127425,8 +127459,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._09),
-      expression: "informationFormData._09"
+      value: (_vm.informationFormData.difficulty_passing_urine),
+      expression: "informationFormData.difficulty_passing_urine"
     }, {
       name: "validate",
       rawName: "v-validate",
@@ -127435,7 +127469,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "name": "_09"
+      "name": "difficulty_passing_urine"
     },
     on: {
       "change": function($event) {
@@ -127445,7 +127479,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_09", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "difficulty_passing_urine", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127460,8 +127494,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_09')),
-      expression: "errors.has('_09')"
+      value: (_vm.errors.has('difficulty_passing_urine')),
+      expression: "errors.has('difficulty_passing_urine')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n\t                        Field is required\r\n\t                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("11")]), _vm._v(" "), _c('td', [_vm._v("Have you been operated in the past?\r\n            "), _c('div', {}, [_vm._v("\r\n              If yes, please specify:\r\n            ")]), _vm._v(" "), _c('div', {
@@ -127489,7 +127523,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$set(_vm.informationFormData, "operated_in_past", $event.target.value)
       }
     }
-  })]), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c('td', [_c('div', {
+  })]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c('td', [_c('div', {
     staticClass: "form-group"
   }, [_c('select', {
     directives: [{
@@ -127500,13 +127534,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._10),
-      expression: "informationFormData._10"
+      value: (_vm.informationFormData.surgical_complication),
+      expression: "informationFormData.surgical_complication"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_10",
-      "name": "_10",
+      "id": "surgical_complication",
+      "name": "surgical_complication",
       "value": ""
     },
     on: {
@@ -127517,7 +127551,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_10", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "surgical_complication", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127532,8 +127566,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_10')),
-      expression: "errors.has('_10')"
+      value: (_vm.errors.has('surgical_complication')),
+      expression: "errors.has('surgical_complication')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n                        Field is required\r\n                      ")])]), _vm._v(" "), _c('div', {
@@ -127547,13 +127581,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._10a),
-      expression: "informationFormData._10a"
+      value: (_vm.informationFormData.blood_transfusion),
+      expression: "informationFormData.blood_transfusion"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_10a",
-      "name": "_10a",
+      "id": "blood_transfusion",
+      "name": "blood_transfusion",
       "value": ""
     },
     on: {
@@ -127564,7 +127598,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_10a", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "blood_transfusion", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127579,58 +127613,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_10a')),
-      expression: "errors.has('_10a')"
+      value: (_vm.errors.has('blood_transfusion')),
+      expression: "errors.has('blood_transfusion')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\r\n                        Field is required\r\n                      ")])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('select', {
-    directives: [{
-      name: "validate",
-      rawName: "v-validate",
-      value: ('required'),
-      expression: "'required'"
-    }, {
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.informationFormData._10b),
-      expression: "informationFormData._10b"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "_10b",
-      "name": "_10b",
-      "value": ""
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.$set(_vm.informationFormData, "_10b", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": "Yes"
-    }
-  }, [_vm._v("Yes")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "No"
-    }
-  }, [_vm._v("No")])]), _vm._v(" "), _c('span', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.errors.has('_10b')),
-      expression: "errors.has('_10b')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v("\r\n                        Field is required\r\n                      ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("12")]), _vm._v(" "), _c('td', [_vm._v("\r\n            Are you taking any drugs at present?\r\n            "), _c('div', {}, [_vm._v("\r\n              If yes, give details:\r\n            ")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\r\n                Field is required\r\n              ")])])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("12")]), _vm._v(" "), _c('td', [_vm._v("\r\n            Are you taking any drugs at present?\r\n            "), _c('div', {}, [_vm._v("\r\n              If yes, give details:\r\n            ")]), _vm._v(" "), _c('div', {
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
@@ -127668,13 +127655,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.informationFormData._11),
-      expression: "informationFormData._11"
+      value: (_vm.informationFormData.drug_details),
+      expression: "informationFormData.drug_details"
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "_11",
-      "name": "_11",
+      "id": "drug_details",
+      "name": "drug_details",
       "value": ""
     },
     on: {
@@ -127685,7 +127672,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.$set(_vm.informationFormData, "_11", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
+        _vm.$set(_vm.informationFormData, "drug_details", $event.target.multiple ? $$selectedVal : $$selectedVal[0])
       }
     }
   }, [_c('option', {
@@ -127700,8 +127687,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.errors.has('_11')),
-      expression: "errors.has('_11')"
+      value: (_vm.errors.has('drug_details')),
+      expression: "errors.has('drug_details')"
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\r\n                        Field is required\r\n                      ")])])])])])]), _vm._v(" "), _c('div', {
@@ -127710,7 +127697,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col"
   }, [_c('div', {
     staticClass: "row"
-  }, [_vm._m(6), _vm._v(" "), _c('div', {
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -127752,7 +127739,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col"
   }, [_c('div', {
     staticClass: "row"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -127817,6 +127804,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "text-right"
   }, [_vm._v("\r\n\t\t\t\t\tDOC NO. F/IPD/27 "), _c('br'), _vm._v("\r\n\t\t\t\t\tREV. No. 0.0 "), _c('br'), _vm._v("\r\n\t\t\t\t\tWEF 01-08-2013\r\n\t\t\t\t")])])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('label', [_vm._v("IPD No. : ")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-6"
@@ -132546,11 +132537,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "method": "post"
     }
-  }, [_vm._m(1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+  }, [_c('div', {
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-4"
-  }, [_vm._m(2), _vm._v(" "), _c('div', {
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132593,7 +132584,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "help is-danger"
   }, [_vm._v("\n\t\t\t                \tField is required\n\t\t\t              \t")])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-4"
-  }, [_vm._m(3), _vm._v(" "), _c('div', {
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132620,7 +132611,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-4"
-  }, [_vm._m(4), _vm._v(" "), _c('div', {
+  }, [_vm._m(3), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132662,7 +132653,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(5), _vm._v(" "), _c('div', {
+  }, [_vm._m(4), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132702,7 +132693,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "help is-danger"
   }, [_vm._v("\n            \tField is required\n            ")])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(6), _vm._v(" "), _c('div', {
+  }, [_vm._m(5), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('select', {
     directives: [{
@@ -132752,7 +132743,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(7), _vm._v(" "), _c('div', {
+  }, [_vm._m(6), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132794,7 +132785,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(8), _vm._v(" "), _c('div', {
+  }, [_vm._m(7), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132829,7 +132820,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "help is-danger"
   }, [_vm._v("\n\t\t                \tField is required\n\t\t                ")])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(9), _vm._v(" "), _c('div', {
+  }, [_vm._m(8), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132871,7 +132862,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(10), _vm._v(" "), _c('div', {
+  }, [_vm._m(9), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132911,7 +132902,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "help is-danger"
   }, [_vm._v("\n\t\t                \tField is required\n\t\t                ")])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(11), _vm._v(" "), _c('div', {
+  }, [_vm._m(10), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('input', {
     directives: [{
@@ -132953,7 +132944,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row form-group"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_vm._m(12), _vm._v(" "), _c('div', {
+  }, [_vm._m(11), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_c('select', {
     directives: [{
@@ -133025,46 +133016,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "text-right"
   }, [_vm._v("\n\t\t\t\t\t\tF/OPD/01\n\t\t\t\t\t")])])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "row form-group"
-  }, [_c('div', {
-    staticClass: "col-md-6"
-  }, [_c('div', {
-    staticClass: "col-md-6"
-  }, [_c('label', {
-    attrs: {
-      "for": "date"
-    }
-  }, [_vm._v("Date: ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "date",
-      "id": "date",
-      "name": "date",
-      "value": ""
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('div', {
-    staticClass: "col-md-6"
-  }, [_c('label', {
-    attrs: {
-      "for": "time"
-    }
-  }, [_vm._v("Time: ")])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('input', {
-    staticClass: "form-control",
-    attrs: {
-      "type": "time",
-      "name": "time",
-      "id": "time",
-      "value": ""
-    }
-  })])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-6"
@@ -134192,8 +134143,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.breifOperativeNoteData.briefoperativenote),
-      expression: "breifOperativeNoteData.briefoperativenote"
+      value: (_vm.briefOperativeNoteData.briefoperativenote),
+      expression: "briefOperativeNoteData.briefoperativenote"
     }],
     staticClass: "form-control",
     attrs: {
@@ -134203,12 +134154,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "placeholder": "Brief Operative Notes here:"
     },
     domProps: {
-      "value": (_vm.breifOperativeNoteData.briefoperativenote)
+      "value": (_vm.briefOperativeNoteData.briefoperativenote)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.breifOperativeNoteData, "briefoperativenote", $event.target.value)
+        _vm.$set(_vm.briefOperativeNoteData, "briefoperativenote", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('span', {
@@ -134235,8 +134186,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.breifOperativeNoteData.post_operative_clinical_status),
-      expression: "breifOperativeNoteData.post_operative_clinical_status"
+      value: (_vm.briefOperativeNoteData.post_operative_clinical_status),
+      expression: "briefOperativeNoteData.post_operative_clinical_status"
     }],
     staticClass: "form-control",
     attrs: {
@@ -134244,12 +134195,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "rows": "4"
     },
     domProps: {
-      "value": (_vm.breifOperativeNoteData.post_operative_clinical_status)
+      "value": (_vm.briefOperativeNoteData.post_operative_clinical_status)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.breifOperativeNoteData, "post_operative_clinical_status", $event.target.value)
+        _vm.$set(_vm.briefOperativeNoteData, "post_operative_clinical_status", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('span', {
@@ -134269,8 +134220,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.breifOperativeNoteData.post_operative_orders),
-      expression: "breifOperativeNoteData.post_operative_orders"
+      value: (_vm.briefOperativeNoteData.post_operative_orders),
+      expression: "briefOperativeNoteData.post_operative_orders"
     }],
     staticClass: "form-control",
     attrs: {
@@ -134278,12 +134229,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "rows": "4"
     },
     domProps: {
-      "value": (_vm.breifOperativeNoteData.post_operative_orders)
+      "value": (_vm.briefOperativeNoteData.post_operative_orders)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.$set(_vm.breifOperativeNoteData, "post_operative_orders", $event.target.value)
+        _vm.$set(_vm.briefOperativeNoteData, "post_operative_orders", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('span', {
@@ -138511,7 +138462,35 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "template-container"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('header', {
+    staticClass: "site-header"
+  }, [_c('div', {
+    staticClass: "container"
+  }, [_c('router-link', {
+    staticClass: "brand-main",
+    attrs: {
+      "to": "/"
+    }
+  }, [_c('img', {
+    staticClass: "hidden-sm-down",
+    attrs: {
+      "src": "/assets/img/nabh_vins_logo.jpg",
+      "id": "logo-desk",
+      "alt": "NABH Logo"
+    }
+  }), _vm._v(" "), _c('img', {
+    staticClass: "hidden-md-up",
+    attrs: {
+      "src": "/assets/img/nabh_vins_logo.jpg",
+      "id": "logo-mobile",
+      "alt": "NABH Logo"
+    }
+  })]), _vm._v(" "), _c('a', {
+    staticClass: "brand-main",
+    attrs: {
+      "href": "#"
+    }
+  }), _vm._v(" "), _vm._m(0)], 1)]), _vm._v(" "), _c('div', {
     staticClass: "dashboard"
   }, [_c('transition', {
     attrs: {
@@ -138520,32 +138499,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('router-view')], 1)], 1), _vm._v(" "), _c('site-footer')], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('header', {
-    staticClass: "site-header"
-  }, [_c('div', {
-    staticClass: "container"
-  }, [_c('a', {
-    staticClass: "brand-main",
-    attrs: {
-      "href": "#"
-    }
-  }, [_c('img', {
-    staticClass: "hidden-sm-down",
-    attrs: {
-      "src": "/assets/img/logo-deskk.png",
-      "id": "logo-desk",
-      "alt": "NABH Logo"
-    }
-  }), _vm._v(" "), _c('img', {
-    staticClass: "hidden-md-up",
-    attrs: {
-      "src": "/assets/img/logo-mobile.png",
-      "id": "logo-mobile",
-      "alt": "NABH Logo"
-    }
-  })]), _vm._v(" "), _c('ul', {
+  return _c('ul', {
     staticClass: "action-list"
-  }, [_c('li')])])])
+  }, [_c('li')])
 }]}
 module.exports.render._withStripped = true
 if (false) {
