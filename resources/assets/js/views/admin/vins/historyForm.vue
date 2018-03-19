@@ -145,7 +145,7 @@
 					<label for="date" class="control-label">Date : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
+					<input class="form-control ls-datepicker" type="" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('date')">
 						Field is required
 					</span>
@@ -553,22 +553,35 @@
             }
         },
 
+
+				components: {
+					 addressograph,
+			 },
+
+			 mounted() {
+              $('.ls-datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    'autoclose': true
+					})
+				},
+
         mounted() {
         	$('.ls-datepicker').datepicker({
 			    format: 'dd/mm/yyyy',
 			    'autoclose': true
 			});
-			
+
 			$('.ls-timepicker').timepicker();
             let vm =this;
 			$('.ls-datepicker').datepicker().on('changeDate',function(){
 				vm.historyFormData.date = this.value;
 			})
+
 			$('.ls-timepicker').on('change', function(e)  {
-				//vm.historyFormData.time = this.value;    
+				//vm.historyFormData.time = this.value;
 			});
-			
-        },
+
+  },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -602,6 +615,7 @@
 		  },
 
     }
+
 </script>
 
 

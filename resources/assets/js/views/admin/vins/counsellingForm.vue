@@ -17,18 +17,20 @@
   	<hr>
   	<form>
       <div class="row form-group">
-        <div class="col-md-6">
+        <div class="col-md-8">
           <div class="col-md-6">
             <label>IPD : </label>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <input class="form-control" name="ipd_id" type="text" id="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"/>
             <span class="help is-danger" v-show="errors.has('ipd_id')">
               Numeric values only.
             </span>
-
           </div>
         </div>
+        <div class="col-md-4">
+  				<addressograph></addressograph>
+  			</div>
       </div>
   		<div class="row">
   			<table class="table table-bordered" >
@@ -64,7 +66,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
-  
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -116,6 +118,10 @@
                 }
             }
         },
+        components: {
+					 addressograph,
+			 },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
