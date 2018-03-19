@@ -2,9 +2,12 @@
     <div class="template-container">
         <header class="site-header">
             <div class="container">
+                <router-link to="/" class="brand-main">
+                    <img src="/assets/img/nabh_vins_logo.jpg" id="logo-desk" alt="NABH Logo" class="hidden-sm-down">
+                    <img src="/assets/img/nabh_vins_logo.jpg" id="logo-mobile" alt="NABH Logo" class="hidden-md-up">
+                </router-link>
                 <a href="#" class="brand-main">
-                    <img src="/assets/img/logo-deskk.png" id="logo-desk" alt="NABH Logo" class="hidden-sm-down">
-                    <img src="/assets/img/logo-mobile.png" id="logo-mobile" alt="NABH Logo" class="hidden-md-up">
+                    
                 </a>
 
                 <ul class="action-list">

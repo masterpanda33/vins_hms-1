@@ -10,13 +10,26 @@
 
     <form action="" method="post">
       <div class="row form-group">
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <label>IPD No. : </label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="ipd_id" type="text" v-model="ipd_id" v-validate="'required|numeric'"  />
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
+              Numeric only.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
         <div class="col-md-8">
           <div class="row form-group">
             <div class="col-md-4">
               <label class="control-label" for="address">Date of Admission :</label>
             </div>
             <div class="col-md-8">
-              <input type="date" name="date_of_admission" v-model="dischargeSummaryData.date_of_admission" v-validate="'required'" class="form-control" value="">
+              <input  class="form-control ls-datepicker" type="text" name="date_of_admission" v-model="dischargeSummaryData.date_of_admission" v-validate="'required'"  value="">
               <span class="help is-danger" v-show="errors.has('date_of_admission')">
                 Field is required
               </span>
@@ -27,7 +40,7 @@
               <label class="control-label" for="address">Date of Operation :</label>
             </div>
             <div class="col-md-8">
-              <input type="date" name="date_of_operation" v-model="dischargeSummaryData.date_of_operation" v-validate="'required'" class="form-control" value="">
+              <input type="text" class="form-control ls-datepicker" name="date_of_operation" v-model="dischargeSummaryData.date_of_operation" v-validate="'required'"  value="">
               <span class="help is-danger" v-show="errors.has('date_of_operation')">
                 Field is required
               </span>
@@ -38,7 +51,7 @@
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-8">
-              <input type="date" name="date_of_discharge" v-model="dischargeSummaryData.date_of_discharge" v-validate="'required'" class="form-control" value="">
+              <input class="form-control ls-datepicker" type="text" name="date_of_discharge" v-model="dischargeSummaryData.date_of_discharge" v-validate="'required'"  value="">
               <span class="help is-danger" v-show="errors.has('date_of_discharge')">
                 Field is required
               </span>
@@ -212,6 +225,12 @@
                   'followup' : '',
                 }
             }
+        },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          'autoclose': true
+      })
         },
         methods: {
 		    GetSelectComponent(componentName) {
