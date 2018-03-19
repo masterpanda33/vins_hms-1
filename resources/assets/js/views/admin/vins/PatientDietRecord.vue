@@ -14,7 +14,9 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="text-right">
+			<addressograph></addressograph>
+		</div>
 		<hr>
 
 		<form action="" method="post">
@@ -28,6 +30,7 @@
 						Dietician name is required
 					</span>
 				</div>
+
 			</div>
 
 			<div class="row form-group">
@@ -163,6 +166,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -184,6 +188,9 @@
                 }
             }
         },
+				components: {
+           addressograph,
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
