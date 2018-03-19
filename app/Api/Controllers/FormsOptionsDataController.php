@@ -133,6 +133,16 @@ class FormsOptionsDataController extends Controller
 
         }
 
+        if($data['type'] == 'counsellingForm'){
+          $resultData = $this->formOptionRepo->storeCounsellingFormData($data);
+
+        }
+
+        if($data['type'] == 'patientDietRecord'){
+          $resultData = $this->formOptionRepo->storePatientDietRecordData($data);
+
+        }
+
 
         return ['status' => '200','data'=>$resultData, 'message' => 'Record Sucessfully created'];
         return $resultData;

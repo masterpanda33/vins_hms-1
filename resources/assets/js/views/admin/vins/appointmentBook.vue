@@ -24,7 +24,7 @@
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
-            </div>            
+            </div>
           </div>
         </div>
 			</div>

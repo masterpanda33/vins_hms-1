@@ -47,8 +47,8 @@
   					<label>IPD No:</label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="text"  v-validate="'required'" name="ipd_no" v-model="bloodSugarMonitoringChart.ipd_no" id="ipd_no" value="" >
-            <span class="help is-danger" v-show="errors.has('ipd_no')">
+  					<input class="form-control" type="text"  v-validate="'required'" name="ipd_id" v-model="ipd_id" id="ipd_id" value="" >
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
               Field is required
             </span>
   				</div>
@@ -124,7 +124,6 @@
                 'bloodSugarMonitoringChart' : {
                   'patient_name': '',
                   'bed_no': '',
-                  'ipd_no': '',
                   'age': '',
                   'sex': '',
                   'monitoring': {

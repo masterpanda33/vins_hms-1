@@ -23,7 +23,10 @@
 					<label>IPD No : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required'" />
+					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
+					<span class="help is-danger" v-show="errors.has('ipd_id')">
+						Field is required
+					</span>
 				</div>
 			</div>
 			<div class="col-md-4 text-left">
@@ -128,10 +131,10 @@
 			</div>
 			<div class="col-md-4">
 				<div class="col-md-6">
-					<label for="at" class="control-label">At : </label>
+					<label for="at" class="control-label">Time : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="text" id="at" name="at" value="" v-model="historyFormData.at" v-validate="'required'"/>
+					<input class="form-control  ls-timepicker" type="text" id="at" name="at" value="" v-model="historyFormData.at" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('at')">
 										Field is required
 									</span>
@@ -144,8 +147,8 @@
 				<div class="col-md-6">
 					<input class="form-control" type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('date')">
-										Field is required
-									</span>
+						Field is required
+					</span>
 
 				</div>
 			</div>
@@ -550,18 +553,23 @@
             }
         },
 
-				components: {
-					 addressograph,
-			 },
-
-			 mounted() {
-+               $('.ls-datepicker').datepicker({
-				    format: 'dd/mm/yyyy',
-				    'autoclose': true
-					})
-				},
-
-				methods: {
+        mounted() {
+        	$('.ls-datepicker').datepicker({
+			    format: 'dd/mm/yyyy',
+			    'autoclose': true
+			});
+			
+			$('.ls-timepicker').timepicker();
+            let vm =this;
+			$('.ls-datepicker').datepicker().on('changeDate',function(){
+				vm.historyFormData.date = this.value;
+			})
+			$('.ls-timepicker').on('change', function(e)  {
+				//vm.historyFormData.time = this.value;    
+			});
+			
+        },
+        methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },

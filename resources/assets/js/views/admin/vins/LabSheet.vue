@@ -16,37 +16,42 @@
 		</div>
 
 		<form action="" method="post">
-			<div class="row form-group">
-				<div class="col-md-10">
 
-					<div class="row">
-						<div class="col-md-6">
-								<div class="col-md-6">
+			<div class="row form-group">
+
+						<div class="col-md-4">
+								<div class="col">
 								<label>Ipd No : </label>
 							</div>
+
 							<div class="col-md-6">
-								<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required'" />
+								<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required|numeric'" />
 								<span class="help is-danger" v-show="errors.has('ipd_no')">
-			            			Room number is required
-			          			</span>
+            			Numeric Field is required
+          			</span>
 							</div>
 						</div>
 
-						<div class="col-md-6">
-							<div class="col-md-6">
+						<div class="col-md-4">
+							<div class="col">
 								<label>Room No : </label>
 							</div>
-							<div class="col-md-6">
+							<div class="col">
 								<input class="form-control" type="text" name="room_no" v-model="LabSheet.room_no" v-validate="'required'" />
 								<span class="help is-danger" v-show="errors.has('room_no')">
 			            			Room number is required
 			          			</span>
 							</div>
 						</div>
-					</div>
-				</div>
+						<div class="col-md-4">
+						<div class="text-right">
 
+						<addressograph></addressograph>
+
+					</div></div>
 			</div>
+
+
 
 			<hr />
 
@@ -69,7 +74,7 @@
 						            Investigation is required
 						          </span>
 							</td>
-							<td><input class="form-control" type = "date" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
+							<td><input class="form-control ls-datepicker" type = "text" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
 								<span class="help is-danger" v-show="errors.has('date_'+n)">
 			            Date is required
 			          </span>
@@ -94,6 +99,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -148,6 +154,16 @@
                 }
             }
         },
+
+				components: {
+					 addressograph,
+			 },
+			 mounted() {
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
+     })
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
