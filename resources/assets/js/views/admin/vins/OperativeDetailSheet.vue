@@ -56,7 +56,7 @@
             <label>Date : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="date" name="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
+            <input class="form-control ls-datepicker" type="text" name="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date')">
 							Field is required
 						</span>
@@ -585,6 +585,12 @@
                   'package_total':'',
                 }
             }
+        },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          'autoclose': true
+      })
         },
         components: {
            addressograph,

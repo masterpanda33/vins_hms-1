@@ -20,7 +20,7 @@
 						<label for="date">Date: </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="date" id="date" name="date" value="">
+						<input class="form-control ls-datepicker" type="text" id="date" name="date" value="">
 
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 						<label for="date_of_birth">Date of Birth: </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="date" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
+						<input class="form-control ls-datepicker" type="text" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
 						<span class="help is-danger" v-show="errors.has('date_of_birth')">
             	Field is required
             </span>
@@ -209,6 +209,12 @@
                 }
             }
         },
+				mounted() {
+					$('.ls-datepicker').datepicker({
+					format: 'dd/mm/yyyy',
+					'autoclose': true
+			})
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
