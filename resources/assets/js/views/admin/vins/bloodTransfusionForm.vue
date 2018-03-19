@@ -36,6 +36,9 @@
 						Field is required
 					</span>
 				</div>
+				<div class="col-md-4">
+					<addressograph></addressograph>
+				</div>
 		</div>
 
 		<div class="form-group row">
@@ -364,6 +367,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -492,6 +496,9 @@
                 }
             }
         },
+				components: {
+					 addressograph,
+			 },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
