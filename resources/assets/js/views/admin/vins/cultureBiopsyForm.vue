@@ -34,11 +34,19 @@
           <div class="col-md-6">
             <label>IPD No. : </label>
           </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 254283f67cb52baecbc8db3ed3703aff43041b91
           <div class="col-md-6">
             <input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"/>
             <span class="help is-danger" v-show="errors.has('ipd_id')">
               Numeric values only.
             </span>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 254283f67cb52baecbc8db3ed3703aff43041b91
           </div>
         </div>
         <div class="col-md-4">

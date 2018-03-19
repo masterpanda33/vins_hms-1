@@ -17,7 +17,7 @@
   	</div>
   	<form action="" method="post">
       <div class="row form-group">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="col-md-6">
             <label>Patient's Name:</label>
           </div>
@@ -28,7 +28,7 @@
             </span>
           </div>
         </div>
-  			<div class="col-md-6">
+  			<div class="col-md-4">
   				<div class="col-md-6">
   					<label>Bed No:</label>
   				</div>
@@ -39,6 +39,12 @@
             </span>
   				</div>
         </div>
+        <div class="col-md-4">
+  			<div class="text-right">
+
+  			<addressograph></addressograph>
+
+  		</div></div>
       </div>
 
       <div class="row form-group">
@@ -95,7 +101,7 @@
     			</thead>
     			<tbody>
             <tr v-for="n in 5">
-              <td><input class="form-control" type="date" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
+              <td><input class="form-control ls-datepicker" type="text" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
               <td><input class="form-control" type="time" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
               <td><input class="form-control" type="text" :name="'bloodsugar_level_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].bloodsugar_level" value=""/></td>
               <td><input class="form-control" type="text" :name="'insulin_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].insulin" value=""/></td>
@@ -113,6 +119,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -168,6 +175,15 @@
                 }
             }
         },
+        components: {
+           addressograph,
+       },
+       mounted() {
+				 $('.ls-datepicker').datepicker({
+				 format: 'dd/mm/yyyy',
+				 'autoclose': true
+		 })
+			 },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

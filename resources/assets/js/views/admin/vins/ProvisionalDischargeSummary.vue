@@ -16,29 +16,45 @@
   </div>
 
 	<form action="" method="post">
-		<div class="row form-group">
-			  <div class="col-md-8">
+
           <div class="row form-group">
+            <div class="col-md-12">
+            <div class="text-right">
+
+            <addressograph></addressograph>
+
+            </div></div>
+          </div>
+          <hr>
+          <div class="row form-group">
+            <div class="col-md-4">
             <div class="col-md-4">
               <label class="control-label" for="address">Address :</label>
             </div>
             <div class="col-md-8">
               <input type="text" name="address"  rows="3" class="form-control" value="" v-model="provisionalDischargeSummaryData.address">
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-md-6">
+            </div></div>
+            <div class="col-md-4">
+            <div class="col-md-4">
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-6">
-              <input type="date"  name="date_of_discharge" class="form-control" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
-            </div>
-          </div>
-				</div>
-			  <div class="col-md-4 text-right">
-					<textarea name="addressograph"  rows="3" class="form-control" placeholder="Addressograph Here"></textarea>
-				</div>
-			</div>
+              <input type="text"  name="date_of_discharge" class="form-control ls-datepicker" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
+            </div></div>
+
+
+        <div class="col-md-4">
+  				<div class="col-md-4">
+  					<label>IPD No:</label>
+  				</div>
+  				<div class="col-md-6">
+  					<input class="form-control" type="text"  v-validate="'required'" name="ipd_id" v-model="ipd_id" id="ipd_id" value="" >
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
+              Field is required
+            </span>
+  				</div>
+        </div></div>
+
 			<hr>
 			<div class="row form-group">
         <div class="col-md-6">
@@ -134,6 +150,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -158,6 +175,15 @@
                 }
             }
         },
+        components: {
+           addressograph,
+       },
+       mounted() {
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
+     })
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
