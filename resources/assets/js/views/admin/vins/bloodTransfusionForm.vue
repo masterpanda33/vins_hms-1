@@ -500,7 +500,7 @@
 					 addressograph,
 			 },
 			 mounted() {
-+               $('.ls-datepicker').datepicker({
+              $('.ls-datepicker').datepicker({
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true
 					})
