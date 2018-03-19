@@ -325,8 +325,38 @@
         data() {
             return {
                 'footer' : 'footer',
-                'currentYear': new Date().getFullYear(),
-                'testData' : {
+                'hospital_currentYear': new Date().getFullYear(),
+                'nabhReport' : {
+                	'nabh_start_date': '',
+                	'nabh_end_date': '',
+                	'hospital_name': '',
+                	'no_of_hospital_beds': '',
+                	'no_of_icu_beds': '',
+                	'no_of_non_icu_beds': '',
+                	'no_of_doctors': '',
+                	'no_of_nurses': '',
+                	'no_of_oepration_theatre': '',
+                	'avg_no_of_admission_per_day': '',
+                	'avg_no_of_opd_patient': '',
+                	'avg_no_of_emergency_patient': '',
+                	'avg_no_of_elective_surgery': '',
+                	'avg_no_of_emergency_surgery': '',
+                	'avg_no_of_care_surgery': '',
+                	'avg_unit_of_water_consumed': '',
+                	'avg_unit_of_electricity_consumed': '',
+                	'nabh_indicator': {
+                		'incidence_of_medication_error': {
+                			'no_of_medication_error':'',
+                			'no_of_patient':'',
+                			'calculated_value':'',
+                		},
+                		'transfusion_reaction': {
+                			'units_of_blood_transfusion_reaction':'',
+                			'no_of_units_issued':'',
+                			'calculated_value':'',
+                		},
+                	}
+                	
                 }
             }
         },
