@@ -36,6 +36,9 @@
 						Field is required
 					</span>
 				</div>
+				<div class="col-md-4">
+					<addressograph></addressograph>
+				</div>
 		</div>
 
 		<div class="form-group row">
@@ -69,7 +72,7 @@
 					<label>Date:</label>
 				</div>
 				<div class="col-md-6">
-					<input type="date" class="form-control" name="date" v-validate="'required'" v-model="bloodTransfusionDetails.date" id="date" value="" >
+					<input type="text" class="form-control ls-datepicker" name="date" v-validate="'required'" v-model="bloodTransfusionDetails.date" id="date" value="" >
 					<span class="help is-danger" v-show="errors.has('date')">
 						Field is required
 					</span>
@@ -211,7 +214,7 @@
 					<label>Date of Expiry:</label>
 				</div>
 				<div class="col-md-6">
-					<input type="date" class="form-control" name="expiry_date" v-validate="'required'" v-model="bloodTransfusionDetails.expiry_date" id="expiry_date" value="" >
+					<input type="text" class="form-control ls-datepicker" name="expiry_date" v-validate="'required'" v-model="bloodTransfusionDetails.expiry_date" id="expiry_date" value="" >
 					<span class="help is-danger" v-show="errors.has('expiry_date')">
 						Field is required
 					</span>
@@ -364,6 +367,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -492,6 +496,15 @@
                 }
             }
         },
+				components: {
+					 addressograph,
+			 },
+			 mounted() {
++               $('.ls-datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    'autoclose': true
+					})
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

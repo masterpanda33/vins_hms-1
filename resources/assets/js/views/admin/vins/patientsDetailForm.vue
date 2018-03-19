@@ -198,7 +198,7 @@
 	            		 $("body .js-loader").removeClass('d-none');
 				    	User.savePatient(this.patientData).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');

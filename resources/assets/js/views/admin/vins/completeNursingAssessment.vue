@@ -16,27 +16,30 @@
 		</div>
   		<form action="" method="post" >
   			<div class="row form-group">
-  				<div class="col-md-6">
-  					<div class="col-md-6">
+  				<div class="col-md-4">
+  					<div class="col-md-4">
   						<label class="control-label col-md-4" for="unit">Unit:</label>
   					</div>
-  					<div class="col-md-6">
+  					<div class="col-md-4">
   						<input type="text" class="form-control" name="unit" v-validate="'required'" v-model="completeNursingAssessmentData.unit" value="15">
               <span class="help is-danger" v-show="errors.has('unit')">
                 Field is required
               </span>
   					</div>
   				</div>
-  				<div class="col-md-6">
-  					<div class="col-md-6">
+  				<div class="col-md-4">
+  					<div class="col-md-4">
   						<label class="control-label col-md-4" for="date">Date:</label>
   					</div>
-  					<div class="col-md-6">
+  					<div class="col-md-8">
   						<input type="date" class="form-control" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
   					</div>
+  				</div>
+          <div class="col-md-4">
+  					<addressograph></addressograph>
   				</div>
   			</div>
 
@@ -54,7 +57,7 @@
   				</div>
   				<div class="col-md-6">
   					<div class="col-md-6">
-  						<label class="control-label col-md-6" for="ipd_id">TPD No.:</label>
+  						<label class="control-label col-md-6" for="ipd_id">IPD No.:</label>
   					</div>
   					<div class="col-md-6">
   						<input type="text" class="form-control" name="ipd_id" v-model="ipd_id" v-validate="'required'" id="ipd_id" value="" />
@@ -686,7 +689,7 @@
   			        <label class="control-label" for="date_nursing">Date:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="date" class="form-control" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" id="date_nursing">
+  			        <input type="text" class="form-control" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" id="date_nursing">
   							<span class="help is-danger" v-show="errors.has('date_nursing')">
     		        	Date of nursing is required
     		        </span>
@@ -717,6 +720,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -791,6 +795,16 @@
                 }
             }
         },
+
+        components: {
+           addressograph,
+       },
+       mounted() {
++               $('.ls-datepicker').datepicker({
+				    format: 'dd/mm/yyyy',
+				    'autoclose': true
+					})
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

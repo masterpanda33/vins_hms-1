@@ -20,18 +20,21 @@
 	<form action="" method="post">
 
 		<div class="row form-group">
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-6">
 						<label for="">IPD No.</label>
 					</div>
 					<div class="col-md-6">
-						<input type="text" class="form-control" name="ipd_no" value="" v-model="ipd_id" v-validate="'required'">
+						<input type="text" class="form-control" name="ipd_no" value="" v-model="ipd_id" v-validate="'required|numeric'">
 						<span class="help is-danger" v-show="errors.has('ipd_no')">
-							Field is required
+							Numeric Field is required
 						</span>
 					</div>
 				</div>
+			</div>
+			<div class="col-md-4">
+				<addressograph></addressograph>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -97,7 +100,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control" type="time" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control ls-timepicker" type="text" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -274,6 +277,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -405,6 +409,28 @@
                 }
             }
         },
+
+				components: {
+					 addressograph,
+			 },
+
+			 mounted() {
+ 		              $('.ls-datepicker').datepicker({
+  									format: 'dd/mm/yyyy',
+  									'autoclose': true
+  				})
+
+ 				let vm =this;
+ 				$('.ls-datepicker').datepicker().on('changeDate',function(){
+ 					if (this.id == 'date_1') {
+ 						vm.erObservationData.date = this.value;
+ 					}
+
+ 			})
+  	},
+
+	
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

@@ -23,7 +23,10 @@
 						<label>IPD No : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" value="" />
+						<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" value="" v-validate="'required|numeric'"/>
+						<span class="help is-danger" v-show="errors.has('ipd_id')">
+              Numeric values only.
+            </span>
 					</div>
 				</div>
 				<div class="col-md-6">
