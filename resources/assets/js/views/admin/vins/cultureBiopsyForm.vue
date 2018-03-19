@@ -327,7 +327,7 @@
    									'autoclose': true
    				})
 
-  				let vm =this;
+
   				$('.ls-timepicker').timepicker().on('change',function(){
   					if (this.id == 'time') {
   						vm.cultureBiopsyData.time = this.value;
@@ -340,7 +340,7 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
    })
-         let vm =this;
+        
          $('.ls-datepicker').datepicker().on('changeDate',function(){
            if (this.id == 'date_for_sign') {
              vm.cultureBiopsyData.date_for_sign = this.value;
@@ -355,7 +355,7 @@
                  'autoclose': true
        })
 
-       let vm =this;
+
        $('.ls-timepicker').timepicker().on('change',function(){
          if (this.id == 'time_for_sign') {
            vm.cultureBiopsyData.time_for_sign = this.value;
