@@ -9,6 +9,7 @@
 @import '../plugins/customfonts/style';
 @import '../plugins/toastr/toastr.scss';
 @import '../plugins/bootstrap-datepicker/bootstrap-datepicker.scss';
+@import '../plugins/timepicker/timepicker.scss';
 
 // Option Skin.
 @import 'skins/skin-tyrell';
@@ -58,6 +59,13 @@
 
 //Front
 @import "front";
+@import "test.css";
 
 @import "demo";
+
+
+//Clear theme
+
+@import "clear_sass/dark/custom";
+
 

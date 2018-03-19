@@ -14,7 +14,9 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="text-right">
+			<addressograph></addressograph>
+		</div>
 		<hr>
 
 		<form action="" method="post">
@@ -28,15 +30,9 @@
 					<span class="help is-danger" v-show="errors.has('dietician_name')">
 						Dietician name is required
 					</span>
-				</div></div>
-				<div class="col-md-6">
-				<div class="text-right">
-
-				<addressograph></addressograph>
-
-				</div></div>
-
-			</div>
+</div>
+</div>
+</div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -45,7 +41,7 @@
 							<label>Date : </label>
 						</div>
 						<div class="col">
-							<input class="form-control ls-datepicker" type="text" name="date" v-model="patientDietRecordData.date" v-validate="'required'" value="" />
+							<input class="form-control" type="date" name="date" v-model="patientDietRecordData.date" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('date')">
 								Date is required
 							</span>
@@ -58,7 +54,7 @@
 							<label>Time : </label>
 						</div>
 						<div class="col">
-							<input class="form-control ls-timepicker" type="text" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
+							<input class="form-control " type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('time')">
 								Time is required
 							</span>
@@ -198,26 +194,7 @@
                 }
             }
         },
-				components: {
-					 addressograph,
-			 },
 
-				mounted() {
-        	$('.ls-datepicker').datepicker({
-			    format: 'dd/mm/yyyy',
-			    'autoclose': true
-			});
-
-			$('.ls-timepicker').timepicker();
-            let vm =this;
-			$('.ls-datepicker').datepicker().on('changeDate',function(){
-				vm.historyFormData.date = this.value;
-			})
-			$('.ls-timepicker').on('change', function(e)  {
-				//vm.historyFormData.time = this.value;
-			});
-
-        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

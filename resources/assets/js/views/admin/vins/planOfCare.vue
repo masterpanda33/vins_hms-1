@@ -23,12 +23,11 @@
 					<div class="col-md-4">
 					<label>Ipd No : </label>
 				</div>
-
 				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
+					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" >
 					<span class="help is-danger" v-show="errors.has('ipd_id')">
 									Numeric Value is required
-								</span>
+					</span>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -84,13 +83,13 @@
 					<tr v-for="n in 8">
 						<td>{{n}} </td>
 						<td>
-							<input class="form-control" type="text" :name="'progress_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].progress" v-validate="'required'"/>
+							<input class="form-control" type="text" :name="'progress_'+n"  :id="'progress_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].progress" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('progress_'+n)">
 								Progress is required
 							</span>
 						</td>
 						<td>
-							<input class="form-control" type="date" :name="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
+							<input class="form-control ls-datepicker" type="text" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('date_'+n)">
 								Progress is required
 							</span>
@@ -192,6 +191,44 @@ import addressograph from './addressograph.vue';
 			components: {
 				 addressograph,
 		 },
+
+
+			mounted() {
+		              $('.ls-datepicker').datepicker({
+ 									format: 'dd/mm/yyyy',
+ 									'autoclose': true
+ 				})
+
+				let vm =this;
+				$('.ls-datepicker').datepicker().on('changeDate',function(){
+
+					if (this.id == 'date_1') {
+						vm.planOfCare.Plan_Of_Care[1].date = this.value;
+					}
+					if (this.id == 'date_2') {
+						vm.planOfCare.Plan_Of_Care[2].date = this.value;
+					}
+					if (this.id == 'date_3') {
+						vm.planOfCare.Plan_Of_Care[3].date = this.value;
+					}
+					if (this.id == 'date_4') {
+						vm.planOfCare.Plan_Of_Care[4].date = this.value;
+					}
+					if (this.id == 'date_5') {
+						vm.planOfCare.Plan_Of_Care[5].date = this.value;
+					}
+					if (this.id == 'date_6') {
+						vm.planOfCare.Plan_Of_Care[6].date = this.value;
+					}
+					if (this.id == 'date_7') {
+						vm.planOfCare.Plan_Of_Care[7].date = this.value;
+					}
+					if (this.id == 'date_8') {
+						vm.planOfCare.Plan_Of_Care[8].date = this.value;
+					}
+
+			})
+ 			},
 
 			methods: {
 			GetSelectComponent(componentName) {
