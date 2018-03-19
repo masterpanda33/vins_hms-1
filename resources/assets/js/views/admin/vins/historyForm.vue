@@ -29,6 +29,9 @@
 					</span>
 				</div>
 			</div>
+			<div class="col-md-4 text-left">
+					<addressograph></addressograph>
+			</div>
 		</div>
 
 		<div class="row form-group">
@@ -142,7 +145,7 @@
 					<label for="date" class="control-label">Date : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control ls-datepicker" type="text" id="history_date" name="history_date" value="" v-model="historyFormData.date" v-validate="'required'"/>
+					<input class="form-control" type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('date')">
 						Field is required
 					</span>
@@ -497,6 +500,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -548,6 +552,7 @@
                 }
             }
         },
+
         mounted() {
         	$('.ls-datepicker').datepicker({
 			    format: 'dd/mm/yyyy',

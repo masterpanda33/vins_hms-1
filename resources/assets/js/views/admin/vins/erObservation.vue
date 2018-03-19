@@ -20,7 +20,7 @@
 	<form action="" method="post">
 
 		<div class="row form-group">
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-6">
 						<label for="">IPD No.</label>
@@ -32,6 +32,9 @@
 						</span>
 					</div>
 				</div>
+			</div>
+			<div class="col-md-4">
+				<addressograph></addressograph>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -274,6 +277,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -405,6 +409,10 @@
                 }
             }
         },
+
+				components: {
+					 addressograph,
+			 },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

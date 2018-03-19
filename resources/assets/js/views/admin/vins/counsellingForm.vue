@@ -64,6 +64,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  
     export default {
         data() {
             return {
