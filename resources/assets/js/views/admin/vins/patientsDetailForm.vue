@@ -13,29 +13,7 @@
 			</div>
 		</div>
 		<form method = "post">
-
-			<div class="row form-group">
-				<div class="col-md-6">
-					<div class="col-md-6">
-						<label for="date">Date: </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="date" id="date" name="date" value="">
-
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="col-md-6">
-						<label for="time">Time: </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="time" name="time" id="time" value=""/>
-
-					</div>
-				</div>
-			</div>
-			<hr />
-			<div class="row form-group">
+  			<div class="row form-group">
 				<div class="col-md-4">
 						<div class="col-md-6">
 							<label for="first_name" class="control-label">First Name : </label>
