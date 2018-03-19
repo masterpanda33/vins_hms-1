@@ -1144,7 +1144,7 @@
 									 var Res = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.preAnaesthesiaCheckupFormData};
 				    			 User.savePreAnaesthesiaCheckupForm(Res).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Pre Anesthesia Checkup details have been saved', 'Pre Anesthesia Checkup', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
