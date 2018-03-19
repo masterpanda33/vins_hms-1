@@ -15,20 +15,27 @@
 		<hr>
 		<form action="" method="post">
 			<div class="row form-group">
-				<div class="col">
+				<div class="col-md-6">
 					<div class="row">
 						<div class="col">
 							<label for="">IPD No.</label>
 						</div>
 						<div class="col">
-							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
+							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
 							<span class="help is-danger" v-show="errors.has('ipd_no')">
-								Field is required
+								Numeric Field is required
 							</span>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-6">
+        <div class="text-right">
+
+        <addressograph></addressograph>
+
+      </div></div>
 			</div>
+			<hr>
 			<div class="row form-group">
 				<div class="col-md-6">
 					<div class="col-md-6">
@@ -518,7 +525,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input class="form-control" type="date" name="date_table" v-model="NutritionalAssessmentForm.date_table" v-validate="'required'" value=""/>
+							<td><input class="form-control ls-datepicker" type="text" name="date_table" v-model="NutritionalAssessmentForm.date_table" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date_table')">
 							Field is required
 						</span>
@@ -557,6 +564,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -609,6 +617,15 @@
                 }
             }
         },
+				components: {
+					 addressograph,
+			 },
+			 mounted() {
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
+     })
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -623,7 +640,7 @@
                    User.saveNutritionalAssessmentForm(Res).then(
                          (response) => {
                          	console.log(response)
-                         	if(response.data.code == 200) {
+                         	if(response.data.status == 200) {
                          		toastr.success('Nutritional Assessment Form has been saved', 'Nutritional Assessment Form', {timeOut: 5000});
                          	}
                           $("body .js-loader").addClass('d-none');

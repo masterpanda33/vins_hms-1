@@ -18,10 +18,34 @@
 		<hr>
 
 		<form action="" method="post">
-		 	<div class="row form-group">
-	      <div class="col-md-8">
+
 	        <div class="row form-group">
-	          <div class="col-md-6">
+						<div class="col-md-6">
+							<div class="col">
+								<div class="row">
+									<div class="col">
+										<label for="">IPD No.</label>
+									</div>
+									<div class="col">
+										<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
+										<span class="help is-danger" v-show="errors.has('ipd_no')">
+											Field is required
+										</span>
+									</div>
+								</div>
+
+							</div>
+			      </div>
+						<div class="col-md-6">
+						<div class="text-right">
+
+						<addressograph></addressograph>
+
+					</div></div>
+
+					</div>
+						 <div class="row form-group">
+	          	<div class="col-md-4">
 	            <div class="col-md-6">
 	              <label for="">Weight:</label>
 	            </div>
@@ -32,7 +56,7 @@
 						</span>
 	            </div>
 	          </div>
-	          <div class="col-md-6">
+	          <div class="col-md-4">
 	            <div class="col-md-6">
 	              <label for="">Height:</label>
 	            </div>
@@ -43,9 +67,10 @@
 						</span>
 	            </div>
 	          </div>
-	        </div>
-	        <div class="row form-group">
-	          <div class="col-md-6">
+
+
+						<div class="col-md-4">
+	            <div class="col-md-6">
 	            <label for="">Surgeon Name:</label>
 	          </div>
 	          <div class="col-md-6">
@@ -54,24 +79,11 @@
 							Field is required
 						</span>
 	          </div>
-	        </div>
-	      </div>
-	      <div class="col-md-4">
-					<div class="col">
-						<div class="row">
-							<div class="col">
-								<label for="">IPD No.</label>
-							</div>
-							<div class="col">
-								<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
-								<span class="help is-danger" v-show="errors.has('ipd_no')">
-									Field is required
-								</span>
-							</div>
-						</div>
-					</div>
-	      </div>
-    	</div>
+	        </div></div>
+
+
+
+
 
 	    <hr>
 
@@ -1038,6 +1050,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -1132,6 +1145,9 @@
                 }
             }
         },
+				components: {
+					 addressograph,
+			 },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -1144,7 +1160,7 @@
 									 var Res = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.preAnaesthesiaCheckupFormData};
 				    			 User.savePreAnaesthesiaCheckupForm(Res).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Pre Anesthesia Checkup details have been saved', 'Pre Anesthesia Checkup', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');

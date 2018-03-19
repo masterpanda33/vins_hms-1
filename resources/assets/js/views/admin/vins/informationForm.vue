@@ -24,12 +24,18 @@
 					<label>IPD No. : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required'" />
+					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
 					<span class="help is-danger" v-show="errors.has('ipd_id')">
-						Field is required
+						Numeric Field is required
 					</span>
 				</div>
 			</div>
+			<div class="col-md-6">
+			<div class="text-right">
+
+			<addressograph></addressograph>
+
+		</div></div>
 		</div>
 
     <div class="row form-group">
@@ -38,7 +44,7 @@
           <label for="date">Date:</label>
         </div>
         <div class="col-md-6">
-					<input class="form-control" type = "date" v-validate="'required'" id = "date" name="date" value=""  v-model="informationFormData.date"/>
+					<input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "date" name="date" value=""  v-model="informationFormData.date"/>
 					<span class="help is-danger" v-show="errors.has('date')">
 						Field is required
 					</span>
@@ -360,6 +366,7 @@
 
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -392,6 +399,15 @@
                 }
             }
         },
+				components: {
+					 addressograph,
+			 },
+			 mounted() {
+				 $('.ls-datepicker').datepicker({
+				 format: 'dd/mm/yyyy',
+				 'autoclose': true
+		 })
+			 },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

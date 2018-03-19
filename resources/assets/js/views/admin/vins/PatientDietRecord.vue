@@ -14,7 +14,9 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="text-right">
+			<addressograph></addressograph>
+		</div>
 		<hr>
 
 		<form action="" method="post">
@@ -23,11 +25,12 @@
 					<label>Dietician / Nurses Name : </label>
 				</div>
 				<div class="col">
-					<input class="form-control" type="text" name="dietician_name" v-model="PatientDietRecord.dietician_name" v-validate="'required'" value="">
+					<input class="form-control" type="text" name="dietician_name" v-model="patientDietRecordData.dietician_name" v-validate="'required'" value="">
 					<span class="help is-danger" v-show="errors.has('dietician_name')">
 						Dietician name is required
 					</span>
 				</div>
+
 			</div>
 
 			<div class="row form-group">
@@ -37,7 +40,7 @@
 							<label>Date : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="date" name="date" v-model="PatientDietRecord.date" v-validate="'required'" value="" />
+							<input class="form-control" type="date" name="date" v-model="patientDietRecordData.date" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('date')">
 								Date is required
 							</span>
@@ -50,7 +53,7 @@
 							<label>Time : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="time" name="time" v-model="PatientDietRecord.time" v-validate="'required'" value="" />
+							<input class="form-control" type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('time')">
 								Time is required
 							</span>
@@ -64,7 +67,7 @@
 					<label>Bed No : </label>
 				</div>
 				<div class="col">
-					<input class="form-control" type="text" name="bed_no" v-model="PatientDietRecord.bed_no" v-validate="'required'" value=""/>
+					<input class="form-control" type="text" name="bed_no" v-model="patientDietRecordData.bed_no" v-validate="'required'" value=""/>
 					<span class="help is-danger" v-show="errors.has('bed_no')">
 						Bed number is required
 					</span>
@@ -76,9 +79,9 @@
 					<label>IPD No : </label>
 				</div>
 				<div class="col">
-					<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required'" value=""/>
+					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value=""/>
 					<span class="help is-danger" v-show="errors.has('ipd_id')">
-						IPD is required
+						Numeric IPD is required
 					</span>
 				</div>
 			</div>
@@ -88,7 +91,7 @@
 					<label>Patient Name : </label>
 				</div>
 				<div class="col">
-					<input class="form-control" type="text" name="patient_name" v-model="PatientDietRecord.patient_name" v-validate="'required'" value=""/>
+					<input class="form-control" type="text" name="patient_name" v-model="patientDietRecordData.patient_name" v-validate="'required'" value=""/>
 					<span class="help is-danger" v-show="errors.has('patient_name')">
 						Patient name is required
 					</span>
@@ -102,7 +105,7 @@
 							<label>Diagnosis : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="diagnosis" v-model="PatientDietRecord.diagnosis" v-validate="'required'" value="" />
+							<input class="form-control" type="text" name="diagnosis" v-model="patientDietRecordData.diagnosis" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('diagnosis')">
 								Diagnosis is required
 							</span>
@@ -115,7 +118,7 @@
 							<label>Consultant's Name : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="consultants_name" v-model="PatientDietRecord.consultants_name" v-validate="'required'" value="" />
+							<input class="form-control" type="text" name="consultants_name" v-model="patientDietRecordData.consultants_name" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('consultants_name')">
 								Consultant's name is required
 							</span>
@@ -131,7 +134,7 @@
 							<label>Diet to be Given : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="diet_to_be_given" v-model="PatientDietRecord.diet_to_be_given" v-validate="'required'" value="" />
+							<input class="form-control" type="text" name="diet_to_be_given" v-model="patientDietRecordData.diet_to_be_given" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('diet_to_be_given')">
 								Diet to be given is required
 							</span>
@@ -144,7 +147,7 @@
 							<label>Remarks : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="remarks" v-model="PatientDietRecord.remarks" v-validate="'required'" value=""/>
+							<input class="form-control" type="text" name="remarks" v-model="patientDietRecordData.remarks" v-validate="'required'" value=""/>
 							<span class="help is-danger" v-show="errors.has('remarks')">
 								Remarks is required
 							</span>
@@ -163,17 +166,20 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
+								'type': 'patientDietRecord',
+                'patient_id': this.$store.state.Patient.patientId,
+               	'ipd_id': this.$store.state.Patient.ipdId,
                 'patientDietRecordData' : {
 									'dietician_name':'',
 									'date':'',
 									'time':'',
 									'bed_no':'',
-									'uhid_no':'',
 									'patient_name':'',
 									'diagnosis':'',
 									'consultants_name':'',
@@ -182,6 +188,9 @@
                 }
             }
         },
+				components: {
+           addressograph,
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

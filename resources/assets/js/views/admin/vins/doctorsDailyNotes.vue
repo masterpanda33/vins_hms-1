@@ -14,11 +14,12 @@
   			</div>
   		</div>
   	</div>
-
+<hr>
   	<form action="" method="post">
 
+
   		<div class="row form-group">
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="col-md-6">
   					<label>Patient's name: </label>
   				</div>
@@ -29,18 +30,18 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="col-md-6">
   					<label>IPD No : </label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" id="ipd_no" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required'" value="">
+  					<input class="form-control" id="ipd_no" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value="">
             <span class="help is-danger" v-show="errors.has('ipd_id')">
-              Field is required
+              Numeric Field is required
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="col-md-6">
   					<label>Sex : </label>
   				</div>
@@ -55,9 +56,16 @@
   					</select>
   				</div>
   			</div>
+
+        <div class="col-md-3">
+        <div class="text-right">
+
+        <addressograph></addressograph>
+
+      </div></div>
   		</div>
   		<div class="row form-group">
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="col-md-6">
   					<label>Attending consultant: </label>
   				</div>
@@ -68,7 +76,7 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="col-md-6">
   					<label> Age : </label>
   				</div>
@@ -79,18 +87,19 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
+  			<div class="col-md-3">
   				<div class="col-md-6">
   					<label>Date : </label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="date" name="date" v-model="doctorsDailyNotesData.date" v-validate="'required'" value="">
+  					<input class="form-control ls-datepicker" type="text" name="date" v-model="doctorsDailyNotesData.date" v-validate="'required'" value="">
             <span class="help is-danger" v-show="errors.has('date')">
               Field is required
             </span>
   				</div>
   			</div>
   		</div>
+
   		<hr />
   		<div class="row">
   			<h3>7 AM S/B</h3>
@@ -356,6 +365,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -398,6 +408,15 @@
                 }
             }
         },
+        components: {
+           addressograph,
+       },
+       mounted() {
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
+     })
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -410,7 +429,7 @@
                    var doctorsDailyNotesData = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.doctorsDailyNotesData};
 				    	User.saveDoctorsDailyNotes(doctorsDailyNotesData).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Doctors Daily Notes have been saved', 'Doctors Daily Notes', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');

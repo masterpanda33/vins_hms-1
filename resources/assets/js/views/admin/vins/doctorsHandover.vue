@@ -19,7 +19,7 @@
 
     <form action="" method = "post">
       <div class="row form-group">
-        <div class="col">
+        <div class="col-md-4">
           <div class="row">
             <div class="col">
               <label for="diagnosis" class="control-label">Diagnosis: </label>
@@ -32,19 +32,25 @@
             </div>
           </div>
         </div>
-  			<div class="col">
+  			<div class="col-md-4">
   				<div class="row">
   					<div class="col">
   						<label for="">IPD No.</label>
   					</div>
   					<div class="col">
-  						<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
+  						<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
   						<span class="help is-danger" v-show="errors.has('ipd_no')">
-  							Field is required
+  							Numeric Field is required
   						</span>
   					</div>
   				</div>
   			</div>
+        <div class="col-md-4">
+        <div class="text-right">
+
+        <addressograph></addressograph>
+
+      </div></div>
       </div>
       <hr>
       <div class="row form-group">
@@ -91,7 +97,7 @@
             <tr>
               <td class="text-center">3</td>
               <td>Please mention date of surgery performed (If surgery performed)</td>
-              <td><input class="form-control" type = "date" v-validate="'required'" id = "date_of_surgery" name="date_of_surgery" value=""  v-model="doctorsHandoverData.date_of_surgery"/>
+              <td><input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "date_of_surgery" name="date_of_surgery" value=""  v-model="doctorsHandoverData.date_of_surgery"/>
               <span class="help is-danger" v-show="errors.has('date_of_surgery')">
                         Field is required
                       </span></td>
@@ -266,7 +272,7 @@
             <tr>
               <td class=""></td>
               <td>16.2 Date</td>
-              <td><input class="form-control" type = "date" v-validate="'required'" id = "date_given" name="date_given" value=""  v-model="doctorsHandoverData.date_given"/>
+              <td><input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "date_given" name="date_given" value=""  v-model="doctorsHandoverData.date_given"/>
               <span class="help is-danger" v-show="errors.has('date_given')">
                         Field is required
                       </span>
@@ -301,7 +307,7 @@
             <tr>
               <td class=""></td>
               <td>17.2 Date</td>
-              <td><input class="form-control" type = "date" v-validate="'required'" id = "date_taken" name="date_taken" value=""  v-model="doctorsHandoverData.date_taken"/>
+              <td><input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "date_taken" name="date_taken" value=""  v-model="doctorsHandoverData.date_taken"/>
               <span class="help is-danger" v-show="errors.has('date_taken')">
                         Field is required
                       </span>
@@ -330,6 +336,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -364,6 +371,15 @@
                 }
             }
         },
+        components: {
+           addressograph,
+       },
+       mounted() {
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
+     })
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -376,8 +392,8 @@
                    var Res = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.doctorsHandoverData};
 				    	     User.saveDoctorsHandover(Res).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
-		                		toastr.success('Doctor\'s Handover has been saved', 'Doctor\'s Handover', {timeOut: 5000});
+		                	if(response.data.status == 200) {
+		                		toastr.success('Doctors Handover has been saved', 'Doctors Handover', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
 
