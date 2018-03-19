@@ -340,6 +340,7 @@
         data() {
             return {
                 'footer' : 'footer',
+
                 'currentYear': new Date().getFullYear(),
                 'report' : {
 										'start_date' : '',
