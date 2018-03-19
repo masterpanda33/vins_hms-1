@@ -5,9 +5,9 @@
 </template>
 
 <style>
-body {
+/*body {
     height:100px;
-}
+}*/
 </style>
 
 <script type="text/babel">
