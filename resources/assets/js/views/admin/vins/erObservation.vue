@@ -100,7 +100,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control" type="time" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control ls-timepicker" type="text" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -413,6 +413,24 @@
 				components: {
 					 addressograph,
 			 },
+
+			 mounted() {
+ 		              $('.ls-datepicker').datepicker({
+  									format: 'dd/mm/yyyy',
+  									'autoclose': true
+  				})
+
+ 				let vm =this;
+ 				$('.ls-datepicker').datepicker().on('changeDate',function(){
+ 					if (this.id == 'date_1') {
+ 						vm.erObservationData.date = this.value;
+ 					}
+
+ 			})
+  	},
+
+	
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

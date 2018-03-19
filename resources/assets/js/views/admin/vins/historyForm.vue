@@ -561,8 +561,6 @@
 				    'autoclose': true
 					})
 				},
-
-				methods: {
         mounted() {
         	$('.ls-datepicker').datepicker({
 			    format: 'dd/mm/yyyy',
@@ -613,7 +611,7 @@
 		  },
 
     }
-	}
+
 </script>
 
 
