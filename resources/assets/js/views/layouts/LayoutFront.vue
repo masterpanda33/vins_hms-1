@@ -1,29 +1,40 @@
 <template>
+  <body class="skin-default fixed-header">
     <div class="template-container">
-        <header class="site-header">
-            <div class="container">
+        <header class="header">
+
+              <nav class="navbar navbar-expand-lg navbar-light">
+
                 <router-link to="/" class="brand-main">
-                    <img src="/assets/img/nabh_vins_logo.jpg" id="logo-desk" alt="NABH Logo" class="hidden-sm-down">
-                    <img src="/assets/img/nabh_vins_logo.jpg" id="logo-mobile" alt="NABH Logo" class="hidden-md-up">
-                </router-link>
-                <a href="#" class="brand-main">
-                    
-                </a>
+
+                      <img src="/assets/img/nabh_vins_logo.png" id="logo-desk" alt="NABH Logo" class="hidden-sm-down">
+                      <img src="/assets/img/nabh_vins_logo.png" id="logo-mobile" alt="NABH Logo" class="hidden-md-up">
+
+                      <H1 class="text-white bg-dark text-center">  PATIENT MANAGEMENT DASHBOARD</H1>
+
+
+                  </router-link>
+
+                  <!-- Sidebar toggle button -->
+              </nav>
+
 
                 <ul class="action-list">
                   <li>
                    <!-- <router-link to="/login">Login</router-link> -->
                     </li>
                 </ul>
-            </div>
-        </header> 
+
+        </header>
         <div class="dashboard">
+
             <transition name="fade" mode="out-in">
                 <router-view></router-view>
             </transition>
         </div>
         <site-footer></site-footer>
     </div>
+  </body>
 </template>
 
 <script type="text/babel">

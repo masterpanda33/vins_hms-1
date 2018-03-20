@@ -102,7 +102,7 @@
     			<tbody>
             <tr v-for="n in 5">
               <td><input class="form-control ls-datepicker" type="text" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
-              <td><input class="form-control" type="time" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+              <td><input class="form-control ls-timepicker" type="text" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
               <td><input class="form-control" type="text" :name="'bloodsugar_level_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].bloodsugar_level" value=""/></td>
               <td><input class="form-control" type="text" :name="'insulin_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].insulin" value=""/></td>
               <td><input class="form-control" type="text" :name="'name_sign_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].name_sign" value=""/></td>
@@ -178,12 +178,31 @@
         components: {
            addressograph,
        },
-       mounted() {
-				 $('.ls-datepicker').datepicker({
-				 format: 'dd/mm/yyyy',
-				 'autoclose': true
-		 })
-			 },
+
+       			 mounted() {
+                     $('.ls-datepicker').datepicker({
+       				    format: 'dd/mm/yyyy',
+       				    'autoclose': true
+       					})
+       				},
+
+               mounted() {
+               	$('.ls-datepicker').datepicker({
+       			    format: 'dd/mm/yyyy',
+       			    'autoclose': true
+       			});
+
+       			$('.ls-timepicker').timepicker();
+                   let vm =this;
+       			$('.ls-datepicker').datepicker().on('changeDate',function(){
+       				vm.historyFormData.date = this.value;
+       			})
+
+       			$('.ls-timepicker').on('change', function(e)  {
+       				//vm.historyFormData.time = this.value;
+       			});
+
+         },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
