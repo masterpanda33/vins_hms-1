@@ -18,7 +18,7 @@
 		<form action="" method="post">
 
 			<div class="row form-group">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="col-md-6">
 						<label>IPD No : </label>
 					</div>
@@ -29,7 +29,7 @@
             </span>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="col-md-6">
 						<label>History : </label>
 					</div>
@@ -37,6 +37,12 @@
 						<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
 					</div>
 				</div>
+				<div class="col-md-4">
+				<div class="text-right">
+
+				<addressograph></addressograph>
+
+				</div></div>
 			</div>
 
 			<div class="row form-group">
@@ -97,7 +103,7 @@
 			      <label>Time : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="time" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
+			      <input class="form-control ls-timepicker" type="text" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
 
 					</div>
 				</div>
@@ -109,7 +115,7 @@
 			      <label>Date : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="date" name="current_date" v-model="doctorsInitialAssessmentData.current_date" value=""/>
+			      <input class="form-control ls-datepicker" type="text" name="current_date" v-model="doctorsInitialAssessmentData.current_date" value=""/>
 
 					</div>
 				</div>
@@ -314,6 +320,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js'
+	  import addressograph from './addressograph.vue';
     export default {
         data() {
             return {
@@ -352,6 +359,26 @@
 								}
             }
         },
+				components: {
+					 addressograph,
+			 },
+			 mounted() {
+				 $('.ls-datepicker').datepicker({
+				 format: 'dd/mm/yyyy',
+				 'autoclose': true
+			 });
+			 $('.ls-timepicker').timepicker({
+			 format: 'hh-mm',
+			 'autoclose': true
+		 	});
+			let vm =this;
+      $('.ls-datepicker').datepicker().on('changeDate',function(){
+        vm.doctorsInitialAssessmentData.current_date = this.value;
+      });
+      $('.ls-timepicker').timepicker().on('change',function(){
+        vm.doctorsInitialAssessmentData.current_time = this.value;
+      });
+			 },
 				methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

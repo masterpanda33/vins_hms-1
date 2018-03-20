@@ -632,13 +632,18 @@
         	if(this.ipd_id == 0){
 	     		   $('#delete_modal').modal('show');
 	    	}
-       },
+		 	$('.ls-datepicker').datepicker().on('changeDate',function(){
+				if (this.id == 'date_table') {
+					vm.NutritionalAssessmentForm.date_table = this.value;
+			 	}
+			})
+       	},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        saveNutritionalAssessmentForm() {
+        	saveNutritionalAssessmentForm() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {

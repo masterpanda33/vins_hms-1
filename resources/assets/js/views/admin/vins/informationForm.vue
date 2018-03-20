@@ -56,7 +56,7 @@
           <label for="time">Time:</label>
         </div>
         <div class="col-md-6">
-					<input class="form-control" type = "time" v-validate="'required'" id = "time" name="time" value=""  v-model="informationFormData.time"/>
+					<input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time" name="time" value=""  v-model="informationFormData.time"/>
 					<span class="help is-danger" v-show="errors.has('time')">
 						Field is required
 					</span>
@@ -413,7 +413,19 @@
 		 	if(this.ipd_id == 0){
 	         	$('#delete_modal').modal('show');
 	    	}
+	    	$('.ls-timepicker').timepicker({
+				 format: 'hh-mm',
+				 'autoclose': true
+		 		});
+				let vm =this;
+				$('.ls-datepicker').datepicker().on('changeDate',function(){
+					vm.informationFormData.date = this.value;
+				});
+				$('.ls-timepicker').timepicker().on('change',function(){
+					vm.informationFormData.time = this.value;
+				});
 		},
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
