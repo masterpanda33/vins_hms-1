@@ -91,23 +91,29 @@
 					</tbody>
 				</table>
 			</div>
+
 			<div class="form-group text-center">
 				<button class="btn btn-success" type="button" @click="saveLabSheet()">Submit</button>
 			</div>
 		</form>
+		<delete-modal @confirmed="deleteConfirmed()"></delete-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
+	import DeleteModal from '../../../components/DeleteModal.vue'
+
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
                 'type': 'labSheet',
+               
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
+
                 'LabSheet' : {
                 	'room_no': '',
 					'lab_investigation': {
@@ -155,14 +161,19 @@
             }
         },
 
-				components: {
-					 addressograph,
-			 },
-			 mounted() {
-         $('.ls-datepicker').datepicker({
-         format: 'dd/mm/yyyy',
-         'autoclose': true
-     })
+		components: {
+				 addressograph,
+				DeleteModal,
+ 		 },
+		mounted() {
+	         $('.ls-datepicker').datepicker({
+		         format: 'dd/mm/yyyy',
+		         'autoclose': true
+	    	 })
+	    	 if(this.ipd_id == 18){
+
+	         	$('#delete_modal').modal('show');
+	    	 }
        },
         methods: {
 		    GetSelectComponent(componentName) {
