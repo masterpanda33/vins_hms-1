@@ -21,17 +21,18 @@
 
 		<form action="" method="post">
 			<div class="row form-group">
-				<div class="col">
+					<div class="col-md-6">
+				<div class="col-md-12">
 					<label>Dietician / Nurses Name : </label>
 				</div>
-				<div class="col">
+				<div class="col-md-6">
 					<input class="form-control" type="text" name="dietician_name" v-model="patientDietRecordData.dietician_name" v-validate="'required'" value="">
 					<span class="help is-danger" v-show="errors.has('dietician_name')">
 						Dietician name is required
 					</span>
-				</div>
-
-			</div>
+</div>
+</div>
+</div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -53,7 +54,7 @@
 							<label>Time : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
+							<input class="form-control " type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('time')">
 								Time is required
 							</span>
@@ -64,30 +65,35 @@
 
 			<div class="row form-group">
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>Bed No : </label>
 				</div>
-				<div class="col">
+				<div class="col-md-6">
 					<input class="form-control" type="text" name="bed_no" v-model="patientDietRecordData.bed_no" v-validate="'required'" value=""/>
 					<span class="help is-danger" v-show="errors.has('bed_no')">
 						Bed number is required
 					</span>
-				</div>
-			</div>
+				</div></div></div>
 
-			<div class="row form-group">
+
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>IPD No : </label>
 				</div>
-				<div class="col">
+				<div class="col-md-6">
 					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value=""/>
 					<span class="help is-danger" v-show="errors.has('ipd_id')">
 						Numeric IPD is required
 					</span>
-				</div>
-			</div>
+				</div></div>
+			</div></div>
 
 			<div class="row form-group">
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>Patient Name : </label>
 				</div>
 				<div class="col">
@@ -96,7 +102,7 @@
 						Patient name is required
 					</span>
 				</div>
-			</div>
+			</div></div></div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -188,9 +194,7 @@
                 }
             }
         },
-				components: {
-           addressograph,
-       },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

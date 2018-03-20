@@ -13,7 +13,29 @@
 			</div>
 		</div>
 		<form method = "post">
-  			<div class="row form-group">
+
+			<div class="row form-group">
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<label for="date">Date: </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control ls-datepicker" type="text" id="date" name="date" value="">
+
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<label for="time">Time: </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control ls-timepicker" type="text" name="time" id="time" value=""/>
+
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div class="row form-group">
 				<div class="col-md-4">
 						<div class="col-md-6">
 							<label for="first_name" class="control-label">First Name : </label>
@@ -54,7 +76,7 @@
 						<label for="date_of_birth">Date of Birth: </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="date" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
+						<input class="form-control ls-datepicker" type="text" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
 						<span class="help is-danger" v-show="errors.has('date_of_birth')">
             	Field is required
             </span>
@@ -173,6 +195,8 @@
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
                 'patientData' : {
+									'date':'',
+									'time':'',
                 	'fname':'',
                 	'mname': '',
                 	'lname': '',
@@ -187,6 +211,29 @@
                 }
             }
         },
+				mounted() {
+					$('.ls-datepicker').datepicker({
+					format: 'dd/mm/yyyy',
+					'autoclose': true
+					});
+					$('.ls-timepicker').timepicker({
+					format: 'hh-mm',
+					'autoclose': true
+					});
+					let vm =this;
+					$('.ls-datepicker').datepicker().on('changeDate',function(){
+						if(this.id = 'date'){
+								vm.patientData.date = this.value;}
+						});
+						$('.ls-datepicker').datepicker().on('changeDate',function(){
+						if(this.id = 'dob'){
+							vm.patientData.dob = this.value;}
+					});
+					$('.ls-timepicker').timepicker().on('change',function(){
+						vm.patientData.time = this.value;
+					});
+
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

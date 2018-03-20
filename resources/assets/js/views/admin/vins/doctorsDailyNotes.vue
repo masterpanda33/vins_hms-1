@@ -92,7 +92,7 @@
   					<label>Date : </label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control ls-datepicker" type="text" name="date" v-model="doctorsDailyNotesData.date" v-validate="'required'" value="">
+  					<input class="form-control ls-datepicker"  id = "date" type="text" name="date" v-model="doctorsDailyNotesData.date" v-validate="'required'" value="">
             <span class="help is-danger" v-show="errors.has('date')">
               Field is required
             </span>
@@ -416,7 +416,12 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
      })
-       },
+     $('.ls-datepicker').datepicker().on('changeDate',function(){
+        if (this.id == 'date') {
+          vm.doctorsDailyNotesData.date = this.value;
+        }
+      })
+    },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

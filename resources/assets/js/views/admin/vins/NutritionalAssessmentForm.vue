@@ -625,6 +625,11 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
      })
+		 $('.ls-datepicker').datepicker().on('changeDate',function(){
+			 if (this.id == 'date_table') {
+				 vm.NutritionalAssessmentForm.date_table = this.value;
+			 }
+			 })
        },
         methods: {
 		    GetSelectComponent(componentName) {
