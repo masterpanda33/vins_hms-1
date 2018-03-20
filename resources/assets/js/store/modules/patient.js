@@ -9,6 +9,7 @@ const state = {
   	'ipdId':0,
     'admitDatetime': '',
   	'patientData': [],
+    'ipdData': [],
  }
 // actions
 const actions = {
@@ -30,6 +31,17 @@ const actions = {
     
     )
   },
+  GetAllPatientName({commit}) {
+        user.getAllPatientName().then(
+    (response) => {
+      if(response.data.code == 200) {
+        commit(types.SET_IPD_DATA, response.data.data);
+        
+      }
+    },
+    
+    )
+  },
 }
 
 // mutations
@@ -45,6 +57,11 @@ const mutations = {
       state.patientData = patientData.patient_details;
       state.admitDatetime = patientData.admit_datetime;
   },
+    [types.SET_IPD_DATA] (state, ipdData) {
+    // console.log(patientData)
+      state.ipdData = ipdData;
+  },
+  
 }
 
 export default {

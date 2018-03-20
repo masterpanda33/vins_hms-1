@@ -107,6 +107,14 @@ class PatientsDetailFormController extends Controller
             }
         }
     }
+    public function getAllPatientName() {
+        $ipdDetails = IpdDetails::All();
+        if ($ipdDetails) {
+                return ['code' => '200','data'=>$ipdDetails, 'message' => 'Record Sucessfully created'];
+            } else {
+                return ['code' => '300','data'=>'', 'message' => 'Something goes wrong'];
+            }
+    }
     /**
      * Display the specified resource.
      *
