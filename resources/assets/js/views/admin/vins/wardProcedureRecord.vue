@@ -26,8 +26,8 @@
 					<textarea class="form-control text-right" placeholder="Addressograph here" ></textarea>
 				</div>
 			</div>-->
-		<div class="row form-group">
-			<table class="table table-bordered">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>No.</th>

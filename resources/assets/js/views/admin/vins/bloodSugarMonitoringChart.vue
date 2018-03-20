@@ -88,8 +88,8 @@
         </div>
       </div>
 
-      <div class="row form-group"><hr>
-  		  <table class="table table-bordered">
+      <div class="table-responsive"><hr>
+  		  <table class="table table-bordered table-striped">
   		    <thead>
     			  <tr>
       				<th>Date</th>

@@ -2,17 +2,17 @@
 <div class="container">
 	<div class="page-header">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-9">
 			<h1>Blood Transfusion Form</h1>
 			</div>
-			<div class="col-md-6">
-				<div class="text-right">
-					DOC NO. FMT/IPD/36 <br>
-					REV. No. 0.1 <br>
-					WEF 01-10-2014 <br>
-					PAGE NO. 01 OF 02
-				</div>
-			</div>
+			<div class="col-md-3">
+        		<div class="text-right">
+
+        			<addressograph></addressograph>
+  			    </div>
+  			</div>
+
+				
 		</div>
 	</div>
 	<form action="" method="post">
@@ -36,9 +36,7 @@
 						Field is required
 					</span>
 				</div>
-				<div class="col-md-4">
-					<addressograph></addressograph>
-				</div>
+				
 		</div>
 
 		<div class="form-group row">
@@ -65,38 +63,32 @@
 				</span>
 			</div>
 		</div>
-
-		<div class="row form-group">
-			<div class="col-md-6">
-				<div class="col-md-6">
-					<label>Date:</label>
-				</div>
-				<div class="col-md-6">
-					<input type="text" class="form-control ls-datepicker" name="date" v-validate="'required'" v-model="bloodTransfusionDetails.date" id="date" value="" >
-					<span class="help is-danger" v-show="errors.has('date')">
-						Field is required
-					</span>
-				</div>
+		<div class="form-group row">
+			<div class="col">
+				<label>Date:</label>
 			</div>
-			<div class="col-md-6">
-				<div class="col-md-6">
-					<label>Time:</label>
-				</div>
-				<div class="col-md-6">
-					<input type="time" class="form-control" name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" id="time" value="" >
-					<span class="help is-danger" v-show="errors.has('time')">
-						Field is required
-					</span>
-				</div>
+			<div class="col">
+				<input type="text" class="form-control" name="date" v-validate="'required'" v-model="bloodTransfusionDetails.date" id="date" value="" >
+				<span class="help is-danger" v-show="errors.has('date')">
+					Field is required
+				</span>
+			</div>
+			<div class="col">
+				<label>Time:</label>
+			</div>
+			<div class="col">
+				<input type="time" class="form-control" name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />		
+				<span class="help is-danger" v-show="errors.has('time')">
+					Field is required
+				</span>
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<div class="col-md-6">
-				<div class="col-md-6">
+		<div class="form-group row">
+				<div class="col">
 					<label>Patient's Blood Group:</label>
 				</div>
-				<div class="col-md-6">
+				<div class="col">
 					<select class="form-control" name="blood_group" v-validate="'required'" v-model="bloodTransfusionDetails.blood_group">
 						<option value="A+">A+</option>
 						<option value="A-">A-</option>
@@ -111,12 +103,10 @@
 						Field is required
 					</span>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="col-md-6">
+				<div class="col">
 					<label>History of previous BT :</label>
 				</div>
-				<div class="col-md-6">
+				<div class="col">
 					<select class="form-control" name="history_bt" v-validate="'required'" v-model="bloodTransfusionDetails.history_bt">
 						<option value="NA">NA</option>
 						<option value="Yes">Yes</option>
@@ -126,7 +116,7 @@
 						Field is required
 					</span>
 				</div>
-			</div>
+			
 		</div>
 
 
@@ -278,8 +268,8 @@
 		<div class="row">
 			<label>Vitals must be taken every 15 mins during transfusion and post transfusion upto 60 minutes.</label>
 		</div>
-		<div class="row">
-			<table class="table table-bordered">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th></th>

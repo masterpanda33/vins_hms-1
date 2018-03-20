@@ -62,10 +62,10 @@
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-6">
-						<label class="control-label" for="sex">Sex: </label>
+						<label class="control-label" for="sex">Gender: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
+						<select class="form-control ls-select2" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
 							<option value="M" >Male</option>
 							<option value="F">Female</option>
 						</select>
@@ -132,7 +132,10 @@
 			      <label class="control-label" for="consulting_dr">Consulting Dr..: </label>
 					</div>
 					<div class="col-md-6">
-			      	<input class="form-control" type="text" id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" v-validate="'required'"/>
+			      	<select class="form-control"  id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" v-validate="'required'">
+			      		 <option :value="patientData.consulting_dr_option.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
+                          
+			      	</select>
 			      		<span class="help is-danger" v-show="errors.has('consulting_dr')">
 		                	Field is required
 		                </span>
@@ -146,7 +149,7 @@
 			      <label class="control-label" for="case">Case: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" id="case" name="case" value="" v-model="patientData.case" v-validate="'required'">
+						<select class="form-control ls-select2" id="case" name="case" value="" v-model="patientData.case" v-validate="'required'">
 							<option value="new" >New</option>
 							<option value="old" >Old</option>
 						</select>
@@ -183,16 +186,33 @@
                 	'ph_no': '',
                 	'mob_no': '',
                 	'reference_dr': '',
-                	'consulting_dr': '',
+                	'consulting_dr':'',
+                	'consulting_dr_option': [{text:'Dr.VIJAY THAKORE'},
+                							 {text:'Dr. KAUSHIK K. TRIVEDI'},
+                							 {text:'Dr. HEMANT MATHUR'},
+                							 {text:'Dr. MIHIR ACHARYA'},
+                							 {text:'Dr. SUMIT KAPADIA'},
+                							 {text:'Dr. KETAN KAPASHI'},
+                							 {text:'Dr. RAJESH KANTHARIA'},
+                							 {text:'Dr. V.C. CHAUHAN'},
+                							 {text:'Dr. NIRAJ BHATT'},
+                							 {text:'Dr. K.C. PATEL'},
+                							 {text:'Dr. CHIRAG MASTER'}
+                							 ],
                 	'case': ''
                 }
             }
         },
         mounted() {
         	
-        	 $('#case').select2({
+        	 $('.ls-select2').select2({
                     allowClear: true,
                     theme: "bootstrap",
+                    placeholder: "select"
+                });
+        	 $('.doctor').select2({
+                    allowClear: true,
+                    
                     placeholder: "select"
                 });
         },

@@ -56,6 +56,8 @@ const mutations = {
     // console.log(patientData)
       state.patientData = patientData.patient_details;
       state.admitDatetime = patientData.admit_datetime;
+      state.patientId = patientData.patient_details.id;
+      state.ipdId = patientData.id;
   },
     [types.SET_IPD_DATA] (state, ipdData) {
     // console.log(patientData)
