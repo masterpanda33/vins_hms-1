@@ -13,14 +13,14 @@
     <hr>
 
 		<form action="" method="post">
-			<div class="row form-group">
+      <div class="row form-group">
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-6">
               <label for="">Date:</label>
             </div>
             <div class="col-md-6">
-              <input type="text" v-model="appointmentBook.date" v-validate="'required'" class="form-control ls-datepicker " name="date" id="date" value="">
+              <input type="text" v-model="appointmentBook.date" v-validate="'required'" class="form-control ls-datepicker" name="date" id="date" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
@@ -96,17 +96,18 @@
           format: 'dd/mm/yyyy',
           'autoclose': true
       });
-
-      $('.ls-timepicker').timepicker();
-            let vm =this;
-      $('.ls-datepicker').datepicker().on('changeDate',function(){
-        vm.historyFormData.date = this.value;
-      })
-      $('.ls-timepicker').on('change', function(e)  {
-        //vm.historyFormData.time = this.value;
+      $('.ls-timepicker').timepicker({
+            format:'hh:mm',
+            'autoclose': true
       });
-
-        },
+      let vm =this;
+      $('.ls-datepicker').datepicker().on('changeDate',function(){
+        vm.appointmentBook.date = this.value;
+      });
+      $('.ls-timepicker').timepicker().on('change',function(){
+        vm.appointmentBook.appointment_time = this.value;
+      });
+      },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

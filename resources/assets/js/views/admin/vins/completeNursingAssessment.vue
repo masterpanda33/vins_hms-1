@@ -32,7 +32,7 @@
   						<label class="control-label col-md-4" for="date">Date:</label>
   					</div>
   					<div class="col-md-8">
-  						<input type="date" class="form-control" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
+  						<input type="text" class="form-control ls-datepicker" id = "date" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
@@ -49,7 +49,7 @@
   						<label class="control-label col-md-4" for="time">Time:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="time" class="form-control" name="time" v-model="completeNursingAssessmentData.time" v-validate="'required'" value="">
+  						<input type="text" class="form-control" id = "time" name="time" v-model="completeNursingAssessmentData.time" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('time')">
                 Field is required
               </span>
@@ -60,7 +60,7 @@
   						<label class="control-label col-md-6" for="ipd_id">IPD No.:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" class="form-control" name="ipd_id" v-model="ipd_id" v-validate="'required'" id="ipd_id" value="" />
+  						<input type="text" class="form-control" name="ipd_id" v-model="ipd_id" v-validate="'required'"  value="" />
               <span class="help is-danger" v-show="errors.has('ipd_id')">
                 Field is required
               </span>
@@ -86,7 +86,7 @@
   				<div class="col-md-4">
   						<label class="control-label col-md-3" for="height">Height:</label>
   						<div class="col-md-9">
-  							<input type="text" class="form-control" name="height" v-model="completeNursingAssessmentData.height" v-validate="'required'" id="height" placeholder="Height(in cms)" value="">
+  							<input type="text" class="form-control" name="height" v-model="completeNursingAssessmentData.height" v-validate="'required'"  placeholder="Height(in cms)" value="">
                 <span class="help is-danger" v-show="errors.has('height')">
                 	Field is required
                 </span>
@@ -148,7 +148,7 @@
   						<label>If other:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" name="history_informant_other" v-model="completeNursingAssessmentData.history_informant_other" id="history_informant_other" class="form-control">
+  						<input type="text" name="history_informant_other" v-model="completeNursingAssessmentData.history_informant_other" id ="history_informant_other" class="form-control">
   					</div>
   				</div>
   			</div>
@@ -175,7 +175,7 @@
   						<label>If other:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" name="patient_arrived_other" v-model="completeNursingAssessmentData.patient_arrived_other" id="patient_arrived_other" class="form-control">
+  						<input type="text" name="patient_arrived_other" v-model="completeNursingAssessmentData.patient_arrived_other" id ="patient_arrived_other" class="form-control">
   					</div>
   				</div>
   			</div>
@@ -202,7 +202,7 @@
   						<label>If other:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" name="patient_arrived_from_other" v-model="completeNursingAssessmentData.patient_arrived_from_other" id="patient_arrived_from_other" class="form-control">
+  						<input type="text" name="patient_arrived_from_other" v-model="completeNursingAssessmentData.patient_arrived_from_other" class="form-control"/>
   					</div>
   				</div>
   			</div>
@@ -562,7 +562,7 @@
   					<div class="row">
   						<label class="col control-label" for="date_of_screening">Date of Screening:</label>
   						<div class="col">
-  							<input type="date" class="form-control" name="date_of_screening" v-model="completeNursingAssessmentData.date_of_screening" v-validate="'required'" id="date_of_screening">
+  							<input type="text" class="form-control ls-datepicker" name="date_of_screening" v-model="completeNursingAssessmentData.date_of_screening" v-validate="'required'" id="date_of_screening">
   							<span class="help is-danger" v-show="errors.has('date_of_screening')">
     		        	Date of screening is required
     		        </span>
@@ -689,7 +689,7 @@
   			        <label class="control-label" for="date_nursing">Date:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="text" class="form-control" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" id="date_nursing">
+  			        <input type="text" class="form-control"  id = "date_nursing" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" >
   							<span class="help is-danger" v-show="errors.has('date_nursing')">
     		        	Date of nursing is required
     		        </span>
@@ -702,7 +702,7 @@
   			        <label class="control-label" for="time_nursing">Time:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="time" class="form-control" name="time_nursing" v-model="completeNursingAssessmentData.time_nursing" v-validate="'required'" id="time_nursing">
+  			        <input type="time" class="form-control" name="time_nursing" v-model="completeNursingAssessmentData.time_nursing" v-validate="'required'" id ="time_nursing">
   							<span class="help is-danger" v-show="errors.has('time_nursing')">
     		        	Time of nursing is required
     		        </span>
@@ -801,9 +801,40 @@
        },
        mounted() {
 +               $('.ls-datepicker').datepicker({
-				    format: 'dd/mm/yyyy',
-				    'autoclose': true
-					})
+    				    format: 'dd/mm/yyyy',
+    				    'autoclose': true
+    					})
+              $('.ls-timepicker').timepicker({
+                format: 'hh-mm',
+                'autoclose': true
+              })
+              $('.ls-datepicker').datepicker().on('changeDate',function(){
+                if(this.id ==  'date'){
+                    vm.completeNursingAssessmentData.date = this.value;
+                }
+              })
+                $('.ls-datepicker').datepicker().on('changeDate',function(){
+                if(this.id ==  'date_nursing'){
+                    vm.completeNursingAssessmentData.date_nursing = this.value;
+                }
+              })
+              $('.ls-datepicker').datepicker().on('changeDate',function(){
+                if(this.id ==  'date_of_screening'){
+                    vm.completeNursingAssessmentData.date_of_screening = this.value;
+                }
+              })
+
+              $('.ls-timepicker').timepicker().on('change',function(){
+                if(this.id == 'time'){
+                    vm.completeNursingAssessmentData.time = this.value;
+                }
+              })
+                $('.ls-timepicker').timepicker().on('change',function(){
+                if(this.id == 'time_nursing'){
+                    vm.appointmentBook.time_nursing = this.value;
+                }
+              });
+
 				},
         methods: {
 		    GetSelectComponent(componentName) {

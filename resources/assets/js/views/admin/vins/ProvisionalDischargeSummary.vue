@@ -39,7 +39,7 @@
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-6">
-              <input type="text"  name="date_of_discharge" class="form-control ls-datepicker" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
+              <input type="text"  name="date_of_discharge" class="form-control ls-datepicker" id = "date_of_discharge" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
             </div></div>
 
 
@@ -119,7 +119,7 @@
           <label class="control-label" for="collect_discharge_summary_on">On Date:</label>
         </div>
         <div class="col-md-6">
-          <input type="date"  name="collect_discharge_summary_on" class="form-control" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
+          <input type="text" id = "collect_discharge_summary_on" name="collect_discharge_summary_on" class="form-control ls-datepicker" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
         </div>
       </div>
       <div class="row form-group">
@@ -183,6 +183,17 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
      })
+     $('.ls-datepicker').datepicker().on('changeDate',function(){
+
+       if (this.id == 'date_of_discharge') {
+         vm.provisionalDischargeSummaryData.date_of_discharge = this.value;
+       }
+     })
+        $('.ls-datepicker').datepicker().on('changeDate',function(){
+       if (this.id == 'collect_discharge_summary_on') {
+         vm.provisionalDischargeSummaryData.collect_discharge_summary_on = this.value;
+       }
+     });
        },
         methods: {
 		    GetSelectComponent(componentName) {

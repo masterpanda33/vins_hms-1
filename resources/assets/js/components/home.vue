@@ -4,11 +4,7 @@
 	</div>
 </template>
 
-<style>
-body {
-    height:100px;
-}
-</style>
+
 
 <script type="text/babel">
 

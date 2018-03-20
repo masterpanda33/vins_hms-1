@@ -103,7 +103,7 @@
 			      <label>Time : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="time" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
+			      <input class="form-control ls-timepicker" type="text" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
 
 					</div>
 				</div>
@@ -366,7 +366,18 @@
 				 $('.ls-datepicker').datepicker({
 				 format: 'dd/mm/yyyy',
 				 'autoclose': true
-		 })
+			 });
+			 $('.ls-timepicker').timepicker({
+			 format: 'hh-mm',
+			 'autoclose': true
+		 	});
+			let vm =this;
+      $('.ls-datepicker').datepicker().on('changeDate',function(){
+        vm.doctorsInitialAssessmentData.current_date = this.value;
+      });
+      $('.ls-timepicker').timepicker().on('change',function(){
+        vm.doctorsInitialAssessmentData.current_time = this.value;
+      });
 			 },
 				methods: {
 		    GetSelectComponent(componentName) {

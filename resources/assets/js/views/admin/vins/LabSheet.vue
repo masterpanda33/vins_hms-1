@@ -74,7 +74,7 @@
 						            Investigation is required
 						          </span>
 							</td>
-							<td><input class="form-control ls-datepicker" type = "text" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
+							<td><input class="form-control ls-datepicker" type = "text" id = "'date_'+n" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
 								<span class="help is-danger" v-show="errors.has('date_'+n)">
 			            Date is required
 			          </span>
@@ -163,6 +163,25 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
      })
+		 let vm =this;
+			$('.ls-datepicker').datepicker().on('changeDate',function(){
+
+				if (this.id == 'date_1') {
+					vm.LabSheet.lab_investigation[1].date = this.value;
+				}
+				if (this.id == 'date_2') {
+					vm.planOfCare.Plan_Of_Care[2].date = this.value;
+				}
+				if (this.id == 'date_3') {
+					vm.planOfCare.Plan_Of_Care[3].date = this.value;
+				}
+				if (this.id == 'date_4') {
+					vm.planOfCare.Plan_Of_Care[4].date = this.value;
+				}
+				if (this.id == 'date_5') {
+					vm.planOfCare.Plan_Of_Care[5].date = this.value;
+				}
+		})
        },
         methods: {
 		    GetSelectComponent(componentName) {

@@ -282,7 +282,7 @@
             <tr>
               <td class=""></td>
               <td>16.3 Time</td>
-              <td><input class="form-control" type = "time" v-validate="'required'" id = "time_given" name="time_given" value=""  v-model="doctorsHandoverData.time_given"/>
+              <td><input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time_given" name="time_given" value=""  v-model="doctorsHandoverData.time_given"/>
               <span class="help is-danger" v-show="errors.has('time_given')">
                         Field is required
                       </span>
@@ -317,7 +317,7 @@
             <tr>
               <td class=""></td>
               <td>17.3 Time</td>
-              <td><input class="form-control" type = "time" v-validate="'required'" id = "time_taken" name="time_taken" value=""  v-model="doctorsHandoverData.time_taken"/>
+              <td><input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time_taken" name="time_taken" value=""  v-model="doctorsHandoverData.time_taken"/>
               <span class="help is-danger" v-show="errors.has('time_taken')">
                         Field is required
               </span>
@@ -375,10 +375,30 @@
            addressograph,
        },
        mounted() {
-         $('.ls-datepicker').datepicker({
-         format: 'dd/mm/yyyy',
-         'autoclose': true
-     })
+                     $('.ls-datepicker').datepicker({
+                     format: 'dd/mm/yyyy',
+                     'autoclose': true
+                 })
+                 $('.ls-datepicker').datepicker({
+                 format: 'dd/mm/yyyy',
+                 'autoclose': true
+               })
+               let vm =this;
+            $('.ls-datepicker').datepicker().on('changeDate',function(){
+            if(this.id == 'date_given'){
+              vm.doctorsHandoverData.date_given = this.value;
+            }
+          })
+              $('.ls-datepicker').datepicker().on('changeDate',function(){
+            if(this.id == 'date_taken'){
+              vm.bloodSugarMonitoringChart.date_taken = this.value;
+            }
+          })
+          $('.ls-timepicker').timepicker().on('change',function(){
+          if(this.id == 'time_taken'){
+            vm.doctorsHandoverData.time_taken = this.value;
+          }
+        })
        },
         methods: {
 		    GetSelectComponent(componentName) {
