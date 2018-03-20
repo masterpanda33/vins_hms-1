@@ -16,7 +16,7 @@
                     </li>
                 </ul>
             </div>
-        </header> 
+        </header>
         <div class="dashboard">
             <transition name="fade" mode="out-in">
                 <router-view></router-view>
