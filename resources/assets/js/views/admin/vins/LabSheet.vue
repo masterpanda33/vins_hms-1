@@ -55,8 +55,8 @@
 
 			<hr />
 
-			<div class="row">
-				<table class="table table-bordered table-condensed">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th class="text-center">Sr No.</th>
@@ -96,13 +96,13 @@
 				<button class="btn btn-success" type="button" @click="saveLabSheet()">Submit</button>
 			</div>
 		</form>
-		<delete-modal @confirmed="deleteConfirmed()"></delete-modal>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
-	import DeleteModal from '../../../components/DeleteModal.vue'
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
 
     export default {
         data() {
@@ -163,7 +163,7 @@
 
 		components: {
 				 addressograph,
-				DeleteModal,
+				 SelectPatientModal,
  		 },
 		mounted() {
 	         $('.ls-datepicker').datepicker({

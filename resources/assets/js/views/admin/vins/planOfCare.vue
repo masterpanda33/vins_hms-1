@@ -70,8 +70,8 @@
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<table class="table table-bordered">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Sr No</th>
@@ -116,6 +116,7 @@
 			</div>
 		</div>
 	</form>
+	 <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </template>
 
@@ -123,6 +124,8 @@
 <script >
 import User from '../../../api/users.js';
 import addressograph from './addressograph.vue';
+import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
 	export default {
 			data() {
 					return {
@@ -190,14 +193,13 @@ import addressograph from './addressograph.vue';
 
 			components: {
 				 addressograph,
+				 SelectPatientModal
 		 },
-
-
-			mounted() {
-		              $('.ls-datepicker').datepicker({
- 									format: 'dd/mm/yyyy',
- 									'autoclose': true
- 				})
+		mounted() {
+	  		$('.ls-datepicker').datepicker({
+ 				format: 'dd/mm/yyyy',
+ 				'autoclose': true
+ 			})
 
 				let vm =this;
 				$('.ls-datepicker').datepicker().on('changeDate',function(){
@@ -228,6 +230,9 @@ import addressograph from './addressograph.vue';
 					}
 
 			})
+			if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    	}
  			},
 
 			methods: {

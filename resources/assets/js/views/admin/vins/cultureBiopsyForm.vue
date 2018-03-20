@@ -272,11 +272,14 @@
   				<button class="btn btn-success" type="button" @click="saveCultureBiopsy()">Submit</button>
   			</div>
   	</form>
+       <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -310,63 +313,49 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
        mounted() {
+         if(this.ipd_id == 0){
+                $('#delete_modal').modal('show');
+          }
          $('.ls-datepicker').datepicker({
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true
-      })
+          })
             let vm =this;
             $('.ls-datepicker').datepicker().on('changeDate',function(){
      					if (this.id == 'date') {
      						vm.cultureBiopsyData.date = this.value;
      					}
-
-     			})
-
-				},
-
-        mounted() {
-  		              $('.ls-timepicker').timepicker({
-   									'autoclose': true
-   				})
-
-
-  				$('.ls-timepicker').timepicker().on('change',function(){
-  					if (this.id == 'time') {
-  						vm.cultureBiopsyData.time = this.value;
-  					}
-
-  			})
-   	},
-    mounted() {
-          $('.ls-datepicker').datepicker({
-         format: 'dd/mm/yyyy',
-         'autoclose': true
-   })
-
-         $('.ls-datepicker').datepicker().on('changeDate',function(){
-           if (this.id == 'date_for_sign') {
-             vm.cultureBiopsyData.date_for_sign = this.value;
-           }
-
-       })
-
-     },
-
-     mounted() {
-                 $('.ls-timepicker').timepicker({
+            })
+            $('.ls-timepicker').timepicker({
+                    'autoclose': true
+            })
+            $('.ls-timepicker').timepicker().on('change',function(){
+              if (this.id == 'time') {
+                vm.cultureBiopsyData.time = this.value;
+              }
+            })
+            $('.ls-datepicker').datepicker({
+              format: 'dd/mm/yyyy',
+         '    autoclose': true
+            })
+            $('.ls-datepicker').datepicker().on('changeDate',function(){
+              if (this.id == 'date_for_sign') {
+                vm.cultureBiopsyData.date_for_sign = this.value;
+              }
+            })
+             $('.ls-timepicker').timepicker({
                  'autoclose': true
        })
-
-
        $('.ls-timepicker').timepicker().on('change',function(){
-         if (this.id == 'time_for_sign') {
-           vm.cultureBiopsyData.time_for_sign = this.value;
-         }
+          if (this.id == 'time_for_sign') {
+             vm.cultureBiopsyData.time_for_sign = this.value;
+          }
+        })
+		},
 
-     })
- },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

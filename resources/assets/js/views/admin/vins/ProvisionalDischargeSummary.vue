@@ -143,6 +143,7 @@
 				<button class="btn btn-success" type="button" @click = "saveProvisionalDischargeSummary()">Submit</button>
 			</div>
 		</form>
+     <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </body>
 </template>
@@ -151,6 +152,8 @@
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -177,12 +180,16 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
        mounted() {
          $('.ls-datepicker').datepicker({
          format: 'dd/mm/yyyy',
          'autoclose': true
-     })
+        })
+          if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+         }
        },
         methods: {
 		    GetSelectComponent(componentName) {

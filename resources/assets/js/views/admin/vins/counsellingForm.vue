@@ -32,8 +32,8 @@
   				<addressograph></addressograph>
   			</div>
       </div>
-  		<div class="row">
-  			<table class="table table-bordered" >
+  		<div class="table-responsive">
+  			<table class="table table-bordered table-striped" >
   				<thead>
   					<tr>
   						<th class="text-center">Sr. No.</th>
@@ -46,7 +46,7 @@
   				</thead>
   				<tbody>
   					<tr v-for="n in 5">
-  						<td>2</td>
+  						<td>{{n}}</td>
   						<td><input class="form-control" type="date" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
   						<td><input class="form-control" type="time" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
   						<td><input class="form-control" type="text" :name="'counsellor_'+n" v-model="counsellingFormData.counselling[n].counsellor" /></td>
@@ -62,11 +62,14 @@
         </div>
       </div>
   	</form>
+    <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -120,8 +123,13 @@
         },
         components: {
 					 addressograph,
+           SelectPatientModal,
 			 },
-
+       mounted(){
+          if(this.ipd_id == 0){
+                $('#delete_modal').modal('show');
+          }
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

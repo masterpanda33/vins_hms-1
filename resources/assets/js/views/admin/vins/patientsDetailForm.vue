@@ -154,6 +154,7 @@
 		                	Field is required
 		                </span>
 					</div>
+					 
 				</div>
 			</div>
 
@@ -186,6 +187,14 @@
                 	'case': ''
                 }
             }
+        },
+        mounted() {
+        	
+        	 $('#case').select2({
+                    allowClear: true,
+                    theme: "bootstrap",
+                    placeholder: "select"
+                });
         },
         methods: {
 		    GetSelectComponent(componentName) {

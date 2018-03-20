@@ -297,8 +297,8 @@
 			</div>
 		</div>
 
-    <div class="row form-group">
-      <table class="table table-bordered">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th></th>
@@ -495,13 +495,16 @@
 		</div>
 
 </form>
+ <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </template>
 
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
-    export default {
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
+      export default {
         data() {
             return {
                 'footer' : 'footer',
@@ -556,14 +559,11 @@
 
 				components: {
 					 addressograph,
+					 SelectPatientModal
 			 },
 
-			 mounted() {
-              $('.ls-datepicker').datepicker({
-				    format: 'dd/mm/yyyy',
-				    'autoclose': true
-					})
-				},
+		
+
 
         mounted() {
         	$('.ls-datepicker').datepicker({
@@ -580,7 +580,9 @@
 			$('.ls-timepicker').on('change', function(e)  {
 				//vm.historyFormData.time = this.value;
 			});
-
+			 if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    		}
   },
         methods: {
 		    GetSelectComponent(componentName) {
