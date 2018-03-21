@@ -5,32 +5,45 @@
   			<div class="col-md-6">
   			<h1>Culture / Biopsy Form</h1>
   			</div>
-  			
+  			<div class="col-md-6">
+  				<div class="text-right">
+  					DOC NO. FMT/HIC/11 <br>
+  					REV. No. 0.0 <br>
+  					WEF 25-09-2016
+  				</div>
+  			</div>
   		</div>
   	</div>
 
   	<form name="" method="post">
 
 
-      <div class="row">
-        
-          <div class="col-md-6">
-            <div>
-              <label>Date:</label>
-              <div class="col-md-8">
-            <input type="text" class="form-control ls-datepicker" id = "date" name="text" v-validate="'required'" v-model="cultureBiopsyData.date">
+      <div class="row form-group">
+        <div class="col-md-4">
+          <div class="col-md-4">
+            <label>Date:</label>
+          </div>
+          <div class="col-md-8">
+            <input type="date" class="form-control " id = "date" name="text" v-validate="'required'" v-model="cultureBiopsyData.date">
             <span class="help is-danger" v-show="errors.has('date')">
               Field is required
             </span>
           </div>
-            </div>
-            
+        </div>
+        <div class="col-md-4">
+          <div class="col-md-6">
+            <label>IPD No. : </label>
           </div>
-        <div class="col-md-6">
-          <div class="text-right">
-            <addressograph></addressograph>  
+          <div class="col-md-6">
+            <input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"/>
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
+              Numeric values only.
+            </span>
+
           </div>
-          
+        </div>
+        <div class="col-md-4">
+          <addressograph></addressograph>
         </div>
       </div>
 
@@ -40,7 +53,7 @@
             <label>Time :</label>
           </div>
           <div class="col-md-6">
-            <input type="text" class="form-control ls-timepicker" name="time" v-validate="'required'" v-model="cultureBiopsyData.time" id ="time">
+            <input type="time" class="form-control " name="time" v-validate="'required'" v-model="cultureBiopsyData.time" id ="time">
             <span class="help is-danger" v-show="errors.has('time')">
               Field is required
             </span>
@@ -236,7 +249,7 @@
               <label>Date:</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control ls-datepicker" name="date_for_sign" v-validate="'required'" v-model="cultureBiopsyData.date_for_sign" id ="date_for_sign">
+              <input type="date" class="form-control " name="date_for_sign" v-validate="'required'" v-model="cultureBiopsyData.date_for_sign" id ="date_for_sign">
               <span class="help is-danger" v-show="errors.has('date_for_sign')">
                 Field is required
               </span>
@@ -247,7 +260,7 @@
               <label>Time:</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control ls-timepicker" name="time_for_sign" v-validate="'required'" v-model="cultureBiopsyData.time_for_sign" id ="time_for_sign">
+              <input type="time" class="form-control " name="time_for_sign" v-validate="'required'" v-model="cultureBiopsyData.time_for_sign" id ="time_for_sign">
               <span class="help is-danger" v-show="errors.has('time_for_sign')">
                 Field is required
               </span>
@@ -303,9 +316,9 @@
            SelectPatientModal
        },
        mounted() {
-         // if(this.ipd_id == 0){
+         if(this.ipd_id == 0){
                 $('#delete_modal').modal('show');
-          // }
+          }
          $('.ls-datepicker').datepicker({
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true
@@ -327,7 +340,7 @@
                vm.cultureBiopsyData.date_for_sign = this.value;
               }
      			  })
-          
+
             $('.ls-timepicker').timepicker().on('change',function(){
                if (this.id == 'time') {
                  vm.cultureBiopsyData.time = this.value;

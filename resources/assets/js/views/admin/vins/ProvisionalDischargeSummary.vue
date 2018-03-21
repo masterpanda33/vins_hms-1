@@ -40,7 +40,7 @@
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-6">
-              <input type="text"  name="date_of_discharge" class="form-control ls-datepicker" id = "date_of_discharge" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
+              <input type="date"  name="date_of_discharge" class="form-control " id = "date_of_discharge" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
             </div></div>
 
 
@@ -99,7 +99,7 @@
           <label class="control-label" for="address">Advice on discharge :</label>
         </div>
         <div class="col-md-8">
-          <input type="text" name="advice_on_discharge"  rows="4" class="form-control" value="">
+          <input type="text" name="advice_on_discharge"  rows="4" class="form-control" value="" v-model="provisionalDischargeSummaryData.advice_on_discharge">
         </div>
       </div>
 
@@ -120,7 +120,7 @@
           <label class="control-label" for="collect_discharge_summary_on">On Date:</label>
         </div>
         <div class="col-md-6">
-          <input type="text" id = "collect_discharge_summary_on" name="collect_discharge_summary_on" class="form-control ls-datepicker" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
+          <input type="date" id = "collect_discharge_summary_on" name="collect_discharge_summary_on" class="form-control " value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
         </div>
       </div>
       <div class="row form-group">
@@ -188,9 +188,9 @@
               format: 'dd/mm/yyyy',
             'autoclose': true
           })
-          // if(this.ipd_id == 0){
+          if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-          // }
+          }
 
           $('.ls-datepicker').datepicker().on('changeDate',function(){
 
@@ -217,7 +217,7 @@
 				    	       User.saveProvisionalDischargeSummary(provisionalDischargeSummaryData).then(
 		                (response) => {
 		                	if(response.data.status == 200) {
-		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
+		                		toastr.success('Provisional Discharge details have been saved', 'Povisional Discharge detail', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
 

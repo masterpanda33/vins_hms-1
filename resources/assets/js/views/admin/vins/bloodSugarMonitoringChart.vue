@@ -5,7 +5,14 @@
   			<div class="col-md-6">
   			<h1>Blood Sugar Monitoring Chart</h1>
   			</div>
-  			
+  			<div class="col-md-6">
+  				<div class="text-right">
+  					DOC NO. FMT/IPD/36 <br>
+  					REV. No. 0.1 <br>
+  					WEF 01-10-2014 <br>
+  					PAGE NO. 01 OF 02
+  				</div>
+  			</div>
   		</div>
   	</div>
   	<form action="" method="post">
@@ -94,8 +101,8 @@
     			</thead>
     			<tbody>
             <tr v-for="n in 5">
-              <td><input class="form-control ls-datepicker" type="text" id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
-              <td><input class="form-control ls-timepicker" type="text" id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+              <td><input class="form-control " type="date" id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
+              <td><input class="form-control " type="time" id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
               <td><input class="form-control" type="text" :name="'bloodsugar_level_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].bloodsugar_level" value=""/></td>
               <td><input class="form-control" type="text" :name="'insulin_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].insulin" value=""/></td>
               <td><input class="form-control" type="text" :name="'name_sign_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].name_sign" value=""/></td>
@@ -180,9 +187,9 @@
    				    format: 'dd/mm/yyyy',
    				    'autoclose': true
    				})
-          // if(this.ipd_id == 0){
+          if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-          // }
+          }
 
             $('.ls-timepicker').timepicker({
    			    format: 'hh-mm',
