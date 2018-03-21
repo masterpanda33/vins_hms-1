@@ -3,38 +3,21 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-6">
-			<h1>ER Observation</h1>
-			</div>
-			<div class="col-md-6">
-				<div class="text-right">
-					DOC NO. FMT/HIC/09 <br>
-					REV. No. 0.1 <br>
-					WEF 10-10-2015
-				</div>
+				<h1>ER Observation</h1>
 			</div>
 		</div>
 	</div>
-
 	<hr>
 
-	<form action="" method="post">
+	<form method="post">
 
-		<div class="row form-group">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-6">
-						<label for="">IPD No.</label>
-					</div>
-					<div class="col-md-6">
-						<input type="text" class="form-control" name="ipd_no" value="" v-model="ipd_id" v-validate="'required|numeric'">
-						<span class="help is-danger" v-show="errors.has('ipd_no')">
-							Numeric Field is required
-						</span>
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-md-6">
 			</div>
-			<div class="col-md-4">
-				<addressograph></addressograph>
+			<div class="col-md-6">
+				<div class="text-right">
+					<addressograph></addressograph>	
+				</div>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -271,6 +254,7 @@
 			<button class="btn btn-success" type="button" @click="saveerObservation()">Submit</button>
 		</div>
 	</form>
+	  <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </body>
 </template>
@@ -278,6 +262,8 @@
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
+	 import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+	
     export default {
         data() {
             return {
@@ -412,6 +398,7 @@
 
 				components: {
 					 addressograph,
+					 SelectPatientModal
 			 },
 
 			 mounted() {
@@ -420,6 +407,8 @@
          'autoclose': true
 
 			 });
+           $('#delete_modal').modal('show');
+
 				 $('.ls-timepicker').timepicker({
 						 format:'hh:mm',
 						 'autoclose': true

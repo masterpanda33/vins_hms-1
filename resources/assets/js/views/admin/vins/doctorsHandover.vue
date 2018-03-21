@@ -383,9 +383,9 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
          })
-          if(this.ipd_id == 0){
+          // if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-         }
+         // }
            let vm =this;
             $('.ls-datepicker').datepicker().on('changeDate',function(){
             if(this.id == 'date_given'){

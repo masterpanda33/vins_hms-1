@@ -32,13 +32,9 @@
   			</div>
   			<div class="col-md-3">
   				<div class="col-md-6">
-  					<label>IPD No : </label>
+  				
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" id="ipd_no" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value="">
-            <span class="help is-danger" v-show="errors.has('ipd_id')">
-              Numeric Field is required
-            </span>
   				</div>
   			</div>
   			<div class="col-md-3">
@@ -420,9 +416,9 @@
             format: 'dd/mm/yyyy',
             'autoclose': true
           })
-          if(this.ipd_id == 0){
+          // if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-          }
+          // }
           $('.ls-datepicker').datepicker().on('changeDate',function(){
             if (this.id == 'date') {
               vm.doctorsDailyNotesData.date = this.value;

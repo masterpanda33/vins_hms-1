@@ -103,7 +103,10 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<addressograph></addressograph>
+					<div class="text-right">
+						<addressograph></addressograph>	
+					</div>
+					
 
 				</div>
 			</div>
@@ -262,9 +265,9 @@
         },
         mounted() {
         	// this.$store.dispatch('SetPatientData',18);
-        	if(this.ipd_id == 0){
+        	// if(this.ipd_id == 0){
 	         	$('#delete_modal').modal('show');
-	    	 }
+	    	 // }
         },
         methods: {
 		    GetSelectComponent(componentName) {
