@@ -65,7 +65,7 @@
 						<label class="control-label" for="sex">Sex: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
+						<select class="form-control ls-select2" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
 							<option value="M" >Male</option>
 							<option value="F">Female</option>
 						</select>
@@ -146,7 +146,7 @@
 			      <label class="control-label" for="case">Case: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" id="case" name="case" value="" v-model="patientData.case" v-validate="'required'">
+						<select class="form-control ls-select2" id="case" name="case" value="" v-model="patientData.case" v-validate="'required'">
 							<option value="new" >New</option>
 							<option value="old" >Old</option>
 						</select>
@@ -156,7 +156,7 @@
 					</div>
 				</div>
 			</div>
-
+			<delete-modal :deleteConfirmMsg="deleteConfirmMsg" @confirmed="deleteConfirmed()"></delete-modal>
 			<div class="form-group text-center">
 				<button class="btn btn-success" type="button" @click="savePatient()">Submit</button>
 			</div>
@@ -167,11 +167,13 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import DeleteModal from '../../../components/DeleteModal.vue'
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
+                'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientData' : {
                 	'fname':'',
                 	'mname': '',
@@ -187,10 +189,34 @@
                 }
             }
         },
+        mounted() {
+        	
+        	// $('.ls-select2').select2({
+         //            allowClear: true,
+         //            theme: "bootstrap",
+         //            placeholder: "select"
+         //        });
+        },
+        components: {
+    		DeleteModal
+   		},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
+		    deleteConfirmed() {
+
+		        // Tournament.removeReferee(this.refereeId).then(
+		        //   (response) => {
+		        //        toastr['success']('Referee has been removed successfully', 'Success');
+		        //        $('#delete_modal').modal('hide')
+		        //        $('#refreesModal').modal('hide')
+		        //         this.$store.dispatch('getAllReferee',this.$store.state.Tournament.tournamentId);
+		        //        // this.$root.$emit('setRefereeReset')
+		        //        // this.$root.$emit('setPitchPlanTab','refereeTab')
+		        //   }
+		        //   )
+		      },
 		    savePatient() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
