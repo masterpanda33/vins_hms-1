@@ -5,35 +5,19 @@
 				<div class="col-md-8">
 					<h1>Nutritional Assessment Form</h1>
 				</div>
-				<div class="col-md-4 text-right">
-					DOC NO. F/IPD/18 <br>
-					REV. No. 0.2 <br>
-					WEF 10-12-2016
-				</div>
 			</div>
 		</div>
 		<hr>
 		<form action="" method="post">
-			<div class="row form-group">
+			<div class="row">
 				<div class="col-md-6">
-					<div class="row">
-						<div class="col">
-							<label for="">IPD No.</label>
-						</div>
-						<div class="col">
-							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
-							<span class="help is-danger" v-show="errors.has('ipd_no')">
-								Numeric Field is required
-							</span>
-						</div>
-					</div>
+					
 				</div>
 				<div class="col-md-6">
-        <div class="text-right">
-
-        <addressograph></addressograph>
-
-      </div></div>
+			        <div class="text-right">
+        				<addressograph></addressograph>
+  				    </div>
+  				</div>
 			</div>
 			<hr>
 			<div class="row form-group">
@@ -629,9 +613,9 @@
          		format: 'dd/mm/yyyy',
          		'autoclose': true
      		})
-        	if(this.ipd_id == 0){
+        	// if(this.ipd_id == 0){
 	     		   $('#delete_modal').modal('show');
-	    	}
+	    	// }
 		 	$('.ls-datepicker').datepicker().on('changeDate',function(){
 				if (this.id == 'date_table') {
 					vm.NutritionalAssessmentForm.date_table = this.value;
