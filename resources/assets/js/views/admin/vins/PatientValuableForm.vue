@@ -237,7 +237,7 @@
                 'currentYear': new Date().getFullYear(),
 								'type': 'patientValuablesForm',
                 'patient_id': this.$store.state.Patient.patientId,
-               	'ipd_id': this.$store.state.Patient.ipdId,
+               	// 'ipd_id': this.$store.state.Patient.ipdId,
                 'patientValuableFormData' : {
 									'unit':'',
 									'patient_name':'',
@@ -285,6 +285,11 @@
 		components: {
         	addressograph,
         	SelectPatientModal,
+       },
+       computed: {
+       	ipd_id(){
+       		return  this.$store.state.Patient.ipdId
+       	}
        },
 		mounted() {
         	$('.ls-datepicker').datepicker({

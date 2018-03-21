@@ -14,26 +14,7 @@
 		</div>
 		<form method = "post">
 
-			<div class="row form-group">
-				<div class="col-md-6">
-					<div class="col-md-6">
-						<label for="date">Date: </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control ls-datepicker" type="text" id="date" name="date" value="">
 
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="col-md-6">
-						<label for="time">Time: </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control ls-timepicker" type="text" name="time" id="time" value=""/>
-
-					</div>
-				</div>
-			</div>
 			<hr />
 			<div class="row form-group">
 				<div class="col-md-4">
@@ -76,7 +57,7 @@
 						<label for="date_of_birth">Date of Birth: </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control ls-datepicker" type="text" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
+						<input class="form-control" type="date" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" />
 						<span class="help is-danger" v-show="errors.has('date_of_birth')">
             	Field is required
             </span>
@@ -87,7 +68,7 @@
 						<label class="control-label" for="sex">Gender: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control ls-select2" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
+						<select class="form-control " id="sex" name="sex" v-model="patientData.gender" >
 							<option value="M" >Male</option>
 							<option value="F">Female</option>
 						</select>
@@ -154,7 +135,8 @@
 			      <label class="control-label" for="consulting_dr">Consulting Dr..: </label>
 					</div>
 					<div class="col-md-6">
-			      	<select class="form-control"  id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" v-validate="'required'">
+						<!-- <input type="text" name=""> -->
+			      	<select class="form-control"  id="consulting_dr" name="consulting_dr"  v-model="patientData.consulting_dr">
 			      		 <option :value="patientData.consulting_dr_option.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
                           
 			      	</select>
@@ -171,8 +153,8 @@
 			      <label class="control-label" for="case">Case: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control ls-select2" id="case" name="case" value="" v-model="patientData.case" v-validate="'required'">
-							<option value="new" >New</option>
+						<select class="form-control " id="case" name="case" value="" v-model="patientData.case">
+							<option value="new" selected="" >New</option>
 							<option value="old" >Old</option>
 						</select>
 						<span class="help is-danger" v-show="errors.has('case')">
@@ -182,7 +164,6 @@
 					 
 				</div>
 			</div>
-			<delete-modal :deleteConfirmMsg="deleteConfirmMsg" @confirmed="deleteConfirmed()"></delete-modal>
 			<div class="form-group text-center">
 				<button class="btn btn-success" type="button" @click="savePatient()">Submit</button>
 			</div>
@@ -193,7 +174,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
-	
+
     export default {
         data() {
             return {
@@ -232,31 +213,29 @@
         mounted() {
         	
 
-        	 $('.ls-select2').select2({
-                    allowClear: true,
-                    theme: "bootstrap",
-                    placeholder: "select"
-                });
-        	 $('.ls-datepicker').datepicker({
-					format: 'dd/mm/yyyy',
-					'autoclose': true
-					});
-					$('.ls-timepicker').timepicker({
-					format: 'hh-mm',
-					'autoclose': true
-					});
-					let vm =this;
-					$('.ls-datepicker').datepicker().on('changeDate',function(){
-						if(this.id = 'date'){
-								vm.patientData.date = this.value;}
-						});
-						$('.ls-datepicker').datepicker().on('changeDate',function(){
-						if(this.id = 'dob'){
-							vm.patientData.dob = this.value;}
-					});
-					$('.ls-timepicker').timepicker().on('change',function(){
-						vm.patientData.time = this.value;
-					});
+     //    	 $('.ls-select2').select2({
+     //                allowClear: true,
+     //                theme: "bootstrap",
+     //                placeholder: "select"
+     //            });
+     //    	 $('.ls-datepicker').datepicker({
+					// format: 'dd/mm/yyyy',
+					// 'autoclose': true
+					// });
+					// $('.ls-timepicker').timepicker({
+					// format: 'hh-mm',
+					// 'autoclose': true
+					// });
+					// let vm =this;
+					// $('.ls-datepicker').datepicker().on('changeDate',function(){
+					// 	if(this.id = 'date'){
+					// 			vm.patientData.date = this.value;}
+					// 	if(this.id = 'dob'){
+					// 		vm.patientData.dob = this.value;}
+					// });
+					// $('.ls-timepicker').timepicker().on('change',function(){
+					// 	vm.patientData.time = this.value;
+					// });
         },
         methods: {
 		    GetSelectComponent(componentName) {
@@ -282,11 +261,15 @@
 	            		 $("body .js-loader").removeClass('d-none');
 				    	User.savePatient(this.patientData).then(
 		                (response) => {
-		                	if(response.data.status == 200) {
+		                	if(response.data.code == 200) {
 		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
+		                	} else if(response.data.code == 300) {
+		                		toastr.error('Record not found', 'Error', {timeOut: 5000});
+		                	} else{
+		                		
+		                	 toastr.error('Something goes wrong', 'Error', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
-
 		                },
 		                (error) => {
 		                	 $("body .js-loader").addClass('d-none');
