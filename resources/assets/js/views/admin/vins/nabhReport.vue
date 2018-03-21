@@ -474,7 +474,7 @@
 	            (response) => {
 	            	if (!this.errors.any()) {
 	            		 $("body .js-loader").removeClass('d-none');
-	            		 var ReportData = $('#frmReport').serialize()+'&report_download=yes';
+	            		 var ReportData = $('#frmReport').serialize();
 	              			window.location.href = "/report/create/?"+ReportData;
 				    	User.submitReport(this.report).then(
 		                (response) => {
