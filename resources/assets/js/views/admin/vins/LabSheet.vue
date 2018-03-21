@@ -20,7 +20,6 @@
 			<div class="row form-group">
 
 						<div class="col-md-4">
-								<div class="col">
 								<label>Ipd No : </label>
 							</div>
 
@@ -55,8 +54,8 @@
 
 			<hr />
 
-			<div class="row">
-				<table class="table table-bordered table-condensed">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th class="text-center">Sr No.</th>
@@ -74,7 +73,7 @@
 						            Investigation is required
 						          </span>
 							</td>
-							<td><input class="form-control ls-datepicker" type = "text" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
+							<td><input class="form-control ls-datepicker" type = "text" id = "'date_'+n" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
 								<span class="help is-danger" v-show="errors.has('date_'+n)">
 			            Date is required
 			          </span>
@@ -96,13 +95,13 @@
 				<button class="btn btn-success" type="button" @click="saveLabSheet()">Submit</button>
 			</div>
 		</form>
-		<delete-modal @confirmed="deleteConfirmed()"></delete-modal>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
-	import DeleteModal from '../../../components/DeleteModal.vue'
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
 
     export default {
         data() {
@@ -110,7 +109,7 @@
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
                 'type': 'labSheet',
-               
+
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
 
@@ -160,10 +159,9 @@
                 }
             }
         },
-
 		components: {
 				 addressograph,
-				DeleteModal,
+				 SelectPatientModal,
  		 },
 		mounted() {
 	         $('.ls-datepicker').datepicker({
@@ -174,13 +172,32 @@
 
 	         	$('#delete_modal').modal('show');
 	    	 }
+			 let vm =this;
+			$('.ls-datepicker').datepicker().on('changeDate',function(){
+
+				if (this.id == 'date_1') {
+					vm.LabSheet.lab_investigation[1].date = this.value;
+				}
+				if (this.id == 'date_2') {
+					vm.planOfCare.Plan_Of_Care[2].date = this.value;
+				}
+				if (this.id == 'date_3') {
+					vm.planOfCare.Plan_Of_Care[3].date = this.value;
+				}
+				if (this.id == 'date_4') {
+					vm.planOfCare.Plan_Of_Care[4].date = this.value;
+				}
+				if (this.id == 'date_5') {
+					vm.planOfCare.Plan_Of_Care[5].date = this.value;
+				}
+			})
        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        saveLabSheet() {
+       	 	saveLabSheet() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {

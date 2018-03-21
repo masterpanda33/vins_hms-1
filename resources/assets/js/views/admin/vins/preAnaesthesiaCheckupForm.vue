@@ -155,66 +155,70 @@
 	      </div>
 	    </div>
 
-			<div class="row form-group">
-			  <table class="table table-bordered">
-			    <thead>
-	  			  <tr>
-	            <th style="vertical-align:middle" class="text-center"></th>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+	  			  	<tr>
+	            		<th style="vertical-align:middle" class="text-center"></th>
 	    				<th style="vertical-align:middle" class="text-center">Contents</th>
 	    				<th style="vertical-align:middle" class="text-center">Response</th>
 	    				<th style="vertical-align:middle" class="text-center">Duration</th>
-	  			  </tr>
+	  			  	</tr>
 	  			</thead>
 	  			<tbody>
-	  			  <tr>
-	            <th style="vertical-align:middle" rowspan="5" class="text-center">Present Complaints</th>
+	  				<tr>
+	            		<th style="vertical-align:middle" rowspan="5" class="text-center">Present Complaints</th>
 	  					<th style="vertical-align:middle" class="text-center">Cough Fever</th>
 	  					<td>
 	  						<div class="form-group">
-	                <select class="form-control" name="cough_fever"  v-model="preAnaesthesiaCheckupFormData.cough_fever"  v-validate="'required'">
-	                  <option value="No">No</option>
-	                  <option value="Yes">Yes</option>
-	                </select>
-									<span class="help is-danger" v-show="errors.has('cough_fever')">
-										Field is required
-									</span>
+	                			<select class="form-control" name="cough_fever"  v-model="preAnaesthesiaCheckupFormData.cough_fever"  v-validate="'required'">
+	                  				<option value="No">No</option>
+	                  				<option value="Yes">Yes</option>
+	                			</select>
+								<span class="help is-danger" v-show="errors.has('cough_fever')">
+									Field is required
+								</span>
 	  						</div>
 	  					</td>
-	  					<td><input class="form-control" type="text" name="duration_cough_fever" value="" v-model="preAnaesthesiaCheckupFormData.duration_cough_fever"></td>
-						<span class="help is-danger" v-show="errors.has('duration_cough_fever')">
+	  					<td>
+	  						<input class="form-control" type="text" name="duration_cough_fever" value="" v-model="preAnaesthesiaCheckupFormData.duration_cough_fever">
+	  					</td>
+							<span class="help is-danger" v-show="errors.has('duration_cough_fever')">
 							Field is required
-						</span>
-	  			  </tr>
-	          <tr>
-	            <th style="vertical-align:middle" class="text-center">Chest Pain</th>
+							</span>
+	  			  	</tr>
+	          		<tr>
+	            		<th style="vertical-align:middle" class="text-center">Chest Pain</th>
 	  					<td>
 	  						<div class="form-group">
-	                <select class="form-control" name="chest_pain" v-model="preAnaesthesiaCheckupFormData.chest_pain"  v-validate="'required'">
-	                  <option value="No">No</option>
-	                  <option value="Yes">Yes</option>
-	                </select>
-									<span class="help is-danger" v-show="errors.has('chest_pain')">
+	                			<select class="form-control" name="chest_pain" v-model="preAnaesthesiaCheckupFormData.chest_pain"  v-validate="'required'">
+	                  				<option value="No">No</option>
+	                  				<option value="Yes">Yes</option>
+	                			</select>
+								<span class="help is-danger" v-show="errors.has('chest_pain')">
 										Field is required
-									</span>
+								</span>
 	  						</div>
 	  					</td>
-	  					<td><input class="form-control" type="text" name="duration_chest_pain" value="" v-model="preAnaesthesiaCheckupFormData.duration_chest_pain"></td>
+	  					<td>
+	  						<input class="form-control" type="text" name="duration_chest_pain" value="" v-model="preAnaesthesiaCheckupFormData.duration_chest_pain">
+	  					</td>
 						<span class="help is-danger" v-show="errors.has('duration_chest_pain')">
 							Field is required
 						</span>
-	          </tr>
-	          <tr>
-	            <th style="vertical-align:middle" class="text-center">Breathlessness</th>
-	  					<td>
-	  						<div class="form-group">
-	                <select class="form-control" name="breathlessness" v-model="preAnaesthesiaCheckupFormData.breathlessness" v-validate="'required'">
-	                  <option value="No">No</option>
-	                  <option value="Yes">Yes</option>
-	                </select>
+	          		</tr>
+	          		<tr>
+	            		<th style="vertical-align:middle" class="text-center">Breathlessness</th>
+	  						<td>
+	  							<div class="form-group">
+	                				<select class="form-control" name="breathlessness" v-model="preAnaesthesiaCheckupFormData.breathlessness" v-validate="'required'">
+	                  					<option value="No">No</option>
+	                  					<option value="Yes">Yes</option>
+	                				</select>
 									<span class="help is-danger" v-show="errors.has('breathlessness')">
 										Field is required
 									</span>
-	  						</div>
+	  							</div>
 	  					</td>
 	  					<td><input class="form-control" type="text" name="duration_breathlessness" value="" v-model="preAnaesthesiaCheckupFormData.duration_breathlessness"></td>
 						<span class="help is-danger" v-show="errors.has('duration_breathlessness')">
@@ -1045,12 +1049,15 @@
 				</div>
 			</div>
 		</form>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -1147,7 +1154,13 @@
         },
 				components: {
 					 addressograph,
+					 SelectPatientModal
 			 },
+		mounted(){
+			if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    	}
+		},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

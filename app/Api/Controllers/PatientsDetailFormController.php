@@ -108,7 +108,7 @@ class PatientsDetailFormController extends Controller
         }
     }
     public function getAllPatientName() {
-        $ipdDetails = IpdDetails::All();
+        $ipdDetails = IpdDetails::with('patientDetails')->get();
         if ($ipdDetails) {
                 return ['code' => '200','data'=>$ipdDetails, 'message' => 'Record Sucessfully created'];
             } else {

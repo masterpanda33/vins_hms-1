@@ -88,8 +88,8 @@
 
 			<hr>
 
-			<div class="form-group">
-				<table class="table">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th>Sr. No.</th>
@@ -175,10 +175,10 @@
 						</span>
 							</td>
 							<td>
-								<input class="form-control" type="time" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>
-						<span class="help is-danger" v-show="errors.has('time')">
-							Field is required
-						</span>
+								<input class="form-control ls-timepicker" type="text" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>
+								<span class="help is-danger" v-show="errors.has('time')">
+									Field is required
+								</span>
 							</td>
 							<td>
 								<input class="form-control" type="text" name="released_by" v-model="patientValuableFormData.released_by" v-validate="'required'" value=""/>
@@ -222,11 +222,14 @@
 				</div>
 			</div>
 		</form>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+	
     export default {
         data() {
             return {
@@ -279,21 +282,36 @@
                 }
             }
         },
-				components: {
-           addressograph,
+		components: {
+        	addressograph,
+        	SelectPatientModal,
        },
-			 mounted() {
-         $('.ls-datepicker').datepicker({
-         format: 'dd/mm/yyyy',
-         'autoclose': true
-     })
+		mounted() {
+        	$('.ls-datepicker').datepicker({
+         		format: 'dd/mm/yyyy',
+         		'autoclose': true
+     		})
+        	if(this.ipd_id == 0){
+	        	$('#delete_modal').modal('show');
+	    	}
+
+        	$('.ls-timepicker').timepicker({
+         		format: 'hh-mm',
+         		'autoclose': true
+     		})
+			$('.ls-datepicker').datepicker().on('changeDate',function(){
+		        vm.patientValuableFormData.date = this.value;
+		    })
+			$('.ls-timepicker').timepicker().on('change',function(){
+		        vm.patientValuableFormData.time = this.value;
+			})
        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        savePatientValuableForm() {
+        	savePatientValuableForm() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {

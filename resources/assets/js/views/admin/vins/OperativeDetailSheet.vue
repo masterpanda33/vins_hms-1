@@ -54,7 +54,7 @@
             <label>Date : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="date" name="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
+            <input class="form-control ls-datepicker" type="text" name="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date')">
 							Field is required
 						</span>
@@ -529,11 +529,14 @@
         </div>
       </div>
     </form>
+     <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue'
+
     export default {
         data() {
             return {
@@ -584,8 +587,21 @@
                 }
             }
         },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          'autoclose': true
+      })
+        },
         components: {
            addressograph,
+           SelectPatientModal
+       },
+       mounted(){
+          if(this.ipd_id == 0){
+             $('#delete_modal').modal('show');
+          }
+
        },
         methods: {
 		    GetSelectComponent(componentName) {

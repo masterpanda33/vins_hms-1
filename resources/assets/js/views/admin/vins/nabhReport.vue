@@ -12,8 +12,8 @@
 		</div>
 
 		<div class="row form-group">
-			<div class="col-md-12">
-				<table class="table table-bordered">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped ">
 					<tbody>
 						<tr>
 							<th colspan="2">Data Period</th>
@@ -157,8 +157,8 @@
 			{{report.avg_stay = (Number(report.total_inpatient_avgStay) / Number(report.total_spearations))}}
 		</p>
 
-		<div class="row form-group">
-			<table class="table table-bordered">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr style="border: 3px solid #ddd !important;">
 						<th>Indicator Name</th>

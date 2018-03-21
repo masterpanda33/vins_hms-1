@@ -17,8 +17,8 @@
             Field is required
           </span>
         </div>
-  			<div class="row form-group">
-  				<table class="table table-bordered" name="appointmentbook">
+  			<div class="table-responsive">
+  				<table class="table table-bordered table-striped" name="appointmentbook">
   					<thead>
   						<tr>
   							<th class="text-center">Post Operative Clinical Status</th>

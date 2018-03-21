@@ -13,7 +13,29 @@
 			</div>
 		</div>
 		<form method = "post">
-  			<div class="row form-group">
+
+			<div class="row form-group">
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<label for="date">Date: </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control ls-datepicker" type="text" id="date" name="date" value="">
+
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<label for="time">Time: </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control ls-timepicker" type="text" name="time" id="time" value=""/>
+
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div class="row form-group">
 				<div class="col-md-4">
 						<div class="col-md-6">
 							<label for="first_name" class="control-label">First Name : </label>
@@ -54,7 +76,7 @@
 						<label for="date_of_birth">Date of Birth: </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="date" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
+						<input class="form-control ls-datepicker" type="text" id="date_of_birth" name="date_of_birth" value=""  v-model="patientData.dob" v-validate="'required'"/>
 						<span class="help is-danger" v-show="errors.has('date_of_birth')">
             	Field is required
             </span>
@@ -62,7 +84,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-6">
-						<label class="control-label" for="sex">Sex: </label>
+						<label class="control-label" for="sex">Gender: </label>
 					</div>
 					<div class="col-md-6">
 						<select class="form-control ls-select2" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
@@ -132,7 +154,10 @@
 			      <label class="control-label" for="consulting_dr">Consulting Dr..: </label>
 					</div>
 					<div class="col-md-6">
-			      	<input class="form-control" type="text" id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" v-validate="'required'"/>
+			      	<select class="form-control"  id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" v-validate="'required'">
+			      		 <option :value="patientData.consulting_dr_option.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
+                          
+			      	</select>
 			      		<span class="help is-danger" v-show="errors.has('consulting_dr')">
 		                	Field is required
 		                </span>
@@ -154,6 +179,7 @@
 		                	Field is required
 		                </span>
 					</div>
+					 
 				</div>
 			</div>
 			<delete-modal :deleteConfirmMsg="deleteConfirmMsg" @confirmed="deleteConfirmed()"></delete-modal>
@@ -175,6 +201,8 @@
                 'currentYear': new Date().getFullYear(),
                 'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientData' : {
+									'date':'',
+									'time':'',
                 	'fname':'',
                 	'mname': '',
                 	'lname': '',
@@ -184,22 +212,52 @@
                 	'ph_no': '',
                 	'mob_no': '',
                 	'reference_dr': '',
-                	'consulting_dr': '',
+                	'consulting_dr':'',
+                	'consulting_dr_option': [{text:'Dr.VIJAY THAKORE'},
+                							 {text:'Dr. KAUSHIK K. TRIVEDI'},
+                							 {text:'Dr. HEMANT MATHUR'},
+                							 {text:'Dr. MIHIR ACHARYA'},
+                							 {text:'Dr. SUMIT KAPADIA'},
+                							 {text:'Dr. KETAN KAPASHI'},
+                							 {text:'Dr. RAJESH KANTHARIA'},
+                							 {text:'Dr. V.C. CHAUHAN'},
+                							 {text:'Dr. NIRAJ BHATT'},
+                							 {text:'Dr. K.C. PATEL'},
+                							 {text:'Dr. CHIRAG MASTER'}
+                							 ],
                 	'case': ''
                 }
             }
         },
         mounted() {
         	
-        	// $('.ls-select2').select2({
-         //            allowClear: true,
-         //            theme: "bootstrap",
-         //            placeholder: "select"
-         //        });
+
+        	 $('.ls-select2').select2({
+                    allowClear: true,
+                    theme: "bootstrap",
+                    placeholder: "select"
+                });
+        	 $('.ls-datepicker').datepicker({
+					format: 'dd/mm/yyyy',
+					'autoclose': true
+					});
+					$('.ls-timepicker').timepicker({
+					format: 'hh-mm',
+					'autoclose': true
+					});
+					let vm =this;
+					$('.ls-datepicker').datepicker().on('changeDate',function(){
+						if(this.id = 'date'){
+								vm.patientData.date = this.value;}
+						});
+						$('.ls-datepicker').datepicker().on('changeDate',function(){
+						if(this.id = 'dob'){
+							vm.patientData.dob = this.value;}
+					});
+					$('.ls-timepicker').timepicker().on('change',function(){
+						vm.patientData.time = this.value;
+					});
         },
-        components: {
-    		DeleteModal
-   		},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

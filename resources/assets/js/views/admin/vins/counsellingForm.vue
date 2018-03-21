@@ -32,8 +32,8 @@
   				<addressograph></addressograph>
   			</div>
       </div>
-  		<div class="row">
-  			<table class="table table-bordered" >
+  		<div class="table-responsive">
+  			<table class="table table-bordered table-striped" >
   				<thead>
   					<tr>
   						<th class="text-center">Sr. No.</th>
@@ -46,10 +46,12 @@
   				</thead>
   				<tbody>
   					<tr v-for="n in 5">
-  						<td>2</td>
-  						<td><input class="form-control" type="date" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
-  						<td><input class="form-control" type="time" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
-  						<td><input class="form-control" type="text" :name="'counsellor_'+n" v-model="counsellingFormData.counselling[n].counsellor" /></td>
+
+  						<td>{{n}}</td>
+
+  						<td><input class="form-control ls-datepicker" type="text" id = "'date_'+n" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
+  						<td><input class="form-control ls-timepicker" type="text" id = "'tim e_'+n" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
+  						<td><input class="form-control" type="text" :name="'counsellor_'+n" v-model="counsellingFormData.counselling[n].counsellor" /></td> 
   						<td><input class="form-control" type="text" :name="'relatives_name_'+n" v-model="counsellingFormData.counselling[n].relatives_name" /></td>
   						<td><input class="form-control" type="text" :name="'remarks_'+n" v-model="counsellingFormData.counselling[n].remarks" /></td>
   					</tr>
@@ -62,11 +64,14 @@
         </div>
       </div>
   	</form>
+    <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -120,7 +125,61 @@
         },
         components: {
 					 addressograph,
+           SelectPatientModal,
 			 },
+
+       mounted() {
+          if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          }
+          $('.ls-timepicker').timepicker({
+            format: 'hh-mm',
+                     'autoclose': true
+           })
+           $('.ls-datepicker').datepicker({
+             format: 'dd/mm/yy',
+             'autoclose': true
+          })
+
+         let vm =this;
+         $('.ls-timepicker').timepicker().on('change',function(){
+
+           if (this.id == 'time_1') {
+             vm.counsellingFormData.counselling[1].time = this.value;
+           }
+           if (this.id == 'time_2') {
+             vm.counsellingFormData.counselling[2].time = this.value;
+           }
+           if (this.id == 'time_3') {
+             vm.counsellingFormData.counselling[3].time = this.value;
+           }
+           if (this.id == 'time_4') {
+            vm.counsellingFormData.counselling[4].time = this.value;
+           }
+           if (this.id == 'time_5') {
+             vm.counsellingFormData.counselling[5].time = this.value;
+           }
+       })
+       $('.ls-datepicker').datepicker().on('changeDate',function(){
+
+         if (this.id == 'date_1') {
+           vm.counsellingFormData.counselling[1].date = this.value;
+         }
+         if (this.id == 'date_2') {
+           vm.counsellingFormData.counselling[2].date = this.value;
+         }
+         if (this.id == 'date_3') {
+           vm.counsellingFormData.counselling[3].date = this.value;
+         }
+         if (this.id == 'date_4') {
+          vm.counsellingFormData.counselling[4].date = this.value;
+         }
+         if (this.id == 'date_5') {
+           vm.counsellingFormData.counselling[5].date = this.value;
+         }
+     })
+
+         },
 
         methods: {
 		    GetSelectComponent(componentName) {
