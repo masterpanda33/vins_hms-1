@@ -10,7 +10,7 @@
                       <img src="/assets/img/nabh_vins_logo.png" id="logo-desk" alt="NABH Logo" class="hidden-sm-down">
                       <img src="/assets/img/nabh_vins_logo.png" id="logo-mobile" alt="NABH Logo" class="hidden-md-up">
 
-                      <H1 class="text-white bg-dark text-center">  PATIENT MANAGEMENT DASHBOARD</H1>
+                      <H1 class="text-white bg-dark text-center mt-50">  PATIENT MANAGEMENT DASHBOARD</H1>
 
 
                   </router-link>
@@ -26,7 +26,7 @@
                 </ul>
 
         </header>
-          </div>
+    </div>
         <div class="dashboard">
 
             <transition name="fade" mode="out-in">
