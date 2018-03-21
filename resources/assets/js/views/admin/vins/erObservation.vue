@@ -44,7 +44,7 @@
 						<label for="date">Date : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control ls-datepicker"  id = "date" type="text" name="date" value="" />
+						<input class="form-control"  id = "date" type="date" name="date" value="" />
 					</div>
 				</div>
 			</div>
