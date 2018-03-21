@@ -10,6 +10,8 @@
 @import '../plugins/toastr/toastr.scss';
 @import '../plugins/bootstrap-datepicker/bootstrap-datepicker.scss';
 @import '../plugins/timepicker/timepicker.scss';
+@import "../plugins/select2/select2.scss";
+@import "../plugins/select2/select2-bootstrap.scss";
 
 // Option Skin.
 @import 'skins/skin-tyrell';
@@ -59,7 +61,10 @@
 
 //Front
 @import "front";
+<<<<<<< HEAD
+=======
 
+>>>>>>> 23f80586773de65211caf2e3df7ce1919e041c50
 
 @import "demo";
 

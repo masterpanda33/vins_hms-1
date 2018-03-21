@@ -361,11 +361,14 @@
   			<button class="btn btn-success" type="button" @click="saveDoctorsDailyNotes()" >Submit</button>
   		</div>
   	</form>
+      <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -410,18 +413,23 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
        mounted() {
-         $('.ls-datepicker').datepicker({
-         format: 'dd/mm/yyyy',
-         'autoclose': true
-     })
-     $('.ls-datepicker').datepicker().on('changeDate',function(){
-        if (this.id == 'date') {
-          vm.doctorsDailyNotesData.date = this.value;
-        }
-      })
-    },
+          $('.ls-datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
+          if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          }
+          $('.ls-datepicker').datepicker().on('changeDate',function(){
+            if (this.id == 'date') {
+              vm.doctorsDailyNotesData.date = this.value;
+            }
+          })
+       },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

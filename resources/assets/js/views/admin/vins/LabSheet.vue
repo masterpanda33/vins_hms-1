@@ -20,7 +20,6 @@
 			<div class="row form-group">
 
 						<div class="col-md-4">
-								<div class="col">
 								<label>Ipd No : </label>
 							</div>
 
@@ -55,8 +54,8 @@
 
 			<hr />
 
-			<div class="row">
-				<table class="table table-bordered table-condensed">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th class="text-center">Sr No.</th>
@@ -96,13 +95,13 @@
 				<button class="btn btn-success" type="button" @click="saveLabSheet()">Submit</button>
 			</div>
 		</form>
-		<delete-modal @confirmed="deleteConfirmed()"></delete-modal>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
-	import DeleteModal from '../../../components/DeleteModal.vue'
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
 
     export default {
         data() {
@@ -160,16 +159,20 @@
                 }
             }
         },
+		components: {
+				 addressograph,
+				 SelectPatientModal,
+ 		 },
+		mounted() {
+	         $('.ls-datepicker').datepicker({
+		         format: 'dd/mm/yyyy',
+		         'autoclose': true
+	    	 })
+	    	 if(this.ipd_id == 18){
 
-				components: {
-					 addressograph,
-			 },
-			 mounted() {
-         $('.ls-datepicker').datepicker({
-         format: 'dd/mm/yyyy',
-         'autoclose': true
-     })
-		 let vm =this;
+	         	$('#delete_modal').modal('show');
+	    	 }
+			 let vm =this;
 			$('.ls-datepicker').datepicker().on('changeDate',function(){
 
 				if (this.id == 'date_1') {
@@ -187,14 +190,14 @@
 				if (this.id == 'date_5') {
 					vm.planOfCare.Plan_Of_Care[5].date = this.value;
 				}
-		})
+			})
        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        saveLabSheet() {
+       	 	saveLabSheet() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {

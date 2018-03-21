@@ -88,8 +88,8 @@
 
 			<hr>
 
-			<div class="form-group">
-				<table class="table">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th>Sr. No.</th>
@@ -222,11 +222,14 @@
 				</div>
 			</div>
 		</form>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+	
     export default {
         data() {
             return {
@@ -279,31 +282,36 @@
                 }
             }
         },
-				components: {
-           addressograph,
+		components: {
+        	addressograph,
+        	SelectPatientModal,
        },
-			 mounted() {
-         $('.ls-timepicker').timepicker({
-         format: 'hh-mm',
-         'autoclose': true
-     			})
-					$('.ls-datepicker').datepicker({
-          format: 'dd/mm/yyyy',
-          'autoclose': true
-      		})
-					$('.ls-datepicker').datepicker().on('changeDate',function(){
+		mounted() {
+        	$('.ls-datepicker').datepicker({
+         		format: 'dd/mm/yyyy',
+         		'autoclose': true
+     		})
+        	if(this.ipd_id == 0){
+	        	$('#delete_modal').modal('show');
+	    	}
+
+        	$('.ls-timepicker').timepicker({
+         		format: 'hh-mm',
+         		'autoclose': true
+     		})
+			$('.ls-datepicker').datepicker().on('changeDate',function(){
 		        vm.patientValuableFormData.date = this.value;
-		      })
-					$('.ls-timepicker').timepicker().on('change',function(){
+		    })
+			$('.ls-timepicker').timepicker().on('change',function(){
 		        vm.patientValuableFormData.time = this.value;
-		      })
+			})
        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        savePatientValuableForm() {
+        	savePatientValuableForm() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {

@@ -88,8 +88,8 @@
         </div>
       </div>
 
-      <div class="row form-group"><hr>
-  		  <table class="table table-bordered">
+      <div class="table-responsive"><hr>
+  		  <table class="table table-bordered table-striped">
   		    <thead>
     			  <tr>
       				<th>Date</th>
@@ -115,11 +115,14 @@
         <button class="form-group btn btn-success" type="button" @click="saveBloodSugarMonitoringChart()" >Submit</button>
       </div>
     </form>
+      <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -177,59 +180,62 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+   				    format: 'dd/mm/yyyy',
+   				    'autoclose': true
+   				})
+          if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          }
 
-       			 mounted() {
-                     $('.ls-datepicker').datepicker({
-       				    format: 'dd/mm/yyyy',
-       				    'autoclose': true
-       					})
-                $('.ls-timepicker').timepicker({
-       			    format: 'hh-mm',
-       			    'autoclose': true
-       			})
+            $('.ls-timepicker').timepicker({
+   			    format: 'hh-mm',
+   			    'autoclose': true
+   			})
 
-                     let vm =this;
-         			$('.ls-datepicker').datepicker().on('changeDate',function(){
-         			    if(this.id == 'date_1'){
-                    vm.bloodSugarMonitoringChart.monitoring[1].date = this.value;
-                  }
-                  if(this.id == 'date_2'){
-                    vm.bloodSugarMonitoringChart.monitoring[2].date = this.value;
-                  }
-                  if(this.id == 'date_3'){
-                    vm.bloodSugarMonitoringChart.monitoring[3].date = this.value;
-                  }
+        let vm =this;
+   			$('.ls-datepicker').datepicker().on('changeDate',function(){
+   			    if(this.id == 'date_1'){
+              vm.bloodSugarMonitoringChart.monitoring[1].date = this.value;
+            }
+            if(this.id == 'date_2'){
+              vm.bloodSugarMonitoringChart.monitoring[2].date = this.value;
+            }
+            if(this.id == 'date_3'){
+              vm.bloodSugarMonitoringChart.monitoring[3].date = this.value;
+            }
 
-                  if(this.id == 'date_4'){
-                    vm.bloodSugarMonitoringChart.monitoring[4].date = this.value;
-                  }
-                  if(this.id == 'date_5'){
-                    vm.bloodSugarMonitoringChart.monitoring[5].date = this.value;
-                  }
-         			})
-              $('.ls-timepicker').on('change', function(e)  {
-         				if(this.id == 'time_1'){
-                  vm.bloodSugarMonitoringChart.monitoring[1].time = this.value;
-                }
-                if(this.id == 'time_2'){
-                  vm.bloodSugarMonitoringChart.monitoring[2].time = this.value;
-                }
-                if(this.id == 'time_3'){
-                  vm.bloodSugarMonitoringChart.monitoring[3].time = this.value;
-                }
-                if(this.id == 'time_4'){
-                  vm.bloodSugarMonitoringChart.monitoring[4].time = this.value;
-                }
-                if(this.id == 'time_5'){
-                  vm.bloodSugarMonitoringChart.monitoring[5].time = this.value;
-                }
+            if(this.id == 'date_4'){
+              vm.bloodSugarMonitoringChart.monitoring[4].date = this.value;
+            }
+            if(this.id == 'date_5'){
+              vm.bloodSugarMonitoringChart.monitoring[5].date = this.value;
+            }
+   			})
+        $('.ls-timepicker').on('change', function(e)  {
+   				if(this.id == 'time_1'){
+            vm.bloodSugarMonitoringChart.monitoring[1].time = this.value;
+          }
+          if(this.id == 'time_2'){
+            vm.bloodSugarMonitoringChart.monitoring[2].time = this.value;
+          }
+          if(this.id == 'time_3'){
+            vm.bloodSugarMonitoringChart.monitoring[3].time = this.value;
+          }
+          if(this.id == 'time_4'){
+            vm.bloodSugarMonitoringChart.monitoring[4].time = this.value;
+          }
+          if(this.id == 'time_5'){
+            vm.bloodSugarMonitoringChart.monitoring[5].time = this.value;
+          }
 
-         			});
+   			});
 
-       				},
-
-        methods: {
+      },
+      methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },

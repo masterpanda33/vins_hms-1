@@ -715,12 +715,15 @@
 					<button class="btn btn-success" type="button" @click="saveCompleteNursingAssessment">Submit</button>
 				</div>
   		</form>
+        <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   	</div>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue'
+
     export default {
         data() {
             return {
@@ -798,12 +801,18 @@
 
         components: {
            addressograph,
+           SelectPatientModal,
        },
        mounted() {
-+               $('.ls-datepicker').datepicker({
-    				    format: 'dd/mm/yyyy',
-    				    'autoclose': true
-    					})
+
+                 $('.ls-datepicker').datepicker({
+				            format: 'dd/mm/yyyy',
+				            'autoclose': true
+					       })
+                  if(this.ipd_id == 0){
+                     $('#delete_modal').modal('show');
+          }            
+
               $('.ls-timepicker').timepicker({
                 format: 'hh-mm',
                 'autoclose': true
@@ -812,28 +821,23 @@
                 if(this.id ==  'date'){
                     vm.completeNursingAssessmentData.date = this.value;
                 }
-              })
-                $('.ls-datepicker').datepicker().on('changeDate',function(){
                 if(this.id ==  'date_nursing'){
                     vm.completeNursingAssessmentData.date_nursing = this.value;
                 }
-              })
-              $('.ls-datepicker').datepicker().on('changeDate',function(){
                 if(this.id ==  'date_of_screening'){
                     vm.completeNursingAssessmentData.date_of_screening = this.value;
                 }
               })
 
+
               $('.ls-timepicker').timepicker().on('change',function(){
                 if(this.id == 'time'){
                     vm.completeNursingAssessmentData.time = this.value;
                 }
-              })
-                $('.ls-timepicker').timepicker().on('change',function(){
                 if(this.id == 'time_nursing'){
                     vm.appointmentBook.time_nursing = this.value;
                 }
-              });
+              })
 
 				},
         methods: {

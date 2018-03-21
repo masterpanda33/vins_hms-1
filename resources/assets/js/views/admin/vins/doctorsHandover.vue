@@ -332,11 +332,14 @@
         <button class="btn btn-success" type="button" @click="saveDoctorsHandover()">Submit</button>
       </div>
     </form>
+    <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -373,32 +376,29 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
        mounted() {
-                     $('.ls-datepicker').datepicker({
-                     format: 'dd/mm/yyyy',
-                     'autoclose': true
-                 })
-                 $('.ls-datepicker').datepicker({
-                 format: 'dd/mm/yyyy',
-                 'autoclose': true
-               })
-               let vm =this;
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
+         })
+          if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+         }
+           let vm =this;
             $('.ls-datepicker').datepicker().on('changeDate',function(){
             if(this.id == 'date_given'){
               vm.doctorsHandoverData.date_given = this.value;
             }
-          })
-              $('.ls-datepicker').datepicker().on('changeDate',function(){
             if(this.id == 'date_taken'){
               vm.bloodSugarMonitoringChart.date_taken = this.value;
             }
-          })
-          $('.ls-timepicker').timepicker().on('change',function(){
-          if(this.id == 'time_taken'){
+            if(this.id == 'time_taken'){
             vm.doctorsHandoverData.time_taken = this.value;
           }
-        })
+          })
+
        },
         methods: {
 		    GetSelectComponent(componentName) {
