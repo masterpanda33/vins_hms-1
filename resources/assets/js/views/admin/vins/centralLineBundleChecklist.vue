@@ -9,23 +9,17 @@
       </div>
     <hr>
     <form class="" action="" method="post">
-      <div class="row form-group">
-				<div class="col">
-					 <div class="row">
-						    <div class="col">
-							    <label for="">IPD No.</label>
-						    </div>
-						    <div class="col">
-							     <input type="text" name="ipd_id" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
-							     <span class="help is-danger" v-show="errors.has('ipd_id')">
-								      Field is required
-							     </span>
-						    </div>
+      <div class="row">
+				
+					 <div class="col-md-6">
+						    
 					   </div>
-            <div class="col-md-4">
-  				    <addressograph></addressograph>
+            <div class="col-md-6">
+              <div class="text-right">
+                <addressograph></addressograph>
+              </div>
+  				    
   			     </div>
-			   </div>
         <div class="row form-group">
             <table class="table table-bordered">
               <thead>

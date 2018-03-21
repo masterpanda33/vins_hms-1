@@ -5,13 +5,7 @@
         <div class="col-md-6">
         <h1>Doctor's Handover</h1>
         </div>
-        <div class="col-md-6">
-          <div class="text-right">
-            DOC NO. F/IPD/62 <br>
-            REV. No. 0.0 <br>
-            WEF 25-02-2017
-          </div>
-        </div>
+        
       </div>
     </div>
 
@@ -34,15 +28,6 @@
         </div>
   			<div class="col-md-4">
   				<div class="row">
-  					<div class="col">
-  						<label for="">IPD No.</label>
-  					</div>
-  					<div class="col">
-  						<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
-  						<span class="help is-danger" v-show="errors.has('ipd_no')">
-  							Numeric Field is required
-  						</span>
-  					</div>
   				</div>
   			</div>
         <div class="col-md-4">
