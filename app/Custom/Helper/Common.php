@@ -35,7 +35,7 @@ class Common {
                 }
             });
         });
-         $excelCreateObj->store($output);   
+         $excelCreateObj->export($output);   
        
     }
 

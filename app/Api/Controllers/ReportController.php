@@ -87,7 +87,7 @@ class ReportController extends Controller
               'val'
             ];
             //Total Stakes, Total Revenue, Amount & Balance fields are set as Number statically.
-            \euro_hms\Custom\Helper\Common::toExcel($lableArray,$dataArray,$otherParams,'csv','yes');
+            \euro_hms\Custom\Helper\Common::toExcel($lableArray,$dataArray,$otherParams,'xlsx','yes');
             $url = Storage::url('exports/nabh-report.csv');
             // dd($url);
 
