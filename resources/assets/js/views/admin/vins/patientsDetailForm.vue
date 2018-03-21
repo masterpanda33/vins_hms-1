@@ -182,7 +182,7 @@
 					 
 				</div>
 			</div>
-
+			<delete-modal :deleteConfirmMsg="deleteConfirmMsg" @confirmed="deleteConfirmed()"></delete-modal>
 			<div class="form-group text-center">
 				<button class="btn btn-success" type="button" @click="savePatient()">Submit</button>
 			</div>
@@ -193,11 +193,13 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import DeleteModal from '../../../components/DeleteModal.vue'
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
+                'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientData' : {
 									'date':'',
 									'time':'',
@@ -229,6 +231,7 @@
         },
         mounted() {
         	
+
         	 $('.ls-select2').select2({
                     allowClear: true,
                     theme: "bootstrap",
@@ -259,6 +262,19 @@
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
+		    deleteConfirmed() {
+
+		        // Tournament.removeReferee(this.refereeId).then(
+		        //   (response) => {
+		        //        toastr['success']('Referee has been removed successfully', 'Success');
+		        //        $('#delete_modal').modal('hide')
+		        //        $('#refreesModal').modal('hide')
+		        //         this.$store.dispatch('getAllReferee',this.$store.state.Tournament.tournamentId);
+		        //        // this.$root.$emit('setRefereeReset')
+		        //        // this.$root.$emit('setPitchPlanTab','refereeTab')
+		        //   }
+		        //   )
+		      },
 		    savePatient() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
