@@ -437,19 +437,9 @@ const routes = [
     */
 
     {
-        path: '/', component: LayoutLogin,
-        children: [
-            {
-                path: 'login/:status*',
-                component: Login,
-                name: 'login'
-            },
-            {
-                path: 'register',
-                component: Register,
-                name: 'register'
-            },
-        ]
+
+        path: '/login', component: LayoutLogin,
+        
     },
 
     // DEFAULT ROUTE
