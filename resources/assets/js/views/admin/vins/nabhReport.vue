@@ -20,14 +20,14 @@
 						</tr>
 						<tr>
 							<th width="50%">Start Date :</th>
-							<td width="50%"><input class="form-control ls-datepicker" type="date" name="start_date" v-model="report.start_date" v-validate="'required'"  />
+							<td width="50%"><input class="form-control ls-datepicker" type="text" name="start_date" v-model="report.start_date" id="start_date" v-validate="'required'"  />
 							<span class="help is-danger" v-show="errors.has('start_date')">
 		                	Field is required
 		                </span></td>
 						</tr>
 						<tr>
 							<th>End Date : </th>
-							<td class="text-center"><input class="form-control" type="date" name="end_date" v-model="report.end_date" v-validate="'required'" />
+							<td class="text-center"><input class="form-control ls-datepicker" id="end_date" type="text" name="end_date" v-model="report.end_date" v-validate="'required'" />
 							<span class="help is-danger" v-show="errors.has('end_date')">
 		                	Field is required
 		                </span></td>
@@ -444,6 +444,26 @@
 
                 }
             }
+        },
+        mounted() {
+        	let vm =this
+        	$('.ls-datepicker').datepicker({
+					format: 'dd/mm/yyyy',
+					'autoclose': true
+					});
+        	$('.ls-datepicker').datepicker().on('changeDate',function(){
+				if(this.id == 'start_date'){
+						vm.report.start_date = this.value;
+				}
+				
+				if(this.id == 'end_date'){
+					vm.report.end_date = this.value;
+				}
+					});
+			$('.ls-timepicker').timepicker({
+					format: 'hh-mm',
+					'autoclose': true
+			});
         },
         methods: {
 		    GetSelectComponent(componentName) {
