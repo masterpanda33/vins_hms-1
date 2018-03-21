@@ -16,17 +16,7 @@
 		<form action="" method="post">
 			<div class="row form-group">
 				<div class="col-md-6">
-					<div class="row">
-						<div class="col">
-							<label for="">IPD No.</label>
-						</div>
-						<div class="col">
-							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
-							<span class="help is-danger" v-show="errors.has('ipd_no')">
-								Numeric Field is required
-							</span>
-						</div>
-					</div>
+
 				</div>
 				<div class="col-md-6">
         <div class="text-right">

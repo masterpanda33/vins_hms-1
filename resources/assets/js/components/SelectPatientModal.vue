@@ -41,7 +41,7 @@
         props: {
             // deleteConfirmMsg: String
         },
-        mounted() {
+        created() {
             this.$store.dispatch('GetAllPatientName');
         },
         methods: {

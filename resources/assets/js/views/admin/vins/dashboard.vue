@@ -263,7 +263,7 @@
 </div>
 </template>
 
-<script type="text/babel">
+<script >
     export default {
         data() {
             return {
@@ -271,6 +271,10 @@
                 'currentYear': new Date().getFullYear()
             }
         },
+        mounted() {
+        	this.$store.dispatch('SetIpdId',0);
+        
+    },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
