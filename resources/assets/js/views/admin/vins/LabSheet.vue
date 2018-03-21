@@ -5,55 +5,30 @@
 				<div class="col-md-8">
 					<h1>Lab Sheet</h1>
 				</div>
-				<div class="col-md-4">
-					<div class="text-right">
-						DOC NO. FMT/HIC/09 <br>
-						REV. No. 0.1 <br>
-						WEF 10-10-2015
-					</div>
-				</div>
+			
 			</div>
 		</div>
 
-		<form action="" method="post">
-
-			<div class="row form-group">
-
-						<div class="col-md-4">
-								<label>Ipd No : </label>
-							</div>
-
-							<div class="col-md-6">
-								<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required|numeric'" />
-								<span class="help is-danger" v-show="errors.has('ipd_no')">
-            			Numeric Field is required
-          			</span>
-							</div>
-						</div>
-
-						<div class="col-md-4">
-							<div class="col">
-								<label>Room No : </label>
-							</div>
-							<div class="col">
-								<input class="form-control" type="text" name="room_no" v-model="LabSheet.room_no" v-validate="'required'" />
-								<span class="help is-danger" v-show="errors.has('room_no')">
-			            			Room number is required
-			          			</span>
-							</div>
-						</div>
-						<div class="col-md-4">
-						<div class="text-right">
-
+		<form  method="post">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="col">
+						<label>Room No : </label>
+					</div>
+					<div class="col">
+						<input class="form-control" type="text" name="room_no" v-model="LabSheet.room_no" v-validate="'required'" />
+						<span class="help is-danger" v-show="errors.has('room_no')">
+            				Room number is required
+          				</span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="text-right">
 						<addressograph></addressograph>
-
-					</div></div>
+					</div>
+				</div>
 			</div>
-
-
-
 			<hr />
-
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
 					<thead>
@@ -109,10 +84,8 @@
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
                 'type': 'labSheet',
-
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
-
                 'LabSheet' : {
                 	'room_no': '',
 					'lab_investigation': {
@@ -150,12 +123,8 @@
 							'date': '',
 							'name': '',
 							'remark': '',
-
-						},
-
-
+						}
 					}
-
                 }
             }
         },
@@ -168,7 +137,7 @@
 		         format: 'dd/mm/yyyy',
 		         'autoclose': true
 	    	 })
-	    	 if(this.ipd_id == 18){
+	    	 if(this.ipd_id == 0){
 
 	         	$('#delete_modal').modal('show');
 	    	 }
@@ -190,7 +159,7 @@
 				if (this.id == 'date_5') {
 					vm.planOfCare.Plan_Of_Care[5].date = this.value;
 				}
-			})
+			});
        },
         methods: {
 		    GetSelectComponent(componentName) {
