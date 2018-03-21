@@ -18,29 +18,21 @@
 	<hr>
 
 	<form method="post">
-		<div class="row form-group">
-			<div class="col-md-4">
-					<div class="col-md-4">
-					<label>Ipd No : </label>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="col-md-4">
+					<label>Diagnosis</label>
 				</div>
-				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" >
-					<span class="help is-danger" v-show="errors.has('ipd_id')">
-									Numeric Value is required
-					</span>
+				<div class="col-md-4">
+					<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
 				</div>
 			</div>
 			<div class="col-md-6">
-			<div class="col-md-4">
-				<label>Diagnosis</label>
+				<div class="text-right">
+					<addressograph></addressograph>
+				</div>	
+				
 			</div>
-			<div class="col-md-4">
-				<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<addressograph></addressograph>
-		</div>
 	</div>
 
 	<div class="row form-group">
@@ -230,9 +222,9 @@ import SelectPatientModal from '../../../components/SelectPatientModal.vue';
 					}
 
 			})
-			if(this.ipd_id == 0){
+			// if(this.ipd_id == 0){
 	     		   $('#delete_modal').modal('show');
-	    	}
+	    	// }
  			},
 
 			methods: {

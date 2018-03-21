@@ -5,44 +5,27 @@
 				<div class="col-md-6">
 				<h1>Doctor's Initial Assessment</h1>
 				</div>
-				<div class="col-md-6">
-					<div class="text-right">
-						DOC NO. FMT/HIC/09 <br>
-						REV. No. 0.1 <br>
-						WEF 10-10-2015
-					</div>
-				</div>
 			</div>
 		</div>
 
 		<form action="" method="post">
 
-			<div class="row form-group">
-				<div class="col-md-4">
-					<div class="col-md-6">
-						<label>IPD No : </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" value="" v-validate="'required|numeric'"/>
-						<span class="help is-danger" v-show="errors.has('ipd_id')">
-              Numeric values only.
-            </span>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="col-md-6">
-						<label>History : </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-6">
+							<label>History : </label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
+						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-				<div class="text-right">
-
-				<addressograph></addressograph>
-
-				</div></div>
+				<div class="col-md-6">
+					<div class="text-right">
+						<addressograph></addressograph>
+					</div>
+				</div>
 			</div>
 
 			<div class="row form-group">
@@ -316,11 +299,14 @@
 			</div>
 
 		</form>
+		  <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js'
-	  import addressograph from './addressograph.vue';
+	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -361,12 +347,15 @@
         },
 				components: {
 					 addressograph,
+					 SelectPatientModal
 			 },
 			 mounted() {
 				 $('.ls-datepicker').datepicker({
 				 format: 'dd/mm/yyyy',
 				 'autoclose': true
 			 });
+			  $('#delete_modal').modal('show');
+
 			 $('.ls-timepicker').timepicker({
 			 format: 'hh-mm',
 			 'autoclose': true

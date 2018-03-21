@@ -5,11 +5,6 @@
 				<div class="col">
 					<h1>Patient Valuable Form</h1>
 				</div>
-				<div class="col">
-					<div class="text-right">
-						F/IPD/41
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -296,9 +291,9 @@
          		format: 'dd/mm/yyyy',
          		'autoclose': true
      		})
-        	if(this.ipd_id == 0){
+        	// if(this.ipd_id == 0){
 	        	$('#delete_modal').modal('show');
-	    	}
+	    	// }
 
         	$('.ls-timepicker').timepicker({
          		format: 'hh-mm',
