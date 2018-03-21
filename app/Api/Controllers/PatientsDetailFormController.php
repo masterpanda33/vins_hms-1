@@ -58,7 +58,7 @@ class PatientsDetailFormController extends Controller
           'phone_no' => $data['ph_no'],
           'mobile_no' => $data['mob_no'],
           'references' => $data['reference_dr'],
-          'consultant' => $data['consulting_dr'],
+          'consultant' => isset($data['consulting_dr'])?$data['consulting_dr']: '' ,
           'case_type' => $data['case'],
         ]);    
          $patientId = $patientCreate->id;
@@ -83,7 +83,7 @@ class PatientsDetailFormController extends Controller
         if ($ipdData) {
             return ['code' => '200','data'=>['patientId'=> $patientId,'ipdId' => $ipdData->id], 'message' => 'Record Sucessfully created'];
         } else {
-            return ['code' => '300','data'=>'', 'message' => 'Something goes wrong'];
+            return ['code' => '400','data'=>'', 'message' => 'Something goes wrong'];
         }
         // return view('\index');
     }
