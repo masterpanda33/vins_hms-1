@@ -193,7 +193,7 @@
 </template>
 <script >
 	import User from '../../../api/users.js';
-	import DeleteModal from '../../../components/DeleteModal.vue'
+	
     export default {
         data() {
             return {
