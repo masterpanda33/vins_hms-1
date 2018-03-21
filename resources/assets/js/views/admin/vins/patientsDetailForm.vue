@@ -14,27 +14,7 @@
 		</div>
 		<form method = "post">
 
-			<div class="row form-group">
-				<div class="col-md-6">
-					<div class="col-md-6">
-						<label for="date">Date: </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control ls-datepicker" type="text" id="date" name="date" value="">
 
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="col-md-6">
-						<label for="time">Time: </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control ls-timepicker" type="text" name="time" id="time" value=""/>
-
-					</div>
-				</div>
-			</div>
-			<hr />
 			<div class="row form-group">
 				<div class="col-md-4">
 						<div class="col-md-6">
@@ -87,13 +67,13 @@
 						<label class="control-label" for="sex">Gender: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control ls-select2" id="sex" name="sex" v-model="patientData.gender" v-validate="'required'">
+						<select class="form-control " id="sex" name="sex" v-model="patientData.gender" >
 							<option value="M" >Male</option>
 							<option value="F">Female</option>
 						</select>
-						<span class="help is-danger" v-show="errors.has('sex')">
+						<!--span class="help is-danger" v-show="errors.has('sex')">
 		                	Field is required
-		                </span>
+		                </span-->
 					</div>
 				</div>
 			</div>
@@ -118,9 +98,9 @@
 			      <label class="control-label" for="phone_no">Phone no.: </label>
 					</div>
 					<div class="col-md-6">
-				      	<input class="form-control" type="text" id="phone_no" name="ph_no" value="" v-model="patientData.ph_no"/>
+				      	<input class="form-control" type="text" id="phone_no" name="ph_no" value="" v-validate="'required|numeric'" v-model="patientData.ph_no"/>
 				      	<span class="help is-danger" v-show="errors.has('ph_no')">
-		                	Field is required
+		                	Field and Numeric value required
 		                </span>
 					</div>
 				</div>
@@ -129,9 +109,9 @@
 			      <label class="control-label" for="mobile_no">Mobile no.: </label>
 					</div>
 					<div class="col-md-6">
-			      	<input class="form-control" type="text" id="mobile_no" name="mob_no" value="" v-model="patientData.mob_no" v-validate="'required'"/>
+			      	<input class="form-control" type="text" id="mobile_no" name="mob_no" value="" v-model="patientData.mob_no" v-validate="'required|numeric'"/>
 			      		<span class="help is-danger" v-show="errors.has('mob_no')">
-		                	Field is required
+		                	Field and Numeric value is required
 		                </span>
 					</div>
 				</div>
@@ -154,13 +134,13 @@
 			      <label class="control-label" for="consulting_dr">Consulting Dr..: </label>
 					</div>
 					<div class="col-md-6">
-			      	<select class="form-control"  id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" v-validate="'required'">
+			      	<select class="form-control"  id="consulting_dr" name="consulting_dr" value="" v-model="patientData.consulting_dr" >
 			      		 <option :value="patientData.consulting_dr_option.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
-                          
+
 			      	</select>
-			      		<span class="help is-danger" v-show="errors.has('consulting_dr')">
+			      		<!--span class="help is-danger" v-show="errors.has('consulting_dr')">
 		                	Field is required
-		                </span>
+		                </span-->
 					</div>
 				</div>
 			</div>
@@ -171,15 +151,15 @@
 			      <label class="control-label" for="case">Case: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control ls-select2" id="case" name="case" value="" v-model="patientData.case" v-validate="'required'">
+						<select class="form-control " id="case" name="case" value="" v-model="patientData.case" >
 							<option value="new" >New</option>
 							<option value="old" >Old</option>
 						</select>
-						<span class="help is-danger" v-show="errors.has('case')">
+						<!--span class="help is-danger" v-show="errors.has('case')">
 		                	Field is required
-		                </span>
+		                </span-->
 					</div>
-					 
+
 				</div>
 			</div>
 
@@ -199,8 +179,7 @@
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
                 'patientData' : {
-									'date':'',
-									'time':'',
+
                 	'fname':'',
                 	'mname': '',
                 	'lname': '',
@@ -228,12 +207,12 @@
             }
         },
         mounted() {
-        	
-        	 $('.ls-select2').select2({
-                    allowClear: true,
-                    theme: "bootstrap",
-                    placeholder: "select"
-                });
+
+				$('.ls-select2').select2({
+								 allowClear: true,
+								 theme: "bootstrap",
+								 placeholder: "select"
+						 });
         	 $('.ls-datepicker').datepicker({
 					format: 'dd/mm/yyyy',
 					'autoclose': true

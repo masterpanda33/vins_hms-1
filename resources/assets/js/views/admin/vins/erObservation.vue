@@ -100,7 +100,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control ls-timepicker" type="text" :name="'time_'+ti" id = "" value="'time_'+ti" v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control" type="time" :name="'time_'+ti" id = "" value="'time_'+ti" v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -188,10 +188,10 @@
 							<input type="text" :name="'quantity_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].quantity">
 					 </td>
 						<td>
-							<input type="text" :name="'start_time_'+m" id = "'start_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].start_time">
+							<input type="time" :name="'start_time_'+m" id = "'start_time_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].start_time">
 					</td>
 						<td>
-							<input type="text" :name="'end_time_'+m" id = "'end_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].end_time">
+							<input type="time" :name="'end_time_'+m" id = "'end_time_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].end_time">
 					</td>
 						<td>
 							<input type="text" :name="'remarks_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].remarks">
@@ -232,7 +232,7 @@
 							<input type="text" :name="'administration_by_'+n"  class="form-control" id = "'administration_by_'+n"  value=" " v-model="erObservationData.medication_administration[n].administration_by">
 						</td>
 						<td>
-							<input type="text" :name="'medication_time_'+n" id = "'medication_time_'+n" class="form-control ls-timepicker" value=" " v-model="erObservationData.medication_administration[n].medication_time">
+							<input type="time" :name="'medication_time_'+n" id = "'medication_time_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].medication_time">
 						</td>
 				  </tr>
 				</tbody>

@@ -169,13 +169,13 @@
 					<tbody>
 						<tr>
 							<td>
-								<input class="form-control ls-datepicker" type="text" name="date" v-model="patientValuableFormData.date" v-validate="'required'" value=""/>
+								<input class="form-control" type="date" name="date" v-model="patientValuableFormData.date" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date')">
 							Field is required
 						</span>
 							</td>
 							<td>
-								<input class="form-control ls-timepicker" type="text" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>
+								<input class="form-control " type="time" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>
 								<span class="help is-danger" v-show="errors.has('time')">
 									Field is required
 								</span>
@@ -229,7 +229,7 @@
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
 	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
-	
+
     export default {
         data() {
             return {

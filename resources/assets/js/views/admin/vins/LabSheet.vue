@@ -5,7 +5,7 @@
 				<div class="col-md-8">
 					<h1>Lab Sheet</h1>
 				</div>
-			
+
 			</div>
 		</div>
 
@@ -48,7 +48,7 @@
 						            Investigation is required
 						          </span>
 							</td>
-							<td><input class="form-control ls-datepicker" type = "text" id = "'date_'+n" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
+							<td><input class="form-control" type = "date" id = "'date_'+n" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
 								<span class="help is-danger" v-show="errors.has('date_'+n)">
 			            Date is required
 			          </span>

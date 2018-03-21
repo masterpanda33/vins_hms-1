@@ -1,5 +1,5 @@
 <template>
-  
+
   <div class="container">
 	<div class="page-header">
 		<div class="row">
@@ -156,9 +156,12 @@
     </div>
 
 		<div class="row">
-			<div class="col-md-4 top-buffer">
+			<!--div class="col-md-4 top-buffer">
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click = "GetSelectComponent('mar_flowsheet')" > JSON MAR Flow Sheet</a>
-			</div>
+			</div-->
+      <div class="col-md-4 top-buffer">
+        <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('bloodSugarMonitoringChart')" > Blood-Sugar Monitoring Chart </a>
+      </div>
       <div class="col-md-4 top-buffer">
 				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('doctorsDailyNotes')" >Doctor's Daily Notes</a>
 			</div>
@@ -179,9 +182,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 top-buffer">
-				<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('bloodSugarMonitoringChart')" > Blood-Sugar Monitoring Chart </a>
-			</div>
+
 		</div>
 
 
