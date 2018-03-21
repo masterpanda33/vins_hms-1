@@ -4,6 +4,7 @@ namespace euro_hms\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Storage;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -14,19 +15,20 @@ class SendMail extends Mailable
    public $email_details;
    public $view_name;
    public $from_email;
-   public $subject = "Eurosport | Support";
+   public $subject = "Vins hms-report";
 
    /**
     * Create a new message instance.
     *
     * @return void
     */
-   public function __construct($email_details, $subject, $view_name, $from_email = null)
+   public function __construct($email_details, $subject, $view_name, $from_email = null, $attachment = null)
    {
        $this->subject = $subject;
        $this->view_name = $view_name;
        $this->email_details = $email_details;
        $this->from_email = $from_email;
+       $this->attach_path = $attachment;
    }
 
    /**

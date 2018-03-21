@@ -44,6 +44,9 @@ import SiteFooter from './partials/SiteFooter.vue'
 export default {
         components : {
              SiteFooter
-        }
+        },
+        mounted() {
+        this.$store.dispatch('SetIpdId',0);
+      }
     }
 </script>

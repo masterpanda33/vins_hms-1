@@ -11,6 +11,13 @@ const state = {
   	'patientData': [],
     'ipdData': [],
  }
+
+ // getters
+const getters = {
+   getIpdID: state => {
+      return state.ipdId
+    },
+  }
 // actions
 const actions = {
   SetPatientId ({commit},patientId) {

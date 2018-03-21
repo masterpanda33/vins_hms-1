@@ -5,14 +5,7 @@
   			<div class="col-md-6">
   			<h1>Blood Sugar Monitoring Chart</h1>
   			</div>
-  			<div class="col-md-6">
-  				<div class="text-right">
-  					DOC NO. FMT/IPD/36 <br>
-  					REV. No. 0.1 <br>
-  					WEF 01-10-2014 <br>
-  					PAGE NO. 01 OF 02
-  				</div>
-  			</div>
+  			
   		</div>
   	</div>
   	<form action="" method="post">
@@ -187,9 +180,9 @@
    				    format: 'dd/mm/yyyy',
    				    'autoclose': true
    				})
-          if(this.ipd_id == 0){
+          // if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-          }
+          // }
 
             $('.ls-timepicker').timepicker({
    			    format: 'hh-mm',

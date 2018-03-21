@@ -13,28 +13,32 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <vue-form :state="formstate" @submit.prevent="onSubmit">
+                                <form method="post">
                                     <div class="row">
                                         <div class="col-sm-12 mt-3 ">
                                             <div class="form-group">
-                                                    <input v-model="model.email" name="email" id="email" type="email" required autofocus placeholder="E-mail" class="form-control" />
-                                                   
+                                                    <input v-model="frm_email" name="email" id="email" type="email" required autofocus placeholder="E-mail" v-validate="'required'"  class="form-control" />
+                                                   <span class="help is-danger" v-show="errors.has('email')">
+                                                        Field is required
+                                                    </span>
                                                 
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                    <input v-model="model.password" name="password" id="password" type="password" required placeholder="Password" class="form-control" minlength="6" maxlength="10" />
-                                                    
+                                                    <input v-model="frm_password" name="password" id="password" type="password" required placeholder="Password" v-validate="'required'"  class="form-control" minlength="6" maxlength="10" />
+                                                    <span class="help is-danger" v-show="errors.has('password')">
+                                                        Field is required
+                                                    </span>
                                                 
                                             </div>
                                         </div>
                                         <div class="col text-center">
-                                            <button class="btn btn-success text-center" type="button" @click="saveLabSheet()">Sign in</button>
+                                            <button class="btn btn-success text-center" type="button" @click="signInUser()">Sign in</button>
                                         </div>
                                             
                                     </div>
-                                </vue-form>
+                                </form>
                             </div>
                         </div>
 
@@ -52,20 +56,26 @@ export default {
     data() {
         return {
             formstate: {},
-            model: {
-                email: "",
-                password: ""
-
-            }
+            frm_email: "",
+            frm_password: "",
+   
         }
     },
     methods: {
-        onSubmit() {
-            if (this.formstate.$invalid) {
-                return;
-            } else {
-                this.$router.push("/");
+        signInUser() {
+            this.$validator.validateAll().then(
+                (response) => {
+                 if( this.frm_email != 'vins@admin.com' || this.frm_password != '12345' ) {
+                toastr.error('Please enter valid credentail ', 'Login error', {timeOut: 5000});
+                    
+                }
+                else if (!this.errors.any()) {
+                    this.$router.push({name: 'dashboard'});
+                }
+                else {
+                toastr.error('Please enter email and password.', 'Login error', {timeOut: 5000});
             }
+            });
         }
     },
     mounted: function() {

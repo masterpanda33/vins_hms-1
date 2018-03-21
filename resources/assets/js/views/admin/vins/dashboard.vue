@@ -9,7 +9,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row mt-20">
 		<h3>Emergency Patient</h3>
 	</div>
 	<div class="row">
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<hr />
-	<div class="row">
+	<div class="row mt-20">
 		<h3>Pre-Admission Forms</h3>
 	</div>
   <!-- <div class="col-md-4 top-buffer">
@@ -45,7 +45,7 @@
 
 	<hr />
 
-	<div class="row">
+	<div class="row mt-20">
 		<h3>Within 24 Hours</h3>
 	</div>
 	<div class="row">
@@ -59,7 +59,7 @@
 			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('NutritionalAssessmentForm')">Nutritional Assessment Form</a>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row ">
 		<div class="col-md-4 top-buffer">
 			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('plan_of_care')"> Plan Of Care </a>
 		</div>
@@ -70,7 +70,7 @@
 
 	<hr />
 
-	<div class="row">
+	<div class="row mt-20">
 		<h3>Operation / Surgery</h3>
 	</div>
 
@@ -119,7 +119,7 @@
 
 		<hr />
 
-		<div class="row">
+		<div class="row mt-20">
 			<h3>Daily Ward / General Forms</h3>
 		</div>
     <div name="Daily ward / general forms">
@@ -188,7 +188,7 @@
 
 		<hr />
 
-		<div class="row">
+		<div class="row mt-20">
 			<h3>Discharge</h3>
 		</div>
 
@@ -213,7 +213,7 @@
 
 		<hr />
 
-		<div class="row">
+		<div class="row mt-20">
 			<h3>Other / Unassigned</h3>
 		</div>
     <div name="unassigned">
@@ -264,7 +264,7 @@
 </div>
 </template>
 
-<script type="text/babel">
+<script >
     export default {
         data() {
             return {
@@ -272,6 +272,10 @@
                 'currentYear': new Date().getFullYear()
             }
         },
+        mounted() {
+        	this.$store.dispatch('SetIpdId',0);
+        
+    },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

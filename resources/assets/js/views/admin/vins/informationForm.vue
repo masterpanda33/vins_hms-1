@@ -3,40 +3,23 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-6">
-			<h1>Information Form</h1>
-			</div>
-			<div class="col-md-6">
-				<div class="text-right">
-					DOC NO. F/IPD/27 <br>
-					REV. No. 0.0 <br>
-					WEF 01-08-2013
-				</div>
+				<h1>Information Form</h1>
 			</div>
 		</div>
 	</div>
 
 
 	<hr>
-
-	<form action="" method="post">
-		<div class="row form-group">
+	<form  method="post">
+		<div class="row">
 			<div class="col-md-6">
-				<div class="col-md-6">
-					<label>IPD No. : </label>
-				</div>
-				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
-					<span class="help is-danger" v-show="errors.has('ipd_id')">
-						Numeric Field is required
-					</span>
-				</div>
+				
 			</div>
 			<div class="col-md-6">
-			<div class="text-right">
-
-			<addressograph></addressograph>
-
-		</div></div>
+				<div class="text-right">
+					<addressograph></addressograph>
+				</div>
+			</div>
 		</div>
 
     <div class="row form-group">
@@ -425,9 +408,8 @@
 				 format: 'dd/mm/yyyy',
 				 'autoclose': true
 		 	})
-		 	if(this.ipd_id == 0){
-	         	$('#delete_modal').modal('show');
-	    	}
+		 	$('#delete_modal').modal('show');
+	    	
 	    	$('.ls-timepicker').timepicker({
 				 format: 'hh-mm',
 				 'autoclose': true
