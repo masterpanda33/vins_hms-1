@@ -13,9 +13,8 @@
 			</div>
 		</div>
 		<form method = "post">
+	
 
-
-			<hr />
 			<div class="row form-group">
 				<div class="col-md-4">
 						<div class="col-md-6">
@@ -72,9 +71,9 @@
 							<option value="M" >Male</option>
 							<option value="F">Female</option>
 						</select>
-						<span class="help is-danger" v-show="errors.has('sex')">
+						<!--span class="help is-danger" v-show="errors.has('sex')">
 		                	Field is required
-		                </span>
+		                </span-->
 					</div>
 				</div>
 			</div>
@@ -99,9 +98,9 @@
 			      <label class="control-label" for="phone_no">Phone no.: </label>
 					</div>
 					<div class="col-md-6">
-				      	<input class="form-control" type="text" id="phone_no" name="ph_no" value="" v-model="patientData.ph_no"/>
+				      	<input class="form-control" type="text" id="phone_no" name="ph_no" value="" v-validate="'required|numeric'" v-model="patientData.ph_no"/>
 				      	<span class="help is-danger" v-show="errors.has('ph_no')">
-		                	Field is required
+		                	Field and Numeric value required
 		                </span>
 					</div>
 				</div>
@@ -110,9 +109,9 @@
 			      <label class="control-label" for="mobile_no">Mobile no.: </label>
 					</div>
 					<div class="col-md-6">
-			      	<input class="form-control" type="text" id="mobile_no" name="mob_no" value="" v-model="patientData.mob_no" v-validate="'required'"/>
+			      	<input class="form-control" type="text" id="mobile_no" name="mob_no" value="" v-model="patientData.mob_no" v-validate="'required|numeric'"/>
 			      		<span class="help is-danger" v-show="errors.has('mob_no')">
-		                	Field is required
+		                	Field and Numeric value is required
 		                </span>
 					</div>
 				</div>
@@ -135,14 +134,16 @@
 			      <label class="control-label" for="consulting_dr">Consulting Dr..: </label>
 					</div>
 					<div class="col-md-6">
+
 						<!-- <input type="text" name=""> -->
 			      	<select class="form-control"  id="consulting_dr" name="consulting_dr"  v-model="patientData.consulting_dr">
+
 			      		 <option :value="patientData.consulting_dr_option.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
-                          
+
 			      	</select>
-			      		<span class="help is-danger" v-show="errors.has('consulting_dr')">
+			      		<!--span class="help is-danger" v-show="errors.has('consulting_dr')">
 		                	Field is required
-		                </span>
+		                </span-->
 					</div>
 				</div>
 			</div>
@@ -153,15 +154,17 @@
 			      <label class="control-label" for="case">Case: </label>
 					</div>
 					<div class="col-md-6">
+
 						<select class="form-control " id="case" name="case" value="" v-model="patientData.case">
 							<option value="new" selected="" >New</option>
+
 							<option value="old" >Old</option>
 						</select>
-						<span class="help is-danger" v-show="errors.has('case')">
+						<!--span class="help is-danger" v-show="errors.has('case')">
 		                	Field is required
-		                </span>
+		                </span-->
 					</div>
-					 
+
 				</div>
 			</div>
 			<div class="form-group text-center">
@@ -182,8 +185,7 @@
                 'currentYear': new Date().getFullYear(),
                 'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientData' : {
-									'date':'',
-									'time':'',
+
                 	'fname':'',
                 	'mname': '',
                 	'lname': '',
@@ -211,6 +213,7 @@
             }
         },
         mounted() {
+
         	
 
      //    	 $('.ls-select2').select2({
@@ -236,6 +239,7 @@
 					// $('.ls-timepicker').timepicker().on('change',function(){
 					// 	vm.patientData.time = this.value;
 					// });
+
         },
         methods: {
 		    GetSelectComponent(componentName) {

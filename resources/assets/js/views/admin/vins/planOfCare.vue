@@ -81,7 +81,7 @@
 							</span>
 						</td>
 						<td>
-							<input class="form-control ls-datepicker" type="text" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
+							<input class="form-control" type="date" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('date_'+n)">
 								Progress is required
 							</span>

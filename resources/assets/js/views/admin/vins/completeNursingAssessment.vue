@@ -25,7 +25,7 @@
   						<label class="control-label col-md-4" for="date">Date:</label>
   					</div>
   					<div class="col-md-8">
-  						<input type="text" class="form-control ls-datepicker" id = "date" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
+  						<input type="date" class="form-control " id = "date" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
@@ -685,7 +685,7 @@
   			        <label class="control-label" for="date_nursing">Date:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="text" class="form-control"  id = "date_nursing" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" >
+  			        <input type="date" class="form-control"  id = "date_nursing" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" >
   							<span class="help is-danger" v-show="errors.has('date_nursing')">
     		        	Date of nursing is required
     		        </span>
@@ -807,7 +807,9 @@
 					       })
                   // if(this.ipd_id == 0){
                      $('#delete_modal').modal('show');
+
                   // }            
+
 
               $('.ls-timepicker').timepicker({
                 format: 'hh-mm',

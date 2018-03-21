@@ -8,6 +8,7 @@
 		</div>
 	</div>
 
+
 	<hr>
 	<form  method="post">
 		<div class="row">
@@ -39,7 +40,7 @@
           <label for="time">Time:</label>
         </div>
         <div class="col-md-6">
-					<input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time" name="time" value=""  v-model="informationFormData.time"/>
+					<input class="form-control " type = "time" v-validate="'required'" id = "time" name="time" value=""  v-model="informationFormData.time"/>
 					<span class="help is-danger" v-show="errors.has('time')">
 						Field is required
 					</span>
@@ -68,13 +69,15 @@
 
 					</td>
 					<td>
-							 <select class="form-control" v-validate="'required'" id = "pain_chest" name="pain_chest" value=""  v-model="informationFormData.pain_chest">
+						<div class="form-group">
+							 <select class="form-control "  id = "pain_chest" name="pain_chest" value=""  v-model="informationFormData.pain_chest">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
 							<span class="help is-danger" v-show="errors.has('pain_chest')">
                 Field is required
               </span>
+						</div>
 					</td>
 
 			  </tr>
@@ -85,13 +88,15 @@
 
 				</td>
 					<td>
-							 <select class="form-control" v-validate="'required'" id = "bp_heart" name="bp_heart" value=""  v-model="informationFormData.bp_heart">
+						<div class="form-group">
+							 <select class="form-control "  id = "bp_heart" name="bp_heart" value=""  v-model="informationFormData.bp_heart">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
 							<span class="help is-danger" v-show="errors.has('bp_heart')">
                 Field is required
               </span>
+						</div>
 					</td>
 			 </tr>
 
@@ -99,16 +104,18 @@
 			    <td>3</td>
   				<td>
   					Have you been treated in past or at present for any major illness? If yes, please specify:
-						<input class="form-control" type = "text" id = "major_illness" name="major_illness" value=""  v-model="informationFormData.major_illness"/>
+						<input class="form-control " type = "text" id = "major_illness" name="major_illness" value=""  v-model="informationFormData.major_illness"/>
   				</td>
   					<td>
-  							 <select class="form-control" v-validate="'required'" id = "major_illness" name="major_illness" value=""  v-model="informationFormData.major_illness">
+							<div class="form-group">
+  							 <select class="form-control "  id = "major_illness" name="major_illness" value=""  v-model="informationFormData.major_illness">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
 								<span class="help is-danger" v-show="errors.has('major_illness')">
 	                        Field is required
 	                      </span>
+											</div>
   					</td>
 			  </tr>
 
@@ -118,13 +125,15 @@
 
   				</td>
   					<td>
-  							 <select class="form-control" v-validate="'required'" id = "nervous_disorder" name="nervous_disorder" value=""  v-model="informationFormData.nervous_disorder">
+							<div class="form-group">
+  							 <select class="form-control "  id = "nervous_disorder" name="nervous_disorder" value=""  v-model="informationFormData.nervous_disorder">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
 								<span class="help is-danger" v-show="errors.has('nervous_disorder')">
 	                        Field is required
 	                      </span>
+							</div>
   					</td>
 			  </tr>
 
@@ -135,7 +144,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control" v-validate="'required'" id = "bleeding_clot" name="bleeding_clot" value=""  v-model="informationFormData.bleeding_clot">
+  							 <select class="form-control "  id = "bleeding_clot" name="bleeding_clot" value=""  v-model="informationFormData.bleeding_clot">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -154,7 +163,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control" v-validate="'required'" id = "diabetes" name="diabetes" value=""  v-model="informationFormData.diabetes">
+  							 <select class="form-control "  id = "diabetes" name="diabetes" value=""  v-model="informationFormData.diabetes">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -173,7 +182,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control" v-validate="'required'" id = "peptic_ulcer" name="peptic_ulcer" value=""  v-model="informationFormData.peptic_ulcer">
+  							 <select class="form-control "  id = "peptic_ulcer" name="peptic_ulcer" value=""  v-model="informationFormData.peptic_ulcer">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -192,7 +201,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control" v-validate="'required'" id = "allergy" name="allergy" value=""  v-model="informationFormData.allergy">
+  							 <select class="form-control "  id = "allergy" name="allergy" value=""  v-model="informationFormData.allergy">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -212,7 +221,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control" v-validate="'required'" id = "asthama" name="asthama" value=""  v-model="informationFormData.asthama">
+  							 <select class="form-control "  id = "asthama" name="asthama" value=""  v-model="informationFormData.asthama">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -231,7 +240,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							<select class="form-control" name="difficulty_passing_urine" v-model="informationFormData.difficulty_passing_urine" v-validate="'required'">
+  							<select class="form-control " name="difficulty_passing_urine" v-model="informationFormData.difficulty_passing_urine" >
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -248,18 +257,19 @@
             <div class="">
               If yes, please specify:
             </div>
-              <div class="col-md-6">
+
 								<input class="form-control" type = "text" id = "operated_in_past" name="operated_in_past" value=""  v-model="informationFormData.operated_in_past"/>
-              </div>
+
 
             <ul>
               <li>Did you have any anesthetic or surgical complication?</li>
               <li>Did you receive any blood transfusion?</li>
             </ul>
+
   				</td>
 					<td>
             <div class="form-group">
-							 <select class="form-control" v-validate="'required'" id = "surgical_complication" name="surgical_complication" value=""  v-model="informationFormData.surgical_complication">
+							 <select class="form-control "  id = "surgical_complication" name="surgical_complication" value=""  v-model="informationFormData.surgical_complication">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -268,7 +278,7 @@
                       </span>
 						</div>
             <div class="form-group">
-							 <select class="form-control" v-validate="'required'" id = "blood_transfusion" name="blood_transfusion" value=""  v-model="informationFormData.blood_transfusion">
+							 <select class="form-control "  id = "blood_transfusion" name="blood_transfusion" value=""  v-model="informationFormData.blood_transfusion">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -295,7 +305,7 @@
   				</td>
 					<td>
 						<div class="form-group">
-							 <select class="form-control" v-validate="'required'" id = "drug_details" name="drug_details" value=""  v-model="informationFormData.drug_details">
+							 <select class="form-control "  id = "drug_details" name="drug_details" value=""  v-model="informationFormData.drug_details">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -315,7 +325,7 @@
 						<label for="name_of_patient">Name of Patient:</label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type = "text" v-validate="'required'" id = "name_of_patient" name="name_of_patient" value=""  v-model="informationFormData.name_of_patient"/>
+						<input class="form-control" type = "text"  id = "name_of_patient" name="name_of_patient" value=""  v-model="informationFormData.name_of_patient"/>
 						<span class="help is-danger" v-show="errors.has('name_of_patient')">
 							Field is required
 						</span>
@@ -328,7 +338,7 @@
 						<label for="name_of_relative">Name of Relative:</label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type = "text" v-validate="'required'" id = "name_of_relative" name="name_of_relative" value=""  v-model="informationFormData.name_of_relative"/>
+						<input class="form-control" type = "text"  id = "name_of_relative" name="name_of_relative" value=""  v-model="informationFormData.name_of_relative"/>
 						<span class="help is-danger" v-show="errors.has('name_of_relative')">
 							Field is required
 						</span>
@@ -389,9 +399,14 @@
 			SelectPatientModal,
 		},
 		mounted() {
+			$('.ls-select2').select2({
+                    allowClear: true,
+                    theme: "bootstrap",
+                    placeholder: "select"
+                });
 			$('.ls-datepicker').datepicker({
 				 format: 'dd/mm/yyyy',
-				 'autoclose': true			 
+				 'autoclose': true
 		 	})
 		 	$('#delete_modal').modal('show');
 	    	
