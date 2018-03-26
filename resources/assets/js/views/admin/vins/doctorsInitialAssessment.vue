@@ -11,18 +11,8 @@
 		<form action="" method="post">
 
 			<div class="row">
-				<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-6">
-							<label>History : </label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
-						</div>
-					</div>
-				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="col-md-6">
 						<label>History : </label>
 					</div>
@@ -31,11 +21,12 @@
 						<span class="help is-danger" v-show="errors.has('history')">
               Field is required
             </span>
+					</div>
+				</div>
 
 				<div class="col-md-6">
 					<div class="text-right">
 						<addressograph></addressograph>
-
 					</div>
 				</div>
 			</div>
