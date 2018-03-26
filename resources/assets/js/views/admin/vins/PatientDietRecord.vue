@@ -5,30 +5,27 @@
 				<div class="col">
 					<h1>Patient Diet Record</h1>
 				</div>
-				<div class="col">
-					<div class="text-right">
-						DOC NO. FMT/HIC/09 <br>
-						REV. No. 0.1 <br>
-						WEF 10-10-2015
-					</div>
-				</div>
-			</div>
+							</div>
 		</div>
-
+		<div class="text-right">
+			<addressograph></addressograph>
+		</div>
 		<hr>
 
 		<form action="" method="post">
 			<div class="row form-group">
-				<div class="col">
+					<div class="col-md-6">
+				<div class="col-md-12">
 					<label>Dietician / Nurses Name : </label>
 				</div>
-				<div class="col">
+				<div class="col-md-6">
 					<input class="form-control" type="text" name="dietician_name" v-model="patientDietRecordData.dietician_name" v-validate="'required'" value="">
 					<span class="help is-danger" v-show="errors.has('dietician_name')">
 						Dietician name is required
 					</span>
-				</div>
-			</div>
+</div>
+</div>
+</div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -50,7 +47,7 @@
 							<label>Time : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
+							<input class="form-control " type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('time')">
 								Time is required
 							</span>
@@ -61,30 +58,35 @@
 
 			<div class="row form-group">
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>Bed No : </label>
 				</div>
-				<div class="col">
+				<div class="col-md-6">
 					<input class="form-control" type="text" name="bed_no" v-model="patientDietRecordData.bed_no" v-validate="'required'" value=""/>
 					<span class="help is-danger" v-show="errors.has('bed_no')">
 						Bed number is required
 					</span>
-				</div>
-			</div>
+				</div></div></div>
 
-			<div class="row form-group">
+
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>IPD No : </label>
 				</div>
-				<div class="col">
+				<div class="col-md-6">
 					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value=""/>
 					<span class="help is-danger" v-show="errors.has('ipd_id')">
 						Numeric IPD is required
 					</span>
-				</div>
-			</div>
+				</div></div>
+			</div></div>
 
 			<div class="row form-group">
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>Patient Name : </label>
 				</div>
 				<div class="col">
@@ -93,7 +95,7 @@
 						Patient name is required
 					</span>
 				</div>
-			</div>
+			</div></div></div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -159,18 +161,23 @@
 				</div>
 			</div>
 		</form>
+		 <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
-								'type': 'patientDietRecord',
+				'type': 'patientDietRecord',
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
+               	'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientDietRecordData' : {
 									'dietician_name':'',
 									'date':'',
@@ -184,10 +191,20 @@
                 }
             }
         },
+		components: {
+           addressograph,
+           SelectPatientModal
+       },
+       	mounted(){
+			// if(this.ipd_id == 0){
+				$('#delete_modal').modal('show');
+        	 // }
+		},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
+
 
         savePatientDietRecord() {
 		    	this.$validator.validateAll().then(

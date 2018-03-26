@@ -5,29 +5,19 @@
 			<div class="col-md-6">
 				<h1>History Form</h1>
 			</div>
-			<div class="col-md-6">
-				<div class="text-right">
-					DOC NO. FMT/HIC/09 </br>
-					REV. No. 0.1 </br>
-					WEF 10-10-2015
-				</div>
-			</div>
 		</div>
 	</div>
 
 	<form action="" method="post">
 
-		<div class="row form-group">
+		<div class="row">
 			<div class="col-md-6">
-				<div class="col-md-6">
-					<label>IPD No : </label>
+			</div>
+			<div class="col-md-6">
+				<div class="text-right">
+					<addressograph></addressograph>
 				</div>
-				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
-					<span class="help is-danger" v-show="errors.has('ipd_id')">
-						Field is required
-					</span>
-				</div>
+					
 			</div>
 		</div>
 
@@ -131,7 +121,7 @@
 					<label for="at" class="control-label">Time : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control  ls-timepicker" type="text" id="at" name="at" value="" v-model="historyFormData.at" v-validate="'required'"/>
+					<input class="form-control  " type="time" id="at" name="at" value="" v-model="historyFormData.at" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('at')">
 										Field is required
 									</span>
@@ -142,7 +132,7 @@
 					<label for="date" class="control-label">Date : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control ls-datepicker" type="text" id="history_date" name="history_date" value="" v-model="historyFormData.date" v-validate="'required'"/>
+					<input class="form-control " type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
 					<span class="help is-danger" v-show="errors.has('date')">
 						Field is required
 					</span>
@@ -294,8 +284,8 @@
 			</div>
 		</div>
 
-    <div class="row form-group">
-      <table class="table table-bordered">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th></th>
@@ -492,12 +482,16 @@
 		</div>
 
 </form>
+ <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </template>
 
 <script >
 	import User from '../../../api/users.js';
-    export default {
+	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
+      export default {
         data() {
             return {
                 'footer' : 'footer',
@@ -548,22 +542,35 @@
                 }
             }
         },
+
+
+				components: {
+					 addressograph,
+					 SelectPatientModal
+			 },
+
+
+
+
         mounted() {
         	$('.ls-datepicker').datepicker({
 			    format: 'dd/mm/yyyy',
 			    'autoclose': true
 			});
-			
+
 			$('.ls-timepicker').timepicker();
             let vm =this;
 			$('.ls-datepicker').datepicker().on('changeDate',function(){
 				vm.historyFormData.date = this.value;
 			})
+
 			$('.ls-timepicker').on('change', function(e)  {
-				//vm.historyFormData.time = this.value;    
+				//vm.historyFormData.time = this.value;
 			});
-			
-        },
+			 // if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    		// }
+  },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -597,6 +604,7 @@
 		  },
 
     }
+
 </script>
 
 

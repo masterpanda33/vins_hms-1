@@ -22,8 +22,8 @@ class Common {
                 $sheet->setColumnFormat($columnFormat); 
                  }
                 $row_no = 2;
-                foreach ($dataArray as $data) {
-                     
+                foreach ($dataArray as $key=>$data) {
+                     // echo "<pre>";print_r($data);echo "</pre>";exit;
                     $sheet->row($row_no, $data);
                     $row_no++;
                 }
@@ -39,15 +39,15 @@ class Common {
        
     }
 
-    static function sendMail($email_details, $email_recipients, $email_subject, $email_view, $email_from = null)
+    static function sendMail($email_details, $email_recipients, $email_subject, $email_view, $email_from = null,$attachment=null)
        {        
            $contact_details = $email_details;        
            $recipient = $email_recipients;
            if ($email_from != null && !empty($email_from)) {
-              Mail::to($recipient)->send(new SendMail($contact_details, $email_subject,  $email_view, $email_from));
+              Mail::to($recipient)->send(new SendMail($contact_details, $email_subject,  $email_view, $email_from,$attachment));
            }
            else{
-               Mail::to($recipient)->send(new SendMail($contact_details, $email_subject,  $email_view));
+               Mail::to($recipient)->send(new SendMail($contact_details, $email_subject,  $email_view,'',$attachment));
            }
            return response()->json([
                'status' => 'suceess',

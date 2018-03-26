@@ -15,30 +15,47 @@
     </div>
   </div>
 
+
 	<form action="" method="post">
-		<div class="row form-group">
-			  <div class="col-md-8">
+
           <div class="row form-group">
+            <div class="col-md-12">
+            <div class="text-right">
+
+            <addressograph></addressograph>
+
+            </div></div>
+          </div>
+          <hr>
+          <div class="row form-group">
+            <div class="col-md-4">
             <div class="col-md-4">
               <label class="control-label" for="address">Address :</label>
             </div>
             <div class="col-md-8">
               <input type="text" name="address"  rows="3" class="form-control" value="" v-model="provisionalDischargeSummaryData.address">
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col-md-6">
+            </div></div>
+            <div class="col-md-4">
+            <div class="col-md-4">
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-6">
-              <input type="date"  name="date_of_discharge" class="form-control" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
-            </div>
-          </div>
-				</div>
-			  <div class="col-md-4 text-right">
-					<textarea name="addressograph"  rows="3" class="form-control" placeholder="Addressograph Here"></textarea>
-				</div>
-			</div>
+              <input type="text"  name="date_of_discharge" class="form-control ls-datepicker" id = "date_of_discharge" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
+            </div></div>
+
+
+        <div class="col-md-4">
+  				<div class="col-md-4">
+  					<label>IPD No:</label>
+  				</div>
+  				<div class="col-md-6">
+  					<input class="form-control" type="text"  v-validate="'required'" name="ipd_id" v-model="ipd_id" id="ipd_id" value="" >
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
+              Field is required
+            </span>
+  				</div>
+        </div></div>
+
 			<hr>
 			<div class="row form-group">
         <div class="col-md-6">
@@ -103,7 +120,7 @@
           <label class="control-label" for="collect_discharge_summary_on">On Date:</label>
         </div>
         <div class="col-md-6">
-          <input type="date"  name="collect_discharge_summary_on" class="form-control" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
+          <input type="text" id = "collect_discharge_summary_on" name="collect_discharge_summary_on" class="form-control ls-datepicker" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
         </div>
       </div>
       <div class="row form-group">
@@ -127,6 +144,7 @@
 				<button class="btn btn-success" type="button" @click = "saveProvisionalDischargeSummary()">Submit</button>
 			</div>
 		</form>
+     <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </body>
 </template>
@@ -134,6 +152,9 @@
 
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -158,6 +179,31 @@
                 }
             }
         },
+        components: {
+           addressograph,
+           SelectPatientModal
+       },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+              format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
+          // if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          // }
+
+          $('.ls-datepicker').datepicker().on('changeDate',function(){
+
+            if (this.id == 'date_of_discharge') {
+              vm.provisionalDischargeSummaryData.date_of_discharge = this.value;
+            }
+          })
+          $('.ls-datepicker').datepicker().on('changeDate',function(){
+            if (this.id == 'collect_discharge_summary_on') {
+               vm.provisionalDischargeSummaryData.collect_discharge_summary_on = this.value;
+            }
+          });
+        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -168,7 +214,7 @@
 	            	if (!this.errors.any()) {
 	            		 $("body .js-loader").removeClass('d-none');
                    var provisionalDischargeSummaryData = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.provisionalDischargeSummaryData};
-				    	User.saveProvisionalDischargeSummary(provisionalDischargeSummaryData).then(
+				    	       User.saveProvisionalDischargeSummary(provisionalDischargeSummaryData).then(
 		                (response) => {
 		                	if(response.data.status == 200) {
 		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
@@ -181,8 +227,8 @@
 
 		                }
 		                )
-			    	}
-			    },
+			         	}
+			       },
                 (error) => {
                 }
                 )

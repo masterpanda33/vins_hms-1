@@ -5,33 +5,21 @@
   			<div class="col-md-6">
   				<h1>Counselling Form</h1>
   			</div>
-  			<div class="col-md-6">
-  				<div class="text-right">
-  					DOC NO. F/IPD/63 <br>
-  					REV. No. 0.1 <br>
-  					WEF 10-04-2017
-  				</div>
-  			</div>
   		</div>
   	</div>
   	<hr>
   	<form>
-      <div class="row form-group">
+      <div class="row">
         <div class="col-md-6">
-          <div class="col-md-6">
-            <label>IPD : </label>
-          </div>
-          <div class="col-md-6">
-            <input class="form-control" name="ipd_id" type="text" id="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"/>
-            <span class="help is-danger" v-show="errors.has('ipd_id')">
-              Numeric values only.
-            </span>
-
-          </div>
         </div>
+        <div class="col-md-6">
+  				<div class="text-right">
+            <addressograph></addressograph>
+          </div>
+  			</div>
       </div>
-  		<div class="row">
-  			<table class="table table-bordered" >
+  		<div class="table-responsive">
+  			<table class="table table-bordered table-striped" >
   				<thead>
   					<tr>
   						<th class="text-center">Sr. No.</th>
@@ -44,9 +32,11 @@
   				</thead>
   				<tbody>
   					<tr v-for="n in 5">
-  						<td>2</td>
-  						<td><input class="form-control" type="date" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
-  						<td><input class="form-control" type="time" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
+
+  						<td>{{n}}</td>
+
+  						<td><input class="form-control " type="date" id = "'date_'+n" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
+  						<td><input class="form-control " type="time" id = "'time_'+n" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
   						<td><input class="form-control" type="text" :name="'counsellor_'+n" v-model="counsellingFormData.counselling[n].counsellor" /></td>
   						<td><input class="form-control" type="text" :name="'relatives_name_'+n" v-model="counsellingFormData.counselling[n].relatives_name" /></td>
   						<td><input class="form-control" type="text" :name="'remarks_'+n" v-model="counsellingFormData.counselling[n].remarks" /></td>
@@ -60,10 +50,14 @@
         </div>
       </div>
   	</form>
+    <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -116,12 +110,63 @@
             }
         },
         components: {
-           addressograph,
-        },
-        mounted() {
-          console.log('asdasd')
-        	this.$store.dispatch('SetPatientData',1);
-        },
+					 addressograph,
+           SelectPatientModal,
+			 },
+
+       mounted() {
+          // if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          // }
+          $('.ls-timepicker').timepicker({
+            format: 'hh-mm',
+                     'autoclose': true
+           })
+           $('.ls-datepicker').datepicker({
+             format: 'dd/mm/yy',
+             'autoclose': true
+          })
+
+         let vm =this;
+         $('.ls-timepicker').timepicker().on('change',function(){
+
+           if (this.id == 'time_1') {
+             vm.counsellingFormData.counselling[1].time = this.value;
+           }
+           if (this.id == 'time_2') {
+             vm.counsellingFormData.counselling[2].time = this.value;
+           }
+           if (this.id == 'time_3') {
+             vm.counsellingFormData.counselling[3].time = this.value;
+           }
+           if (this.id == 'time_4') {
+            vm.counsellingFormData.counselling[4].time = this.value;
+           }
+           if (this.id == 'time_5') {
+             vm.counsellingFormData.counselling[5].time = this.value;
+           }
+       })
+       $('.ls-datepicker').datepicker().on('changeDate',function(){
+
+         if (this.id == 'date_1') {
+           vm.counsellingFormData.counselling[1].date = this.value;
+         }
+         if (this.id == 'date_2') {
+           vm.counsellingFormData.counselling[2].date = this.value;
+         }
+         if (this.id == 'date_3') {
+           vm.counsellingFormData.counselling[3].date = this.value;
+         }
+         if (this.id == 'date_4') {
+          vm.counsellingFormData.counselling[4].date = this.value;
+         }
+         if (this.id == 'date_5') {
+           vm.counsellingFormData.counselling[5].date = this.value;
+         }
+     })
+
+         },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
