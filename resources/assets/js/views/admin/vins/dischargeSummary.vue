@@ -32,7 +32,7 @@
               <label class="control-label" for="address">Date of Admission :</label>
             </div>
             <div class="col-md-8">
-              <input  class="form-control ls-datepicker" type="text" name="date_of_admission" id = "date_of_admission" v-model="dischargeSummaryData.date_of_admission" v-validate="'required'"  value="">
+              <input  class="form-control" type="date" name="date_of_admission" id = "date_of_admission" v-model="dischargeSummaryData.date_of_admission" v-validate="'required'"  value="">
               <span class="help is-danger" v-show="errors.has('date_of_admission')">
                 Field is required
               </span>
@@ -43,7 +43,7 @@
               <label class="control-label" for="address">Date of Operation :</label>
             </div>
             <div class="col-md-8">
-              <input type="text" class="form-control ls-datepicker" name="date_of_operation" id = "date_of_operation" v-model="dischargeSummaryData.date_of_operation" v-validate="'required'"  value="">
+              <input type="date" class="form-control" name="date_of_operation" id = "date_of_operation" v-model="dischargeSummaryData.date_of_operation" v-validate="'required'"  value="">
               <span class="help is-danger" v-show="errors.has('date_of_operation')">
                 Field is required
               </span>
@@ -54,7 +54,7 @@
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-8">
-              <input class="form-control ls-datepicker" type="text" name="date_of_discharge" id = "date_of_discharge" v-model="dischargeSummaryData.date_of_discharge" v-validate="'required'"  value="">
+              <input class="form-control" type="date" name="date_of_discharge" id = "date_of_discharge" v-model="dischargeSummaryData.date_of_discharge" v-validate="'required'"  value="">
               <span class="help is-danger" v-show="errors.has('date_of_discharge')">
                 Field is required
               </span>
