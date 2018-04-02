@@ -5,11 +5,6 @@
 				<div class="col">
 					<h1>Patient Valuable Form</h1>
 				</div>
-				<div class="col">
-					<div class="text-right">
-						F/IPD/41
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -237,7 +232,7 @@
                 'currentYear': new Date().getFullYear(),
 								'type': 'patientValuablesForm',
                 'patient_id': this.$store.state.Patient.patientId,
-               	'ipd_id': this.$store.state.Patient.ipdId,
+               	// 'ipd_id': this.$store.state.Patient.ipdId,
                 'patientValuableFormData' : {
 									'unit':'',
 									'patient_name':'',
@@ -286,14 +281,19 @@
         	addressograph,
         	SelectPatientModal,
        },
+       computed: {
+       	ipd_id(){
+       		return  this.$store.state.Patient.ipdId
+       	}
+       },
 		mounted() {
         	$('.ls-datepicker').datepicker({
          		format: 'dd/mm/yyyy',
          		'autoclose': true
      		})
-        	if(this.ipd_id == 0){
+        	// if(this.ipd_id == 0){
 	        	$('#delete_modal').modal('show');
-	    	}
+	    	// }
 
         	$('.ls-timepicker').timepicker({
          		format: 'hh-mm',

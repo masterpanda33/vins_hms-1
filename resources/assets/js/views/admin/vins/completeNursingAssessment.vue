@@ -5,13 +5,6 @@
 				<div class="col-md-6">
 				<h1>Complete Nursing Assessment</h1>
 				</div>
-				<div class="col-md-6">
-					<div class="text-right">
-						DOC NO. F/IPD/22 <br>
-						REV. No. 0.1 <br>
-						WEF 05-01-2015
-					</div>
-				</div>
 			</div>
 		</div>
   		<form action="" method="post" >
@@ -39,7 +32,10 @@
   					</div>
   				</div>
           <div class="col-md-4">
-  					<addressograph></addressograph>
+            <div class="text-right">
+              <addressograph></addressograph>
+            </div>
+  					
   				</div>
   			</div>
 
@@ -809,9 +805,11 @@
 				            format: 'dd/mm/yyyy',
 				            'autoclose': true
 					       })
-                  if(this.ipd_id == 0){
+                  // if(this.ipd_id == 0){
                      $('#delete_modal').modal('show');
-          }
+
+                  // }            
+
 
               $('.ls-timepicker').timepicker({
                 format: 'hh-mm',

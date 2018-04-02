@@ -3,17 +3,19 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-9">
-			<h1>Blood Transfusion Form</h1>
+				<h1>Blood Transfusion Form</h1>
 			</div>
-			<div class="col-md-3">
+		</div>				
+	</div>
+	<div class="row">
+			<div class="col-md-6">
+				
+			</div>
+			<div class="col-md-6">
         		<div class="text-right">
-
         			<addressograph></addressograph>
   			    </div>
   			</div>
-
-				
-		</div>
 	</div>
 	<form action="" method="post">
 
@@ -28,15 +30,11 @@
 					</span>
 				</div>
 				<div class="col">
-					<label>IPD No.:</label>
+					
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" name="ipd_no" v-validate="'required'" v-model="ipd_id" id="ipd_no" value="" >
-					<span class="help is-danger" v-show="errors.has('ipd_no')">
-						Field is required
-					</span>
+					
 				</div>
-				
 		</div>
 
 		<div class="form-group row">
@@ -499,9 +497,9 @@
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true
 					})
-               if(this.ipd_id == 0){
+               // if(this.ipd_id == 0){
 	         	$('#delete_modal').modal('show');
-	    	 }
+	    	 // }
 
 	        $('.ls-timepicker').timepicker({
 						 format: 'hh-mm',
