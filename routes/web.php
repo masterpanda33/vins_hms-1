@@ -7,7 +7,7 @@
 |
 */
 
-Route::get('tournament/report/reportExport','\Laraspace\Api\Controllers\TournamentController@generateReport');
+Route::get('report/create/','\euro_hms\Api\Controllers\ReportController@store');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');

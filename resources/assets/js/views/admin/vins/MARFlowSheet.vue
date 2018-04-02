@@ -103,7 +103,10 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<addressograph></addressograph>
+					<div class="text-right">
+						<addressograph></addressograph>	
+					</div>
+					
 
 				</div>
 			</div>
@@ -162,8 +165,8 @@
 
 			<!--Table-->
 
-			<div class="row form-group">
-				<table class="table table-bordered">
+			<div class="table-responsive">
+				<table class="table table-bordred table-striped">
 					<thead>
 						<tr>
 							<th>Time</th>
@@ -200,19 +203,25 @@
 				</div>
 			</div>
 		</form>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
     import _ from 'lodash';
+    import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
                 'footer' : 'footer',
+                'patient_id': this.$store.state.Patient.patientId,
+               	'ipd_id': this.$store.state.Patient.ipdId,
                 'currentYear': new Date().getFullYear(),
                 'timeArray': ['08-00','10-00','12-00','14-00','16-00','18-00','20-00','22-00','24-00','02-00','04-00','06-00'],
                 'mar_options': ['temp','pulse','blood_pressure','resp_rate','pain','intake4_line1','intake4_line2','intake4_line3','intake4_line4','intake4_line5','hourly4','total4','oral_ng','total_oral_ng','hourly_total_intake','total_fluid_intake','output_drains','total_drains','ng_aspirate','urine_output','total_urine_output','hourly_total_output','total_fluid_output','balance','abd_girth'],
+                'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'MARFlowSheet' : {
 					'et_tube_day':'',
 					'fc_day':'',
@@ -225,6 +234,7 @@
 					'prev_24_intake':'',
 					'prev_24_output':'',
 					'balance':'',
+
 					'mar_details': {
 
 					}
@@ -251,9 +261,13 @@
         },
          components: {
             addressograph,
+            SelectPatientModal
         },
         mounted() {
         	// this.$store.dispatch('SetPatientData',18);
+        	// if(this.ipd_id == 0){
+	         	$('#delete_modal').modal('show');
+	    	 // }
         },
         methods: {
 		    GetSelectComponent(componentName) {

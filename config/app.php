@@ -179,6 +179,9 @@ return [
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Duro85\Roles\RolesServiceProvider::class,
+
+       
+
  
         /*
          *  Custom Service Providers
@@ -232,7 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
    ],
 

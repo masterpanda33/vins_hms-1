@@ -18,29 +18,21 @@
 	<hr>
 
 	<form method="post">
-		<div class="row form-group">
-			<div class="col-md-4">
-					<div class="col-md-4">
-					<label>Ipd No : </label>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="col-md-4">
+					<label>Diagnosis</label>
 				</div>
-				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" >
-					<span class="help is-danger" v-show="errors.has('ipd_id')">
-									Numeric Value is required
-					</span>
+				<div class="col-md-4">
+					<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
 				</div>
 			</div>
 			<div class="col-md-6">
-			<div class="col-md-4">
-				<label>Diagnosis</label>
+				<div class="text-right">
+					<addressograph></addressograph>
+				</div>	
+				
 			</div>
-			<div class="col-md-4">
-				<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<addressograph></addressograph>
-		</div>
 	</div>
 
 	<div class="row form-group">
@@ -70,8 +62,8 @@
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<table class="table table-bordered">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Sr No</th>
@@ -89,7 +81,7 @@
 							</span>
 						</td>
 						<td>
-							<input class="form-control ls-datepicker" type="text" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
+							<input class="form-control" type="date" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('date_'+n)">
 								Progress is required
 							</span>
@@ -116,6 +108,7 @@
 			</div>
 		</div>
 	</form>
+	 <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </template>
 
@@ -123,6 +116,8 @@
 <script >
 import User from '../../../api/users.js';
 import addressograph from './addressograph.vue';
+import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
 	export default {
 			data() {
 					return {
@@ -190,14 +185,13 @@ import addressograph from './addressograph.vue';
 
 			components: {
 				 addressograph,
+				 SelectPatientModal
 		 },
-
-
-			mounted() {
-		              $('.ls-datepicker').datepicker({
- 									format: 'dd/mm/yyyy',
- 									'autoclose': true
- 				})
+		mounted() {
+	  		$('.ls-datepicker').datepicker({
+ 				format: 'dd/mm/yyyy',
+ 				'autoclose': true
+ 			})
 
 				let vm =this;
 				$('.ls-datepicker').datepicker().on('changeDate',function(){
@@ -228,6 +222,9 @@ import addressograph from './addressograph.vue';
 					}
 
 			})
+			// if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    	// }
  			},
 
 			methods: {

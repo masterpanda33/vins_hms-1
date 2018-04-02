@@ -196,6 +196,16 @@ export default {
   saveCentralLineBundleChecklist(CentralLineBundleChecklistData) {
       return api.post('centralLineBundleChecklist/create',{'resData':CentralLineBundleChecklistData})
     },
+  submitReport(reportData) {
+    return api.post('report/create',{'reportData':reportData})
+  },
+  submitReport(reportData) {
+      return api.post('report/create',{'reportData':reportData})
+    },
+    getAllPatientName() {
+      return api.get('patient/getAll');
+
+    }
 
 
 

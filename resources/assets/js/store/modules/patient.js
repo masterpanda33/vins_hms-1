@@ -9,7 +9,15 @@ const state = {
   	'ipdId':0,
     'admitDatetime': '',
   	'patientData': [],
+    'ipdData': [],
  }
+
+ // getters
+const getters = {
+   getIpdID: state => {
+      return state.ipdId
+    },
+  }
 // actions
 const actions = {
   SetPatientId ({commit},patientId) {
@@ -30,6 +38,17 @@ const actions = {
     
     )
   },
+  GetAllPatientName({commit}) {
+        user.getAllPatientName().then(
+    (response) => {
+      if(response.data.code == 200) {
+        commit(types.SET_IPD_DATA, response.data.data);
+        
+      }
+    },
+    
+    )
+  },
 }
 
 // mutations
@@ -44,7 +63,14 @@ const mutations = {
     // console.log(patientData)
       state.patientData = patientData.patient_details;
       state.admitDatetime = patientData.admit_datetime;
+      state.patientId = patientData.patient_details.id;
+      state.ipdId = patientData.id;
   },
+    [types.SET_IPD_DATA] (state, ipdData) {
+    // console.log(patientData)
+      state.ipdData = ipdData;
+  },
+  
 }
 
 export default {

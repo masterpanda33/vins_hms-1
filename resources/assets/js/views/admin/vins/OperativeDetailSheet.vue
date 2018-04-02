@@ -5,32 +5,19 @@
         <div class="col-md-6">
           <h1>Operative Detail Sheet</h1>
         </div>
-        <div class="col-md-6">
-          <div class="text-right">
-            DOC NO. FMT/HIC/09 </br>
-            REV. No. 0.1 </br>
-            WEF 10-10-2015
-          </div>
-        </div>
       </div>
     </div>
 
     <form action="" method="post">
 
       <div class="row">
-        <div class="col-md-8">
-          <div class="col-md-6">
-            <label>IPD No : </label>
-          </div>
         <div class="col-md-6">
-            <input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"/>
-            <span class="help is-danger" v-show="errors.has('ipd_id')">
-							Numeric Field is required
-						</span>
-          </div>
         </div>
-        <div class="col-md-4">
-					<addressograph></addressograph>
+        <div class="col-md-6">
+          <div class="text-right">
+            <addressograph></addressograph>  
+          </div>
+					
 				</div>
       </div>
 
@@ -529,11 +516,14 @@
         </div>
       </div>
     </form>
+     <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue'
+
     export default {
         data() {
             return {
@@ -584,8 +574,21 @@
                 }
             }
         },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          'autoclose': true
+      })
+        },
         components: {
            addressograph,
+           SelectPatientModal
+       },
+       mounted(){
+          // if(this.ipd_id == 0){
+             $('#delete_modal').modal('show');
+          // }
+
        },
         methods: {
 		    GetSelectComponent(componentName) {

@@ -3,38 +3,21 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-6">
-			<h1>ER Observation</h1>
-			</div>
-			<div class="col-md-6">
-				<div class="text-right">
-					DOC NO. FMT/HIC/09 <br>
-					REV. No. 0.1 <br>
-					WEF 10-10-2015
-				</div>
+				<h1>ER Observation</h1>
 			</div>
 		</div>
 	</div>
-
 	<hr>
 
-	<form action="" method="post">
+	<form method="post">
 
-		<div class="row form-group">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-6">
-						<label for="">IPD No.</label>
-					</div>
-					<div class="col-md-6">
-						<input type="text" class="form-control" name="ipd_no" value="" v-model="ipd_id" v-validate="'required|numeric'">
-						<span class="help is-danger" v-show="errors.has('ipd_no')">
-							Numeric Field is required
-						</span>
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-md-6">
 			</div>
-			<div class="col-md-4">
-				<addressograph></addressograph>
+			<div class="col-md-6">
+				<div class="text-right">
+					<addressograph></addressograph>	
+				</div>
 			</div>
 		</div>
 		<div class="row form-group">
@@ -44,7 +27,7 @@
 						<label for="date">Date : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="date" name="date" value="" />
+						<input class="form-control ls-datepicker"  id = "date" type="text" name="date" value="" />
 					</div>
 				</div>
 			</div>
@@ -100,7 +83,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control ls-timepicker" type="text" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control" type="time" :name="'time_'+ti" id = "" value="'time_'+ti" v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -188,10 +171,10 @@
 							<input type="text" :name="'quantity_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].quantity">
 					 </td>
 						<td>
-							<input type="time" :name="'start_time_'+m"  class="form-control" value=" " v-model="erObservationData.iv[m].start_time">
+							<input type="time" :name="'start_time_'+m" id = "'start_time_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].start_time">
 					</td>
 						<td>
-							<input type="time" :name="'end_time_'+m"  class="form-control" value=" " v-model="erObservationData.iv[m].end_time">
+							<input type="time" :name="'end_time_'+m" id = "'end_time_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].end_time">
 					</td>
 						<td>
 							<input type="text" :name="'remarks_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].remarks">
@@ -220,19 +203,19 @@
 				<tbody>
 					<tr v-for="n in 5">
 						<td>
-							<input type="text" :name="'name_drug_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].name_drug">
+							<input type="text" :name="'name_drug_'+n" class="form-control" value="" id = "'name_drug_'+n" v-model="erObservationData.medication_administration[n].name_drug">
 						</td>
 						<td>
-							<input type="text" :name="'dosage_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].dosage">
+							<input type="text" :name="'dosage_'+n" class="form-control" value="" id = "'dosage_'+n" v-model="erObservationData.medication_administration[n].dosage">
 						</td>
 						<td>
-							<input type="text" :name="'routine_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].routine">
+							<input type="text" :name="'routine_'+n" class="form-control" value="" id = "routine_'+n" v-model="erObservationData.medication_administration[n].routine">
 						</td>
 						<td>
-							<input type="text" :name="'administration_by_'+n"  class="form-control" value=" " v-model="erObservationData.medication_administration[n].administration_by">
+							<input type="text" :name="'administration_by_'+n"  class="form-control" id = "'administration_by_'+n"  value=" " v-model="erObservationData.medication_administration[n].administration_by">
 						</td>
 						<td>
-							<input type="time" :name="'medication_time_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].medication_time">
+							<input type="time" :name="'medication_time_'+n" id = "'medication_time_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].medication_time">
 						</td>
 				  </tr>
 				</tbody>
@@ -271,6 +254,7 @@
 			<button class="btn btn-success" type="button" @click="saveerObservation()">Submit</button>
 		</div>
 	</form>
+	  <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </body>
 </template>
@@ -278,6 +262,8 @@
 <script >
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
+	 import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+	
     export default {
         data() {
             return {
@@ -412,24 +398,80 @@
 
 				components: {
 					 addressograph,
+					 SelectPatientModal
 			 },
 
 			 mounted() {
- 		              $('.ls-datepicker').datepicker({
-  									format: 'dd/mm/yyyy',
-  									'autoclose': true
-  				})
+         $('.ls-datepicker').datepicker({
+         format: 'dd/mm/yyyy',
+         'autoclose': true
 
- 				let vm =this;
- 				$('.ls-datepicker').datepicker().on('changeDate',function(){
- 					if (this.id == 'date_1') {
- 						vm.erObservationData.date = this.value;
- 					}
+			 });
+           $('#delete_modal').modal('show');
 
- 			})
-  	},
+				 $('.ls-timepicker').timepicker({
+						 format:'hh:mm',
+						 'autoclose': true
+				 });
+				 $('.ls-datepicker').datepicker().on('changeDate',function(){
+	 					let vm = this;
+	 				vm.erObservationData.date = this.value;
+	 			});
+				$('.ls-timepicker').timepicker().on('change',function(){
+							let vm = this;
+				if (this.id == 'medication_time_1') {
+					vm.erObservationData.medication_administration[1].medication_time = this.value;
+				}
+				if (this.id == 'medication_time_2') {
+					vm.erObservationData.medication_administration[2].medication_time = this.value;
+				}
+				if (this.id == 'medication_time_3') {
+					vm.erObservationData.medication_administration[3].medication_time  = this.value;
+				}
+				if (this.id == 'medication_time_4') {
+					vm.erObservationData.medication_administration[4].medication_time = this.value;
+				}
+				if (this.id == 'medication_time_5') {
+					vm.erObservationData.medication_administration[5].medication_time  = this.value;
+				}
 
-	
+				if(this.id == 'time_1'){
+						vm.erObservationData.vitals.time[1] = this.value;
+				}
+				if(this.id == 'time_2'){
+						vm.erObservationData.vitals.time[2]= this.value;
+				}
+				if(this.id == 'time_3'){
+						vm.erObservationData.vitals.time[3]= this.value;
+				}
+
+				if(this.id == 'start_time_1'){
+						vm.erObservationData.iv[1].start_time = this.value;
+				}
+				if(this.id == 'start_time_2'){
+						vm.erObservationData.iv[2].start_time = this.value;
+				}
+				if(this.id == 'start_time_3'){
+						vvm.erObservationData.iv[3].start_time = this.value;
+				}
+				if(this.id == 'start_time_4'){
+						vvm.erObservationData.iv[4].start_time = this.value;
+				}
+
+				if(this.id == 'end_time_1'){
+						vm.erObservationData.iv[1].end_time = this.value;
+				}
+				if(this.id == 'end_time_2'){
+						vm.erObservationData.iv[2].end_time = this.value;
+				}
+				if(this.id == 'end_time_3'){
+						vvm.erObservationData.iv[3].end_time = this.value;
+				}
+				if(this.id == 'end_time_4'){
+						vvm.erObservationData.iv[4].end_time = this.value;
+				}
+			});
+	 		},
 
         methods: {
 		    GetSelectComponent(componentName) {

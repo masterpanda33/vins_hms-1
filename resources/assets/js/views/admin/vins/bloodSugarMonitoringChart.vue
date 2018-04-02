@@ -5,14 +5,7 @@
   			<div class="col-md-6">
   			<h1>Blood Sugar Monitoring Chart</h1>
   			</div>
-  			<div class="col-md-6">
-  				<div class="text-right">
-  					DOC NO. FMT/IPD/36 <br>
-  					REV. No. 0.1 <br>
-  					WEF 01-10-2014 <br>
-  					PAGE NO. 01 OF 02
-  				</div>
-  			</div>
+  			
   		</div>
   	</div>
   	<form action="" method="post">
@@ -88,8 +81,8 @@
         </div>
       </div>
 
-      <div class="row form-group"><hr>
-  		  <table class="table table-bordered">
+      <div class="table-responsive"><hr>
+  		  <table class="table table-bordered table-striped">
   		    <thead>
     			  <tr>
       				<th>Date</th>
@@ -101,8 +94,8 @@
     			</thead>
     			<tbody>
             <tr v-for="n in 5">
-              <td><input class="form-control ls-datepicker" type="text" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
-              <td><input class="form-control" type="time" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+              <td><input class="form-control ls-datepicker" type="text" id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
+              <td><input class="form-control ls-timepicker" type="text" id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
               <td><input class="form-control" type="text" :name="'bloodsugar_level_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].bloodsugar_level" value=""/></td>
               <td><input class="form-control" type="text" :name="'insulin_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].insulin" value=""/></td>
               <td><input class="form-control" type="text" :name="'name_sign_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].name_sign" value=""/></td>
@@ -115,11 +108,14 @@
         <button class="form-group btn btn-success" type="button" @click="saveBloodSugarMonitoringChart()" >Submit</button>
       </div>
     </form>
+      <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -177,14 +173,62 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
-       mounted() {
-				 $('.ls-datepicker').datepicker({
-				 format: 'dd/mm/yyyy',
-				 'autoclose': true
-		 })
-			 },
-        methods: {
+        mounted() {
+          $('.ls-datepicker').datepicker({
+   				    format: 'dd/mm/yyyy',
+   				    'autoclose': true
+   				})
+          // if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          // }
+
+            $('.ls-timepicker').timepicker({
+   			    format: 'hh-mm',
+   			    'autoclose': true
+   			})
+
+        let vm =this;
+   			$('.ls-datepicker').datepicker().on('changeDate',function(){
+   			    if(this.id == 'date_1'){
+              vm.bloodSugarMonitoringChart.monitoring[1].date = this.value;
+            }
+            if(this.id == 'date_2'){
+              vm.bloodSugarMonitoringChart.monitoring[2].date = this.value;
+            }
+            if(this.id == 'date_3'){
+              vm.bloodSugarMonitoringChart.monitoring[3].date = this.value;
+            }
+
+            if(this.id == 'date_4'){
+              vm.bloodSugarMonitoringChart.monitoring[4].date = this.value;
+            }
+            if(this.id == 'date_5'){
+              vm.bloodSugarMonitoringChart.monitoring[5].date = this.value;
+            }
+   			})
+        $('.ls-timepicker').on('change', function(e)  {
+   				if(this.id == 'time_1'){
+            vm.bloodSugarMonitoringChart.monitoring[1].time = this.value;
+          }
+          if(this.id == 'time_2'){
+            vm.bloodSugarMonitoringChart.monitoring[2].time = this.value;
+          }
+          if(this.id == 'time_3'){
+            vm.bloodSugarMonitoringChart.monitoring[3].time = this.value;
+          }
+          if(this.id == 'time_4'){
+            vm.bloodSugarMonitoringChart.monitoring[4].time = this.value;
+          }
+          if(this.id == 'time_5'){
+            vm.bloodSugarMonitoringChart.monitoring[5].time = this.value;
+          }
+
+   			});
+
+      },
+      methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
