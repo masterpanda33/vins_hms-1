@@ -123,18 +123,16 @@ class FormsOptionsDataController extends Controller
           $resultData = $this->formOptionRepo->storePreAnaesthesiaCheckupForm($data);
         }
 
+        if($data['type'] == 'counsellingForm'){
+          $resultData = $this->formOptionRepo->storeCounsellingFormData($data);
+        }
+
         if($data['type'] == 'planOfCare'){
           $resultData = $this->formOptionRepo->storePlanOfCareData($data);
-
         }
 
         if($data['type'] == 'informationForm'){
           $resultData = $this->formOptionRepo->storeInformationFormData($data);
-
-        }
-
-        if($data['type'] == 'counsellingForm'){
-          $resultData = $this->formOptionRepo->storeCounsellingFormData($data);
 
         }
 

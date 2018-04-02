@@ -104,9 +104,9 @@
 				</div>
 				<div class="col-md-4">
 					<div class="text-right">
-						<addressograph></addressograph>	
+						<addressograph></addressograph>
 					</div>
-					
+
 
 				</div>
 			</div>
@@ -237,7 +237,7 @@
 
 					'mar_details': {
 
-					}
+									}
                 }
             }
         },
