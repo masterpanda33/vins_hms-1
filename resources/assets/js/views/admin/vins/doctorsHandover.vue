@@ -5,7 +5,7 @@
         <div class="col-md-6">
         <h1>Doctor's Handover</h1>
         </div>
-        
+
       </div>
     </div>
 
@@ -13,7 +13,7 @@
 
     <form action="" method = "post">
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-8">
           <div class="row">
             <div class="col">
               <label for="diagnosis" class="control-label">Diagnosis: </label>
@@ -26,16 +26,11 @@
             </div>
           </div>
         </div>
-  			<div class="col-md-4">
-  				<div class="row">
-  				</div>
-  			</div>
         <div class="col-md-4">
-        <div class="text-right">
-
-        <addressograph></addressograph>
-
-      </div></div>
+          <div class="text-right">
+            <addressograph></addressograph>
+          </div>
+        </div>
       </div>
       <hr>
       <div class="row form-group">
@@ -73,7 +68,7 @@
             <tr>
               <td class="text-center">2</td>
               <td>If patient is surgical then tentative date of surgery</td>
-              <td><input class="form-control" type = "text" v-validate="'required'" id = "tentative_date_of_surgery" name="tentative_date_of_surgery" value=""  v-model="doctorsHandoverData.tentative_date_of_surgery"/>
+              <td><input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "tentative_date_of_surgery" name="tentative_date_of_surgery" value=""  v-model="doctorsHandoverData.tentative_date_of_surgery"/>
               <span class="help is-danger" v-show="errors.has('tentative_date_of_surgery')">
                         Field is required
                       </span></td>
@@ -353,6 +348,7 @@
                   'verified_by_assistant': '',
                   'name_given': '',
                   'date_given': '',
+                  'time_given': '',
                   'name_taken': '',
                   'date_taken': '',
                   'time_taken': ''
@@ -368,6 +364,10 @@
          format: 'dd/mm/yyyy',
          'autoclose': true
          })
+         $('.ls-timepicker').timepicker({
+         format: 'hh-mm',
+         'autoclose': true
+        })
           // if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
          // }
@@ -379,10 +379,21 @@
             if(this.id == 'date_taken'){
               vm.bloodSugarMonitoringChart.date_taken = this.value;
             }
-            if(this.id == 'time_taken'){
-            vm.doctorsHandoverData.time_taken = this.value;
-          }
+            if(this.id == 'tentative_date_of_surgery'){
+              vm.bloodSugarMonitoringChart.tentative_date_of_surgery = this.value;
+            }
+            if(this.id == 'date_of_surgery'){
+              vm.bloodSugarMonitoringChart.date_of_surgery = this.value;
+            }
           })
+          $('.ls-timepicker').on('change', function(e)  {
+            if(this.id == 'time_given'){
+              vm.doctorsHandoverData.time_given = this.value;
+            }
+            if(this.id == 'time_taken'){
+              vm.doctorsHandoverData.time_taken = this.value;
+            }
+     			})
 
        },
         methods: {

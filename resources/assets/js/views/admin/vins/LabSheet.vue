@@ -18,8 +18,8 @@
 					<div class="col">
 						<input class="form-control" type="text" name="room_no" v-model="LabSheet.room_no" v-validate="'required'" />
 						<span class="help is-danger" v-show="errors.has('room_no')">
-            				Room number is required
-          				</span>
+      				Room number is required
+    				</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -45,10 +45,10 @@
 							<td>{{n}}</td>
 							<td><input class="form-control" type = "text" :name="'investigation_'+n" v-model="LabSheet.lab_investigation[n].investigation" v-validate="'required'">
 								<span class="help is-danger" v-show="errors.has('investigation_'+n)">
-						            Investigation is required
-						          </span>
+			            Investigation is required
+			          </span>
 							</td>
-							<td><input class="form-control" type = "date" id = "'date_'+n" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
+							<td><input class="form-control ls-datepicker" type = "text" :id = "'date_'+n" :name="'date_'+n" v-model="LabSheet.lab_investigation[n].date" v-validate="'required'">
 								<span class="help is-danger" v-show="errors.has('date_'+n)">
 			            Date is required
 			          </span>
@@ -142,24 +142,24 @@
 	         	$('#delete_modal').modal('show');
 	    	 // }
 			 let vm =this;
-			$('.ls-datepicker').datepicker().on('changeDate',function(){
+				$('.ls-datepicker').datepicker().on('changeDate',function(){
 
-				if (this.id == 'date_1') {
-					vm.LabSheet.lab_investigation[1].date = this.value;
-				}
-				if (this.id == 'date_2') {
-					vm.planOfCare.Plan_Of_Care[2].date = this.value;
-				}
-				if (this.id == 'date_3') {
-					vm.planOfCare.Plan_Of_Care[3].date = this.value;
-				}
-				if (this.id == 'date_4') {
-					vm.planOfCare.Plan_Of_Care[4].date = this.value;
-				}
-				if (this.id == 'date_5') {
-					vm.planOfCare.Plan_Of_Care[5].date = this.value;
-				}
-			});
+					if (this.id == 'date_1') {
+						vm.LabSheet.lab_investigation[1].date = this.value;
+					}
+					if (this.id == 'date_2') {
+						vm.LabSheet.lab_investigation[2].date = this.value;
+					}
+					if (this.id == 'date_3') {
+						vm.LabSheet.lab_investigation[3].date = this.value;
+					}
+					if (this.id == 'date_4') {
+						vm.LabSheet.lab_investigation[4].date = this.value;
+					}
+					if (this.id == 'date_5') {
+						vm.LabSheet.lab_investigation[5].date = this.value;
+					}
+				});
        },
         methods: {
 		    GetSelectComponent(componentName) {

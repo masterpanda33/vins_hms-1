@@ -288,8 +288,10 @@
     		</table>
     	</div>
 
-    	<div class="row form-group text-center">
-  			<input class="form-group btn btn-success" value = "Submit" type="button" @click="saveCodeBlueEvaluationForm()"/>
+    	<div class="row form-group">
+        <div class="col text-center">
+          <input class="btn btn-success" value = "Submit" type="button" @click="saveCodeBlueEvaluationForm()"/>          
+        </div>
   		</div>
 
   	</form>
