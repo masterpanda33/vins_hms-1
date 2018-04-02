@@ -15,9 +15,9 @@
         </div>
         <div class="col-md-6">
           <div class="text-right">
-            <addressograph></addressograph>  
+            <addressograph></addressograph>
           </div>
-					
+
 				</div>
       </div>
 
@@ -41,7 +41,7 @@
             <label>Date : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="date" name="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
+            <input class="form-control ls-datepicker" type="text" name="date" id="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date')">
 							Field is required
 						</span>
@@ -116,7 +116,7 @@
             <label>Time : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="text" name="antibiotic1_time" v-model="operativeDetailSheetData.antibiotic1_time" v-validate="'required'" value=""/>
+            <input class="form-control" type="time" name="antibiotic1_time" v-model="operativeDetailSheetData.antibiotic1_time" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('antibiotic1_time')">
 							Field is required
 						</span>
@@ -141,7 +141,7 @@
             <label>Time : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="text" name="antibiotic2_time" v-model="operativeDetailSheetData.antibiotic2_time" v-validate="'required'" value=""/>
+            <input class="form-control" type="time" name="antibiotic2_time" v-model="operativeDetailSheetData.antibiotic2_time" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('antibiotic2_time')">
 							Field is required
 						</span>
@@ -574,22 +574,26 @@
                 }
             }
         },
+        components: {
+          addressograph,
+          SelectPatientModal
+        },
         mounted() {
           $('.ls-datepicker').datepicker({
-          format: 'dd/mm/yyyy',
-          'autoclose': true
-      })
-        },
-        components: {
-           addressograph,
-           SelectPatientModal
-       },
-       mounted(){
+            format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
           // if(this.ipd_id == 0){
-             $('#delete_modal').modal('show');
+          $('#delete_modal').modal('show');
           // }
 
-       },
+          let vm =this;
+   				$('.ls-datepicker').datepicker().on('changeDate',function(){
+   					if (this.id == 'date') {
+   						vm.operativeDetailSheetData.date = this.value;
+   					}
+          });f
+        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

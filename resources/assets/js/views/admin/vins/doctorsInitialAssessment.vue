@@ -11,6 +11,7 @@
 		<form action="" method="post">
 
 			<div class="row">
+
 				<div class="col-md-6">
 						<div class="col-md-6">
 							<label>History : </label>
@@ -30,6 +31,7 @@
 			</div>
 
 			<div class="row form-group">
+
 				<div class="col-md-6">
 					<div class="col-md-6">
 						<label>Past History : </label>
@@ -39,10 +41,13 @@
 						<span class="help is-danger" v-show="errors.has('past_history')">
               Field is required
             </span>
+					</div>
+				</div>
 
 					</div>
 				</div>
 				<div class="col-md-6">
+
 					<div class="col-md-6">
 						<label>Allergic History : </label>
 					</div>
@@ -115,7 +120,7 @@
 			      <label>Date : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="date" v-validate="'required'" name="current_date" v-model="doctorsInitialAssessmentData.current_date" value=""/>
+			      <input class="form-control ls-datepicker" type="text" v-validate="'required'" name="current_date" v-model="doctorsInitialAssessmentData.current_date" value=""/>
 						<span class="help is-danger" v-show="errors.has('current_date')">
 							Field is required
 						</span>
