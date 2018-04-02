@@ -40,7 +40,7 @@
               <label class="control-label" for="date_of_discharge">Date of Discharge :</label>
             </div>
             <div class="col-md-6">
-              <input type="text"  name="date_of_discharge" class="form-control ls-datepicker" id = "date_of_discharge" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
+              <input type="date"  name="date_of_discharge" class="form-control " id = "date_of_discharge" value="" v-model="provisionalDischargeSummaryData.date_of_discharge">
             </div></div>
 
 
@@ -49,7 +49,7 @@
   					<label>IPD No:</label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="text"  v-validate="'required'" name="ipd_id" v-model="ipd_id" id="ipd_id" value="" >
+  					<input class="form-control" type="text"  v-validate="'required|numeric'" name="ipd_id" v-model="ipd_id" id="ipd_id" value="" >
             <span class="help is-danger" v-show="errors.has('ipd_id')">
               Field is required
             </span>
@@ -120,7 +120,7 @@
           <label class="control-label" for="collect_discharge_summary_on">On Date:</label>
         </div>
         <div class="col-md-6">
-          <input type="text" id = "collect_discharge_summary_on" name="collect_discharge_summary_on" class="form-control ls-datepicker" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
+          <input type="date" id = "collect_discharge_summary_on" name="collect_discharge_summary_on" class="form-control" value="" v-model="provisionalDischargeSummaryData.collect_discharge_summary_on">
         </div>
       </div>
       <div class="row form-group">
@@ -217,7 +217,7 @@
 				    	       User.saveProvisionalDischargeSummary(provisionalDischargeSummaryData).then(
 		                (response) => {
 		                	if(response.data.status == 200) {
-		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
+		                		toastr.success('Provisional discharge summary details have been saved', 'provisionalDischargeSummary detail', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
 
