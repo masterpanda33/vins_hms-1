@@ -47,9 +47,9 @@
               	</span>
 							</td>
 							<td>
-								<input type="text" v-model="appointmentBook.contact_no" id="contact_no" name="contact_no" v-validate="'required'" class="form-control" value="">
+								<input type="text" v-model="appointmentBook.contact_no" id="contact_no" name="contact_no" v-validate="'required|numeric'" class="form-control" value="">
                 <span class="help is-danger" v-show="errors.has('contact_no')">
-                	Field is required
+                	Numeric Field is required
               	</span>
 							</td>
 							<td>

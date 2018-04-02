@@ -5,43 +5,53 @@
   			<div class="col-md-6">
   			<h1>Culture / Biopsy Form</h1>
   			</div>
-  			
+
   		</div>
   	</div>
 
   	<form name="" method="post">
 
 
-      <div class="row">
-        
+      <div class="row form-group">
+        <div class="col-md-6">
           <div class="col-md-6">
-            <div>
-              <label>Date:</label>
-              <div class="col-md-8">
-            <input type="text" class="form-control ls-datepicker" id = "date" name="text" v-validate="'required'" v-model="cultureBiopsyData.date">
-            <span class="help is-danger" v-show="errors.has('date')">
-              Field is required
+            <label>IPD No. :</label>
+          </div>
+          <div class="col-md-6">
+            <input class="form-control" name="ipd_id" type="text" id="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
+            <span class="help is-danger" v-show="errors.has('ipd_id')">
+              Numeric Field is required
             </span>
           </div>
-            </div>
-            
-          </div>
+        </div>
         <div class="col-md-6">
           <div class="text-right">
-            <addressograph></addressograph>  
+            <addressograph></addressograph>
           </div>
-          
         </div>
       </div>
 
       <div class="row form-group">
         <div class="col-md-6">
           <div class="col-md-6">
+            <label>Date:</label>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control ls-datepicker" id = "date_culture" name="text" v-validate="'required'" v-model="cultureBiopsyData.date_culture">
+            <span class="help is-danger" v-show="errors.has('date_culture')">
+              Field is required
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-6">
+          <div class="col-md-6">
             <label>Time :</label>
           </div>
           <div class="col-md-6">
-            <input type="text" class="form-control ls-timepicker" name="time" v-validate="'required'" v-model="cultureBiopsyData.time" id ="time">
-            <span class="help is-danger" v-show="errors.has('time')">
+            <input type="text" class="form-control ls-timepicker" name="time_culture" v-validate="'required'" v-model="cultureBiopsyData.time_culture" id ="time_culture">
+            <span class="help is-danger" v-show="errors.has('time_culture')">
               Field is required
             </span>
           </div>
@@ -276,8 +286,8 @@
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
                 'cultureBiopsyData' : {
-                  'date' : '',
-                  'time' : '',
+                  'date_culture' : '',
+                  'time_culture' : '',
                   'doctors_name' : '',
                   'given_by' : '',
                   'received_by' : '',
@@ -321,16 +331,16 @@
               });
             $('.ls-datepicker').datepicker().on('changeDate',function(){
      					if (this.id == 'date') {
-     						vm.cultureBiopsyData.date = this.value;
+     						vm.cultureBiopsyData.date_culture = this.value;
      					}
               if (this.id == 'date_for_sign') {
                vm.cultureBiopsyData.date_for_sign = this.value;
               }
      			  })
-          
+
             $('.ls-timepicker').timepicker().on('change',function(){
                if (this.id == 'time') {
-                 vm.cultureBiopsyData.time = this.value;
+                 vm.cultureBiopsyData.time_culture = this.value;
                }
                if (this.id == 'time_for_sign') {
                  vm.cultureBiopsyData.time_for_sign = this.value;

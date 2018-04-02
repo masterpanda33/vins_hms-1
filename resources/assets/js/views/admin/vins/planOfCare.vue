@@ -20,20 +20,34 @@
 	<form method="post">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="col-md-4">
-					<label>Diagnosis</label>
+				<div class="col-md-6">
+					<label>IPD ID : </label>
 				</div>
-				<div class="col-md-4">
-					<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
+				<div class="col-md-6">
+					<input class="form-control" name="ipd_id" type="text" id="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"  />
+					<span class="help is-danger" v-show="errors.has('ipd_id')">
+						Numeric field is required
+					</span>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="text-right">
 					<addressograph></addressograph>
-				</div>	
-				
+				</div>
+
 			</div>
-	</div>
+		</div>
+
+		<div class="row form-group">
+			<div class="col-md-6">
+				<div class="col-md-6">
+					<label>Diagnosis</label>
+				</div>
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
+				</div>
+			</div>
+		</div>
 
 	<div class="row form-group">
 			<div class="col-md-6">
@@ -81,7 +95,7 @@
 							</span>
 						</td>
 						<td>
-							<input class="form-control" type="date" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
+							<input class="form-control ls-datepicker" type="text" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('date_'+n)">
 								Progress is required
 							</span>
