@@ -10,16 +10,16 @@
     <hr>
     <form class="" action="" method="post">
       <div class="row">
-				
+
 					 <div class="col-md-6">
-						    
+
 					   </div>
             <div class="col-md-6">
               <div class="text-right">
                 <addressograph></addressograph>
               </div>
-  				    
-  			     </div>
+
+            </div></div>
         <div class="row form-group">
             <table class="table table-bordered">
               <thead>
@@ -118,12 +118,11 @@
         </table>
       </div>
 
-      <div class="row form-group">
-        <div class="col text-center">
+    	<div class="text-center form-group">
           <button type="button" name="" class="btn btn-success" @click="saveCentralLineBundleChecklist()">Submit</button>
         </div>
-      </div>
-      </div>
+
+      
     </form>
      <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
