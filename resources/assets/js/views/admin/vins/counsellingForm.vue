@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-6">
   				<div class="text-right">
-            <addressograph></addressograph>  
+            <addressograph></addressograph>
           </div>
   			</div>
       </div>
@@ -35,8 +35,8 @@
 
   						<td>{{n}}</td>
 
-  						<td><input class="form-control " type="date" id = "'date_'+n" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
-  						<td><input class="form-control " type="time" id = "'tim e_'+n" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
+  						<td><input class="form-control ls-datepicker" type="text" :id = "'date_'+n" :name="'date_'+n" v-model="counsellingFormData.counselling[n].date" /></td>
+  						<td><input class="form-control ls-timepicker" type="text" :id = "'tim e_'+n" :name="'time_'+n" v-model="counsellingFormData.counselling[n].time" /></td>
   						<td><input class="form-control" type="text" :name="'counsellor_'+n" v-model="counsellingFormData.counselling[n].counsellor" /></td>
   						<td><input class="form-control" type="text" :name="'relatives_name_'+n" v-model="counsellingFormData.counselling[n].relatives_name" /></td>
   						<td><input class="form-control" type="text" :name="'remarks_'+n" v-model="counsellingFormData.counselling[n].remarks" /></td>

@@ -508,7 +508,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input class="form-control" type="date" name="date_table" v-model="NutritionalAssessmentForm.date_table" v-validate="'required'" value=""/>
+							<td><input class="form-control ls-datepicker" type="text" name="date_table" v-model="NutritionalAssessmentForm.date_table" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date_table')">
 							Field is required
 						</span>

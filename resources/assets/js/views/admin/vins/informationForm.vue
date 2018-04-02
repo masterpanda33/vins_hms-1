@@ -13,7 +13,15 @@
 	<form  method="post">
 		<div class="row">
 			<div class="col-md-6">
-				
+				<div class="col-md-6">
+					<label>IPD ID : </label>
+				</div>
+				<div class="col-md-6">
+					<input class="form-control" name="ipd_id" id="ipd_id" type="text" v-validate="'required|numeric'" v-model="ipd_id"  />
+					<span class="help is-danger" v-show="errors.has('ipd_id')">
+						Numeric Field is required
+					</span>
+				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="text-right">
@@ -28,8 +36,8 @@
           <label for="date">Date:</label>
         </div>
         <div class="col-md-6">
-					<input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "date" name="date" value=""  v-model="informationFormData.date"/>
-					<span class="help is-danger" v-show="errors.has('date')">
+					<input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "date_info" name="date_info" value=""  v-model="informationFormData.date_info"/>
+					<span class="help is-danger" v-show="errors.has('date_info')">
 						Field is required
 					</span>
 
@@ -37,11 +45,11 @@
       </div>
       <div class="col-md-6">
         <div class="col-md-6">
-          <label for="time">Time:</label>
+          <label for="time_info">Time:</label>
         </div>
         <div class="col-md-6">
-					<input class="form-control " type = "time" v-validate="'required'" id = "time" name="time" value=""  v-model="informationFormData.time"/>
-					<span class="help is-danger" v-show="errors.has('time')">
+					<input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time_info" name="time_info" value=""  v-model="informationFormData.time_info"/>
+					<span class="help is-danger" v-show="errors.has('time_info')">
 						Field is required
 					</span>
 
@@ -108,14 +116,11 @@
   				</td>
   					<td>
 							<div class="form-group">
-  							 <select class="form-control "  id = "major_illness" name="major_illness" value=""  v-model="informationFormData.major_illness">
+  							 <select class="form-control "  id = "major_illness_name" name="major_illness_name" value=""  v-model="informationFormData.major_illness_name">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
-								<span class="help is-danger" v-show="errors.has('major_illness')">
-	                        Field is required
-	                      </span>
-											</div>
+							</div>
   					</td>
 			  </tr>
 
@@ -371,12 +376,12 @@
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
                 'informationFormData' : {
-									'date':'',
-									'time':'',
+									'date_info':'',
+									'time_info':'',
 									'pain_chest':'',
 									'bp_heart':'',
 									'major_illness':'',
-									'major_illness':'',
+									'major_illness_name':'',
 									'nervous_disorder':'',
 									'bleeding_clot':'',
 									'diabetes':'',
@@ -409,17 +414,17 @@
 				 'autoclose': true
 		 	})
 		 	$('#delete_modal').modal('show');
-	    	
+
 	    	$('.ls-timepicker').timepicker({
 				 format: 'hh-mm',
 				 'autoclose': true
 		 		});
 				let vm =this;
 				$('.ls-datepicker').datepicker().on('changeDate',function(){
-					vm.informationFormData.date = this.value;
+					vm.informationFormData.date_info = this.value;
 				});
 				$('.ls-timepicker').timepicker().on('change',function(){
-					vm.informationFormData.time = this.value;
+					vm.informationFormData.time_info = this.value;
 				});
 		},
 

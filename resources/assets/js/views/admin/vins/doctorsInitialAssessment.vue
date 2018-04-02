@@ -12,58 +12,47 @@
 
 			<div class="row">
 				<div class="col-md-6">
-					<div class="row">
 						<div class="col-md-6">
 							<label>History : </label>
 						</div>
 						<div class="col-md-6">
 							<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
+							<span class="help is-danger" v-show="errors.has('history')">
+	              Field is required
+	            </span>
 						</div>
-					</div>
 				</div>
-
-				<div class="col-md-4">
-					<div class="col-md-6">
-						<label>History : </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="history" v-validate="'required'" v-model="doctorsInitialAssessmentData.history" value="" />
-						<span class="help is-danger" v-show="errors.has('history')">
-              Field is required
-            </span>
-
 				<div class="col-md-6">
 					<div class="text-right">
 						<addressograph></addressograph>
-
 					</div>
 				</div>
 			</div>
 
 			<div class="row form-group">
+				<div class="col-md-6">
 					<div class="col-md-6">
-						<div class="col-md-6">
-							<label>Past History : </label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" v-validate="'required'" name="past_history" v-model="doctorsInitialAssessmentData.past_history" value=""/>
-							<span class="help is-danger" v-show="errors.has('past_history')">
-	              Field is required
-	            </span>
+						<label>Past History : </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control" type="text" v-validate="'required'" name="past_history" v-model="doctorsInitialAssessmentData.past_history" value=""/>
+						<span class="help is-danger" v-show="errors.has('past_history')">
+              Field is required
+            </span>
 
-						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-6">
+						<label>Allergic History : </label>
 					</div>
 					<div class="col-md-6">
-						<div class="col-md-6">
-							<label>Allergic History : </label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="allergic_history" v-validate="'required'" v-model="doctorsInitialAssessmentData.allergic_history" value=""/>
-							<span class="help is-danger" v-show="errors.has('allergic_history')">
-	              Field is required
-	            </span>
-						</div>
+						<input class="form-control" type="text" name="allergic_history" v-validate="'required'" v-model="doctorsInitialAssessmentData.allergic_history" value=""/>
+						<span class="help is-danger" v-show="errors.has('allergic_history')">
+              Field is required
+            </span>
 					</div>
+				</div>
 			</div>
 
 			<div class="row">
@@ -112,7 +101,7 @@
 			      <label>Time : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="time" v-validate="'required'" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
+			      <input class="form-control ls-timepicker" type="text" v-validate="'required'" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
 						<span class="help is-danger" v-show="errors.has('current_time')">
 							Field is required
 						</span>
@@ -137,7 +126,7 @@
 			      <label>MLC Done outside or not : </label>
 					</div>
 					<div class="col-md-6">
-			      <select class="form-control " name="mlc" v-model="doctorsInitialAssessmentData.mlc" value="">
+			      <select class="form-control ls-select2" name="mlc" v-model="doctorsInitialAssessmentData.mlc" value="">
 							<option value="no" >No</option>
 							<option value="yes" >Yes</option>
 						</select>
@@ -157,11 +146,10 @@
 			      <label>LOC : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control " name="loc" v-model="doctorsInitialAssessmentData.loc" value="">
+						<select class="form-control ls-select2" name="loc" v-model="doctorsInitialAssessmentData.loc" value="">
 							<option value="no">No</option>
 							<option value="yes">Yes</option>
 						</select>
-
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -169,11 +157,10 @@
 			      <label>ENT Bleeding : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="ent_bleeding" v-model="doctorsInitialAssessmentData.ent_bleeding" value="">
+						<select class="form-control ls-select2" name="ent_bleeding" v-model="doctorsInitialAssessmentData.ent_bleeding" value="">
 							<option value="no" >No</option>
 							<option value="yes">Yes</option>
 						</select>
-
 					</div>
 				</div>
 			</div>
@@ -184,7 +171,7 @@
 			      <label>Seizures : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control " name="seizures" v-model="doctorsInitialAssessmentData.seizures" value="">
+						<select class="form-control ls-select2" name="seizures" v-model="doctorsInitialAssessmentData.seizures" value="">
 							<option value="no" >No</option>
 							<option value="yes" >Yes</option>
 						</select>
@@ -195,7 +182,7 @@
 			      <label>Vomiting : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control " name="vomiting" v-model="doctorsInitialAssessmentData.vomiting" value="">
+						<select class="form-control ls-select2" name="vomiting" v-model="doctorsInitialAssessmentData.vomiting" value="">
 							<option value="no">No</option>
 							<option value="yes">Yes</option>
 						</select>
@@ -276,7 +263,7 @@
 			      <label>Pain : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control " name="pain" v-model="doctorsInitialAssessmentData.pain" value="">
+						<select class="form-control ls-select2" name="pain" v-model="doctorsInitialAssessmentData.pain" value="">
 							<option value="no" >No</option>
 							<option value="yes" >Yes</option>
 						</select>

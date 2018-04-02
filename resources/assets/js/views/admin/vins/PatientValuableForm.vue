@@ -83,7 +83,7 @@
 
 			<hr>
 
-			<div class="table-responsive">
+			<div class="row">
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -165,9 +165,9 @@
 						<tr>
 							<td>
 								<input class="form-control" type="date" name="date" v-model="patientValuableFormData.date" v-validate="'required'" value=""/>
-						<span class="help is-danger" v-show="errors.has('date')">
-							Field is required
-						</span>
+								<span class="help is-danger" v-show="errors.has('date')">
+									Field is required
+								</span>
 							</td>
 							<td>
 								<input class="form-control " type="time" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>

@@ -14,12 +14,12 @@
   			</div>
   		</div>
   	</div>
-<hr>
+    <hr>
   	<form action="" method="post">
 
 
   		<div class="row form-group">
-  			<div class="col-md-3">
+  			<div class="col-md-6">
   				<div class="col-md-6">
   					<label>Patient's name: </label>
   				</div>
@@ -30,38 +30,35 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-3">
-  				<div class="col-md-6">
-  				
-  				</div>
-  				<div class="col-md-6">
-  				</div>
-  			</div>
-  			<div class="col-md-3">
-  				<div class="col-md-6">
-  					<label>Sex : </label>
-  				</div>
-  				<div class="col-md-6">
-  					<select class="form-control" name="sex" v-model="doctorsDailyNotesData.sex" v-validate="'required'">
+        <div class="col-md-6">
+          <div class="text-right">
+            <addressograph></addressograph>
+          </div>
+        </div>
+  		</div>
+
+      <div class="row form-group">
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <label>Sex : </label>
+          </div>
+          <div class="col-md-6">
+            <select class="form-control" name="sex" v-model="doctorsDailyNotesData.sex" v-validate="'required'">
               <span class="help is-danger" v-show="errors.has('sex')">
                 Field is required
               </span>
-  						<option value="na" >NA</option>
-  						<option value="male" >Male</option>
-  						<option value="female" >Female</option>
-  					</select>
-  				</div>
-  			</div>
+              <option value="na" >NA</option>
+              <option value="male" >Male</option>
+              <option value="female" >Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-        <div class="col-md-3">
-        <div class="text-right">
 
-        <addressograph></addressograph>
 
-      </div></div>
-  		</div>
   		<div class="row form-group">
-  			<div class="col-md-3">
+  			<div class="col-md-6">
   				<div class="col-md-6">
   					<label>Attending consultant: </label>
   				</div>
@@ -72,7 +69,7 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-3">
+  			<div class="col-md-6">
   				<div class="col-md-6">
   					<label> Age : </label>
   				</div>
@@ -83,7 +80,10 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-3">
+  		</div>
+
+      <div class="row form-group">
+        <div class="col-md-6">
   				<div class="col-md-6">
   					<label>Date : </label>
   				</div>
@@ -94,7 +94,7 @@
             </span>
   				</div>
   			</div>
-  		</div>
+      </div>
 
   		<hr />
   		<div class="row">
