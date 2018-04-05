@@ -22,14 +22,14 @@ export default {
   saveBloodTransfusion(bloodTransfusionDetails) {
     return api.post('bloodTransfusionDetails/create',{'resData': bloodTransfusionDetails})
   },
-  saveBreifOperativeNote(breifOperativeNoteData) {
-    return api.post('briefOperativeNote/create',{'resData': breifOperativeNoteData})
+  saveBreifOperativeNote(briefOperativeNoteData) {
+    return api.post('briefOperativeNote/create',{'briefOperativeNoteData': briefOperativeNoteData})
   },
   testFunction(testData) {
     return api.post('testFile/create',{'resData': testData})
   },
   saveCodeBlueEvaluationForm(codeBlueEvaluationData) {
-    return api.post('codeBlueEvaluationForm/create',{'resData': codeBlueEvaluationData})
+    return api.post('codeBlueEvaluationForm/create',{'codeBlueEvaluationData': codeBlueEvaluationData})
   },
   saveCompleteNursingAssessment(completeNursingAssessmentData) {
     return api.post('completeNursingAssessment/create',{'resData': completeNursingAssessmentData})
@@ -61,7 +61,6 @@ export default {
   saveLabSheet(LabSheet) {
     return api.post('LabSheet/create',{'resData': LabSheet})
   },
-
   saveNurseProgressNotes(NurseProgressNotes) {
     return api.post('NurseProgressNotes/create',{'resData':NurseProgressNotes})
   },
@@ -86,8 +85,8 @@ export default {
     return api.post('PatientAdmissionSheet/create',{'resData':PatientAdmissionSheet})
   },
 
-  savePatientDietRecord(PatientDietRecord) {
-    return api.post('PatientDietRecord/create',{'resData':PatientDietRecord})
+  savePatientDietRecord(patientDietRecordData) {
+    return api.post('PatientDietRecord/create',{'resData':patientDietRecordData})
   },
 
   savePatientValuableForm(patientValuableFormData) {
@@ -152,7 +151,7 @@ export default {
   saveHistoryForm(historyFormData) {
     return api.post('historyForm/create',{'resData': historyFormData})
   },
-  saveInformationForm(informationForm) {
+  saveInformationForm(informationFormData) {
     return api.post('informationForm/create',{'resData': informationFormData})
   },
   saveinvestigationSheet(investigationSheet) {
@@ -173,10 +172,6 @@ export default {
     return api.post('appointmentBook/create',{'appointmentBook':appointmentBook})
   },
 
-  saveCounsellingForm(counsellingFormData) {
-      return api.post('counsellingForm/create',{'counsellingFormData':counsellingFormData})
-    },
-
   saveSurgicalSafetyChecklist(surgicalSafetyChecklistData) {
       return api.post('surgicalSafetyChecklist/create',{'surgicalSafetyChecklistData':surgicalSafetyChecklistData})
     },
@@ -189,13 +184,29 @@ export default {
       return api.post('wardProcedureRecord/create',{'wardProcedureRecordData':wardProcedureRecordData})
     },
 
-  saveInformationForm(informationFormData) {
-      return api.post('informationForm/create',{'informationFormData':informationFormData})
-    },
-
   saveIntraoperativeEventManagement(intraoperativeEventManagementData) {
       return api.post('intraoperativeEventManagement/create',{'intraoperativeEventManagement':intraoperativeEventManagementData})
     },
+  saveMARFlowSheet(MARFlowSheet) {
+    return api.post('MARFlowSheet/create',{'MARFlowSheet': MARFlowSheet})
+  },
+  getpatientDetail(ipdId) {
+    return api.post('patient/getDetails/'+ipdId)
+  },
+  saveCentralLineBundleChecklist(CentralLineBundleChecklistData) {
+      return api.post('centralLineBundleChecklist/create',{'resData':CentralLineBundleChecklistData})
+    },
+  submitReport(reportData) {
+    return api.post('report/create',{'reportData':reportData})
+  },
+  submitReport(reportData) {
+      return api.post('report/create',{'reportData':reportData})
+    },
+    getAllPatientName() {
+      return api.get('patient/getAll');
+
+    }
+
 
 
 }

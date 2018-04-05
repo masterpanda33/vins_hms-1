@@ -13,18 +13,18 @@
     <hr>
 
 		<form action="" method="post">
-			<div class="row form-group">
+      <div class="row form-group">
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-6">
               <label for="">Date:</label>
             </div>
             <div class="col-md-6">
-              <input type="date" v-model="appointmentBook.date" v-validate="'required'" class="form-control" name="date" id="date" value="">
+              <input type="text" v-model="appointmentBook.date" v-validate="'required'" class="form-control ls-datepicker" name="date" id="date" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
-            </div>            
+            </div>
           </div>
         </div>
 			</div>
@@ -47,13 +47,13 @@
               	</span>
 							</td>
 							<td>
-								<input type="text" v-model="appointmentBook.contact_no" id="contact_no" name="contact_no" v-validate="'required'" class="form-control" value="">
+								<input type="text" v-model="appointmentBook.contact_no" id="contact_no" name="contact_no" v-validate="'required|numeric'" class="form-control" value="">
                 <span class="help is-danger" v-show="errors.has('contact_no')">
-                	Field is required
+                	Numeric Field is required
               	</span>
 							</td>
 							<td>
-								<input type="time" v-model="appointmentBook.appointment_time" id="appointment_time" name="appointment_time" v-validate="'required'" class="form-control" value="">
+								<input type="text" v-model="appointmentBook.appointment_time" id="appointment_time" name="appointment_time" v-validate="'required'" class="form-control ls-timepicker" value="">
                 <span class="help is-danger" v-show="errors.has('appointment_time')">
                 	Field is required
               	</span>
@@ -91,6 +91,23 @@
                 }
             }
         },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          'autoclose': true
+      });
+      $('.ls-timepicker').timepicker({
+            format:'hh:mm',
+            'autoclose': true
+      });
+      let vm =this;
+      $('.ls-datepicker').datepicker().on('changeDate',function(){
+        vm.appointmentBook.date = this.value;
+      });
+      $('.ls-timepicker').timepicker().on('change',function(){
+        vm.appointmentBook.appointment_time = this.value;
+      });
+      },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

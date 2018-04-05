@@ -48,7 +48,7 @@ $api->version('v1', function ($api) {
          $api->post('bloodTransfusionDetails/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('bloodTransfusionDetails.create');
          $api->post('briefOperativeNote/create', '\euro_hms\Api\Controllers\BriefOperativeNoteController@store')->name('briefOperativeNote.create');
          $api->post('testFile/create', '\euro_hms\Api\Controllers\TestFileController@store')->name('testFile.create');
-         $api->post('codeBlueEvaluationForm/create', '\euro_hms\Api\Controllers\CodeBlueEvaluationController@store')->name('codeBlueEvaluationForm.create');
+         $api->post('codeBlueEvaluationForm/create', '\euro_hms\Api\Controllers\CodeBlueEvaluationFormController@store')->name('codeBlueEvaluationForm.create');
          $api->post('completeNursingAssessment/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('completeNursingAssessment.create');
          $api->post('cprFormat/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('cprFormat.create');
          $api->post('cultureBiopsyForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('cultureBiopsyForm.create');
@@ -63,7 +63,7 @@ $api->version('v1', function ($api) {
          $api->post('NutritionalAssessmentForm/create','\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('NutritionalAssessmentForm.create');
          $api->post('OperativeDetailSheet/create','\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('OperativeDetailSheet.create');
          $api->post('PatientAdmissionSheet/create','\euro_hms\Api\Controllers\PatientAdmissionSheetController@store')->name('PatientAdmissionSheet.create');
-         $api->post('PatientDietRecord/create','\euro_hms\Api\Controllers\PatientDietRecordController@store')->name('PatientDietRecord.create');
+         $api->post('PatientDietRecord/create','\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('PatientDietRecord.create');
          $api->post('PatientValuableForm/create','\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('PatientValuableForm.create');
          $api->post('PhysiotherapyAssessment/create','\euro_hms\Api\Controllers\PhysiotherapyAssessmentController@store')->name('PhysiotherapyAssessment.create');
          $api->post('RestraintAdministration/create','\euro_hms\Api\Controllers\RestraintAdministrationController@store')->name('RestraintAdministration.create');
@@ -85,12 +85,13 @@ $api->version('v1', function ($api) {
          $api->post('erObservation/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('erObservation.create');
          $api->post('gatePass/create', '\euro_hms\Api\Controllers\GatePassController@store')->name('gatePass.create');
          $api->post('historyForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('historyForm.create');
-         $api->post('informationForm/create', '\euro_hms\Api\Controllers\InformationFormController@store')->name('informationForm.create');
+         $api->post('informationForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('informationForm.create');
          $api->post('durgRequisition/create', '\euro_hms\Api\Controllers\DurgRequisitionController@store')->name('durgRequisition.create');
          $api->post('intraoperativeEventManagement/create', '\euro_hms\Api\Controllers\IntraoperativeEventManagementController@store')->name('intraoperativeEventManagement.create');
-         $api->post('counsellingForm/create', '\euro_hms\Api\Controllers\CounsellingFormController@store')->name('counsellingForm.create');
+         $api->post('counsellingForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('counsellingForm.create');
          $api->post('centralLineBundleChecklist/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('centralLineBundleChecklist.create');
         $api->post('patient/getDetails/{id}', '\euro_hms\Api\Controllers\PatientsDetailFormController@getDetails');
+        $api->get('patient/getAll', '\euro_hms\Api\Controllers\PatientsDetailFormController@getAllPatientName');
 
 
 });

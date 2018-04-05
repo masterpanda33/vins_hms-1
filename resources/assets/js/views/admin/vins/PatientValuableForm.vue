@@ -5,11 +5,6 @@
 				<div class="col">
 					<h1>Patient Valuable Form</h1>
 				</div>
-				<div class="col">
-					<div class="text-right">
-						F/IPD/41
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -17,7 +12,7 @@
 
 		<form action="" method = "post">
 			<div class="row form-group">
-				<div class="col">
+				<div class="col-md-6">
 					<div class="col">
 						<label>Unit:</label>
 					</div>
@@ -28,6 +23,12 @@
 						</span>
 					</div>
 				</div>
+				<div class="col-md-6">
+				<div class="text-right">
+
+				<addressograph></addressograph>
+
+			</div></div>
 			</div>
 
 			<div class="row form-group">
@@ -47,9 +48,9 @@
 						<label>IPD No:</label>
 					</div>
 					<div class="col">
-						<input class="form-control" type="text"  name="ipd_no" v-model="ipd_id" v-validate="'required'" id="ipd_id" value="" >
-						<span class="help is-danger" v-show="errors.has('ipd_no')">
-							Field is required
+						<input class="form-control" type="text"  name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" id="ipd_id" value="" >
+						<span class="help is-danger" v-show="errors.has('ipd_id')">
+							Numeric Field is required
 						</span>
 					</div>
 				</div>
@@ -82,8 +83,8 @@
 
 			<hr>
 
-			<div class="form-group">
-				<table class="table">
+			<div class="row">
+				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th>Sr. No.</th>
@@ -164,15 +165,15 @@
 						<tr>
 							<td>
 								<input class="form-control" type="date" name="date" v-model="patientValuableFormData.date" v-validate="'required'" value=""/>
-						<span class="help is-danger" v-show="errors.has('date')">
-							Field is required
-						</span>
+								<span class="help is-danger" v-show="errors.has('date')">
+									Field is required
+								</span>
 							</td>
 							<td>
-								<input class="form-control" type="time" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>
-						<span class="help is-danger" v-show="errors.has('time')">
-							Field is required
-						</span>
+								<input class="form-control " type="time" name="time" v-model="patientValuableFormData.time" v-validate="'required'" value=""/>
+								<span class="help is-danger" v-show="errors.has('time')">
+									Field is required
+								</span>
 							</td>
 							<td>
 								<input class="form-control" type="text" name="released_by" v-model="patientValuableFormData.released_by" v-validate="'required'" value=""/>
@@ -216,10 +217,14 @@
 				</div>
 			</div>
 		</form>
+		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -227,7 +232,7 @@
                 'currentYear': new Date().getFullYear(),
 								'type': 'patientValuablesForm',
                 'patient_id': this.$store.state.Patient.patientId,
-               	'ipd_id': this.$store.state.Patient.ipdId,
+               	// 'ipd_id': this.$store.state.Patient.ipdId,
                 'patientValuableFormData' : {
 									'unit':'',
 									'patient_name':'',
@@ -272,12 +277,41 @@
                 }
             }
         },
+		components: {
+        	addressograph,
+        	SelectPatientModal,
+       },
+       computed: {
+       	ipd_id(){
+       		return  this.$store.state.Patient.ipdId
+       	}
+       },
+		mounted() {
+        	$('.ls-datepicker').datepicker({
+         		format: 'dd/mm/yyyy',
+         		'autoclose': true
+     		})
+        	// if(this.ipd_id == 0){
+	        	$('#delete_modal').modal('show');
+	    	// }
+
+        	$('.ls-timepicker').timepicker({
+         		format: 'hh-mm',
+         		'autoclose': true
+     		})
+			$('.ls-datepicker').datepicker().on('changeDate',function(){
+		        vm.patientValuableFormData.date = this.value;
+		    })
+			$('.ls-timepicker').timepicker().on('change',function(){
+		        vm.patientValuableFormData.time = this.value;
+			})
+       },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        savePatientValuableForm() {
+        	savePatientValuableForm() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {

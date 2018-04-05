@@ -5,54 +5,59 @@
 				<div class="col-md-6">
 				<h1>Doctor's Initial Assessment</h1>
 				</div>
-				<div class="col-md-6">
-					<div class="text-right">
-						DOC NO. FMT/HIC/09 <br>
-						REV. No. 0.1 <br>
-						WEF 10-10-2015
-					</div>
-				</div>
 			</div>
 		</div>
 
 		<form action="" method="post">
 
-			<div class="row form-group">
+			<div class="row">
+
 				<div class="col-md-6">
-					<div class="col-md-6">
-						<label>IPD No : </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" value="" />
-					</div>
+						<div class="col-md-6">
+							<label>History : </label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
+							<span class="help is-danger" v-show="errors.has('history')">
+	              Field is required
+	            </span>
+						</div>
 				</div>
 				<div class="col-md-6">
-					<div class="col-md-6">
-						<label>History : </label>
-					</div>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="history" v-model="doctorsInitialAssessmentData.history" value="" />
+					<div class="text-right">
+						<addressograph></addressograph>
 					</div>
 				</div>
 			</div>
 
 			<div class="row form-group">
+
+				<div class="col-md-6">
 					<div class="col-md-6">
-						<div class="col-md-6">
-							<label>Past History : </label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="past_history" v-model="doctorsInitialAssessmentData.past_history" value=""/>
-						</div>
+						<label>Past History : </label>
 					</div>
 					<div class="col-md-6">
-						<div class="col-md-6">
-							<label>Allergic History : </label>
-						</div>
-						<div class="col-md-6">
-							<input class="form-control" type="text" name="allergic_history" v-model="doctorsInitialAssessmentData.allergic_history" value=""/>
-						</div>
+						<input class="form-control" type="text" v-validate="'required'" name="past_history" v-model="doctorsInitialAssessmentData.past_history" value=""/>
+						<span class="help is-danger" v-show="errors.has('past_history')">
+              Field is required
+            </span>
 					</div>
+				</div>
+
+					</div>
+				</div>
+				<div class="col-md-6">
+
+					<div class="col-md-6">
+						<label>Allergic History : </label>
+					</div>
+					<div class="col-md-6">
+						<input class="form-control" type="text" name="allergic_history" v-validate="'required'" v-model="doctorsInitialAssessmentData.allergic_history" value=""/>
+						<span class="help is-danger" v-show="errors.has('allergic_history')">
+              Field is required
+            </span>
+					</div>
+				</div>
 			</div>
 
 			<div class="row">
@@ -65,8 +70,10 @@
 			      <label>Name of Informant : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="name_informant" v-model="doctorsInitialAssessmentData.name_informant" value=""/>
-
+			      <input class="form-control" type="text" v-validate="'required'" name="name_informant" v-model="doctorsInitialAssessmentData.name_informant" value=""/>
+						<span class="help is-danger" v-show="errors.has('name_informant')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -74,8 +81,10 @@
 			      <label>Brought By : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="brought_by" v-model="doctorsInitialAssessmentData.brought_by" value=""/>
-
+			      <input class="form-control" type="text"  v-validate="'required'" name="brought_by" v-model="doctorsInitialAssessmentData.brought_by" value=""/>
+						<span class="help is-danger" v-show="errors.has('brought_by')">
+							Field is required
+						</span>
 					</div>
 				</div>
 			</div>
@@ -87,6 +96,9 @@
 					</div>
 					<div class="col-md-6">
 			      <input class="form-control" type="text" name="place_of_accident" v-model="doctorsInitialAssessmentData.place_of_accident" value="" />
+						<span class="help is-danger" v-show="errors.has('place_of_accident')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -94,8 +106,10 @@
 			      <label>Time : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="time" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
-
+			      <input class="form-control ls-timepicker" type="text" v-validate="'required'" name="current_time" v-model="doctorsInitialAssessmentData.current_time" value=""/>
+						<span class="help is-danger" v-show="errors.has('current_time')">
+							Field is required
+						</span>
 					</div>
 				</div>
 			</div>
@@ -106,8 +120,10 @@
 			      <label>Date : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="date" name="current_date" v-model="doctorsInitialAssessmentData.current_date" value=""/>
-
+			      <input class="form-control ls-datepicker" type="text" v-validate="'required'" name="current_date" v-model="doctorsInitialAssessmentData.current_date" value=""/>
+						<span class="help is-danger" v-show="errors.has('current_date')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -115,7 +131,7 @@
 			      <label>MLC Done outside or not : </label>
 					</div>
 					<div class="col-md-6">
-			      <select class="form-control" name="mlc" v-model="doctorsInitialAssessmentData.mlc" value="">
+			      <select class="form-control ls-select2" name="mlc" v-model="doctorsInitialAssessmentData.mlc" value="">
 							<option value="no" >No</option>
 							<option value="yes" >Yes</option>
 						</select>
@@ -135,11 +151,10 @@
 			      <label>LOC : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="loc" v-model="doctorsInitialAssessmentData.loc" value="">
+						<select class="form-control ls-select2" name="loc" v-model="doctorsInitialAssessmentData.loc" value="">
 							<option value="no">No</option>
 							<option value="yes">Yes</option>
 						</select>
-
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -147,11 +162,10 @@
 			      <label>ENT Bleeding : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="ent_bleeding" v-model="doctorsInitialAssessmentData.ent_bleeding" value="">
+						<select class="form-control ls-select2" name="ent_bleeding" v-model="doctorsInitialAssessmentData.ent_bleeding" value="">
 							<option value="no" >No</option>
 							<option value="yes">Yes</option>
 						</select>
-
 					</div>
 				</div>
 			</div>
@@ -162,7 +176,7 @@
 			      <label>Seizures : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="seizures" v-model="doctorsInitialAssessmentData.seizures" value="">
+						<select class="form-control ls-select2" name="seizures" v-model="doctorsInitialAssessmentData.seizures" value="">
 							<option value="no" >No</option>
 							<option value="yes" >Yes</option>
 						</select>
@@ -173,7 +187,7 @@
 			      <label>Vomiting : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="vomiting" v-model="doctorsInitialAssessmentData.vomiting" value="">
+						<select class="form-control ls-select2" name="vomiting" v-model="doctorsInitialAssessmentData.vomiting" value="">
 							<option value="no">No</option>
 							<option value="yes">Yes</option>
 						</select>
@@ -192,7 +206,11 @@
 			      <label>Pulse : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="pulse" v-model="doctorsInitialAssessmentData.pulse" value=""/>
+			      <input class="form-control" type="text" v-validate="'required'" name="pulse" v-model="doctorsInitialAssessmentData.pulse" value=""/>
+
+						<span class="help is-danger" v-show="errors.has('pulse')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -200,8 +218,11 @@
 			      <label>Temprature : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="temp" v-model="doctorsInitialAssessmentData.temp" value="" />
-					</div>
+			      <input class="form-control" type="text"  v-validate="'required'" name="temp" v-model="doctorsInitialAssessmentData.temp" value="" />
+						<span class="help is-danger" v-show="errors.has('<?php // TEMP:  ?>')">
+							Field is required
+						</span>
+						</div>
 				</div>
 			</div>
 
@@ -211,7 +232,10 @@
 			      <label>BP : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="bp" v-model="doctorsInitialAssessmentData.bp" value=""/>
+			      <input class="form-control" type="text" v-validate="'required'" name="bp" v-model="doctorsInitialAssessmentData.bp" value=""/>
+						<span class="help is-danger" v-show="errors.has('bp')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -219,7 +243,10 @@
 			      <label>SPO2 : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="spo2" v-model="doctorsInitialAssessmentData.spo2" value=""/>
+			      <input class="form-control" type="text" v-validate="'required'" name="spo2" v-model="doctorsInitialAssessmentData.spo2" value=""/>
+						<span class="help is-danger" v-show="errors.has('spo2')">
+							Field is required
+						</span>
 					</div>
 				</div>
 			</div>
@@ -230,7 +257,10 @@
 			      <label>RBS : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="text" name="rbs" v-model="doctorsInitialAssessmentData.rbs" value=""/>
+						<input class="form-control" type="text" v-validate="'required'" name="rbs" v-model="doctorsInitialAssessmentData.rbs" value=""/>
+						<span class="help is-danger" v-show="errors.has('rbs')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -238,7 +268,7 @@
 			      <label>Pain : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="pain" v-model="doctorsInitialAssessmentData.pain" value="">
+						<select class="form-control ls-select2" name="pain" v-model="doctorsInitialAssessmentData.pain" value="">
 							<option value="no" >No</option>
 							<option value="yes" >Yes</option>
 						</select>
@@ -252,15 +282,24 @@
 			      <label>GCS : </label>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="gcs_e" v-model="doctorsInitialAssessmentData.gcs_e" value=""/>
+			      <input class="form-control" v-validate="'required'" type="text" name="gcs_e" v-model="doctorsInitialAssessmentData.gcs_e" value=""/>
+						<span class="help is-danger" v-show="errors.has('gcs_e')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="gcs_m" v-model="doctorsInitialAssessmentData.gcs_m" value=""/>
+			      <input class="form-control"  v-validate="'required'" type="text" name="gcs_m" v-model="doctorsInitialAssessmentData.gcs_m" value=""/>
+						<span class="help is-danger" v-show="errors.has('gcs_m')">
+							Field is required
+						</span>
 					</div>
 					<div class="col-md-6">
-			      <input class="form-control" type="text" name="gcs_v" v-model="doctorsInitialAssessmentData.gcs_v" value=""/>
+			      <input class="form-control"  v-validate="'required'" type="text" name="gcs_v" v-model="doctorsInitialAssessmentData.gcs_v" value=""/>
+						<span class="help is-danger" v-show="errors.has('gcs_v')">
+							Field is required
+						</span>
 					</div>
 				</div>
 			</div>
@@ -271,7 +310,10 @@
 						<label>Systematic Examination : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="text" name="systematic_examination" v-model="doctorsInitialAssessmentData.systematic_examination" value=""/>
+						<input class="form-control"  v-validate="'required'" type="text" name="systematic_examination" v-model="doctorsInitialAssessmentData.systematic_examination" value=""/>
+						<span class="help is-danger" v-show="errors.has('systematic_examination')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -279,7 +321,10 @@
 						<label>Any other Findings or Injuries : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="text" name="any_other" v-model="doctorsInitialAssessmentData.any_other" value=""/>
+						<input class="form-control" type="text" v-validate="'required'" name="any_other" v-model="doctorsInitialAssessmentData.any_other" value=""/>
+						<span class="help is-danger" v-show="errors.has('any_other')">
+							Field is required
+						</span>
 					</div>
 				</div>
 			</div>
@@ -290,7 +335,10 @@
 						<label>Treated on Admission : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="text" name="treated_on_admission" v-model="doctorsInitialAssessmentData.treated_on_admission" value=""/>
+						<input class="form-control" type="text" v-validate="'required'" name="treated_on_admission" v-model="doctorsInitialAssessmentData.treated_on_admission" value=""/>
+						<span class="help is-danger" v-show="errors.has('treated_on_admission')">
+							Field is required
+						</span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -298,7 +346,10 @@
 						<label>Shifted To : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type="text" name="shifted_to" v-model="doctorsInitialAssessmentData.shifted_to" value=""/>
+						<input class="form-control" type="text" v-validate="'required'" name="shifted_to" v-model="doctorsInitialAssessmentData.shifted_to" value=""/>
+						<span class="help is-danger" v-show="errors.has('shifted_to')">
+							Field is required
+						</span>
 					</div>
 				</div>
 			</div>
@@ -307,10 +358,14 @@
 			</div>
 
 		</form>
+		  <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js'
+	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -349,6 +404,34 @@
 								}
             }
         },
+				components: {
+					 addressograph,
+					 SelectPatientModal
+			 },
+			 mounted() {
+			 $('.ls-select2').select2({
+									 allowClear: true,
+									 theme: "bootstrap",
+									 placeholder: "select"
+							 });
+				 $('.ls-datepicker').datepicker({
+				 format: 'dd/mm/yyyy',
+				 'autoclose': true
+			 });
+			  $('#delete_modal').modal('show');
+
+			 $('.ls-timepicker').timepicker({
+			 format: 'hh-mm',
+			 'autoclose': true
+		 	});
+			let vm =this;
+      $('.ls-datepicker').datepicker().on('changeDate',function(){
+        vm.doctorsInitialAssessmentData.current_date = this.value;
+      });
+      $('.ls-timepicker').timepicker().on('change',function(){
+        vm.doctorsInitialAssessmentData.current_time = this.value;
+      });
+			 },
 				methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

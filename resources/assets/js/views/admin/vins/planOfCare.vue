@@ -18,26 +18,36 @@
 	<hr>
 
 	<form method="post">
-		<div class="row form-group">
+		<div class="row">
 			<div class="col-md-6">
-					<div class="col-md-6">
-					<label>Ipd No : </label>
+				<div class="col-md-6">
+					<label>IPD ID : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required'" />
-					<span class="help is-danger" v-show="errors.has('ipd_no')">
-									Room number is required
-								</span>
+					<input class="form-control" name="ipd_id" type="text" id="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"  />
+					<span class="help is-danger" v-show="errors.has('ipd_id')">
+						Numeric field is required
+					</span>
 				</div>
 			</div>
 			<div class="col-md-6">
-			<div class="col-md-6">
-				<label>Diagnosis</label>
+				<div class="text-right">
+					<addressograph></addressograph>
+				</div>
+
 			</div>
+		</div>
+
+		<div class="row form-group">
 			<div class="col-md-6">
-				<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
+				<div class="col-md-6">
+					<label>Diagnosis</label>
+				</div>
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="diagnosis" value="" v-model ="planOfCare.diagnosis"/>
+				</div>
 			</div>
-		</div></div>
+		</div>
 
 	<div class="row form-group">
 			<div class="col-md-6">
@@ -66,8 +76,8 @@
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<table class="table table-bordered">
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Sr No</th>
@@ -79,13 +89,13 @@
 					<tr v-for="n in 8">
 						<td>{{n}} </td>
 						<td>
-							<input class="form-control" type="text" :name="'progress_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].progress" v-validate="'required'"/>
+							<input class="form-control" type="text" :name="'progress_'+n"  :id="'progress_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].progress" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('progress_'+n)">
 								Progress is required
 							</span>
 						</td>
 						<td>
-							<input class="form-control" type="date" :name="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
+							<input class="form-control ls-datepicker" type="text" :name="'date_'+n" :id="'date_'+n" value="" v-model="planOfCare.Plan_Of_Care[n].date" v-validate="'required'"/>
 							<span class="help is-danger" v-show="errors.has('date_'+n)">
 								Progress is required
 							</span>
@@ -112,12 +122,16 @@
 			</div>
 		</div>
 	</form>
+	 <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 </div>
 </template>
 
 
 <script >
 import User from '../../../api/users.js';
+import addressograph from './addressograph.vue';
+import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
 	export default {
 			data() {
 					return {
@@ -182,6 +196,51 @@ import User from '../../../api/users.js';
 							}
 					}
 			},
+
+			components: {
+				 addressograph,
+				 SelectPatientModal
+		 },
+		mounted() {
+	  		$('.ls-datepicker').datepicker({
+ 				format: 'dd/mm/yyyy',
+ 				'autoclose': true
+ 			})
+
+				let vm =this;
+				$('.ls-datepicker').datepicker().on('changeDate',function(){
+
+					if (this.id == 'date_1') {
+						vm.planOfCare.Plan_Of_Care[1].date = this.value;
+					}
+					if (this.id == 'date_2') {
+						vm.planOfCare.Plan_Of_Care[2].date = this.value;
+					}
+					if (this.id == 'date_3') {
+						vm.planOfCare.Plan_Of_Care[3].date = this.value;
+					}
+					if (this.id == 'date_4') {
+						vm.planOfCare.Plan_Of_Care[4].date = this.value;
+					}
+					if (this.id == 'date_5') {
+						vm.planOfCare.Plan_Of_Care[5].date = this.value;
+					}
+					if (this.id == 'date_6') {
+						vm.planOfCare.Plan_Of_Care[6].date = this.value;
+					}
+					if (this.id == 'date_7') {
+						vm.planOfCare.Plan_Of_Care[7].date = this.value;
+					}
+					if (this.id == 'date_8') {
+						vm.planOfCare.Plan_Of_Care[8].date = this.value;
+					}
+
+			})
+			// if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    	// }
+ 			},
+
 			methods: {
 			GetSelectComponent(componentName) {
 				 this.$router.push({name: componentName})

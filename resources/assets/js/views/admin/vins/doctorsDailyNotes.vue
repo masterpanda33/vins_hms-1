@@ -14,11 +14,12 @@
   			</div>
   		</div>
   	</div>
-
+    <hr>
   	<form action="" method="post">
 
+
   		<div class="row form-group">
-  			<div class="col-md-4">
+  			<div class="col-md-6">
   				<div class="col-md-6">
   					<label>Patient's name: </label>
   				</div>
@@ -29,35 +30,35 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
-  				<div class="col-md-6">
-  					<label>IPD No : </label>
-  				</div>
-  				<div class="col-md-6">
-  					<input class="form-control" id="ipd_no" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required'" value="">
-            <span class="help is-danger" v-show="errors.has('ipd_id')">
-              Field is required
-            </span>
-  				</div>
-  			</div>
-  			<div class="col-md-4">
-  				<div class="col-md-6">
-  					<label>Sex : </label>
-  				</div>
-  				<div class="col-md-6">
-  					<select class="form-control" name="sex" v-model="doctorsDailyNotesData.sex" v-validate="'required'">
+        <div class="col-md-6">
+          <div class="text-right">
+            <addressograph></addressograph>
+          </div>
+        </div>
+  		</div>
+
+      <div class="row form-group">
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <label>Sex : </label>
+          </div>
+          <div class="col-md-6">
+            <select class="form-control" name="sex" v-model="doctorsDailyNotesData.sex" v-validate="'required'">
               <span class="help is-danger" v-show="errors.has('sex')">
                 Field is required
               </span>
-  						<option value="na" >NA</option>
-  						<option value="male" >Male</option>
-  						<option value="female" >Female</option>
-  					</select>
-  				</div>
-  			</div>
-  		</div>
+              <option value="na" >NA</option>
+              <option value="male" >Male</option>
+              <option value="female" >Female</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+
   		<div class="row form-group">
-  			<div class="col-md-4">
+  			<div class="col-md-6">
   				<div class="col-md-6">
   					<label>Attending consultant: </label>
   				</div>
@@ -68,7 +69,7 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
+  			<div class="col-md-6">
   				<div class="col-md-6">
   					<label> Age : </label>
   				</div>
@@ -79,18 +80,22 @@
             </span>
   				</div>
   			</div>
-  			<div class="col-md-4">
+  		</div>
+
+      <div class="row form-group">
+        <div class="col-md-6">
   				<div class="col-md-6">
   					<label>Date : </label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="date" name="date" v-model="doctorsDailyNotesData.date" v-validate="'required'" value="">
+  					<input class="form-control ls-datepicker"  id = "date" type="text" name="date" v-model="doctorsDailyNotesData.date" v-validate="'required'" value="">
             <span class="help is-danger" v-show="errors.has('date')">
               Field is required
             </span>
   				</div>
   			</div>
-  		</div>
+      </div>
+
   		<hr />
   		<div class="row">
   			<h3>7 AM S/B</h3>
@@ -352,10 +357,14 @@
   			<button class="btn btn-success" type="button" @click="saveDoctorsDailyNotes()" >Submit</button>
   		</div>
   	</form>
+      <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
+  import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -398,6 +407,25 @@
                 }
             }
         },
+        components: {
+           addressograph,
+           SelectPatientModal
+       },
+       mounted() {
+          $('.ls-datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
+          // if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          // }
+          $('.ls-datepicker').datepicker().on('changeDate',function(){
+            if (this.id == 'date') {
+              vm.doctorsDailyNotesData.date = this.value;
+            }
+          })
+       },
+
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
@@ -410,7 +438,7 @@
                    var doctorsDailyNotesData = {'type':this.type,'patient_id':this.patient_id,'ipd_id':this.ipd_id,'form_data':this.doctorsDailyNotesData};
 				    	User.saveDoctorsDailyNotes(doctorsDailyNotesData).then(
 		                (response) => {
-		                	if(response.data.code == 200) {
+		                	if(response.data.status == 200) {
 		                		toastr.success('Doctors Daily Notes have been saved', 'Doctors Daily Notes', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');

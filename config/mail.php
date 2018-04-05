@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', "kparikh@aecordigital.com"),
-        'name' => env('MAIL_FROM_NAME', "Euro-Sportring")
+        'address' => env('MAIL_FROM_ADDRESS', "krunal.parikh@allianzcloud.com"),
+        'name' => env('MAIL_FROM_NAME', "Vins-HMS")
     ],
 
     /*

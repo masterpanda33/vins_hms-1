@@ -5,30 +5,20 @@
 				<div class="col-md-8">
 					<h1>Nutritional Assessment Form</h1>
 				</div>
-				<div class="col-md-4 text-right">
-					DOC NO. F/IPD/18 <br>
-					REV. No. 0.2 <br>
-					WEF 10-12-2016
-				</div>
 			</div>
 		</div>
 		<hr>
 		<form action="" method="post">
-			<div class="row form-group">
-				<div class="col">
-					<div class="row">
-						<div class="col">
-							<label for="">IPD No.</label>
-						</div>
-						<div class="col">
-							<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required'">
-							<span class="help is-danger" v-show="errors.has('ipd_no')">
-								Field is required
-							</span>
-						</div>
-					</div>
+			<div class="row">
+				<div class="col-md-6">
 				</div>
+				<div class="col-md-6">
+			        <div class="text-right">
+        				<addressograph></addressograph>
+  				    </div>
+  				</div>
 			</div>
+			<hr>
 			<div class="row form-group">
 				<div class="col-md-6">
 					<div class="col-md-6">
@@ -518,7 +508,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input class="form-control" type="date" name="date_table" v-model="NutritionalAssessmentForm.date_table" v-validate="'required'" value=""/>
+							<td><input class="form-control ls-datepicker" type="text" name="date_table" v-model="NutritionalAssessmentForm.date_table" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date_table')">
 							Field is required
 						</span>
@@ -553,10 +543,14 @@
 				</div>
 			</div>
 		</form>
+		 <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
+    import SelectPatientModal from '../../../components/SelectPatientModal.vue'
+
     export default {
         data() {
             return {
@@ -609,12 +603,30 @@
                 }
             }
         },
+        components: {
+			 addressograph,
+			 SelectPatientModal,
+		},
+		mounted() {
+        	$('.ls-datepicker').datepicker({
+         		format: 'dd/mm/yyyy',
+         		'autoclose': true
+     		})
+        	// if(this.ipd_id == 0){
+	     		   $('#delete_modal').modal('show');
+	    	// }
+		 	$('.ls-datepicker').datepicker().on('changeDate',function(){
+				if (this.id == 'date_table') {
+					vm.NutritionalAssessmentForm.date_table = this.value;
+			 	}
+			})
+       	},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
 
-        saveNutritionalAssessmentForm() {
+        	saveNutritionalAssessmentForm() {
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {
@@ -623,7 +635,7 @@
                    User.saveNutritionalAssessmentForm(Res).then(
                          (response) => {
                          	console.log(response)
-                         	if(response.data.code == 200) {
+                         	if(response.data.status == 200) {
                          		toastr.success('Nutritional Assessment Form has been saved', 'Nutritional Assessment Form', {timeOut: 5000});
                          	}
                           $("body .js-loader").addClass('d-none');

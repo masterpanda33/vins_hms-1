@@ -5,25 +5,20 @@
 				<div class="col">
 					<h1>Patient Diet Record</h1>
 				</div>
-				<div class="col">
-					<div class="text-right">
-						DOC NO. FMT/HIC/09 <br>
-						REV. No. 0.1 <br>
-						WEF 10-10-2015
-					</div>
-				</div>
-			</div>
+							</div>
 		</div>
-
+		<div class="text-right">
+			<addressograph></addressograph>
+		</div>
 		<hr>
 
 		<form action="" method="post">
 			<div class="row form-group">
-				<div class="col">
-					<label>Dietician / Nurses Name : </label>
+				<div class="col-md-6">
+						<label>Dietician / Nurses Name : </label>
 				</div>
-				<div class="col">
-					<input class="form-control" type="text" name="dietician_name" v-model="PatientDietRecord.dietician_name" v-validate="'required'" value="">
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="dietician_name" v-model="patientDietRecordData.dietician_name" v-validate="'required'" value="">
 					<span class="help is-danger" v-show="errors.has('dietician_name')">
 						Dietician name is required
 					</span>
@@ -37,8 +32,8 @@
 							<label>Date : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="date" name="date" v-model="PatientDietRecord.date" v-validate="'required'" value="" />
-							<span class="help is-danger" v-show="errors.has('date')">
+							<input class="form-control ls-datepicker" type="text" name="date_diet" v-model="patientDietRecordData.date_diet" v-validate="'required'" value="" />
+							<span class="help is-danger" v-show="errors.has('date_diet')">
 								Date is required
 							</span>
 						</div>
@@ -50,8 +45,8 @@
 							<label>Time : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="time" name="time" v-model="PatientDietRecord.time" v-validate="'required'" value="" />
-							<span class="help is-danger" v-show="errors.has('time')">
+							<input class="form-control ls-timepicker" type="text" name="time_diet" v-model="patientDietRecordData.time_diet" v-validate="'required'" value="" />
+							<span class="help is-danger" v-show="errors.has('time_diet')">
 								Time is required
 							</span>
 						</div>
@@ -61,37 +56,47 @@
 
 			<div class="row form-group">
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>Bed No : </label>
 				</div>
-				<div class="col">
-					<input class="form-control" type="text" name="bed_no" v-model="PatientDietRecord.bed_no" v-validate="'required'" value=""/>
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="bed_no" v-model="patientDietRecordData.bed_no" v-validate="'required'" value=""/>
 					<span class="help is-danger" v-show="errors.has('bed_no')">
 						Bed number is required
 					</span>
-				</div>
-			</div>
+				</div></div></div>
 
-			<div class="row form-group">
+
 				<div class="col">
+					<div class="row">
+						<div class="col">
 					<label>IPD No : </label>
 				</div>
-				<div class="col">
-					<input class="form-control" type="text" name="ipd_no" v-model="ipd_id" v-validate="'required'" value=""/>
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" value=""/>
 					<span class="help is-danger" v-show="errors.has('ipd_id')">
-						IPD is required
+						Numeric IPD is required
 					</span>
-				</div>
-			</div>
+				</div></div>
+			</div></div>
 
 			<div class="row form-group">
 				<div class="col">
-					<label>Patient Name : </label>
+					<div class="row">
+						<div class="col">
+							<label>Patient Name : </label>
+						</div>
+						<div class="col">
+							<input class="form-control" type="text" name="patient_name" v-model="patientDietRecordData.patient_name" v-validate="'required'" value=""/>
+							<span class="help is-danger" v-show="errors.has('patient_name')">
+								Patient name is required
+							</span>
+						</div>
+					</div>
 				</div>
 				<div class="col">
-					<input class="form-control" type="text" name="patient_name" v-model="PatientDietRecord.patient_name" v-validate="'required'" value=""/>
-					<span class="help is-danger" v-show="errors.has('patient_name')">
-						Patient name is required
-					</span>
+
 				</div>
 			</div>
 
@@ -102,7 +107,7 @@
 							<label>Diagnosis : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="diagnosis" v-model="PatientDietRecord.diagnosis" v-validate="'required'" value="" />
+							<input class="form-control" type="text" name="diagnosis" v-model="patientDietRecordData.diagnosis" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('diagnosis')">
 								Diagnosis is required
 							</span>
@@ -115,7 +120,7 @@
 							<label>Consultant's Name : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="consultants_name" v-model="PatientDietRecord.consultants_name" v-validate="'required'" value="" />
+							<input class="form-control" type="text" name="consultants_name" v-model="patientDietRecordData.consultants_name" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('consultants_name')">
 								Consultant's name is required
 							</span>
@@ -131,7 +136,7 @@
 							<label>Diet to be Given : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="diet_to_be_given" v-model="PatientDietRecord.diet_to_be_given" v-validate="'required'" value="" />
+							<input class="form-control" type="text" name="diet_to_be_given" v-model="patientDietRecordData.diet_to_be_given" v-validate="'required'" value="" />
 							<span class="help is-danger" v-show="errors.has('diet_to_be_given')">
 								Diet to be given is required
 							</span>
@@ -144,7 +149,7 @@
 							<label>Remarks : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="text" name="remarks" v-model="PatientDietRecord.remarks" v-validate="'required'" value=""/>
+							<input class="form-control" type="text" name="remarks" v-model="patientDietRecordData.remarks" v-validate="'required'" value=""/>
 							<span class="help is-danger" v-show="errors.has('remarks')">
 								Remarks is required
 							</span>
@@ -159,21 +164,28 @@
 				</div>
 			</div>
 		</form>
+		 <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
 	import User from '../../../api/users.js';
+	import addressograph from './addressograph.vue';
+	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
+				'type': 'patientDietRecord',
+                'patient_id': this.$store.state.Patient.patientId,
+               	'ipd_id': this.$store.state.Patient.ipdId,
+               	'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientDietRecordData' : {
 									'dietician_name':'',
-									'date':'',
-									'time':'',
+									'date_diet':'',
+									'time_diet':'',
 									'bed_no':'',
-									'uhid_no':'',
 									'patient_name':'',
 									'diagnosis':'',
 									'consultants_name':'',
@@ -182,10 +194,40 @@
                 }
             }
         },
+		components: {
+           addressograph,
+           SelectPatientModal
+       },
+       	mounted(){
+					$('.ls-datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
+					$('.ls-timepicker').timepicker({
+            format: 'hh-mm',
+                     'autoclose': true
+           })
+			// if(this.ipd_id == 0){
+				$('#delete_modal').modal('show');
+        	 // }
+					 $('.ls-datepicker').datepicker().on('changeDate',function(){
+             if (this.id == 'date_diet') {
+               vm.doctorsDailyNotesData.date_diet = this.value;
+             }
+           })
+					 $('.ls-timepicker').timepicker().on('change',function(){
+
+	           if (this.id == 'time_diet') {
+	             vm.doctorsDailyNotesData.time_diet = this.value;
+	           }
+	       })
+
+		},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
+
 
         savePatientDietRecord() {
 		    	this.$validator.validateAll().then(
