@@ -12,12 +12,21 @@
 
 		<div class="row">
 			<div class="col-md-6">
+				<div class="col-md-6">
+					<label>IPD NO : </label>
+				</div>
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="ipd_id" id="ipd_id" v-model="ipd_id" v-validate="'required|numeric'" />
+					<span class="help is-danger" v-show="errors.has('ipd_id')">
+						Numeric Field is required
+					</span>
+				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="text-right">
 					<addressograph></addressograph>
 				</div>
-					
+
 			</div>
 		</div>
 
@@ -28,8 +37,8 @@
 			<div class="col-md-6">
 				<input class="form-control" type="text" id="chief_complaints" name="chief_complaints" value="" v-model="historyFormData.chief_complaints" v-validate="'required'"/>
 				<span class="help is-danger" v-show="errors.has('chief_complaints')">
-									Field is required
-								</span>
+					Field is required
+				</span>
 
 			</div>
 		</div>
@@ -121,8 +130,8 @@
 					<label for="at" class="control-label">Time : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control  " type="time" id="at" name="at" value="" v-model="historyFormData.at" v-validate="'required'"/>
-					<span class="help is-danger" v-show="errors.has('at')">
+					<input class="form-control ls-timepicker" type="text" id="time_accident" name="time_accident" value="" v-model="historyFormData.time_accident" v-validate="'required'"/>
+					<span class="help is-danger" v-show="errors.has('time_accident')">
 										Field is required
 									</span>
 				</div>
@@ -132,8 +141,8 @@
 					<label for="date" class="control-label">Date : </label>
 				</div>
 				<div class="col-md-6">
-					<input class="form-control " type="date" id="date" name="date" value="" v-model="historyFormData.date" v-validate="'required'"/>
-					<span class="help is-danger" v-show="errors.has('date')">
+					<input class="form-control ls-datepicker" type="text" id="date_accident" name="date_accident" value="" v-model="historyFormData.date_accident" v-validate="'required'"/>
+					<span class="help is-danger" v-show="errors.has('date_accident')">
 						Field is required
 					</span>
 
@@ -507,8 +516,8 @@
 									'road_accident':'',
 									'alleged_roadtrafficaccident':'',
 									'place':'',
-									'time':'',
-									'date':'',
+									'time_accident':'',
+									'date_accident':'',
 									'ho_loc':'',
 									'ho_entbleeding':'',
 									'ho_seizures':'',
@@ -561,11 +570,11 @@
 			$('.ls-timepicker').timepicker();
             let vm =this;
 			$('.ls-datepicker').datepicker().on('changeDate',function(){
-				vm.historyFormData.date = this.value;
+				vm.historyFormData.date_accident = this.value;
 			})
 
 			$('.ls-timepicker').on('change', function(e)  {
-				//vm.historyFormData.time = this.value;
+				//vm.historyFormData.time_accident = this.value;
 			});
 			 // if(this.ipd_id == 0){
 	     		   $('#delete_modal').modal('show');

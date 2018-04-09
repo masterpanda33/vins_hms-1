@@ -20,8 +20,8 @@
 								<addressograph></addressograph>
 							</div>
 						</div>
-			</div>
-				<div class="row form-group">
+					</div>
+						<div class="row form-group">
 	          	<div class="col-md-4">
 	            <div class="col-md-6">
 	              <label for="">Weight:</label>

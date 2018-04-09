@@ -90,6 +90,9 @@ import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChec
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
 import NewUser from './views/admin/vins/newUser'
 
+import vascularExamination from './views/admin/vins/vascularExamination.vue'
+import neuroExamination from './views/admin/vins/neuroExamination.vue'
+
 
 Vue.use(VueRouter)
 
@@ -451,7 +454,16 @@ const routes = [
                 meta: { requiresAuth: true },
                 name: 'mar_flowsheet'
             },
-
+            {
+                path: '/vascularExamination',
+                component: vascularExamination,
+                name: 'vascularExamination'
+            },
+            {
+                path: '/neuroExamination',
+                component: neuroExamination,
+                name: 'neuroExamination'
+            },
 
 
 
@@ -500,7 +512,7 @@ const routes = [
     {
 
         path: '/login', component: LayoutLogin,
-        
+
     },
 
     // DEFAULT ROUTE

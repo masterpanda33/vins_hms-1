@@ -16,7 +16,7 @@
 			</div>
 			<div class="col-md-6">
 				<div class="text-right">
-					<addressograph></addressograph>	
+					<addressograph></addressograph>
 				</div>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 						<label for="date">Date : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control ls-datepicker"  id = "date" type="text" name="date" value="" />
+						<input class="form-control ls-datepicker"  id = "date_obs" type="text" name="date_obs" value="" v-model="erObservationData.date_obs" />
 					</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control" type="time" :name="'time_'+ti" id = "" value="'time_'+ti" v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control ls-timepicker" type="text" :name="'time_'+ti" :id = "'time_'+ti" value="'time_'+ti" v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -171,10 +171,10 @@
 							<input type="text" :name="'quantity_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].quantity">
 					 </td>
 						<td>
-							<input type="time" :name="'start_time_'+m" id = "'start_time_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].start_time">
+							<input type="text" :name="'start_time_'+m" :id = "'start_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].start_time">
 					</td>
 						<td>
-							<input type="time" :name="'end_time_'+m" id = "'end_time_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].end_time">
+							<input type="text" :name="'end_time_'+m" :id = "'end_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].end_time">
 					</td>
 						<td>
 							<input type="text" :name="'remarks_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].remarks">
@@ -203,19 +203,19 @@
 				<tbody>
 					<tr v-for="n in 5">
 						<td>
-							<input type="text" :name="'name_drug_'+n" class="form-control" value="" id = "'name_drug_'+n" v-model="erObservationData.medication_administration[n].name_drug">
+							<input type="text" :name="'name_drug_'+n" class="form-control" value="" :id = "'name_drug_'+n" v-model="erObservationData.medication_administration[n].name_drug">
 						</td>
 						<td>
-							<input type="text" :name="'dosage_'+n" class="form-control" value="" id = "'dosage_'+n" v-model="erObservationData.medication_administration[n].dosage">
+							<input type="text" :name="'dosage_'+n" class="form-control" value="" :id = "'dosage_'+n" v-model="erObservationData.medication_administration[n].dosage">
 						</td>
 						<td>
-							<input type="text" :name="'routine_'+n" class="form-control" value="" id = "routine_'+n" v-model="erObservationData.medication_administration[n].routine">
+							<input type="text" :name="'routine_'+n" class="form-control" value="" :id = "'routine_'+n" v-model="erObservationData.medication_administration[n].routine">
 						</td>
 						<td>
-							<input type="text" :name="'administration_by_'+n"  class="form-control" id = "'administration_by_'+n"  value=" " v-model="erObservationData.medication_administration[n].administration_by">
+							<input type="text" :name="'administration_by_'+n"  class="form-control" :id = "'administration_by_'+n"  value=" " v-model="erObservationData.medication_administration[n].administration_by">
 						</td>
 						<td>
-							<input type="time" :name="'medication_time_'+n" id = "'medication_time_'+n" class="form-control" value=" " v-model="erObservationData.medication_administration[n].medication_time">
+							<input type="text" :name="'medication_time_'+n" :id = "'medication_time_'+n" class="form-control ls-timepicker" value=" " v-model="erObservationData.medication_administration[n].medication_time">
 						</td>
 				  </tr>
 				</tbody>
@@ -263,7 +263,7 @@
 	import User from '../../../api/users.js';
 	import addressograph from './addressograph.vue';
 	 import SelectPatientModal from '../../../components/SelectPatientModal.vue';
-	
+
     export default {
         data() {
             return {
@@ -273,7 +273,7 @@
                 'patient_id': this.$store.state.Patient.patientId,
                	'ipd_id': this.$store.state.Patient.ipdId,
                 'erObservationData' : {
-									'date':'',
+									'date_obs':'',
 									'triage_category':'',
 									'diagnosis':'',
 									'investigation':'',
@@ -415,7 +415,7 @@
 				 });
 				 $('.ls-datepicker').datepicker().on('changeDate',function(){
 	 					let vm = this;
-	 				vm.erObservationData.date = this.value;
+	 				vm.erObservationData.date_obs = this.value;
 	 			});
 				$('.ls-timepicker').timepicker().on('change',function(){
 							let vm = this;

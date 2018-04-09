@@ -21,18 +21,16 @@
 
 		<form action="" method="post">
 			<div class="row form-group">
-					<div class="col-md-6">
-				<div class="col-md-12">
-					<label>Dietician / Nurses Name : </label>
+				<div class="col-md-6">
+						<label>Dietician / Nurses Name : </label>
 				</div>
 				<div class="col-md-6">
 					<input class="form-control" type="text" name="dietician_name" v-model="patientDietRecordData.dietician_name" v-validate="'required'" value="">
 					<span class="help is-danger" v-show="errors.has('dietician_name')">
 						Dietician name is required
 					</span>
-</div>
-</div>
-</div>
+				</div>
+			</div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -41,8 +39,8 @@
 							<label>Date : </label>
 						</div>
 						<div class="col">
-							<input class="form-control" type="date" name="date" v-model="patientDietRecordData.date" v-validate="'required'" value="" />
-							<span class="help is-danger" v-show="errors.has('date')">
+							<input class="form-control ls-datepicker" type="text" name="date_diet" v-model="patientDietRecordData.date_diet" v-validate="'required'" value="" />
+							<span class="help is-danger" v-show="errors.has('date_diet')">
 								Date is required
 							</span>
 						</div>
@@ -54,8 +52,8 @@
 							<label>Time : </label>
 						</div>
 						<div class="col">
-							<input class="form-control " type="time" name="time" v-model="patientDietRecordData.time" v-validate="'required'" value="" />
-							<span class="help is-danger" v-show="errors.has('time')">
+							<input class="form-control ls-timepicker" type="text" name="time_diet" v-model="patientDietRecordData.time_diet" v-validate="'required'" value="" />
+							<span class="help is-danger" v-show="errors.has('time_diet')">
 								Time is required
 							</span>
 						</div>
@@ -94,15 +92,20 @@
 				<div class="col">
 					<div class="row">
 						<div class="col">
-					<label>Patient Name : </label>
+							<label>Patient Name : </label>
+						</div>
+						<div class="col">
+							<input class="form-control" type="text" name="patient_name" v-model="patientDietRecordData.patient_name" v-validate="'required'" value=""/>
+							<span class="help is-danger" v-show="errors.has('patient_name')">
+								Patient name is required
+							</span>
+						</div>
+					</div>
 				</div>
 				<div class="col">
-					<input class="form-control" type="text" name="patient_name" v-model="patientDietRecordData.patient_name" v-validate="'required'" value=""/>
-					<span class="help is-danger" v-show="errors.has('patient_name')">
-						Patient name is required
-					</span>
+
 				</div>
-			</div></div></div>
+			</div>
 
 			<div class="row form-group">
 				<div class="col">
@@ -187,8 +190,8 @@
                	'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientDietRecordData' : {
 									'dietician_name':'',
-									'date':'',
-									'time':'',
+									'date_diet':'',
+									'time_diet':'',
 									'bed_no':'',
 									'patient_name':'',
 									'diagnosis':'',
@@ -203,9 +206,28 @@
            SelectPatientModal
        },
        	mounted(){
-			if(this.ipd_id == 0){
+       			$('.ls-datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
+					$('.ls-timepicker').timepicker({
+            format: 'hh-mm',
+                     'autoclose': true
+           })
+			// if(this.ipd_id == 0){
 				$('#delete_modal').modal('show');
-        	 }
+        	 // }
+					 $('.ls-datepicker').datepicker().on('changeDate',function(){
+             if (this.id == 'date_diet') {
+               vm.doctorsDailyNotesData.date_diet = this.value;
+             }
+           })
+					 $('.ls-timepicker').timepicker().on('change',function(){
+
+	           if (this.id == 'time_diet') {
+	             vm.doctorsDailyNotesData.time_diet = this.value;
+	           }
+	       })
 		},
         methods: {
 		    GetSelectComponent(componentName) {

@@ -5,14 +5,16 @@
 			<div class="col-md-9">
 			<h1>Blood Transfusion Form</h1>
 			</div>
-			<div class="col-md-3">
-        		<div class="text-right">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
 
-        			<addressograph></addressograph>
-  			    </div>
-  			</div>
-
-
+		</div>
+		<div class="col-md-6">
+  		<div class="text-right">
+  			<addressograph></addressograph>
+	    </div>
 		</div>
 	</div>
 	<form action="" method="post">
@@ -28,6 +30,7 @@
 					</span>
 				</div>
 				<div class="col">
+<<<<<<< HEAD
 					<label>IPD No.:</label>
 				</div>
 				<div class="col">
@@ -35,6 +38,12 @@
 					<span class="help is-danger" v-show="errors.has('ipd_no')">
 						Field is required
 					</span>
+=======
+
+				</div>
+				<div class="col">
+
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
 				</div>
 
 		</div>
@@ -77,7 +86,11 @@
 				<label>Time:</label>
 			</div>
 			<div class="col">
+<<<<<<< HEAD
 				<input type="time" class="form-control " name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+=======
+				<input type="time" class="form-control ls-timepicker" name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
 				<span class="help is-danger" v-show="errors.has('time')">
 					Field is required
 				</span>
@@ -287,7 +300,11 @@
 						<td v-else-if="n == 3">During Transfusion</td>
 						<td v-else-if="n == 11">Post Transfusion</td>
 						<td v-else></td>
+<<<<<<< HEAD
 						<td><input type="time" class="form-control " id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
+=======
+						<td><input type="text" class="form-control ls-timepicker" :id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
 						<td><input type="text" class="form-control" :name="'temp'+n" v-model="bloodTransfusionDetails.transfusion[n].temp" id ="_01_02" /></td>
 						<td><input type="text" class="form-control" :name="'resp'+n" v-model="bloodTransfusionDetails.transfusion[n].resp" id ="_01_03" /></td>
 						<td><input type="text" class="form-control" :name="'bp'+n" v-model="bloodTransfusionDetails.transfusion[n].bp" id ="_01_04" /></td>
@@ -303,7 +320,8 @@
 						<label>Minor Reaction : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-group" name="minor_reaction" v-model="bloodTransfusionDetails.minor_reaction">
+						<select class="form-control" name="minor_reaction" v-model="bloodTransfusionDetails.minor_reaction">
+							<option value="NA">NA</option>
 							<option value="skin_rash">Skin Rash</option>
 							<option value="urticaria">Urticaria</option>
 							<option value="body_ache">Body Ache</option>
@@ -314,10 +332,11 @@
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-6">
-						<label>Moderate : </label>
+						<label>Moderate Reaction: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-group" name="moderate" v-model="bloodTransfusionDetails.moderate">
+						<select class="form-control" name="moderate" v-model="bloodTransfusionDetails.moderate_reaction">
+							<option value="NA">NA</option>
 							<option value="fever">Fever</option>
 							<option value="vomiting">Vomiting</option>
 							<option value="shivering">Shivering</option>
@@ -333,7 +352,8 @@
 						<label>Major Reaction : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-group" name="major_reactions" v-model="bloodTransfusionDetails.major_reactions">
+						<select class="form-control" name="major_reactions" v-model="bloodTransfusionDetails.major_reaction">
+							<option value="NA">NA</option>
 							<option value="chest_pain">Chest Pain</option>
 							<option value="breathlessness">Breathlessness</option>
 							<option value="decreased_urine_output">Decreased Urine Output</option>
@@ -351,7 +371,9 @@
 			</div>
 
 		<div class="row form-group">
-			<button class="btn btn-success" type="button" @click="saveBloodTransfusion()" >Submit</button>
+			<div class="col text-center">
+				<button class="btn btn-success" type="button" @click="saveBloodTransfusion()" >Submit</button>
+			</div>
 		</div>
 	</form>
 		<select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
@@ -372,7 +394,6 @@
                	'ipd_id': this.$store.state.Patient.ipdId,
                 'bloodTransfusionDetails' : {
 									'patient_name': '',
-									'ipd_no': '',
 									'age': '',
 									'sex': '',
 									'date': '',
@@ -390,8 +411,8 @@
 									'start_time': '',
 									'end_time': '',
 									'minor_reaction': '',
-									'moderate': '',
-									'major_reactions': '',
+									'moderate_reaction': '',
+									'major_reaction': '',
 									'time_adverse': '',
 									'transfusion' : {
 										'1':{
@@ -513,95 +534,56 @@
 		 				if (this.id == 'tftime_1') {
 		 					vm.bloodTransfusionDetails.transfusion[1].tftime = this.value;
 		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
 						if (this.id == 'tftime_2') {
 							vm.bloodTransfusionDetails.transfusion[2].tftime = this.value;
 						}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_3') {
-		 					vm.bloodTransfusionDetails.transfusion[3].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_4') {
-		 					vm.bloodTransfusionDetails.transfusion[4].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_5') {
-		 					vm.bloodTransfusionDetails.transfusion[5].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_6') {
-		 					vm.bloodTransfusionDetails.transfusion[6].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_7') {
-		 					vm.bloodTransfusionDetails.transfusion[7].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_8') {
-		 					vm.bloodTransfusionDetails.transfusion[8].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_9') {
-		 					vm.bloodTransfusionDetails.transfusion[9].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_10') {
-		 					vm.bloodTransfusionDetails.transfusion[10].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_11') {
-		 					vm.bloodTransfusionDetails.transfusion[12].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_13') {
-		 					vm.bloodTransfusionDetails.transfusion[13].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_14') {
-		 					vm.bloodTransfusionDetails.transfusion[14].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'tftime_15') {
-		 					vm.bloodTransfusionDetails.transfusion[15].tftime = this.value;
-		 				}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
+						if (this.id == 'tftime_3') {
+							vm.bloodTransfusionDetails.transfusion[3].tftime = this.value;
+						}
+						if (this.id == 'tftime_4') {
+							vm.bloodTransfusionDetails.transfusion[4].tftime = this.value;
+						}
+						if (this.id == 'tftime_5') {
+							vm.bloodTransfusionDetails.transfusion[5].tftime = this.value;
+						}
+						if (this.id == 'tftime_6') {
+							vm.bloodTransfusionDetails.transfusion[6].tftime = this.value;
+						}
+						if (this.id == 'tftime_7') {
+							vm.bloodTransfusionDetails.transfusion[7].tftime = this.value;
+						}
+						if (this.id == 'tftime_8') {
+							vm.bloodTransfusionDetails.transfusion[8].tftime = this.value;
+						}
+						if (this.id == 'tftime_9') {
+							vm.bloodTransfusionDetails.transfusion[9].tftime = this.value;
+						}
+						if (this.id == 'tftime_10') {
+							vm.bloodTransfusionDetails.transfusion[10].tftime = this.value;
+						}
+						if (this.id == 'tftime_11') {
+							vm.bloodTransfusionDetails.transfusion[12].tftime = this.value;
+						}
+						if (this.id == 'tftime_13') {
+							vm.bloodTransfusionDetails.transfusion[13].tftime = this.value;
+						}
+						if (this.id == 'tftime_14') {
+							vm.bloodTransfusionDetails.transfusion[14].tftime = this.value;
+						}
+						if (this.id == 'tftime_15') {
+							vm.bloodTransfusionDetails.transfusion[15].tftime = this.value;
+						}
 						if (this.id == 'end_time') {
 							vm.bloodTransfusionDetails.end_time = this.value;
 						}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
 						if (this.id == 'start_time') {
 							vm.bloodTransfusionDetails.start_time = this.value;
+						}
+						if (this.id == 'time') {
+							vm.bloodTransfusionDetails.time = this.value;
+						}
+						if (this.id == 'time_adverse') {
+							vm.bloodTransfusionDetails.time_adverse = this.value;
 						}
 					})
 					$('.ls-datepicker').datepicker().on('changeDate',function(){
@@ -609,24 +591,9 @@
 						if (this.id == 'expiry_date') {
 							vm.bloodTransfusionDetails.expiry_date = this.value;
 						}
-					})
-					$('.ls-datepicker').datepicker().on('changeDate',function(){
-
 						if (this.id == 'date') {
 							vm.bloodTransfusionDetails.date = this.value;
 						}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-						if (this.id == 'time') {
-							vm.bloodTransfusionDetails.time = this.value;
-						}
-					})
-					$('.ls-timepicker').timepicker().on('change',function(){
-
-		 				if (this.id == 'time_adverse') {
-		 					vm.bloodTransfusionDetails.time_adverse = this.value;
-		 				}
 					})
 				},
         methods: {
