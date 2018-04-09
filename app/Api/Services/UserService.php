@@ -54,146 +54,8 @@ class UserService implements UserContract
      */
     public function create($data)
     { 
-      // dd($data);
-  
-        // Data Initilization
-        $data = $data->all();
-        $mobileUserRoleId = Role::where('slug', 'mobile.user')->first()->id;
-
-        \Log::info('User Create Method Called');
-        $userData=array();
-        $userData['people']=array();
-        $userData['user']=array();
-        $userPassword = NULL;
-        $token = str_random(30);
-        //$data['is_mobile_user'] = 0;
-        // Validation checks for Email Validation
-
-        // Data Assignment
-        // TODO: we put condition for Set up for Mobile User Data
-        // TODO Check For Mobile Users
-        $isMobileUsers = \Request::header('IsMobileUser');
-        $userData['user']['is_mobile_user'] = true;
-        $userData['user']['is_desktop_user'] = true;
-        $userData['user']['registered_from'] = true;
-
-        // $data['is_mobile_user'] = false;
-        // if($isMobileUsers != '' ) {
-        //   $data['is_mobile_user'] = true;
-        // }
-
-        // // Also check From Desktop
-        // $userData['user']['is_mobile_user'] = false;
-        // if(isset($data['registerType']) && trim($data['registerType']) == 'mobile') {
-        //   $userData['user']['is_mobile_user'] = true;
-        //   $data['userType'] = '5';
-        //   $data['organisation'] = 'EuroSportring';
-        //   // $userPassword = Hash::make(trim($data['password']));
-        // }
-        // here we check that if userType is
-
-        if(isset($isMobileUsers) && $isMobileUsers == true)
-        {
-          $data['name'] = $data['first_name'];
-          $data['surname'] = $data['sur_name'];
-          $data['emailAddress'] = $data['email'];
-          $data['organisation'] = NULL;
-          $data['userType'] = $mobileUserRoleId;
-          \Log::info('passwod b4 encrupt '.$data['password']);
-          $userPassword = Hash::make(trim($data['password']));
-          $data['tournament_id']=$data['tournament_id'];
-          \Log::info('password after encrypt '.$userPassword);
-
-          $userData['user']['registered_from'] = false;
-
-         // $token = 1;
-        }
-
-        $userData['people']['first_name']=$data['name'];
-        $userData['people']['last_name']=$data['surname'];
-        \Log::info('Insert in PeopleTable');
-        $peopleObj = $this->peopleRepoObj->create($userData['people']);
-
-        $userData['user']['person_id']=$peopleObj->id;
-        $userData['user']['username']=$data['emailAddress'];
-        $userData['user']['name']=$data['name']." ".$data['surname'];
-        $userData['user']['email']=$data['emailAddress'];
-        $userData['user']['organisation']=$data['organisation'];
-        $userData['user']['userType']=$data['userType'];
-
-        // $userData['user']['password'] = Hash::make('password');
-        // // dd($userData['user']);
-        // $userObj = $this->userRepoObj->create($userData['user']);
-        // TODO: default is vaue for password
-       // $userData['user']['password']=Hash::make('password');
-
-        // We cant Allow untikl its set password
-        $userData['user']['password']=$userPassword;
-
-        if($userData['user']['userType'] == $mobileUserRoleId) {
-          $userData['user']['is_desktop_user'] = false;
-        }
-
-        $userData['user']['token'] = $token;
-        \Log::info($userData);
-        \Log::info('Insert in UserTable');
-        $userRes=$this->userRepoObj->create($userData['user']);
-        \Log::info('deleted user');
-        if($userRes['status'] == false )
-          {
-            return ['status_code' => '200', 'message' => 'This email already exists.'];
-          }
-        $userObj = $userRes['user'];
-        // $userObj->roles()->sync($data['userType'])
-        // $userObj->attachRole($data['userType']);
-        // Here we add code for Mobile Users to relate tournament to users
-        $user_id = $userObj->id;
-        if(($userRes['status'] == 'created'))
-        {
-          \Log::info('Insert in User Favourite table');
-          $user_id = $userObj->id;
-          $userFavouriteData['user_id']=$user_id;
-          if($data['tournament_id'] == '' || $data['tournament_id'] == 0)
-                $data['tournament_id'] = 1;
-          $userFavouriteData['tournament_id'] = $data['tournament_id'];
-          $userFavouriteData['is_default']= 1;
-          $this->userRepoObj->createUserFavourites($userFavouriteData);
-        //  return ['status_code' => '200', 'message' => 'Mobile Data Sucessfully Inserted'];
-        }
-        // Also Add settings Data
-        $userSettings['user_id'] = $user_id;
-        $userSettings['value'] = '{"is_sound":"true","is_vibration":"true","is_notification":"true"}';
-        $this->userRepoObj->createUserSettings($userSettings);
-        if ($data) {
-            \Log::info('Sent email');
-            $email_details = array();
-            $email_details['name'] = $data['name'];
-            $email_details['token'] = $token;
-            $email_details['is_mobile_user'] = 0;
-            $recipient = $data['emailAddress'];
-            if(isset($isMobileUsers) && $isMobileUsers == true)
-            {
-              $email_templates = 'emails.users.mobile_user';
-              $email_msg = 'Euro-Sportring - Email Verification';
-            } else {
-              if($userData['user']['userType'] == $mobileUserRoleId) {
-                $email_templates = 'emails.users.mobile_user_registered_from_desktop';
-                $email_msg = 'Euro-Sportring - Set password';
-              } else {
-                $email_templates = 'emails.users.desktop_user';
-                $email_msg = 'Euro-Sportring Tournament Planner - Set password';
-              }
-            }
-
-           //  if($userObj->is_mobile_user == 1) {
-           // //   $email_templates = 'emails.users.mobile_create';
-           //    $email_msg = 'Euro-Sportring email verification';
-           //    $email_details['is_mobile_user'] = 1;
-           //  }
-            Common::sendMail($email_details, $recipient, $email_msg, $email_templates);
-            return ['status_code' => '200', 'message' => 'Please check your inbox to verify your email address and complete your account registration.'];
-        }
-    }
+     
+         }
 
     public function resendEmail($data) {
 
@@ -201,6 +63,7 @@ class UserService implements UserContract
     public function saveUsersLogo($data, $id='')
     {
        if($data['user_image'] != '')
+     
        {
             if(strpos($data['user_image'],$this->getAWSUrl) !==  false) {
               $path = $this->getAWSUrl.'/assets/img/users/';
