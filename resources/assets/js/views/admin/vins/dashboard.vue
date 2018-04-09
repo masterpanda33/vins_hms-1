@@ -6,6 +6,13 @@
 			<div class="col-md-8">
 				<h1>List Of Forms</h1>
 			</div>
+			<div class="col-md-4">
+				<div class="text-right">
+					<input  type="button" class="btn btn-default" name="newUser" value="New User"
+					@click="GetSelectComponent('NewUser')" />
+				</div>
+			</div>
+
 		</div>
 	</div>
 

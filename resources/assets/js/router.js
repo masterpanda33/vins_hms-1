@@ -14,7 +14,7 @@ import LayoutLogin from './views/layouts/LayoutLogin.vue'
 import LayoutFront from './views/layouts/LayoutFront.vue'
 
 //Login : Auth
-import Login from './views/auth/Login.vue'
+// import Login from './views/auth/Login.vue'
 import Register from './views/auth/Register.vue'
 
 // Error : Not Found page
@@ -85,11 +85,14 @@ import informationForm from './views/admin/vins/informationForm.vue'
 import investigationSheet from './views/admin/vins/investigationSheet.vue'
 import intraoperativeEventManagement from './views/admin/vins/intraoperativeEventManagement.vue'
 import infusionTherapyChart from './views/admin/vins/infusionTherapyChart.vue'
-import doctorsInitialAssessment from './views/admin/vins/doctorsInitialAssessment.vue'
+// import doctorsInitialAssessment from './views/admin/vins/doctorsInitialAssessment.vue'
 import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChecklist.vue'
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
+import NewUser from './views/admin/vins/newUser'
+
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
+
 
 Vue.use(VueRouter)
 
@@ -113,209 +116,255 @@ const routes = [
             {
                 path: '/',
                 component: Dashboard,
+                meta: { requiresAuth: true },
                 name: 'home'
+
             },
             {
                 path: '/dashboard',
                 component: Dashboard,
+                meta: { requiresAuth: true },
                 name: 'dashboard'
             },
-            {
-                path: '/doctorsInitialAssessment',
-                component: doctorsInitialAssessment,
-                name: 'doctorsInitialAssessment'
-            },
+            // {
+            //     path: '/doctorsInitialAssessment',
+            //     component: doctorsInitialAssessment,
+            //     name: 'doctorsInitialAssessment'
+            // },
             {
                 path: '/patients_detail_form',
                 component: patientsDetailForm,
+                meta: { requiresAuth: true },
                 name: 'patients_detail_form'
             },
             {
                 path: '/adverseDrugReaction',
                 component: adverseDrugReaction,
+                meta: { requiresAuth: true },
                 name: 'adverseDrugReaction'
             },
             {
                 path: '/appointmentBook',
                 component: appointmentBook,
+                meta: { requiresAuth: true },
                 name: 'appointmentBook'
             },
             {
                 path: '/bloodSugarMonitoringChart',
                 component: bloodSugarMonitoringChart,
+                meta: { requiresAuth: true },
                 name: 'bloodSugarMonitoringChart'
             },
             {
                 path: '/bloodTransfusionDetails',
                 component: bloodTransfusionDetails,
+                meta: { requiresAuth: true },
                 name: 'bloodTransfusionDetails'
             },
             {
                 path: '/briefOperativeNote',
                 component: briefOperativeNote,
+                meta: { requiresAuth: true },
                 name: 'briefOperativeNote'
             },
             {
                 path: '/nabhReport',
                 component: nabhReport,
+                meta: { requiresAuth: true },
                 name: 'nabhReport'
             },
             {
                 path: '/codeBlueEvaluationForm',
                 component: codeBlueEvaluationForm,
+                meta: { requiresAuth: true },
                 name: 'codeBlueEvaluationForm'
             },
             {
                 path: '/completeNursingAssessment',
                 component: completeNursingAssessment,
+                meta: { requiresAuth: true },
                 name: 'completeNursingAssessment'
             },
             {
                 path: '/counsellingForm',
                 component: counsellingForm,
+                meta: { requiresAuth: true },
                 name: 'counsellingForm'
             },
             {
                 path: '/cprFormat',
                 component: cprFormat,
+                meta: { requiresAuth: true },
                 name: 'cprFormat'
             },
             {
                 path: '/cultureBiopsyForm',
                 component: cultureBiopsyForm,
+                meta: { requiresAuth: true },
                 name: 'cultureBiopsyForm'
             },
             {
                 path: '/dailyDietForm',
                 component: dailyDietForm,
+                meta: { requiresAuth: true },
                 name: 'dailyDietForm'
             },
             {
                 path: '/dischargeGatepass',
                 component: dischargeGatepass,
+                meta: { requiresAuth: true },
                 name: 'dischargeGatepass'
             },
             {
                 path: '/dischargeSummary',
                 component: dischargeSummary,
+                meta: { requiresAuth: true },
                 name: 'dischargeSummary'
             },
             {
                 path: '/doctorsDailyNotes',
                 component: doctorsDailyNotes,
+                meta: { requiresAuth: true },
                 name: 'doctorsDailyNotes'
             },
             {
                 path: '/surgicalSafetyChecklist',
                 component: surgicalSafetyChecklist,
+                meta: { requiresAuth: true },
                 name: 'surgicalSafetyChecklist'
             },
             {
                 path: '/LabSheet',
                 component: LabSheet,
+                meta: { requiresAuth: true },
                 name: 'LabSheet'
             },
             {
                 path: '/NurseProgressNotes',
                 component: NurseProgressNotes,
+                meta: { requiresAuth: true },
                 name: 'NurseProgressNotes'
             },
             {
                 path: '/NursingDutyOver',
                 component: NursingDutyOver,
+                meta: { requiresAuth: true },
                 name: 'NursingDutyOver'
+            },
+            {
+                path: '/NewUser',
+                component: NewUser,
+                meta: { requiresAuth: true },
+                name: 'NewUser'
             },
             {
                 path: '/NutritionalAssessmentForm',
                 component: NutritionalAssessmentForm,
+                meta: { requiresAuth: true },
                 name: 'NutritionalAssessmentForm'
             },
             {
                 path: '/NutritionalScreeningForm',
                 component: NutritionalScreeningForm,
+                meta: { requiresAuth: true },
                 name: 'NutritionalScreeningForm'
             },
             {
                 path: '/OperativeDetailSheet',
                 component: OperativeDetailSheet,
+                meta: { requiresAuth: true },
                 name: 'OperativeDetailSheet'
             },
             {
                 path: '/PatientAdmissionSheet',
                 component: PatientAdmissionSheet,
+                meta: { requiresAuth: true },
                 name: 'PatientAdmissionSheet'
             },
             {
                 path: '/PatientDietRecord',
                 component: PatientDietRecord,
+                meta: { requiresAuth: true },
                 name: 'PatientDietRecord'
             },
             {
                 path: '/PatientValuableForm',
                 component: PatientValuableForm,
+                meta: { requiresAuth: true },
                 name: 'PatientValuableForm'
             },
             {
                 path: '/PhysiotherapyAssessment',
                 component: PhysiotherapyAssessment,
+                meta: { requiresAuth: true },
                 name: 'PhysiotherapyAssessment'
             },
             {
                 path: '/RestraintAdministration',
                 component: RestraintAdministration,
+                meta: { requiresAuth: true },
                 name: 'RestraintAdministration'
             },
             {
                 path: '/plan_of_care',
                 component: planOfCare,
+                meta: { requiresAuth: true },
                 name: 'plan_of_care'
             },
 
             {
                 path: '/pre_anaesthesia_checkup_form',
                 component: preAnaesthesiaCheckupForm,
+                meta: { requiresAuth: true },
                 name: 'pre_anaesthesia_checkup_form'
             },
 
             {
                 path: '/post_anaesthesia_evaluation',
                 component: postAnaesthesiaEvaluation,
+                meta: { requiresAuth: true },
                 name: 'post_anaesthesia_evaluation'
             },
 
             {
                 path: '/pre_angiography_angioplasty_checklist',
                 component: preAngiographyAngioplastyChecklist,
+                meta: { requiresAuth: true },
                 name: 'pre_angiography_angioplasty_checklist'
             },
 
             {
                 path: '/pre_OT_checklist',
                 component: preOTChecklist,
+                meta: { requiresAuth: true },
                 name: 'pre_OT_checklist'
             },
 
             {
                 path: '/provisional_discharge_summary',
                 component: provisionalDischargeSummary,
+                meta: { requiresAuth: true },
                 name: 'provisional_discharge_summary'
             },
 
             {
                 path: '/radiology_requisition',
                 component: radiologyRequisition,
+                meta: { requiresAuth: true },
                 name: 'radiology_requisition'
             },
 
             {
                 path: '/transfer_checklist_for_nurses',
                 component: transferChecklistForNurses,
+                meta: { requiresAuth: true },
                 name: 'transfer_checklist_for_nurses'
             },
 
             {
                 path: '/transfusion_reaction_form',
                 component: transfusionReactionForm,
+                meta: { requiresAuth: true },
                 name: 'transfusion_reaction_form'
             },
 
@@ -323,72 +372,86 @@ const routes = [
             {
                 path: '/ventilator_charge_sheet',
                 component: ventilatorChargeSheet,
+                meta: { requiresAuth: true },
                 name: 'ventilator_charge_sheet'
             },
 
             {
                 path: '/ward_procedure_record',
                 component: wardProcedureRecord,
+                meta: { requiresAuth: true },
                 name: 'ward_procedure_record'
             },
             {
                 path: '/doctors_handover',
                 component: doctorsHandover,
+                meta: { requiresAuth: true },
                 name: 'doctors_handover'
             },
             {
                 path: '/drug_requisition',
                 component: drugRequisition,
+                meta: { requiresAuth: true },
                 name: 'drug_requisition'
             },
             {
                 path: '/er_observation',
                 component: erObservation,
+                meta: { requiresAuth: true },
                 name: 'er_observation'
             },
             {
                 path: '/gate_pass',
                 component: gatePass,
+                meta: { requiresAuth: true },
                 name: 'gate_pass'
             },
             {
                 path: '/glass_gow',
                 component: glassGow,
+                meta: { requiresAuth: true },
                 name: 'glass_gow'
             },
             {
                 path: '/history_form',
                 component: historyForm,
+                meta: { requiresAuth: true },
                 name: 'history_form'
             },
             {
                 path: '/information_form',
                 component: informationForm,
+                meta: { requiresAuth: true },
                 name: 'information_form'
             },
             {
                 path: '/investigation_sheet',
                 component: investigationSheet,
+                meta: { requiresAuth: true },
                 name: 'investigation_sheet'
             },
             {
                 path: '/intraoperativeEventManagement',
                 component: intraoperativeEventManagement,
+                meta: { requiresAuth: true },
                 name: 'intraoperativeEventManagement'
             },
             {
                 path: '/infusionTherapyChart',
                 component: infusionTherapyChart,
+                meta: { requiresAuth: true },
                 name: 'infusionTherapyChart'
             },
             {
                 path: '/centralLineBundleChecklist',
                 component: centralLineBundleChecklist,
+                meta: { requiresAuth: true },
                 name: 'centralLineBundleChecklist'
             },
             {
                 path: '/mar_flowsheet',
                 component: MARFlowSheet,
+                meta: { requiresAuth: true },
                 name: 'mar_flowsheet'
             },
             {

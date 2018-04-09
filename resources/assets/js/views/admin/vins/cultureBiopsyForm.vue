@@ -5,7 +5,6 @@
   			<div class="col-md-6">
   			<h1>Culture / Biopsy Form</h1>
   			</div>
-
   		</div>
   	</div>
 
@@ -28,7 +27,7 @@
           <div class="text-right">
             <addressograph></addressograph>
           </div>
-        </div>
+       </div>
       </div>
 
       <div class="row form-group">
@@ -50,6 +49,7 @@
             <label>Time :</label>
           </div>
           <div class="col-md-6">
+
             <input type="text" class="form-control ls-timepicker" name="time_culture" v-validate="'required'" v-model="cultureBiopsyData.time_culture" id ="time_culture">
             <span class="help is-danger" v-show="errors.has('time_culture')">
               Field is required
@@ -246,7 +246,7 @@
               <label>Date:</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control ls-datepicker" name="date_for_sign" v-validate="'required'" v-model="cultureBiopsyData.date_for_sign" id ="date_for_sign">
+              <input type="date" class="form-control " name="date_for_sign" v-validate="'required'" v-model="cultureBiopsyData.date_for_sign" id ="date_for_sign">
               <span class="help is-danger" v-show="errors.has('date_for_sign')">
                 Field is required
               </span>
@@ -257,7 +257,7 @@
               <label>Time:</label>
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control ls-timepicker" name="time_for_sign" v-validate="'required'" v-model="cultureBiopsyData.time_for_sign" id ="time_for_sign">
+              <input type="time" class="form-control " name="time_for_sign" v-validate="'required'" v-model="cultureBiopsyData.time_for_sign" id ="time_for_sign">
               <span class="help is-danger" v-show="errors.has('time_for_sign')">
                 Field is required
               </span>
@@ -313,9 +313,9 @@
            SelectPatientModal
        },
        mounted() {
-         // if(this.ipd_id == 0){
+         if(this.ipd_id == 0){
                 $('#delete_modal').modal('show');
-          // }
+          }
          $('.ls-datepicker').datepicker({
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true

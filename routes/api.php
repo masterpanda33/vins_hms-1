@@ -29,7 +29,7 @@ Route::get('/mlogin', '\euro_hms\Http\Controllers\Auth\ResetPasswordController@u
 $api = app('Dingo\Api\Routing\Router');
 
 
-$api->version('v1', function ($api) {
+$api->version('v1',['middleware' => 'jwt.auth'], function ($api) {
 
      // for localization
     $locale = \Request::header('locale');
@@ -90,8 +90,9 @@ $api->version('v1', function ($api) {
          $api->post('intraoperativeEventManagement/create', '\euro_hms\Api\Controllers\IntraoperativeEventManagementController@store')->name('intraoperativeEventManagement.create');
          $api->post('counsellingForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('counsellingForm.create');
          $api->post('centralLineBundleChecklist/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('centralLineBundleChecklist.create');
-         $api->post('patient/getDetails/{id}', '\euro_hms\Api\Controllers\PatientsDetailFormController@getDetails');
-         $api->get('patient/getAll', '\euro_hms\Api\Controllers\PatientsDetailFormController@getAllPatientName');
-
+        $api->post('patient/getDetails/{id}', '\euro_hms\Api\Controllers\PatientsDetailFormController@getDetails');
+        $api->get('patient/getAll', '\euro_hms\Api\Controllers\PatientsDetailFormController@getAllPatientName');
+        $api->post('user/create', '\euro_hms\Api\Controllers\UserController@createUser')->name('create.users'); 
+        $api->post('user/getDetails', '\euro_hms\Api\Controllers\UserController@getUserDetailsByID')->name('user.getUserDetails'); 
 
 });

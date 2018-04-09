@@ -242,9 +242,9 @@
           format: 'dd/mm/yyyy',
           'autoclose': true
            })
-            // if(this.ipd_id == 0){
+            if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-         // }
+         }
   $('.ls-datepicker').datepicker().on('changeDate',function(){
         if(this.id ==  'date_of_admission'){
             vm.dischargeSummaryData.date_of_admission = this.value;
