@@ -90,8 +90,8 @@ $api->version('v1', function ($api) {
          $api->post('intraoperativeEventManagement/create', '\euro_hms\Api\Controllers\IntraoperativeEventManagementController@store')->name('intraoperativeEventManagement.create');
          $api->post('counsellingForm/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('counsellingForm.create');
          $api->post('centralLineBundleChecklist/create', '\euro_hms\Api\Controllers\FormsOptionsDataController@store')->name('centralLineBundleChecklist.create');
-        $api->post('patient/getDetails/{id}', '\euro_hms\Api\Controllers\PatientsDetailFormController@getDetails');
-        $api->get('patient/getAll', '\euro_hms\Api\Controllers\PatientsDetailFormController@getAllPatientName');
+         $api->post('patient/getDetails/{id}', '\euro_hms\Api\Controllers\PatientsDetailFormController@getDetails');
+         $api->get('patient/getAll', '\euro_hms\Api\Controllers\PatientsDetailFormController@getAllPatientName');
 
 
 });
