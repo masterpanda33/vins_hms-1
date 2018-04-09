@@ -88,6 +88,8 @@ import infusionTherapyChart from './views/admin/vins/infusionTherapyChart.vue'
 // import doctorsInitialAssessment from './views/admin/vins/doctorsInitialAssessment.vue'
 import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChecklist.vue'
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
+import opdForm from './views/admin/vins/opd_form.vue'
+
 import NewUser from './views/admin/vins/newUser'
 
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
@@ -126,7 +128,12 @@ const routes = [
                 meta: { requiresAuth: true },
                 name: 'dashboard'
             },
-            // {
+            {
+                path: '/opd_form',
+                component: opdForm,
+                name: 'opd_form'
+            },
+                       // {
             //     path: '/doctorsInitialAssessment',
             //     component: doctorsInitialAssessment,
             //     name: 'doctorsInitialAssessment'

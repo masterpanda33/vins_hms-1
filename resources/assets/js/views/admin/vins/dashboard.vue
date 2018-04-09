@@ -28,6 +28,10 @@
 		</div>
 
 	</div>
+	<div class="col-md-4 top-buffer">
+		<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('opd_form')">OPD Form</a>
+	</div>
+
 
   <hr />
 
