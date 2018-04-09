@@ -9,6 +9,21 @@
 		</div>
 	</div>
 
+  <div class="row mt-20">
+		<h3>New Forms</h3>
+	</div>
+	<div class="row">
+		<div class="col-md-4 top-buffer">
+			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('vascularExamination')">vascularExamination</a>
+		</div>
+    <div class="col-md-4 top-buffer">
+			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('neuroExamination')">neuroExamination</a>
+		</div>
+
+	</div>
+
+  <hr />
+
 	<div class="row mt-20">
 		<h3>Emergency Patient</h3>
 	</div>
@@ -23,6 +38,11 @@
       <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('nabhReport')">NABH Report</a>
 		</div>
 	</div>
+  <div class="row">
+    <div class="col-md-4 top-buffer">
+			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('testFile')">Test File</a>
+		</div>
+  </div>
 	<hr />
 	<div class="row mt-20">
 		<h3>Pre-Admission Forms</h3>
@@ -274,7 +294,7 @@
         },
         mounted() {
         	this.$store.dispatch('SetIpdId',0);
-        
+
     },
         methods: {
 		    GetSelectComponent(componentName) {

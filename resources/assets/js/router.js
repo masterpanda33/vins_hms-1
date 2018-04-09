@@ -88,7 +88,8 @@ import infusionTherapyChart from './views/admin/vins/infusionTherapyChart.vue'
 import doctorsInitialAssessment from './views/admin/vins/doctorsInitialAssessment.vue'
 import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChecklist.vue'
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
-
+import vascularExamination from './views/admin/vins/vascularExamination.vue'
+import neuroExamination from './views/admin/vins/neuroExamination.vue'
 
 Vue.use(VueRouter)
 
@@ -390,7 +391,16 @@ const routes = [
                 component: MARFlowSheet,
                 name: 'mar_flowsheet'
             },
-
+            {
+                path: '/vascularExamination',
+                component: vascularExamination,
+                name: 'vascularExamination'
+            },
+            {
+                path: '/neuroExamination',
+                component: neuroExamination,
+                name: 'neuroExamination'
+            },
 
 
 
@@ -439,7 +449,7 @@ const routes = [
     {
 
         path: '/login', component: LayoutLogin,
-        
+
     },
 
     // DEFAULT ROUTE
