@@ -23,6 +23,9 @@ class UserRepository {
     {
       return UserFavourites::create($userFavouriteData);
     }
+    public function getUserDetailsByID($userID) {
+        return User::find($userID);
+    }
     public function getUserDetails($data)
     {
         // dd($data);
@@ -40,8 +43,8 @@ class UserRepository {
     public function getUsersByRegisterType($data)
     {
         $user = User::join('role_user', 'users.id', '=', 'role_user.user_id')
-                ->join('roles', 'roles.id', '=', 'role_user.role_id')
-                ->join('people', 'people.id', '=', 'users.person_id');
+                ->join('roles', 'roles.id', '=', 'role_user.role_id');
+                
 
         if(isset($data['userData'])) {
             $user = $user->where('users.email', 'like', "%" . $data['userData'] . "%")
@@ -97,29 +100,25 @@ class UserRepository {
 
     public function create($data)
     {
+        // dd($data);
         $userData = [
-        'person_id' => $data['person_id'],
-        'username' => $data['username'],
-        'name' => $data['name'],
+        'first_name' => $data['first_name'],
+        'last_name' => $data['last_name'],
+        'user_type'=>$data['user_type'],
+        'department'=>$data['department'],
         'email' => $data['email'],
-        'organisation' => $data['organisation'],
         'password' => $data['password'],
+        'mobile_no'=>$data['mobile_no'],
         'token' => $data['token'],
         'is_verified' => 0,
-        'is_online' => 0,
-        'is_active' => (isset($data['is_mobile_user'])) ? 0 : 1,
-        'is_blocked' => 0 ,
-        'is_mobile_user' => $data['is_mobile_user'] ? 1 : 0,
-        'is_desktop_user' => $data['is_desktop_user'] ? 1 : 0,
-        'registered_from' => $data['registered_from'] ? 1 : 0,
-        'user_image'=>(isset($data['user_image']) && $data['user_image']!='') ?  $data['user_image'] : ''
+        'is_active' =>  1,
+        //'user_image'=>(isset($data['user_image']) && $data['user_image']!='') ?  $data['user_image'] : ''
         ];
         $deletedUser = User::onlyTrashed()->where('email',$data['email'])->first();
         // if($deletedUser){
         //     $user = $deletedUser->restore();
         // }
          // $deletedUser;
-        try {
             if($deletedUser){
                 $deletedUser->restore();
 
@@ -133,9 +132,9 @@ class UserRepository {
                 // return {'status':'updated','user':$user};
                
                  // return  $deletedUser->attachRole($data['userType']);
-            }else{
-                    $user = User::create($userData);
-                    $user->attachRole($data['userType']);
+            }else {
+                   $user = User::create($userData);
+                    $user->attachRole(1);
                     return ['status'=>'created','user'=>$user];
 
 
@@ -143,13 +142,9 @@ class UserRepository {
                    // return  $user->attachRole($data['userType']);
               }
         }
-        catch (\PDOException  $e) {
-         return ['status'=>false];
-          //return $e->errorInfo[1]);
-        }
+        
 
-    }
-
+    
     public function delete($id)
     {
         return User::find($id)->delete();
@@ -163,9 +158,8 @@ class UserRepository {
     public function edit($userId)
     {
        $user=DB::table('users')
-            ->join('people', 'users.person_id', '=', 'people.id')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->select("users.id as id", "users.email as emailAddress",
+            ->select("users.id as id", "users.email as email",
                DB::raw('IF(users.user_image is not null,CONCAT("'.$this->userImagePath.'", users.user_image),"" ) as image'),
              "users.organisation as organisation", "people.first_name as name", "people.last_name as surname", "role_user.role_id as userType")
             ->where("users.id", "=", $userId)

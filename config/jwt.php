@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'secret' => env('JWT_SECRET', 'GV0lXJ6rANbzTilRwgkXyaV8lH1IMgLQ'),
+    'secret' => env('JWT_SECRET', 'HKsQXqpTl5PZ1MH2vjKupErHetXUWsOr'),
 
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'user' => 'Laraspace\Models\User',
+    'user' => 'euro_hms\Models\User',
 
     /*
     |--------------------------------------------------------------------------

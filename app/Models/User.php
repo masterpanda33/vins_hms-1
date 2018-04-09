@@ -23,29 +23,23 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
      * @var array
      */
     protected $fillable = [
-        'person_id',
-        'username',
+        
         'user_image',
-        'name',
         'email',
-        'organisation',
         'password',
         'token',
         'is_verified',
         'timezone',
-        'is_online',
         'last_login_time',
         'is_active',
         'last_active_time',
-        'is_blocked',
-        'blocked_time',
-        'blocker_id',
-        'settings',
         'is_mobile_user',
-        'is_desktop_user',
-        'registered_from',
-        'locale',
-        'fcm_id'
+        'address',
+        'mobile_no',
+        'first_name',
+        'last_name',
+        'user_type',
+        'department'
     ];
 
     /**
@@ -63,21 +57,19 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
      * @var array
      */
     protected $casts = [
-        'person_id' => 'integer',
-        'username' => 'string',
+        'first_name' => 'string',
+        'last_name'=>'string',
         'email' => 'string',
         'password' => 'string',
+        'address'=>'string',
+        'mobile_no'=>'string',
         'token' => 'string',
         'is_verified' => 'boolean',
         'timezone' => 'string',
-        'is_online' => 'boolean',
         'last_login_time' => 'datetime',
         'is_active' => 'boolean',
-        'last_active_time' => 'datetime',
-        'is_blocked' => 'boolean',
-        'blocked_time' => 'datetime',
-        'blocker_id' => 'integer',
-        'settings' => 'array',
+        'last_active_time' => 'datetime'
+        
     ];
 
     /**
@@ -90,18 +82,10 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
         'updated_at',
         'deleted_at',
         'last_login_time',
-        'last_active_time',
-        'blocked_time',
+        'last_active_time'
     ];
 
-    /**
-     * Get Personal details of user.
-     */
-    public function profile()
-    {
-        return $this->belongsTo('euro_hms\Models\Person', 'person_id');
-    }
-
+   
     /**
      * Get all permissions from roles.
      *
@@ -135,15 +119,6 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
     }
 
     /**
-     * Person Detail
-     *
-     * @return [type] [description]
-     */
-    public function personDetail()
-    {
-        return $this->belongsTo('euro_hms\Models\Person', 'person_id');
-    }
-    /**
      * Send the password reset notification.
      *
      * @param  string  $token
@@ -154,10 +129,10 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
         $mobileUserRoleId = Role::where('slug', 'mobile.user')->first()->id;
         $name = (isset($this->personDetail->first_name)) ? $this->personDetail->first_name : $this->name;
         $send_otp='';
-        $subject = 'Euro-Sportring Tournament Planner - Reset password';
+        $subject = 'Vins hms - Reset password';
         // Set OTP
         if($this->roles()->first()->id == $mobileUserRoleId) {
-            $subject = 'Euro-Sportring - Password Reset';
+            $subject = 'Vins hms - Reset password';
             // $send_otp = str_random(4);
             // $encoded_otp = base64_encode($this->id."|".$send_otp);
 
@@ -172,19 +147,5 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
             // request()->session()->put('otp_value', $encoded_otp);
         }
         $this->notify(new ResetPasswordNotification($token, $name,$this->email,$send_otp, $subject));
-    }
-    public function settings()
-    {
-        return $this->hasOne('euro_hms\Models\Settings', 'user_id');
-    }
-
-    public function defaultFavouriteTournament()
-    {
-        return $this->hasMany('euro_hms\Models\UserFavourites', 'user_id')->where('is_default', 1);
-    }
-
-    public function tournaments()
-    {
-        return $this->belongsToMany('euro_hms\Models\Tournament', 'tournament_user', 'user_id','tournament_id');
     }
 }

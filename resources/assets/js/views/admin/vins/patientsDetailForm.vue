@@ -68,8 +68,8 @@
 					</div>
 					<div class="col-md-6">
 						<select class="form-control " id="sex" name="sex" v-model="patientData.gender" >
-							<option value="M" >Male</option>
-							<option value="F">Female</option>
+							<option value="Male" >Male</option>
+							<option value="Female">Female</option>
 						</select>
 						<!--span class="help is-danger" v-show="errors.has('sex')">
 		                	Field is required
@@ -138,7 +138,7 @@
 						<!-- <input type="text" name=""> -->
 			      	<select class="form-control"  id="consulting_dr" name="consulting_dr"  v-model="patientData.consulting_dr">
 
-			      		 <option :value="patientData.consulting_dr_option.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
+			      		 <option :value="doctor.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
 
 			      	</select>
 			      		<!--span class="help is-danger" v-show="errors.has('consulting_dr')">

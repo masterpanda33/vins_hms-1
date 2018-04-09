@@ -5,7 +5,14 @@
 				<div class="col">
 					<h1>Patient Diet Record</h1>
 				</div>
-							</div>
+				<div class="col">
+					<div class="text-right">
+						DOC NO. FMT/HIC/09 <br>
+						REV. No. 0.1 <br>
+						WEF 10-10-2015
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="text-right">
 			<addressograph></addressograph>
@@ -199,7 +206,7 @@
            SelectPatientModal
        },
        	mounted(){
-					$('.ls-datepicker').datepicker({
+       			$('.ls-datepicker').datepicker({
             format: 'dd/mm/yyyy',
             'autoclose': true
           })
@@ -221,7 +228,6 @@
 	             vm.doctorsDailyNotesData.time_diet = this.value;
 	           }
 	       })
-
 		},
         methods: {
 		    GetSelectComponent(componentName) {
