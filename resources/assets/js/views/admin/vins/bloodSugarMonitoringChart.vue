@@ -5,7 +5,6 @@
   			<div class="col-md-6">
   			<h1>Blood Sugar Monitoring Chart</h1>
   			</div>
-
   		</div>
   	</div>
   	<form action="" method="post">
@@ -94,8 +93,13 @@
     			</thead>
     			<tbody>
             <tr v-for="n in 5">
+<<<<<<< HEAD
+              <td><input class="form-control " type="date" id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
+              <td><input class="form-control " type="time" id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+=======
               <td><input class="form-control ls-datepicker" type="text" :id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
               <td><input class="form-control" type="time" :id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
               <td><input class="form-control" type="text" :name="'bloodsugar_level_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].bloodsugar_level" value=""/></td>
               <td><input class="form-control" type="text" :name="'insulin_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].insulin" value=""/></td>
               <td><input class="form-control" type="text" :name="'name_sign_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].name_sign" value=""/></td>
@@ -182,9 +186,9 @@
    				    format: 'dd/mm/yyyy',
    				    'autoclose': true
    				})
-          // if(this.ipd_id == 0){
+          if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-          // }
+          }
 
             $('.ls-timepicker').timepicker({
    			    format: 'hh-mm',

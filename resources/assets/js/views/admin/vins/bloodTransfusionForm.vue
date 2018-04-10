@@ -3,7 +3,7 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-9">
-				<h1>Blood Transfusion Form</h1>
+			<h1>Blood Transfusion Form</h1>
 			</div>
 		</div>
 	</div>
@@ -30,11 +30,22 @@
 					</span>
 				</div>
 				<div class="col">
+<<<<<<< HEAD
+					<label>IPD No.:</label>
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" name="ipd_no" v-validate="'required'" v-model="ipd_id" id="ipd_no" value="" >
+					<span class="help is-danger" v-show="errors.has('ipd_no')">
+						Field is required
+					</span>
+=======
 
 				</div>
 				<div class="col">
 
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
 				</div>
+
 		</div>
 
 		<div class="form-group row">
@@ -66,7 +77,7 @@
 				<label>Date:</label>
 			</div>
 			<div class="col">
-				<input type="text" class="form-control ls-datepicker" name="date" v-validate="'required'" v-model="bloodTransfusionDetails.date" id="date" value="" >
+				<input type="date" class="form-control " name="date" v-validate="'required'" v-model="bloodTransfusionDetails.date" id="date" value="" >
 				<span class="help is-danger" v-show="errors.has('date')">
 					Field is required
 				</span>
@@ -75,7 +86,11 @@
 				<label>Time:</label>
 			</div>
 			<div class="col">
+<<<<<<< HEAD
+				<input type="time" class="form-control " name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+=======
 				<input type="time" class="form-control ls-timepicker" name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
 				<span class="help is-danger" v-show="errors.has('time')">
 					Field is required
 				</span>
@@ -203,7 +218,7 @@
 					<label>Date of Expiry:</label>
 				</div>
 				<div class="col-md-6">
-					<input type="text" class="form-control ls-datepicker" name="expiry_date" v-validate="'required'" v-model="bloodTransfusionDetails.expiry_date" id ="expiry_date" value="" >
+					<input type="date" class="form-control" name="expiry_date" v-validate="'required'" v-model="bloodTransfusionDetails.expiry_date" id ="expiry_date" value="" >
 					<span class="help is-danger" v-show="errors.has('expiry_date')">
 						Field is required
 					</span>
@@ -242,7 +257,7 @@
 					<label>BT Started at:</label>
 				</div>
 				<div class="col-md-6">
-					<input type="text" class="form-control ls-timepicker" name="start_time" v-validate="'required'" v-model="bloodTransfusionDetails.start_time" id ="start_time" value="" >
+					<input type="time" class="form-control " name="start_time" v-validate="'required'" v-model="bloodTransfusionDetails.start_time" id ="start_time" value="" >
 					<span class="help is-danger" v-show="errors.has('start_time')">
 						Field is required
 					</span>
@@ -253,7 +268,7 @@
 					<label>Stopped at:</label>
 				</div>
 				<div class="col-md-6">
-					<input type="text" class="form-control ls-timepicker" name="end_time" v-validate="'required'" v-model="bloodTransfusionDetails.end_time" id ="end_time" value="" >
+					<input type="time" class="form-control " name="end_time" v-validate="'required'" v-model="bloodTransfusionDetails.end_time" id ="end_time" value="" >
 					<span class="help is-danger" v-show="errors.has('end_time')">
 						Field is required
 					</span>
@@ -285,7 +300,11 @@
 						<td v-else-if="n == 3">During Transfusion</td>
 						<td v-else-if="n == 11">Post Transfusion</td>
 						<td v-else></td>
+<<<<<<< HEAD
+						<td><input type="time" class="form-control " id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
+=======
 						<td><input type="text" class="form-control ls-timepicker" :id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
 						<td><input type="text" class="form-control" :name="'temp'+n" v-model="bloodTransfusionDetails.transfusion[n].temp" id ="_01_02" /></td>
 						<td><input type="text" class="form-control" :name="'resp'+n" v-model="bloodTransfusionDetails.transfusion[n].resp" id ="_01_03" /></td>
 						<td><input type="text" class="form-control" :name="'bp'+n" v-model="bloodTransfusionDetails.transfusion[n].bp" id ="_01_04" /></td>
@@ -501,9 +520,9 @@
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true
 					})
-               // if(this.ipd_id == 0){
+               if(this.ipd_id == 0){
 	         	$('#delete_modal').modal('show');
-	    	 // }
+	    	 }
 
 	        $('.ls-timepicker').timepicker({
 						 format: 'hh-mm',

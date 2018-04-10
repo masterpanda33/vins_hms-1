@@ -99,7 +99,7 @@
           <label class="control-label" for="address">Advice on discharge :</label>
         </div>
         <div class="col-md-8">
-          <input type="text" name="advice_on_discharge"  rows="4" class="form-control" value="">
+          <input type="text" name="advice_on_discharge"  rows="4" class="form-control" value="" v-model="provisionalDischargeSummaryData.advice_on_discharge">
         </div>
       </div>
 
@@ -188,9 +188,9 @@
               format: 'dd/mm/yyyy',
             'autoclose': true
           })
-          // if(this.ipd_id == 0){
+          if(this.ipd_id == 0){
             $('#delete_modal').modal('show');
-          // }
+          }
 
           $('.ls-datepicker').datepicker().on('changeDate',function(){
 
