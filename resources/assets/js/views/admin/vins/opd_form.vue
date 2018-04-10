@@ -15,7 +15,7 @@
           <label for="date">Case type:</label>
         </div>
         <div class="col-md-6">
-          <select  class="form-control ls-select2" type = "text" v-validate="'required'" id = "case_type" name="case_type" value=""  v-model="opdData.case_type">
+          <select  class="form-control ls-select2" type = "text" v-validate="'required'" id = "case_type" name="case_type" value="" v-model="opdData.case_type">
             <option value="new">New</option>
             <option value="old">Old</option>
           </select>
@@ -24,6 +24,9 @@
           </span>
         </div>
       </div>
+       <div class="col-md-6" v-if="opdData.case_type == 'new'">
+            <create-patient-detail @confirmed="deleteConfirmed()" ></create-patient-detail>
+       </div>
       <div class="col-md-6" v-if="opdData.case_type == 'old'">
       <div class="col-md-6 ">
           <label for="date">UHID No:</label>
@@ -189,6 +192,7 @@
 </template>
 <script >
 	// import User from '../../../api/users.js';
+   import createPatientDetail from './createPatientDetail.vue';
     export default {
         data() {
             return {
@@ -198,7 +202,7 @@
               'doctor':'Rajesh Jain',
               'department':'Neurology',
               'opdData': {
-                'case_type': 'new',
+                'case_type': '',
                 'uhid_no': 0,
                 'name':'',
                 'age':'',
@@ -208,7 +212,10 @@
 
               }
             }
-        },
+        }, 
+        components: {
+         createPatientDetail
+       },
         computed: {
           bmi() {
             if(this.opdData.weight!='' && this.opdData.height!=''){
@@ -218,17 +225,26 @@
               return 0;
             }
           }
-        },
+       },
         mounted(){
-          $('.ls-selecct2').select2(); 
+          $('.ls-select2').select2({
+           placeholder: "Select"
+          }); 
           let vm =this;
-          $('.ls-selecct2').on("select2:select", function (e) { 
-            console.log($(this).val());
+          $('.ls-select2').on("select2:select", function (e) { 
+            // console.log($(this).val());
              vm.opdData.case_type = $(this).val();
              if($(this).val() == 'old') {
+             } 
+             else {
+                setTimeout(function(){
+                $('#createPatientDetail').modal('show');  
+             },500)
 
              }
           });
+            
         }
+         
     }
 </script>

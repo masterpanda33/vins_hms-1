@@ -55,14 +55,13 @@ class PatientsDetailFormController extends Controller
           'dob' => $data['dob'],
           'gender' => $data['gender'],
           'address' => $data['address'],
-          'phone_no' => $data['ph_no'],
-          'mobile_no' => $data['mob_no'],
+          'ph_no' => $data['ph_no'],
+          'mob_no' => $data['mob_no'],
           'references' => $data['reference_dr'],
           'consultant' => isset($data['consulting_dr'])?$data['consulting_dr']: '' ,
           'case_type' => $data['case'],
         ]);    
          $patientId = $patientCreate->id;
-
         } else {
             $patientId = 0;
             $patientData = PatientDetailsForm::where('first_name',$data['fname'])->where('dob',$data['dob'])->first();
