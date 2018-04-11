@@ -8,7 +8,7 @@ export default {
   	return api.get('user/edit/'+id)
   },
   savePatient(patientData) {
-    return api.post('patient/create',{'patientData': patientData})
+    return api.post('patient/create',{patientData})
   },
   saveAdverseDrugReaction(adverseDrugReaction) {
     return api.post('adverseDrugReaction/create',{'resData': adverseDrugReaction})

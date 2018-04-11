@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIpdDetails extends Migration
+class CreateOpdDetails extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIpdDetails extends Migration
      */
     public function up()
     {
-        Schema::create('ipd_details', function (Blueprint $table) {
+        Schema::create('opd_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('patient_id')->nullable();
             $table->string('uhid_no');
@@ -31,6 +31,7 @@ class CreateIpdDetails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ipd_details');
+        Schema::dropIfExists('opd_details');
     }
+
 }
