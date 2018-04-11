@@ -16,7 +16,9 @@ class patientDetailsSeeder extends Seeder
         DB::table('patient_details')->truncate();
 
         DB::table('patient_details')->insert([
-          ['first_name' => 'Bob',
+          [ 
+            'uhid_no'=>'VN18001',
+            'first_name' => 'Bob',
             'middle_name' => '',
             'last_name' => 'Marley',
             'dob' => '10/04/2018',
