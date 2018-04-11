@@ -23,8 +23,8 @@
       <h3>Before Induction of Anesthesia</h3>
     </div>
 
-		<div class="row form-group ">
-			<table class="table table-bordered">
+		<div class="table-responsive ">
+			<table class="table table-bordered table-stripe">
 				<tbody>
 					<tr>
 						<td colspan="6">Patient Has Confirmed : </td>

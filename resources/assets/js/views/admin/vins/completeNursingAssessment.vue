@@ -5,51 +5,52 @@
 				<div class="col-md-6">
 				<h1>Complete Nursing Assessment</h1>
 				</div>
-				<div class="col-md-6">
-					<div class="text-right">
-						DOC NO. F/IPD/22 <br>
-						REV. No. 0.1 <br>
-						WEF 05-01-2015
-					</div>
-				</div>
 			</div>
 		</div>
   		<form action="" method="post" >
-  			<div class="row form-group">
-  				<div class="col-md-4">
-  					<div class="col-md-4">
+
+        <div class="row form-group">
+  				<div class="col-md-6">
+  					<div class="col-md-6">
   						<label class="control-label col-md-4" for="unit">Unit:</label>
   					</div>
-  					<div class="col-md-4">
+  					<div class="col-md-6">
   						<input type="text" class="form-control" name="unit" v-validate="'required'" v-model="completeNursingAssessmentData.unit" value="15">
               <span class="help is-danger" v-show="errors.has('unit')">
                 Field is required
               </span>
   					</div>
   				</div>
-  				<div class="col-md-4">
-  					<div class="col-md-4">
+          <div class="col-md-6">
+            <div class="text-right">
+              <addressograph></addressograph>
+            </div>
+  				</div>
+  			</div>
+
+        <div class="row form-group">
+          <div class="col-md-6">
+            <div class="col-md-6">
   						<label class="control-label col-md-4" for="date">Date:</label>
   					</div>
-  					<div class="col-md-8">
-  						<input type="date" class="form-control" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
+  					<div class="col-md-6">
+  						<input type="text" class="form-control ls-datepicker" id = "date" name="date" v-model="completeNursingAssessmentData.date" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('date')">
                 Field is required
               </span>
   					</div>
-  				</div>
-          <div class="col-md-4">
-  					<addressograph></addressograph>
-  				</div>
-  			</div>
+          </div>
+        </div>
+
+
 
   			<div class="row form-group">
   				<div class="col-md-6">
   					<div class="col-md-6">
-  						<label class="control-label col-md-4" for="time">Time:</label>
+  						<label class="control-label col-md-6" for="time">Time:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="time" class="form-control" name="time" v-model="completeNursingAssessmentData.time" v-validate="'required'" value="">
+  						<input type="text" class="form-control ls-timepicker" id = "time" name="time" v-model="completeNursingAssessmentData.time" v-validate="'required'" value="">
               <span class="help is-danger" v-show="errors.has('time')">
                 Field is required
               </span>
@@ -60,9 +61,9 @@
   						<label class="control-label col-md-6" for="ipd_id">IPD No.:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" class="form-control" name="ipd_id" v-model="ipd_id" v-validate="'required'" id="ipd_id" value="" />
+  						<input type="text" class="form-control" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"  value="" />
               <span class="help is-danger" v-show="errors.has('ipd_id')">
-                Field is required
+                Numeric Field is required
               </span>
   					</div>
   				</div>
@@ -83,17 +84,17 @@
   			</div>
 
   			<div class="row form-group">
-  				<div class="col-md-4">
-  						<label class="control-label col-md-3" for="height">Height:</label>
-  						<div class="col-md-9">
-  							<input type="text" class="form-control" name="height" v-model="completeNursingAssessmentData.height" v-validate="'required'" id="height" placeholder="Height(in cms)" value="">
+  				<div class="col-md-6">
+  						<label class="control-label col-md-6" for="height">Height:</label>
+  						<div class="col-md-6">
+  							<input type="text" class="form-control" name="height" v-model="completeNursingAssessmentData.height" v-validate="'required'"  placeholder="Height(in cms)" value="">
                 <span class="help is-danger" v-show="errors.has('height')">
                 	Field is required
                 </span>
   						</div>
   						<br><br>
-  						<label class="control-label col-md-3" for="weight">Weight:</label>
-  						<div class="col-md-9">
+  						<label class="control-label col-md-6" for="weight">Weight:</label>
+  						<div class="col-md-6">
   							<input type="text" class="form-control" name="weight" v-model="completeNursingAssessmentData.weight" v-validate="'required'" id="weight" placeholder="Weight(in KGs)" value="">
                 <span class="help is-danger" v-show="errors.has('weight')">
                 	Field is required
@@ -148,7 +149,7 @@
   						<label>If other:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" name="history_informant_other" v-model="completeNursingAssessmentData.history_informant_other" id="history_informant_other" class="form-control">
+  						<input type="text" name="history_informant_other" v-model="completeNursingAssessmentData.history_informant_other" id ="history_informant_other" class="form-control">
   					</div>
   				</div>
   			</div>
@@ -175,7 +176,7 @@
   						<label>If other:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" name="patient_arrived_other" v-model="completeNursingAssessmentData.patient_arrived_other" id="patient_arrived_other" class="form-control">
+  						<input type="text" name="patient_arrived_other" v-model="completeNursingAssessmentData.patient_arrived_other" id ="patient_arrived_other" class="form-control">
   					</div>
   				</div>
   			</div>
@@ -202,7 +203,7 @@
   						<label>If other:</label>
   					</div>
   					<div class="col-md-6">
-  						<input type="text" name="patient_arrived_from_other" v-model="completeNursingAssessmentData.patient_arrived_from_other" id="patient_arrived_from_other" class="form-control">
+  						<input type="text" name="patient_arrived_from_other" v-model="completeNursingAssessmentData.patient_arrived_from_other" class="form-control"/>
   					</div>
   				</div>
   			</div>
@@ -213,41 +214,46 @@
   					<h3>Vital Signs:</h3>
   			</div>
 
-  			<div class="row form-group">
-  				<div class="col-md-6">
-  					<div class="col-md-4">
-  						<label>Temperature:</label>
-  					</div>
-  					<div class="col-md-4">
-  						<input type="text" name="temperature" v-model="completeNursingAssessmentData.temperature" v-validate="'required'" value="" class="form-control">
+        <div class="row form-group">
+          <div class="col-md-6">
+            <div class="col-md-6">
+              <label>Temperature:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="temperature" v-model="completeNursingAssessmentData.temperature" v-validate="'required'" value="" class="form-control">
               <span class="help is-danger" v-show="errors.has('temperature')">
                 Field is required
               </span>
-  					</div>
-  					<div class="col-md-4">
-  						<select class="form-control" id="temperature_type" name="temperature_type" v-model="completeNursingAssessmentData.temperature_type" >
-  							<option value="oral" > Oral </option>
-  							<option value="rectal" > Rectal </option>
-  							<option value="auxillary" > Auxillary </option>
-  							<option value="tympanic" > Tympanic </option>
-  						</select>
-  					</div>
-  				</div>
-  				<div class="col-md-6">
-  					<div class="col-md-6">
-  						<label>Pain:</label>
-  					</div>
-  					<div class="col-md-6">
-  						<select class="form-control" name="pain" v-model="completeNursingAssessmentData.pain" v-validate="'required'" >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-6">
+              <label>Pain:</label>
+            </div>
+            <div class="col-md-6">
+              <select class="form-control" name="pain" v-model="completeNursingAssessmentData.pain" v-validate="'required'" >
   							<option value="opd" >OPD</option>
   							<option value="home" >Home</option>
   						</select>
               <span class="help is-danger" v-show="errors.has('pain')">
                 Field is required
               </span>
-  					</div>
-  				</div>
-  			</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <div class="col-md-6">
+            <div class="col-md-6">
+              <select class="form-control" id="temperature_type" name="temperature_type" v-model="completeNursingAssessmentData.temperature_type" >
+                <option value="oral" > Oral </option>
+                <option value="rectal" > Rectal </option>
+                <option value="auxillary" > Auxillary </option>
+                <option value="tympanic" > Tympanic </option>
+              </select>
+            </div>
+          </div>
+        </div>
 
   			<div class="row form-group">
   				<div class="col-md-6">
@@ -562,7 +568,7 @@
   					<div class="row">
   						<label class="col control-label" for="date_of_screening">Date of Screening:</label>
   						<div class="col">
-  							<input type="date" class="form-control" name="date_of_screening" v-model="completeNursingAssessmentData.date_of_screening" v-validate="'required'" id="date_of_screening">
+  							<input type="text" class="form-control ls-datepicker" name="date_of_screening" v-model="completeNursingAssessmentData.date_of_screening" v-validate="'required'" id="date_of_screening">
   							<span class="help is-danger" v-show="errors.has('date_of_screening')">
     		        	Date of screening is required
     		        </span>
@@ -689,7 +695,7 @@
   			        <label class="control-label" for="date_nursing">Date:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="text" class="form-control" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" id="date_nursing">
+  			        <input type="date" class="form-control ls-datepicker"  id = "date_nursing" name="date_nursing" v-model="completeNursingAssessmentData.date_nursing" v-validate="'required'" >
   							<span class="help is-danger" v-show="errors.has('date_nursing')">
     		        	Date of nursing is required
     		        </span>
@@ -702,7 +708,7 @@
   			        <label class="control-label" for="time_nursing">Time:</label>
   			      </div>
   			      <div class="col">
-  			        <input type="time" class="form-control" name="time_nursing" v-model="completeNursingAssessmentData.time_nursing" v-validate="'required'" id="time_nursing">
+  			        <input type="time" class="form-control ls-timepicker" name="time_nursing" v-model="completeNursingAssessmentData.time_nursing" v-validate="'required'" id ="time_nursing">
   							<span class="help is-danger" v-show="errors.has('time_nursing')">
     		        	Time of nursing is required
     		        </span>
@@ -715,12 +721,15 @@
 					<button class="btn btn-success" type="button" @click="saveCompleteNursingAssessment">Submit</button>
 				</div>
   		</form>
+        <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   	</div>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue'
+
     export default {
         data() {
             return {
@@ -798,12 +807,46 @@
 
         components: {
            addressograph,
+           SelectPatientModal,
        },
        mounted() {
-+               $('.ls-datepicker').datepicker({
-				    format: 'dd/mm/yyyy',
-				    'autoclose': true
-					})
+
+                 $('.ls-datepicker').datepicker({
+				            format: 'dd/mm/yyyy',
+				            'autoclose': true
+					       })
+                  // if(this.ipd_id == 0){
+                     $('#delete_modal').modal('show');
+
+                  // }
+
+
+              $('.ls-timepicker').timepicker({
+                format: 'hh-mm',
+                'autoclose': true
+              })
+              $('.ls-datepicker').datepicker().on('changeDate',function(){
+                if(this.id ==  'date'){
+                    vm.completeNursingAssessmentData.date = this.value;
+                }
+                if(this.id ==  'date_nursing'){
+                    vm.completeNursingAssessmentData.date_nursing = this.value;
+                }
+                if(this.id ==  'date_of_screening'){
+                    vm.completeNursingAssessmentData.date_of_screening = this.value;
+                }
+              })
+
+
+              $('.ls-timepicker').timepicker().on('change',function(){
+                if(this.id == 'time'){
+                    vm.completeNursingAssessmentData.time = this.value;
+                }
+                if(this.id == 'time_nursing'){
+                    vm.appointmentBook.time_nursing = this.value;
+                }
+              })
+
 				},
         methods: {
 		    GetSelectComponent(componentName) {

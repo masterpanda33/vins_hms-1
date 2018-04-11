@@ -149,3 +149,54 @@ table.table-bordered ,th , td, tbody, thead, tr{
         transform: rotate(359deg);
     }
 }
+.delete-modal.modal-dialog {
+     max-width: 800px;
+}
+
+.brand-main img {
+    height: auto;
+    width: 13%;
+}
+
+.mt-50 {
+    margin-top:-50px;
+}
+
+body > #app .header {
+    position: fixed !important;
+}
+
+.login {
+    padding-top: 6.5%;
+    padding-bottom: 2%;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: radial-gradient(ellipse at center, #5A93AF 0%, #004E74 100%);
+    overflow-y: auto;
+}
+.login-form {
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 4px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.top-buffer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mt-20 {
+    margin-top:30px;
+}
+.logout-text,ogout-text:visited,logout-text:focus{
+    padding-right: 15px;
+    color: white;
+    width: 100%;
+    margin-top: -25px;
+    padding-bottom: 5px;
+}

@@ -41,7 +41,10 @@ export default {
               if(response.data.message != undefined) {
                 toastr['error'](response.data.message, 'Error');
               }
+            } else {
+               Ls.set('userId',response.data.userData.id);
             }
+
             return !!response.data.authenticated;
         }).catch(error => {
         });

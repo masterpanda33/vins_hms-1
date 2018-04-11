@@ -6,6 +6,7 @@ import * as getters from './getters'
 import * as types from './mutation-types'
 
 import Patient from './modules/patient'
+import Users from './modules/users'
 
 import createPersistedState from 'vuex-persistedstate'
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     Patient,
+    Users,
     // Pitch,
     // Users
   },

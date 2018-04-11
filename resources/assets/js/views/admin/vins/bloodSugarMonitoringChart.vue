@@ -5,14 +5,6 @@
   			<div class="col-md-6">
   			<h1>Blood Sugar Monitoring Chart</h1>
   			</div>
-  			<div class="col-md-6">
-  				<div class="text-right">
-  					DOC NO. FMT/IPD/36 <br>
-  					REV. No. 0.1 <br>
-  					WEF 01-10-2014 <br>
-  					PAGE NO. 01 OF 02
-  				</div>
-  			</div>
   		</div>
   	</div>
   	<form action="" method="post">
@@ -22,7 +14,7 @@
             <label>Patient's Name:</label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="text"  v-validate="'required'" name="patient_name" v-model="bloodSugarMonitoringChart.patient_name" id="patient_name" value="" >
+            <input class="form-control" type="text"  v-validate="'required'" name="patient_name" v-model="bloodSugarMonitoringChart.patient_name" :id="patient_name" value="" >
             <span class="help is-danger" v-show="errors.has('patient_name')">
               Field is required
             </span>
@@ -33,7 +25,7 @@
   					<label>Bed No:</label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="text"  v-validate="'required'" name="bed_no" v-model="bloodSugarMonitoringChart.bed_no" id="bed_no" value="" >
+  					<input class="form-control" type="text"  v-validate="'required'" name="bed_no" v-model="bloodSugarMonitoringChart.bed_no" :id="bed_no" value="" >
             <span class="help is-danger" v-show="errors.has('bed_no')">
               Field is required
             </span>
@@ -53,7 +45,7 @@
   					<label>IPD No:</label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="text"  v-validate="'required'" name="ipd_id" v-model="ipd_id" id="ipd_id" value="" >
+  					<input class="form-control" type="text"  v-validate="'required|numeric'" name="ipd_id" v-model="ipd_id" :id="ipd_id" value="" >
             <span class="help is-danger" v-show="errors.has('ipd_id')">
               Field is required
             </span>
@@ -66,7 +58,7 @@
   					<label>Age:</label>
   				</div>
   				<div class="col-md-6">
-  					<input class="form-control" type="text"  v-validate="'required'" name="age" v-model="bloodSugarMonitoringChart.age" id="age" value="" >
+  					<input class="form-control" type="text"  v-validate="'required'" name="age" v-model="bloodSugarMonitoringChart.age" :id="age" value="" >
             <span class="help is-danger" v-show="errors.has('age')">
               Field is required
             </span>
@@ -87,22 +79,27 @@
   				</div>
         </div>
       </div>
-
-      <div class="row form-group"><hr>
-  		  <table class="table table-bordered">
+      <hr>
+      <div class="">
+  		  <table class="table table-bordered table-striped">
   		    <thead>
     			  <tr>
       				<th>Date</th>
       				<th>Time</th>
       				<th>Blood Sugar Level</th>
       				<th>Insulin(Unit)</th>
-              <th>Name & Sign</th>
+              <th>Name</th>
     			  </tr>
     			</thead>
     			<tbody>
             <tr v-for="n in 5">
-              <td><input class="form-control ls-datepicker" type="text" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
-              <td><input class="form-control" type="time" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+<<<<<<< HEAD
+              <td><input class="form-control " type="date" id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
+              <td><input class="form-control " type="time" id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+=======
+              <td><input class="form-control ls-datepicker" type="text" :id = "'date_'+n" :name="'date_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].date" value=""/></td>
+              <td><input class="form-control" type="time" :id = "'time_'+n" :name="'time_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].time" value=""/></td>
+>>>>>>> 402ba7de5c0658df90eb643aa49d1d73037b25bc
               <td><input class="form-control" type="text" :name="'bloodsugar_level_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].bloodsugar_level" value=""/></td>
               <td><input class="form-control" type="text" :name="'insulin_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].insulin" value=""/></td>
               <td><input class="form-control" type="text" :name="'name_sign_'+n" v-model="bloodSugarMonitoringChart.monitoring[n].name_sign" value=""/></td>
@@ -111,15 +108,20 @@
           </tbody>
         </table>
       </div>
-      <div class="row form-group text-center">
-        <button class="form-group btn btn-success" type="button" @click="saveBloodSugarMonitoringChart()" >Submit</button>
+      <div class="row form-group">
+        <div class="col text-center">
+          <button class="form-group btn btn-success" type="button" @click="saveBloodSugarMonitoringChart()" >Submit</button>
+        </div>
       </div>
     </form>
+      <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -177,14 +179,61 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
-       mounted() {
-				 $('.ls-datepicker').datepicker({
-				 format: 'dd/mm/yyyy',
-				 'autoclose': true
-		 })
-			 },
-        methods: {
+        mounted() {
+          $('.ls-datepicker').datepicker({
+   				    format: 'dd/mm/yyyy',
+   				    'autoclose': true
+   				})
+          if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+          }
+
+            $('.ls-timepicker').timepicker({
+   			    format: 'hh-mm',
+   			    'autoclose': true
+   			})
+
+        let vm =this;
+   			$('.ls-datepicker').datepicker().on('changeDate',function(){
+   			    if(this.id == 'date_1'){
+              vm.bloodSugarMonitoringChart.monitoring[1].date = this.value;
+            }
+            if(this.id == 'date_2'){
+              vm.bloodSugarMonitoringChart.monitoring[2].date = this.value;
+            }
+            if(this.id == 'date_3'){
+              vm.bloodSugarMonitoringChart.monitoring[3].date = this.value;
+            }
+            if(this.id == 'date_4'){
+              vm.bloodSugarMonitoringChart.monitoring[4].date = this.value;
+            }
+            if(this.id == 'date_5'){
+              vm.bloodSugarMonitoringChart.monitoring[5].date = this.value;
+            }
+   			})
+        $('.ls-timepicker').on('change', function(e)  {
+   				if(this.id == 'time_1'){
+            vm.bloodSugarMonitoringChart.monitoring[1].time = this.value;
+          }
+          if(this.id == 'time_2'){
+            vm.bloodSugarMonitoringChart.monitoring[2].time = this.value;
+          }
+          if(this.id == 'time_3'){
+            vm.bloodSugarMonitoringChart.monitoring[3].time = this.value;
+          }
+          if(this.id == 'time_4'){
+            vm.bloodSugarMonitoringChart.monitoring[4].time = this.value;
+          }
+          if(this.id == 'time_5'){
+            vm.bloodSugarMonitoringChart.monitoring[5].time = this.value;
+          }
+
+   			});
+
+      },
+      methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },

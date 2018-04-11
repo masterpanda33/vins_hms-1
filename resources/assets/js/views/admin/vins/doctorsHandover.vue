@@ -5,13 +5,7 @@
         <div class="col-md-6">
         <h1>Doctor's Handover</h1>
         </div>
-        <div class="col-md-6">
-          <div class="text-right">
-            DOC NO. F/IPD/62 <br>
-            REV. No. 0.0 <br>
-            WEF 25-02-2017
-          </div>
-        </div>
+
       </div>
     </div>
 
@@ -19,7 +13,7 @@
 
     <form action="" method = "post">
       <div class="row form-group">
-        <div class="col-md-4">
+        <div class="col-md-8">
           <div class="row">
             <div class="col">
               <label for="diagnosis" class="control-label">Diagnosis: </label>
@@ -32,25 +26,11 @@
             </div>
           </div>
         </div>
-  			<div class="col-md-4">
-  				<div class="row">
-  					<div class="col">
-  						<label for="">IPD No.</label>
-  					</div>
-  					<div class="col">
-  						<input type="text" name="ipd_no" class="form-control" v-model="ipd_id" v-validate="'required|numeric'">
-  						<span class="help is-danger" v-show="errors.has('ipd_no')">
-  							Numeric Field is required
-  						</span>
-  					</div>
-  				</div>
-  			</div>
         <div class="col-md-4">
-        <div class="text-right">
-
-        <addressograph></addressograph>
-
-      </div></div>
+          <div class="text-right">
+            <addressograph></addressograph>
+          </div>
+        </div>
       </div>
       <hr>
       <div class="row form-group">
@@ -88,7 +68,7 @@
             <tr>
               <td class="text-center">2</td>
               <td>If patient is surgical then tentative date of surgery</td>
-              <td><input class="form-control" type = "text" v-validate="'required'" id = "tentative_date_of_surgery" name="tentative_date_of_surgery" value=""  v-model="doctorsHandoverData.tentative_date_of_surgery"/>
+              <td><input class="form-control ls-datepicker" type = "text" v-validate="'required'" id = "tentative_date_of_surgery" name="tentative_date_of_surgery" value=""  v-model="doctorsHandoverData.tentative_date_of_surgery"/>
               <span class="help is-danger" v-show="errors.has('tentative_date_of_surgery')">
                         Field is required
                       </span></td>
@@ -282,7 +262,7 @@
             <tr>
               <td class=""></td>
               <td>16.3 Time</td>
-              <td><input class="form-control" type = "time" v-validate="'required'" id = "time_given" name="time_given" value=""  v-model="doctorsHandoverData.time_given"/>
+              <td><input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time_given" name="time_given" value=""  v-model="doctorsHandoverData.time_given"/>
               <span class="help is-danger" v-show="errors.has('time_given')">
                         Field is required
                       </span>
@@ -317,7 +297,7 @@
             <tr>
               <td class=""></td>
               <td>17.3 Time</td>
-              <td><input class="form-control" type = "time" v-validate="'required'" id = "time_taken" name="time_taken" value=""  v-model="doctorsHandoverData.time_taken"/>
+              <td><input class="form-control ls-timepicker" type = "text" v-validate="'required'" id = "time_taken" name="time_taken" value=""  v-model="doctorsHandoverData.time_taken"/>
               <span class="help is-danger" v-show="errors.has('time_taken')">
                         Field is required
               </span>
@@ -332,11 +312,14 @@
         <button class="btn btn-success" type="button" @click="saveDoctorsHandover()">Submit</button>
       </div>
     </form>
+    <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue';
+
     export default {
         data() {
             return {
@@ -365,6 +348,7 @@
                   'verified_by_assistant': '',
                   'name_given': '',
                   'date_given': '',
+                  'time_given': '',
                   'name_taken': '',
                   'date_taken': '',
                   'time_taken': ''
@@ -373,12 +357,44 @@
         },
         components: {
            addressograph,
+           SelectPatientModal
        },
        mounted() {
          $('.ls-datepicker').datepicker({
          format: 'dd/mm/yyyy',
          'autoclose': true
-     })
+         })
+         $('.ls-timepicker').timepicker({
+         format: 'hh-mm',
+         'autoclose': true
+        })
+          // if(this.ipd_id == 0){
+            $('#delete_modal').modal('show');
+         // }
+           let vm =this;
+            $('.ls-datepicker').datepicker().on('changeDate',function(){
+            if(this.id == 'date_given'){
+              vm.doctorsHandoverData.date_given = this.value;
+            }
+            if(this.id == 'date_taken'){
+              vm.bloodSugarMonitoringChart.date_taken = this.value;
+            }
+            if(this.id == 'tentative_date_of_surgery'){
+              vm.bloodSugarMonitoringChart.tentative_date_of_surgery = this.value;
+            }
+            if(this.id == 'date_of_surgery'){
+              vm.bloodSugarMonitoringChart.date_of_surgery = this.value;
+            }
+          })
+          $('.ls-timepicker').on('change', function(e)  {
+            if(this.id == 'time_given'){
+              vm.doctorsHandoverData.time_given = this.value;
+            }
+            if(this.id == 'time_taken'){
+              vm.doctorsHandoverData.time_taken = this.value;
+            }
+     			})
+
        },
         methods: {
 		    GetSelectComponent(componentName) {

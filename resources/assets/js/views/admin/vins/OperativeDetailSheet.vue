@@ -5,32 +5,19 @@
         <div class="col-md-6">
           <h1>Operative Detail Sheet</h1>
         </div>
-        <div class="col-md-6">
-          <div class="text-right">
-            DOC NO. FMT/HIC/09 </br>
-            REV. No. 0.1 </br>
-            WEF 10-10-2015
-          </div>
-        </div>
       </div>
     </div>
 
     <form action="" method="post">
 
       <div class="row">
-        <div class="col-md-8">
-          <div class="col-md-6">
-            <label>IPD No : </label>
-          </div>
         <div class="col-md-6">
-            <input class="form-control" type="text" name="ipd_id" v-model="ipd_id" v-validate="'required|numeric'"/>
-            <span class="help is-danger" v-show="errors.has('ipd_id')">
-							Numeric Field is required
-						</span>
-          </div>
         </div>
-        <div class="col-md-4">
-					<addressograph></addressograph>
+        <div class="col-md-6">
+          <div class="text-right">
+            <addressograph></addressograph>
+          </div>
+
 				</div>
       </div>
 
@@ -54,7 +41,7 @@
             <label>Date : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="date" name="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
+            <input class="form-control ls-datepicker" type="text" name="date" id="date" v-model="operativeDetailSheetData.date" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('date')">
 							Field is required
 						</span>
@@ -129,7 +116,7 @@
             <label>Time : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="text" name="antibiotic1_time" v-model="operativeDetailSheetData.antibiotic1_time" v-validate="'required'" value=""/>
+            <input class="form-control" type="time" name="antibiotic1_time" v-model="operativeDetailSheetData.antibiotic1_time" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('antibiotic1_time')">
 							Field is required
 						</span>
@@ -154,7 +141,7 @@
             <label>Time : </label>
           </div>
           <div class="col-md-6">
-            <input class="form-control" type="text" name="antibiotic2_time" v-model="operativeDetailSheetData.antibiotic2_time" v-validate="'required'" value=""/>
+            <input class="form-control" type="time" name="antibiotic2_time" v-model="operativeDetailSheetData.antibiotic2_time" v-validate="'required'" value=""/>
 						<span class="help is-danger" v-show="errors.has('antibiotic2_time')">
 							Field is required
 						</span>
@@ -529,11 +516,14 @@
         </div>
       </div>
     </form>
+     <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
   </div>
 </template>
 <script >
 	import User from '../../../api/users.js';
   import addressograph from './addressograph.vue';
+  import SelectPatientModal from '../../../components/SelectPatientModal.vue'
+
     export default {
         data() {
             return {
@@ -585,8 +575,25 @@
             }
         },
         components: {
-           addressograph,
-       },
+          addressograph,
+          SelectPatientModal
+        },
+        mounted() {
+          $('.ls-datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            'autoclose': true
+          })
+          // if(this.ipd_id == 0){
+          $('#delete_modal').modal('show');
+          // }
+
+          let vm =this;
+   				$('.ls-datepicker').datepicker().on('changeDate',function(){
+   					if (this.id == 'date') {
+   						vm.operativeDetailSheetData.date = this.value;
+   					}
+          });f
+        },
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

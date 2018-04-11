@@ -46,8 +46,8 @@
   				Code blue / drills are designed to prepare staff in responding to medical emergencies as a part of the staff Competency Curriculum.
   			</div>
   		</div>
-  		<div class="row form-group">
-  		  <table class="table table-bordered">
+  		<div class="table-responsive">
+  		  <table class="table table-bordered table-striped">
   		    <thead>
     			  <tr>
       				<th>Sr. No.</th>
@@ -288,8 +288,10 @@
     		</table>
     	</div>
 
-    	<div class="row form-group text-center">
-  			<input class="form-group btn btn-success" value = "Submit" type="button" @click="saveCodeBlueEvaluationForm()"/>
+    	<div class="row form-group">
+        <div class="col text-center">
+          <input class="btn btn-success" value = "Submit" type="button" @click="saveCodeBlueEvaluationForm()"/>          
+        </div>
   		</div>
 
   	</form>

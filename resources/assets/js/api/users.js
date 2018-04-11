@@ -2,7 +2,7 @@ import api from './siteconfig'
 
 export default {
   getUserDetails(userData) {
-  	return api.post('user/getDetails',{'userData':userData})
+  	return api.post('user/getDetails',{'userId':userData})
   },
   getEditUser(id) {
   	return api.get('user/edit/'+id)
@@ -196,6 +196,19 @@ export default {
   saveCentralLineBundleChecklist(CentralLineBundleChecklistData) {
       return api.post('centralLineBundleChecklist/create',{'resData':CentralLineBundleChecklistData})
     },
+  submitReport(reportData) {
+    return api.post('report/create',{'reportData':reportData})
+  },
+  submitReport(reportData) {
+      return api.post('report/create',{'reportData':reportData})
+  },
+  getAllPatientName() {
+      return api.get('patient/getAll');
+  },
+  createUser(userData) {
+      return api.post('user/create',{'userData':userData})
+
+  }
 
 
 
