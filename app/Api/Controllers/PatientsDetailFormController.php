@@ -44,6 +44,7 @@ class PatientsDetailFormController extends Controller
         // echo "<pre>";print_r($request->all());echo "</pre>";
         // dd($request->all());
         $data = $request->all()['patientData'];
+        $patientType = $request->all()['patientType'];
         $uhid="VM";
         $year = date('y');
         // dd($patientUHId);
@@ -82,10 +83,18 @@ class PatientsDetailFormController extends Controller
 
         }
         if ($patientId) {
-            $ipdData = IpdDetails::create([
-                'patient_id'=> $patientId,
-                'admit_datetime' =>  Carbon::now()
-            ]);
+            if($patientType == "opd"){
+                $opdData = OpdDetails::create([
+                    'patient_id'=> $patientId,
+                    'admit_datetime' =>  Carbon::now()     
+            }
+            else{
+                 $ipdData = IpdDetails::create([
+                    'patient_id'=> $patientId,
+                    'admit_datetime' =>  Carbon::now()
+                ]);
+            }
+
         }
         
         if ($ipdData) {

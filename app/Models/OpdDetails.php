@@ -1,12 +1,12 @@
 <?php
 
-namespace euro_hms\models;
+namespace euro_hms\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IpdDetails extends Model
+class OpdDetails extends Model
 {
-   protected $table = 'ipd_details';
+    protected $table = 'opd_details';
 
     protected $fillable=[
       'patient_id',

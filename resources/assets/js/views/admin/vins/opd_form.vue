@@ -41,7 +41,7 @@
       </div>
       
     </div>
-    <div class="row form-group">
+    <!-- <div class="row form-group">
       <div class="col-md-6">
         <div class="col-md-6">
           <label for="date">Name:</label>
@@ -66,10 +66,10 @@
           </span>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="row form-group">
-      <div class="col-md-6">
+   <!--    <div class="col-md-6">
         <div class="col-md-3 ">
           <label for="date">Gender:</label>
         </div>
@@ -83,7 +83,8 @@
           </span>
         </div>
       </div>
-      <div class="col-md-6">
+ --> 
+       <div class="col-md-6">
         <div class="col-md-6">
           <label for="date">Weight:</label>
         </div>
