@@ -25,7 +25,8 @@
         </div>
       </div>
        <div class="col-md-6" v-if="opdData.case_type == 'new'">
-            <create-patient-detail @confirmed="deleteConfirmed()" ></create-patient-detail>
+            <create-patient-detail @confirmed="deleteConfirmed()" patientType=
+            'opd'></create-patient-detail>
        </div>
       <div class="col-md-6" v-if="opdData.case_type == 'old'">
       <div class="col-md-6 ">

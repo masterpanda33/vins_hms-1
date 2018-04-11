@@ -44,11 +44,20 @@ class PatientsDetailFormController extends Controller
         // echo "<pre>";print_r($request->all());echo "</pre>";
         // dd($request->all());
         $data = $request->all()['patientData'];
-        
+        $uhid="VM";
+        $year = date('y');
+        // dd($patientUHId);
+
         if($data['case'] == 'new') {
+           $patientD =  PatientDetailsForm::get()->last();
+           $lastPatientId=$patientD->id;
+           $newPatNo = sprintf("%03d",++$lastPatientId);
+           $insertedPatientId=$uhid.$year.$newPatNo;
+
             $patientCreate = PatientDetailsForm::create([
            // 'date' => $request->date,
            // 'time' => $request->time,
+          'uhid_no'=> $insertedPatientId,
           'first_name' => $data['fname'],
           'middle_name' => $data['mname'],
           'last_name' => $data['lname'],
@@ -80,7 +89,7 @@ class PatientsDetailFormController extends Controller
         }
         
         if ($ipdData) {
-            return ['code' => '200','data'=>['patientId'=> $patientId,'ipdId' => $ipdData->id], 'message' => 'Record Sucessfully created'];
+            return ['code' => '200','data'=>['patientId'=> $patientId,'ipdId' => $ipdData->id,'uhid_no'=>$insertedPatientId], 'message' => 'Record Sucessfully created'];
         } else {
             return ['code' => '400','data'=>'', 'message' => 'Something goes wrong'];
         }

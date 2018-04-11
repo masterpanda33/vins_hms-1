@@ -39,7 +39,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
+                        <div class="row m-t-10">
                             <div class="col-sm-12 col-md-10 col-lg-12">
                             	<div class="row">
                             		<div class="col-sm-6 col-md-5">
@@ -54,7 +55,7 @@
 		                            <div class="col-sm-6 col-md-5">
 		                                <div class="form-group">
 		                                	<label class="control-label" for="sex">Gender: </label>
-											<select  class="form-control" id = "gender" name="gender">
+											<select  class="form-control ls-select2" id = "gender" name="gender">
 					            				<option value="male">Male</option>
 								            	<option value="female">Female</option>
 								          	</select>
@@ -65,7 +66,9 @@
 		                            </div>
 	                            </div>
                             </div>
-                             <div class="col-sm-12 col-md-10 col-lg-12">
+                        </div>
+                        <div class="row m-t-10">
+                       		 <div class="col-sm-12 col-md-10 col-lg-12">
                             	<div class="row">
                             		<div class="col-sm-6 col-md-5">
 		                            	<div class="form-group">
@@ -87,6 +90,8 @@
 		                            </div>
 	                            </div>
                             </div>
+                        </div>
+                        <div class="row m-t-10">
                             <div class="col-sm-12 col-md-10 col-lg-12">
                             	<div class="row">
                             		<div class="col-sm-6 col-md-5">
@@ -109,6 +114,7 @@
 		                            </div>
 	                            </div>
                             </div>
+                        </div>
 					</form>
     				</div>
 			    	<div class="modal-body js-delete-confirmation-msg"></div>
@@ -125,13 +131,13 @@
 	import User from '../../../api/users.js';
 
     export default {
+    	props:['patientType'],
         data() {
             return {
                 'footer' : 'footer',
                 'currentYear': new Date().getFullYear(),
                 'deleteConfirmMsg': 'Are you sure you would like to delete this referee? All information associated with this referee will be permanently deleted.',
                 'patientData' : {
-
                 	'fname':'',
                 	'mname': '',
                 	'lname': '',
@@ -147,7 +153,7 @@
         },
         mounted() {
 	 				let vm = this;
-        		// $('.ls-select2-popup').select2();
+        		$('.ls-select2').select2();
              	$('.ls-datepicker').datepicker({
 			         format: 'dd/mm/yyyy',
 			         'autoclose': true
@@ -155,6 +161,7 @@
 			 	$('.ls-datepicker').datepicker().on('changeDate',function(){
 	 				vm.patientData.dob = this.value;
 	 			});
+
         },
         methods: {
 
@@ -166,6 +173,7 @@
                     return false
             },
 		     savePatient() {
+		     	// return false;
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {
@@ -173,8 +181,10 @@
 				    	User.savePatient(this.patientData).then(
 		                (response) => {
 		                	if(response.data.code == 200) {
-		                		$("#createPatientDetail").modal("hide");
 		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
+		    					var uhidNo=response.data.data.uhid_no;
+								$("#createPatientDetail").modal("hide");
+		    					this.$store.dispatch('SetUhidNo',uhidNo);
 		                	} else if(response.data.code == 300) {
 		                		toastr.error('Record not found', 'Error', {timeOut: 5000});
 		                	} else{
