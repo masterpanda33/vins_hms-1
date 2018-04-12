@@ -74,6 +74,7 @@ class UserController extends BaseController
         $userData['user']['first_name']=$data['fName'];
         $userData['user']['last_name']=$data['lName'];
         $userData['user']['email']=$data['email'];
+        $userData['user']['address']=$data['address'];
         $userData['user']['mobile_no']=$data['mobileNo'];
         $userData['user']['user_type']=$data['userType'];
         $userData['user']['department']=$data['department'];
