@@ -49,11 +49,6 @@
       <a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('nabhReport')">NABH Report</a>
 		</div>
 	</div>
-  <div class="row">
-    <div class="col-md-4 top-buffer">
-			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('testFile')">Test File</a>
-		</div>
-  </div>
 	<hr />
 	<div class="row mt-20">
 		<h3>Pre-Admission Forms</h3>
