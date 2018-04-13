@@ -15,23 +15,23 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id')->unsigned(10);
-            $table->string('first_name');
-            $table->string('password');
-            $table->string('department');
-            $table->string('user_type');
-            $table->string('mobile_no');
-            $table->text('address');
-            $table->string('user_image');
-            $table->string('token');
-            $table->tinyInteger('is_verified');
-            $table->string('timezone');
-            $table->string('last_login_time');
-            $table->tinyInteger('is_active');
-            $table->timestamp('last_active_time');
-            $table->tinyInteger('is_mobile_user');
-            $table->string('deleted_at');
-            $table->string('last_name');
-            $table->string('email');
+            $table->string('first_name')->nullable();
+            $table->string('password')->nullable();
+            $table->string('department')->nullable();
+            $table->string('user_type')->nullable();
+            $table->string('mobile_no')->nullable();
+            $table->text('address')->nullable();
+            $table->string('user_image')->nullable();
+            $table->string('token')->nullable();
+            $table->tinyInteger('is_verified')->nullable();
+            $table->string('timezone')->nullable();
+            $table->string('last_login_time')->nullable();
+            $table->tinyInteger('is_active')->nullable();
+            $table->timestamp('last_active_time')->nullable();
+            $table->tinyInteger('is_mobile_user')->nullable();
+            $table->string('deleted_at')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
 
         });
