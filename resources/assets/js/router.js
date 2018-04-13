@@ -96,6 +96,8 @@ import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
 import changePwd from './views/emails/ChangePwd.vue'
 
+import investigations from './components/investigations.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -480,6 +482,12 @@ const routes = [
                 path: '/laboratory',
                 component: laboratory,
                 name: 'laboratory'
+            },
+            {
+                path: '/investigations',
+                component: investigations,
+                name: 'investigations'
+
             },
 
 

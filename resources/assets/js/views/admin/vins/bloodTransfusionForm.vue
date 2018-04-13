@@ -30,6 +30,7 @@
 					</span>
 				</div>
 				<div class="col">
+
 					<label>IPD No.:</label>
 				</div>
 				<div class="col">
@@ -37,6 +38,7 @@
 					<span class="help is-danger" v-show="errors.has('ipd_no')">
 						Field is required
 					</span>
+
 				</div>
 
 		</div>
@@ -79,7 +81,12 @@
 				<label>Time:</label>
 			</div>
 			<div class="col">
+
+
 				<input type="time" class="form-control " name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+
+				<input type="time" class="form-control ls-timepicker" name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+
 				<span class="help is-danger" v-show="errors.has('time')">
 					Field is required
 				</span>
@@ -289,7 +296,12 @@
 						<td v-else-if="n == 3">During Transfusion</td>
 						<td v-else-if="n == 11">Post Transfusion</td>
 						<td v-else></td>
+
+
 						<td><input type="time" class="form-control " id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
+
+						<td><input type="text" class="form-control ls-timepicker" :id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
+
 						<td><input type="text" class="form-control" :name="'temp'+n" v-model="bloodTransfusionDetails.transfusion[n].temp" id ="_01_02" /></td>
 						<td><input type="text" class="form-control" :name="'resp'+n" v-model="bloodTransfusionDetails.transfusion[n].resp" id ="_01_03" /></td>
 						<td><input type="text" class="form-control" :name="'bp'+n" v-model="bloodTransfusionDetails.transfusion[n].bp" id ="_01_04" /></td>

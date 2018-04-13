@@ -74,14 +74,15 @@ class UserController extends BaseController
         $userData['user']['first_name']=$data['fName'];
         $userData['user']['last_name']=$data['lName'];
         $userData['user']['email']=$data['email'];
+        $userData['user']['address']=$data['address'];
         $userData['user']['mobile_no']=$data['mobileNo'];
         $userData['user']['user_type']=$data['userType'];
         $userData['user']['department']=$data['department'];
-      
+
         // We cant Allow untikl its set password
         $userData['user']['password']=$userPassword;
 
-      
+
         $userData['user']['token'] = $token;
         \Log::info($userData);
         \Log::info('Insert in UserTable');
@@ -105,17 +106,17 @@ class UserController extends BaseController
             $email_details['token'] = $token;
             $email_details['is_mobile_user'] = 0;
             $recipient = $data['email'];
-           
-                // $email_templates = 'emails.users.desktop_user';
-                // $email_msg = 'Euro-Sportring Tournament Planner - Set password';
-             
+
+                $email_templates = 'emails.Welcome';
+                $email_msg = 'Welcome to VINS Patient Management';
+
 
            //  if($userObj->is_mobile_user == 1) {
            // //   $email_templates = 'emails.users.mobile_create';
            //    $email_msg = 'Euro-Sportring email verification';
            //    $email_details['is_mobile_user'] = 1;
            //  }
-            // Common::sendMail($email_details, $recipient, $email_msg, $email_templates);
+            Common::sendMail($email_details, $recipient, $email_msg, $email_templates);
             return ['status_code' => '200', 'message' => 'Please check your inbox to verify your email address and complete your account registration.'];
         }
 

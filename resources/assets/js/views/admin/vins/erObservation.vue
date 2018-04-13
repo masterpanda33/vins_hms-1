@@ -402,6 +402,7 @@
 			 },
 
 			 mounted() {
+			 	let vm = this;
          $('.ls-datepicker').datepicker({
          format: 'dd/mm/yyyy',
          'autoclose': true
@@ -412,8 +413,12 @@
 						 'autoclose': true
 				 });
 				 $('.ls-datepicker').datepicker().on('changeDate',function(){
+
 	 					let vm = this;
 	 				vm.erObservationData.date = this.value;
+
+	 				vm.erObservationData.date_obs = this.value;
+
 	 			});
 				$('.ls-timepicker').timepicker().on('change',function(){
 							let vm = this;

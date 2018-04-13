@@ -9,6 +9,7 @@ class PatientDetailsForm extends Model
     protected $table = 'patient_details';
 
     protected $fillable=[
+      'uhid_no',
       'date',
       'time',
       'first_name',
