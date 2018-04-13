@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class ipdDetailsSeeder extends Seeder
+class opdDetailsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,10 +12,10 @@ class ipdDetailsSeeder extends Seeder
      */
     public function run()
     {
-        //
-        DB::table('ipd_details')->truncate();
+          //
+        DB::table('opd_details')->truncate();
 
-        DB::table('ipd_details')->insert([
+        DB::table('opd_details')->insert([
           ['patient_id' => 1,
           'uhid_no'=>'VM18001',
           'admit_datetime' => NULL,

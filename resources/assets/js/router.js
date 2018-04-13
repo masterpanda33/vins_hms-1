@@ -95,6 +95,8 @@ import NewUser from './views/admin/vins/newUser'
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
 import changePwd from './views/emails/ChangePwd.vue'
+import investigations from './components/investigations.vue'
+
 
 Vue.use(VueRouter)
 
@@ -481,31 +483,15 @@ const routes = [
                 component: laboratory,
                 name: 'laboratory'
             },
+            {
+                path: '/investigations',
+                component: investigations,
+                name: 'investigations'
 
-
-
-            // {
-            //     path: '/schedule_results/:tournamentslug',
-            //     component: FrontSchedule,
-            //     name: 'front_schedule'
-            // },
-
+            },
         ]
     },
 
-   /* {
-        path: '/', component: LayoutHorizontal,
-        meta: { requiresAuth: true },
-        children: [
-            {
-                path: '/',
-                component: Welcome,
-                name: 'welcome'
-            },
-        ]
-    },*/
-
-    // Admin Backend Routes For Tournaments
     {
         path: '/admin', component: LayoutLogin,
         meta: { requiresAuth: true },
