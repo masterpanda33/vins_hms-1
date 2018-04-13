@@ -65,8 +65,8 @@
 				<div class = "col-md-6">
 					<label class = "control-label" for = "demo"> Demo </label>
 				</div>
-
-					<select class = "form-control select2" id = "demo" name = "demo" v-model = "laboratoryData.demo">
+					<div class = "input-group mb-3 select2-bootstrap-append search">
+					<select class = "form-control custom-select" id = "demo" name = "demo" v-model = "laboratoryData.demo">
 
 						<!--<optgroup label = "Option-Group1">
 							<option :value = "option_group_1_values" v-for = "option_group_1_values in laboratoryData.option_group_1 ">{{option_group_1_values.text}}</option>
@@ -114,7 +114,7 @@
 						</optgroup>
 					</select>
 				</div>
-
+			</div>
 
 		</form>
 	</div>
@@ -213,14 +213,9 @@
             }
         },
         mounted() {
-
-
-
-     //    	 $('.ls-select2').select2({
-     //                allowClear: true,
-     //                theme: "bootstrap",
-     //                placeholder: "select"
-     //            });
+					$('.ls-select2').select2({
+						 placeholder: "Select2",
+				  });
      //    	 $('.ls-datepicker').datepicker({
 					// format: 'dd/mm/yyyy',
 					// 'autoclose': true
@@ -239,7 +234,7 @@
 					// $('.ls-timepicker').timepicker().on('change',function(){
 					// 	vm.patientData.time = this.value;
 					// });
-				
+
         },
         methods: {
 		    GetSelectComponent(componentName) {
@@ -266,7 +261,7 @@
 				    	User.saveLaboratory(this.laboratoryData).then(
 		                (response) => {
 		                	if(response.data.code == 200) {
-		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
+		                		toastr.success('Laboratory data has been successfully saved', 'laboratory detail', {timeOut: 5000});
 		                	} else if(response.data.code == 300) {
 		                		toastr.error('Record not found', 'Error', {timeOut: 5000});
 		                	} else{
@@ -290,3 +285,37 @@
 
     }
 </script>
+<style>
+    .select2-dropdown,.selectric-open{
+        z-index: 9;
+    }
+    #set_first_option:active,#set_second_option:active,#set_third_option:active,#set_fourth_option:active,#bt_add_val:active{
+        color: #fff;
+    }
+
+    @media (max-width: 1024px) {
+        .boxed .box-display{
+            display: none;
+        }
+    }
+    .search .select2-container{
+        width: 92% !important;
+    }
+
+
+    @media(max-width:1024px){
+        .search .select2-container{
+            width: 89% !important;
+        }
+    }
+    @media(min-width: 375px) and (max-width: 768px){
+        .search .select2-container{
+            width: 88% !important;
+        }
+    }
+    @media(max-width:320px){
+        .search .select2-container{
+            width: 85% !important;
+        }
+    }
+</style>
