@@ -43,7 +43,7 @@
             <label>Sex : </label>
           </div>
           <div class="col-md-6">
-            <select class="form-control" name="sex" v-model="doctorsDailyNotesData.sex" v-validate="'required'">
+            <select class="form-control ls-select2" name="sex" v-model="doctorsDailyNotesData.sex" v-validate="'required'">
               <span class="help is-danger" v-show="errors.has('sex')">
                 Field is required
               </span>
@@ -150,7 +150,7 @@
   					<label>Pain : </label>
   				</div>
   				<div class="col-md-6">
-  					<select class="form-control" name="pain_07" v-model="doctorsDailyNotesData.pain_07">
+  					<select class="form-control ls-select2" name="pain_07" v-model="doctorsDailyNotesData.pain_07">
   						<option value="1" >1</option>
   						<option value="2" >2</option>
   						<option value="3" >3</option>
@@ -214,7 +214,7 @@
   					<label>Pain : </label>
   				</div>
   				<div class="col-md-6">
-  					<select class="form-control" name="pain_09" v-model="doctorsDailyNotesData.pain_09">
+  					<select class="form-control ls-select2" name="pain_09" v-model="doctorsDailyNotesData.pain_09">
   						<option value="1" >1</option>
   						<option value="2" >2</option>
   						<option value="3" >3</option>
@@ -278,7 +278,7 @@
   					<label>Pain : </label>
   				</div>
   				<div class="col-md-6">
-  					<select class="form-control" name="pain_15" v-model="doctorsDailyNotesData.pain_15">
+  					<select class="form-control ls-select2" name="pain_15" v-model="doctorsDailyNotesData.pain_15">
   						<option value="1" >1</option>
   						<option value="2" >2</option>
   						<option value="3" >3</option>
@@ -342,7 +342,7 @@
   					<label>Pain : </label>
   				</div>
   				<div class="col-md-6">
-  					<select class="form-control" name="pain_21" v-model="doctorsDailyNotesData.pain_21">
+  					<select class="form-control ls-select2" name="pain_21" v-model="doctorsDailyNotesData.pain_21">
   						<option value="1" >1</option>
   						<option value="2" >2</option>
   						<option value="3" >3</option>
@@ -412,6 +412,9 @@
            SelectPatientModal
        },
        mounted() {
+         $('.ls-select2').select2({
+            placeholder: "Select",
+         });
           $('.ls-datepicker').datepicker({
             format: 'dd/mm/yyyy',
             'autoclose': true
