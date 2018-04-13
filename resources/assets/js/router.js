@@ -483,6 +483,7 @@ const routes = [
                 component: laboratory,
                 name: 'laboratory'
             },
+
             {
                 path: '/investigations',
                 component: investigations,

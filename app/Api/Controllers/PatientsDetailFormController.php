@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use euro_hms\Models\User;
 use euro_hms\Models\PatientDetailsForm;
 use euro_hms\Models\IpdDetails;
+use euro_hms\Models\OpdDetails;
+
+
 use DB;
 use Carbon\Carbon;
 
@@ -43,8 +46,8 @@ class PatientsDetailFormController extends Controller
     {
         // echo "<pre>";print_r($request->all());echo "</pre>";
         // dd($request->all());
-        $data = $request->all()['patientData'];
-        $patientType = $request->all()['patientType'];
+        $data = $request->all()['patientData']['patientData'];
+        $patientType = $request->all()['patientData']['patientType'];
         $uhid="VM";
         $year = date('y');
         // dd($patientUHId);
@@ -55,7 +58,7 @@ class PatientsDetailFormController extends Controller
            $newPatNo = sprintf("%03d",++$lastPatientId);
            $insertedPatientId=$uhid.$year.$newPatNo;
 
-            $patientCreate = PatientDetailsForm::create([
+            $patientData = PatientDetailsForm::create([
            // 'date' => $request->date,
            // 'time' => $request->time,
           'uhid_no'=> $insertedPatientId,
@@ -71,7 +74,7 @@ class PatientsDetailFormController extends Controller
           'consultant' => isset($data['consulting_dr'])?$data['consulting_dr']: '' ,
           'case_type' => $data['case'],
         ]);    
-         $patientId = $patientCreate->id;
+         $patientId = $patientData->id;
         } else {
             $patientId = 0;
             $patientData = PatientDetailsForm::where('first_name',$data['fname'])->where('dob',$data['dob'])->first();
@@ -84,24 +87,33 @@ class PatientsDetailFormController extends Controller
         }
         if ($patientId) {
             if($patientType == "opd"){
-                $opdData = OpdDetails::create([
+                $caseData = OpdDetails::create([
                     'patient_id'=> $patientId,
-                    'admit_datetime' =>  Carbon::now()     
+                    'uhid_no'=> $patientData->uhid_no,
+                    'admit_datetime' =>  Carbon::now() 
+                ]);
+                if ($caseData) {
+                    return ['code' => '200','data'=>['patientId'=> $patientId,'opdId' => $caseData->id,'uhid_no'=>$patientData->uhid_no], 'message' => 'Record Sucessfully created'];
+                } else {
+                    return ['code' => '400','data'=>'', 'message' => 'Something goes wrong'];
+                }    
             }
             else{
-                 $ipdData = IpdDetails::create([
+                 $caseData = IpdDetails::create([
                     'patient_id'=> $patientId,
                     'admit_datetime' =>  Carbon::now()
                 ]);
+                if ($caseData) {
+                    return ['code' => '200','data'=>['patientId'=> $patientId,'ipdId' => $caseData->id,'uhid_no'=>$patientData->uhid_no], 'message' => 'Record Sucessfully created'];
+                } else {
+                    return ['code' => '400','data'=>'', 'message' => 'Something goes wrong'];
+                }
             }
 
         }
+        return ['code' => '400','data'=>'', 'message' => 'Something goes wrong'];
         
-        if ($ipdData) {
-            return ['code' => '200','data'=>['patientId'=> $patientId,'ipdId' => $ipdData->id,'uhid_no'=>$insertedPatientId], 'message' => 'Record Sucessfully created'];
-        } else {
-            return ['code' => '400','data'=>'', 'message' => 'Something goes wrong'];
-        }
+        
         // return view('\index');
     }
 

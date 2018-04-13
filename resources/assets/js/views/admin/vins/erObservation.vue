@@ -20,7 +20,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="row form-group">
 			<div class="col-md-6">
 				<div class="row">
@@ -414,9 +413,12 @@
 						 'autoclose': true
 				 });
 				 $('.ls-datepicker').datepicker().on('changeDate',function(){
-					 let vm = this;
-				 vm.erObservationData.date = this.value;
-				 vm.erObservationData.date_obs = this.value;
+
+	 					let vm = this;
+	 				vm.erObservationData.date = this.value;
+
+	 				vm.erObservationData.date_obs = this.value;
+
 	 			});
 				$('.ls-timepicker').timepicker().on('change',function(){
 							let vm = this;
