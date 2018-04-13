@@ -21,16 +21,16 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4 top-buffer">
-			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('vascularExamination')">vascularExamination</a>
+			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('vascularExamination')">Vascular Examination</a>
 		</div>
     <div class="col-md-4 top-buffer">
-			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('neuroExamination')">neuroExamination</a>
+			<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('neuroExamination')">Neuro Examination</a>
 		</div>
+    <div class="col-md-4 top-buffer">
+  		<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('opd_form')">OPD Form</a>
+  	</div>
+	</div>
 
-	</div>
-	<div class="col-md-4 top-buffer">
-		<a class="btn btn-default btn-block text-center" style="white-space: normal;" @click="GetSelectComponent('opd_form')">OPD Form</a>
-	</div>
 
 
   <hr />

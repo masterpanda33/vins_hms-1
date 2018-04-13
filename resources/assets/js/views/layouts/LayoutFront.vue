@@ -11,9 +11,9 @@
                       <img src="/assets/img/nabh_vins_logo.png" id="logo-mobile" alt="NABH Logo" class="hidden-md-up">
 
                       <H1 class="text-white bg-dark text-center mt-50">  PATIENT MANAGEMENT DASHBOARD</H1>
-                      
+
                         <div href="#" class="logout-text text-right" @click.prevent="logout"><i class="fa fa-sign-out"></i>Logout</div>
-                      
+
                   </router-link>
 
                   <!-- Sidebar toggle button -->
@@ -28,11 +28,18 @@
 
         </header>
     </div>
-        <div class="dashboard">
 
-            <transition name="fade" mode="out-in">
-                <router-view></router-view>
-            </transition>
+        <div class="dashboard">
+          <div class="wrapper">
+            <aside class="left-aside">
+              <left_side></left_side>
+            </aside>
+            <aside class="right-aside">
+              <transition name="fade" mode="out-in">
+                  <router-view></router-view>
+              </transition>
+            </aside>
+          </div>
         </div>
         <site-footer></site-footer>
     </div>
@@ -43,9 +50,11 @@
 
 import SiteFooter from './partials/SiteFooter.vue';
 import Auth from '../../services/auth';
+import left_side from './left-side/default/left-side';
 export default {
         components : {
-             SiteFooter
+             SiteFooter,
+             left_side
         },
         mounted() {
           this.$store.dispatch('SetIpdId',0);
