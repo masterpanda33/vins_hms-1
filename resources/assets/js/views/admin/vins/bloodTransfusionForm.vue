@@ -39,11 +39,6 @@
 						Field is required
 					</span>
 
-
-				</div>
-				<div class="col">
-
-
 				</div>
 
 		</div>
@@ -86,6 +81,7 @@
 				<label>Time:</label>
 			</div>
 			<div class="col">
+
 
 				<input type="time" class="form-control " name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
 
@@ -300,6 +296,7 @@
 						<td v-else-if="n == 3">During Transfusion</td>
 						<td v-else-if="n == 11">Post Transfusion</td>
 						<td v-else></td>
+
 
 						<td><input type="time" class="form-control " id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
 
@@ -516,7 +513,7 @@
 					 SelectPatientModal
 			 },
 			 mounted() {
-               $('.ls-datepicker').datepicker({
+              $('.ls-datepicker').datepicker({
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true
 					})

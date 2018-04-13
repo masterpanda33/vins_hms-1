@@ -27,7 +27,7 @@
 						<label for="date">Date : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control ls-datepicker"  id = "date_obs" type="text" name="date_obs" value="" v-model="erObservationData.date_obs" />
+						<input class="form-control ls-datepicker" type="text" name="date" value="" />
 					</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control ls-timepicker" type="text" :name="'time_'+ti" :id = "'time_'+ti" value="'time_'+ti" v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control ls-timepicker" type="text" id = "'time_'+ti" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -171,10 +171,10 @@
 							<input type="text" :name="'quantity_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].quantity">
 					 </td>
 						<td>
-							<input type="text" :name="'start_time_'+m" :id = "'start_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].start_time">
+							<input type="text" :name="'start_time_'+m" id = "start_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].start_time">
 					</td>
 						<td>
-							<input type="text" :name="'end_time_'+m" :id = "'end_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].end_time">
+							<input type="text" :name="'end_time_'+m"  id = "'end_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].end_time">
 					</td>
 						<td>
 							<input type="text" :name="'remarks_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].remarks">
@@ -215,7 +215,7 @@
 							<input type="text" :name="'administration_by_'+n"  class="form-control" :id = "'administration_by_'+n"  value=" " v-model="erObservationData.medication_administration[n].administration_by">
 						</td>
 						<td>
-							<input type="text" :name="'medication_time_'+n" :id = "'medication_time_'+n" class="form-control ls-timepicker" value=" " v-model="erObservationData.medication_administration[n].medication_time">
+							<input type="text" :name="'medication_time_'+n" class="form-control ls-timepicker" id = "'medication_time_'+n" value=" " v-model="erObservationData.medication_administration[n].medication_time">
 						</td>
 				  </tr>
 				</tbody>
@@ -408,14 +408,17 @@
          'autoclose': true
 
 			 });
-           $('#delete_modal').modal('show');
-
 				 $('.ls-timepicker').timepicker({
 						 format:'hh:mm',
 						 'autoclose': true
 				 });
 				 $('.ls-datepicker').datepicker().on('changeDate',function(){
+
+	 					let vm = this;
+	 				vm.erObservationData.date = this.value;
+
 	 				vm.erObservationData.date_obs = this.value;
+
 	 			});
 				$('.ls-timepicker').timepicker().on('change',function(){
 							let vm = this;
@@ -435,45 +438,44 @@
 					vm.erObservationData.medication_administration[5].medication_time  = this.value;
 				}
 
-				if(this.id == 'time_1'){
-						vm.erObservationData.vitals.time[1] = this.value;
+				if(this.id = 'time_1'){
+						vm.erObservationData.vitals[time].time = this.value;
 				}
-				if(this.id == 'time_2'){
-						vm.erObservationData.vitals.time[2]= this.value;
+				if(this.id = 'time_2'){
+						vm.erObservationData.vitals[time].time= this.value;
 				}
-				if(this.id == 'time_3'){
-						vm.erObservationData.vitals.time[3]= this.value;
+				if(this.id = 'time_3'){
+						vm.erObservationData.vitals[time].time= this.value;
 				}
 
-				if(this.id == 'start_time_1'){
+				if(this.id = 'start_time_1'){
 						vm.erObservationData.iv[1].start_time = this.value;
 				}
-				if(this.id == 'start_time_2'){
+				if(this.id = 'start_time_2'){
 						vm.erObservationData.iv[2].start_time = this.value;
 				}
-				if(this.id == 'start_time_3'){
+				if(this.id = 'start_time_3'){
 						vvm.erObservationData.iv[3].start_time = this.value;
 				}
-				if(this.id == 'start_time_4'){
+				if(this.id = 'start_time_4'){
 						vvm.erObservationData.iv[4].start_time = this.value;
 				}
 
-				if(this.id == 'end_time_1'){
+				if(this.id = 'end_time_1'){
 						vm.erObservationData.iv[1].end_time = this.value;
 				}
-				if(this.id == 'end_time_2'){
+				if(this.id = 'end_time_2'){
 						vm.erObservationData.iv[2].end_time = this.value;
 				}
-				if(this.id == 'end_time_3'){
+				if(this.id = 'end_time_3'){
 						vvm.erObservationData.iv[3].end_time = this.value;
 				}
-				if(this.id == 'end_time_4'){
+				if(this.id = 'end_time_4'){
 						vvm.erObservationData.iv[4].end_time = this.value;
 				}
 			});
 	 		},
-
-        methods: {
+			methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },

@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<form method = "post">
-	
+
 
 			<div class="row form-group">
 				<div class="col-md-4">
@@ -214,7 +214,7 @@
         },
         mounted() {
 
-        	
+
 
      //    	 $('.ls-select2').select2({
      //                allowClear: true,
@@ -270,7 +270,7 @@
 		                	} else if(response.data.code == 300) {
 		                		toastr.error('Record not found', 'Error', {timeOut: 5000});
 		                	} else{
-		                		
+
 		                	 toastr.error('Something goes wrong', 'Error', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
