@@ -89,12 +89,12 @@ import infusionTherapyChart from './views/admin/vins/infusionTherapyChart.vue'
 import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChecklist.vue'
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
 import opdForm from './views/admin/vins/opd_form.vue'
-
+import laboratory from './views/admin/vins/laboratory.vue'
 import NewUser from './views/admin/vins/newUser'
 
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
-
+import changePwd from './views/emails/ChangePwd.vue'
 
 Vue.use(VueRouter)
 
@@ -470,6 +470,16 @@ const routes = [
                 path: '/neuroExamination',
                 component: neuroExamination,
                 name: 'neuroExamination'
+            },
+            {
+                path: '/changePwd',
+                component: changePwd,
+                name: 'changePwd'
+            },
+            {
+                path: '/laboratory',
+                component: laboratory,
+                name: 'laboratory'
             },
 
 

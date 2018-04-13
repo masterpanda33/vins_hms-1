@@ -35,7 +35,7 @@
           </span>
         </div>
       </div>
-      
+
     </div>
     <div class="row form-group">
       <div class="col-md-6">
@@ -44,7 +44,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="opd_name" id="opd_name" class="form-control"  v-model="opdData.name">
-            
+
           <span class="help is-danger" v-show="errors.has('opd_name')">
             Field is required
           </span>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="age" id="age" class="form-control"  v-model="opdData.age">
-            
+
           <span class="help is-danger" v-show="errors.has('age')">
             Field is required
           </span>
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="weight" id="weight" class="form-control"  v-model="opdData.weight">
-            
+
           <span class="help is-danger" v-show="errors.has('weight')">
             Field is required
           </span>
@@ -100,7 +100,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="height" id="height" class="form-control" placeholder="In cms"  v-model="opdData.height">
-            
+
           <span class="help is-danger" v-show="errors.has('height')">
             Field is required
           </span>
@@ -109,13 +109,13 @@
       <div class="col-md-6">
         <div class="col-md-6">
           <label for="date">BMI:</label>
-        </div>  
+        </div>
         <div class="col-md-6">
           <input type="text" name="bmi" id="bmi" class="form-control" readonly="" v-model="bmi">
-          
+
         </div>
       </div>
-    </div>    
+    </div>
     <hr>
 
     <div class="row form-group">
@@ -144,7 +144,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="vitals" id="vitals" class="form-control"  v-model="opdData.vitals">
-            
+
           <span class="help is-danger" v-show="errors.has('vitals')">
             Field is required
           </span>
@@ -167,7 +167,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="bp" id="bp" class="form-control"  v-model="opdData.bp">
-            
+
           <!-- <span class="help is-danger" v-show="errors.has('vitals')">
             Field is required
           </span> -->
@@ -179,11 +179,11 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="temp" id="temp" class="form-control"  v-model="opdData.temp">
-          
+
         </div>
       </div>
     </div>
-    
+
   </form>
   </div>
 </template>
@@ -220,7 +220,7 @@
           }
         },
         mounted(){
-          $('.ls-selecct2').select2(); 
+          $('.ls-selecct2').select2();
           let vm =this;
           $('.ls-selecct2').on("select2:select", function (e) { 
             console.log($(this).val());
