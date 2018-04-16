@@ -532,21 +532,21 @@ const router = new VueRouter({
     linkActiveClass: 'active'
 })
 
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
 
-    // If the next route is requires user to be Logged IN
-    if (to.matched.some(m => m.meta.requiresAuth)){
+//     // If the next route is requires user to be Logged IN
+//     if (to.matched.some(m => m.meta.requiresAuth)){
 
-        return AuthService.check().then(authenticated => {
-            if(!authenticated){
-                return next({ path : '/login'})
-            }
+//         return AuthService.check().then(authenticated => {
+//             if(!authenticated){
+//                 return next({ path : '/login'})
+//             }
 
-            return next()
-        })
-    }
+//             return next()
+//         })
+//     }
 
-    return next()
-});
+//     return next()
+// });
 
 export default router
