@@ -44,7 +44,6 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-
 					<div class="col-md-6">
 						<label>Allergic History : </label>
 					</div>
@@ -355,7 +354,7 @@
 			</div>
 
 		</form>
-		  <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
+	  <select-patient-modal @confirmed="deleteConfirmed()"></select-patient-modal>
 	</div>
 </template>
 <script >
