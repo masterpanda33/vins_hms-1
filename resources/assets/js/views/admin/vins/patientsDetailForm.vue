@@ -68,8 +68,8 @@
 					</div>
 					<div class="col-md-6">
 						<select class="form-control " id="sex" name="sex" v-model="patientData.gender" >
-							<option value="Male" >Male</option>
-							<option value="Female">Female</option>
+							<option value="M" >Male</option>
+							<option value="F">Female</option>
 						</select>
 						<!--span class="help is-danger" v-show="errors.has('sex')">
 		                	Field is required
@@ -259,18 +259,23 @@
 		        //   )
 		      },
 		    savePatient() {
+		     	// return false;
 		    	this.$validator.validateAll().then(
 	            (response) => {
 	            	if (!this.errors.any()) {
 	            		 $("body .js-loader").removeClass('d-none');
-				    	User.savePatient(this.patientData).then(
+	            		 var pData = {'patientData':this.patientData,'patientType':'ipd'};
+				    	User.savePatient(pData).then(
 		                (response) => {
 		                	if(response.data.code == 200) {
 		                		toastr.success('Patient details have been saved', 'patient detail', {timeOut: 5000});
+		    					var uhidNo=response.data.data.uhid_no;
+								$("#createPatientDetail").modal("hide");
+		    					this.$store.dispatch('SetUhidNo',uhidNo);
 		                	} else if(response.data.code == 300) {
 		                		toastr.error('Record not found', 'Error', {timeOut: 5000});
 		                	} else{
-
+		                		
 		                	 toastr.error('Something goes wrong', 'Error', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');
@@ -285,7 +290,6 @@
                 (error) => {
                 }
                 )
-
 			}
 		  },
 
