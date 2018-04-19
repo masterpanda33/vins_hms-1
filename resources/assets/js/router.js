@@ -90,11 +90,11 @@ import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChec
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
 import opdForm from './views/admin/vins/opd_form.vue'
 import laboratory from './views/admin/vins/laboratory.vue'
-import NewUser from './views/admin/vins/newUser'
-
+import NewUser from './views/admin/vins/newUser.vue'
+import UserList from './views/admin/vins/UserList.vue'
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
-import changePwd from './views/emails/ChangePwd.vue'
+// simport changePwd from './views/emails/ChangePwd.vue'
 
 import investigations from './components/investigations.vue'
 
@@ -473,11 +473,11 @@ const routes = [
                 component: neuroExamination,
                 name: 'neuroExamination'
             },
-            {
-                path: '/changePwd',
-                component: changePwd,
-                name: 'changePwd'
-            },
+            // {
+            //     path: '/changePwd',
+            //     component: changePwd,
+            //     name: 'changePwd'
+            // },
             {
                 path: '/laboratory',
                 component: laboratory,
@@ -488,6 +488,12 @@ const routes = [
                 component: investigations,
                 name: 'investigations'
 
+            },
+            {
+                path: '/UserList',
+                component: UserList,
+                meta: { requiresAuth: true },
+                name: 'UserList'
             },
 
 
