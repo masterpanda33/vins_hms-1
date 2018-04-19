@@ -78,7 +78,7 @@
 					</td>
 					<td>
 						<div class="form-group">
-							 <select class="form-control "  id = "pain_chest" name="pain_chest" value=""  v-model="informationFormData.pain_chest">
+							 <select class="form-control   ls-select2"  id = "pain_chest" name="pain_chest" value=""  v-model="informationFormData.pain_chest">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -97,7 +97,7 @@
 				</td>
 					<td>
 						<div class="form-group">
-							 <select class="form-control "  id = "bp_heart" name="bp_heart" value=""  v-model="informationFormData.bp_heart">
+							 <select class="form-control  ls-select2 "  id = "bp_heart" name="bp_heart" value=""  v-model="informationFormData.bp_heart">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -116,7 +116,7 @@
   				</td>
   					<td>
 							<div class="form-group">
-  							 <select class="form-control "  id = "major_illness_name" name="major_illness_name" value=""  v-model="informationFormData.major_illness_name">
+  							 <select class="form-control  ls-select2"  id = "major_illness_name" name="major_illness_name" value=""  v-model="informationFormData.major_illness_name">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -131,7 +131,7 @@
   				</td>
   					<td>
 							<div class="form-group">
-  							 <select class="form-control "  id = "nervous_disorder" name="nervous_disorder" value=""  v-model="informationFormData.nervous_disorder">
+  							 <select class="form-control  ls-select2"  id = "nervous_disorder" name="nervous_disorder" value=""  v-model="informationFormData.nervous_disorder">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -149,7 +149,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control "  id = "bleeding_clot" name="bleeding_clot" value=""  v-model="informationFormData.bleeding_clot">
+  							 <select class="form-control  ls-select2 "  id = "bleeding_clot" name="bleeding_clot" value=""  v-model="informationFormData.bleeding_clot">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -168,7 +168,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control "  id = "diabetes" name="diabetes" value=""  v-model="informationFormData.diabetes">
+  							 <select class="form-control  ls-select2"  id = "diabetes" name="diabetes" value=""  v-model="informationFormData.diabetes">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -187,7 +187,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control "  id = "peptic_ulcer" name="peptic_ulcer" value=""  v-model="informationFormData.peptic_ulcer">
+  							 <select class="form-control  ls-select2"  id = "peptic_ulcer" name="peptic_ulcer" value=""  v-model="informationFormData.peptic_ulcer">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -206,7 +206,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control "  id = "allergy" name="allergy" value=""  v-model="informationFormData.allergy">
+  							 <select class="form-control  ls-select2"  id = "allergy" name="allergy" value=""  v-model="informationFormData.allergy">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -226,7 +226,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							 <select class="form-control "  id = "asthama" name="asthama" value=""  v-model="informationFormData.asthama">
+  							 <select class="form-control  ls-select2"  id = "asthama" name="asthama" value=""  v-model="informationFormData.asthama">
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -245,7 +245,7 @@
   				</td>
   					<td>
   						<div class="form-group">
-  							<select class="form-control " name="difficulty_passing_urine" v-model="informationFormData.difficulty_passing_urine" >
+  							<select class="form-control  ls-select2" name="difficulty_passing_urine" v-model="informationFormData.difficulty_passing_urine" >
   								<option value="Yes">Yes</option>
   								<option value="No">No</option>
   							</select>
@@ -274,7 +274,7 @@
   				</td>
 					<td>
             <div class="form-group">
-							 <select class="form-control "  id = "surgical_complication" name="surgical_complication" value=""  v-model="informationFormData.surgical_complication">
+							 <select class="form-control  ls-select2"  id = "surgical_complication" name="surgical_complication" value=""  v-model="informationFormData.surgical_complication">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -283,7 +283,7 @@
                       </span>
 						</div>
             <div class="form-group">
-							 <select class="form-control "  id = "blood_transfusion" name="blood_transfusion" value=""  v-model="informationFormData.blood_transfusion">
+							 <select class="form-control ls-select2"  id = "blood_transfusion" name="blood_transfusion" value=""  v-model="informationFormData.blood_transfusion">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -303,14 +303,14 @@
             </div>
             <div class="row form-group">
               <div class="col-md-6">
-								<input class="form-control" type = "text" id = "taking_drugs_at_present" name="taking_drugs_at_present" value=""  v-model="informationFormData.taking_drugs_at_present"/>
+								<input class="form-control " type = "text" id = "taking_drugs_at_present" name="taking_drugs_at_present" value=""  v-model="informationFormData.taking_drugs_at_present"/>
               </div>
             </div>
 
   				</td>
 					<td>
 						<div class="form-group">
-							 <select class="form-control "  id = "drug_details" name="drug_details" value=""  v-model="informationFormData.drug_details">
+							 <select class="form-control ls-select2"  id = "drug_details" name="drug_details" value=""  v-model="informationFormData.drug_details">
 								<option value="Yes">Yes</option>
 								<option value="No">No</option>
 							</select>
@@ -405,9 +405,7 @@
 		},
 		mounted() {
 			$('.ls-select2').select2({
-                    allowClear: true,
-                    theme: "bootstrap",
-                    placeholder: "select"
+                    placeholder: "Select"
                 });
 			$('.ls-datepicker').datepicker({
 				 format: 'dd/mm/yyyy',

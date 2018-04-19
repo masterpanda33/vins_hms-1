@@ -38,6 +38,8 @@
 					<span class="help is-danger" v-show="errors.has('ipd_no')">
 						Field is required
 					</span>
+					</div>
+					<div class="col">
 
 				</div>
 
@@ -57,7 +59,7 @@
 				<label>Sex:</label>
 			</div>
 			<div class="col">
-				<select class="form-control" name="sex" v-validate="'required'" v-model="bloodTransfusionDetails.sex">
+				<select class="form-control ls-select2" name="sex" v-validate="'required'" v-model="bloodTransfusionDetails.sex">
 					<option value="NA">NA</option>
 					<option value="male">Male</option>
 					<option value="female">Female</option>
@@ -82,10 +84,15 @@
 			</div>
 			<div class="col">
 
+				<input type="time" class="form-control " name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+
+
 
 				<input type="time" class="form-control " name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
 
 				<input type="time" class="form-control ls-timepicker" name="time" v-validate="'required'" v-model="bloodTransfusionDetails.time" />
+
+
 
 				<span class="help is-danger" v-show="errors.has('time')">
 					Field is required
@@ -99,7 +106,7 @@
 					<label>Patient's Blood Group:</label>
 				</div>
 				<div class="col">
-					<select class="form-control" name="blood_group" v-validate="'required'" v-model="bloodTransfusionDetails.blood_group">
+					<select class="form-control ls-select2" name="blood_group" v-validate="'required'" v-model="bloodTransfusionDetails.blood_group">
 						<option value="A+">A+</option>
 						<option value="A-">A-</option>
 						<option value="AB+">AB+</option>
@@ -117,7 +124,7 @@
 					<label>History of previous BT :</label>
 				</div>
 				<div class="col">
-					<select class="form-control" name="history_bt" v-validate="'required'" v-model="bloodTransfusionDetails.history_bt">
+					<select class="form-control ls-select2" name="history_bt" v-validate="'required'" v-model="bloodTransfusionDetails.history_bt">
 						<option value="NA">NA</option>
 						<option value="Yes">Yes</option>
 						<option value="No">No</option>
@@ -158,7 +165,7 @@
 					<label>Blood Group:</label>
 				</div>
 				<div class="col-md-6">
-					<select class="form-control" name="blood_bag_group" v-validate="'required'" v-model="bloodTransfusionDetails.blood_bag_group">
+					<select class="form-control ls-select2" name="blood_bag_group" v-validate="'required'" v-model="bloodTransfusionDetails.blood_bag_group">
 						<option value="A+">A+</option>
 						<option value="A-">A-</option>
 						<option value="AB+">AB+</option>
@@ -181,7 +188,7 @@
 					<label>Product's Name:</label>
 				</div>
 				<div class="col-md-6">
-					<select class="form-control" id="prod_name" name="prod_name" v-validate="'required'" v-model="bloodTransfusionDetails.prod_name">
+					<select class="form-control ls-select2" id="prod_name" name="prod_name" v-validate="'required'" v-model="bloodTransfusionDetails.prod_name">
 							<option value="whole_blood"> Whole Blood </option>
 							<option value="PCV"> PCV </option>
 							<option value="PRC"> PRC </option>
@@ -296,12 +303,9 @@
 						<td v-else-if="n == 3">During Transfusion</td>
 						<td v-else-if="n == 11">Post Transfusion</td>
 						<td v-else></td>
-
-
 						<td><input type="time" class="form-control " id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
-
+						<td><input type="time" class="form-control " id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
 						<td><input type="text" class="form-control ls-timepicker" :id = "'tftime'+n" :name="'tftime'+n" v-model="bloodTransfusionDetails.transfusion[n].tftime"  /></td>
-
 						<td><input type="text" class="form-control" :name="'temp'+n" v-model="bloodTransfusionDetails.transfusion[n].temp" id ="_01_02" /></td>
 						<td><input type="text" class="form-control" :name="'resp'+n" v-model="bloodTransfusionDetails.transfusion[n].resp" id ="_01_03" /></td>
 						<td><input type="text" class="form-control" :name="'bp'+n" v-model="bloodTransfusionDetails.transfusion[n].bp" id ="_01_04" /></td>
@@ -317,7 +321,7 @@
 						<label>Minor Reaction : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="minor_reaction" v-model="bloodTransfusionDetails.minor_reaction">
+						<select class="form-control ls-select2" name="minor_reaction" v-model="bloodTransfusionDetails.minor_reaction">
 							<option value="NA">NA</option>
 							<option value="skin_rash">Skin Rash</option>
 							<option value="urticaria">Urticaria</option>
@@ -332,7 +336,7 @@
 						<label>Moderate Reaction: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="moderate" v-model="bloodTransfusionDetails.moderate_reaction">
+						<select class="form-control ls-select2" name="moderate" v-model="bloodTransfusionDetails.moderate_reaction">
 							<option value="NA">NA</option>
 							<option value="fever">Fever</option>
 							<option value="vomiting">Vomiting</option>
@@ -349,7 +353,7 @@
 						<label>Major Reaction : </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control" name="major_reactions" v-model="bloodTransfusionDetails.major_reaction">
+						<select class="form-control ls-select2" name="major_reactions" v-model="bloodTransfusionDetails.major_reaction">
 							<option value="NA">NA</option>
 							<option value="chest_pain">Chest Pain</option>
 							<option value="breathlessness">Breathlessness</option>
@@ -513,6 +517,9 @@
 					 SelectPatientModal
 			 },
 			 mounted() {
+				 $('.ls-select2').select2({
+						placeholder: "Select",
+				 });
               $('.ls-datepicker').datepicker({
 				    format: 'dd/mm/yyyy',
 				    'autoclose': true

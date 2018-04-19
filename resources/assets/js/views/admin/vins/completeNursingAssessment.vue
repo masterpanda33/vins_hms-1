@@ -109,7 +109,7 @@
   						<label>Allergies:</label>
   					</div>
   					<div class="col-md-6">
-  						<select class="form-control" name="allergies" v-model="completeNursingAssessmentData.allergies" v-validate="'required'" >
+  						<select class="form-control ls-select2" name="allergies" v-model="completeNursingAssessmentData.allergies" v-validate="'required'" >
   							<option value="no" >NO</option>
   							<option value="yes" >YES</option>
   							<option value="other" >Other</option>
@@ -135,7 +135,7 @@
   						<label>History Informant:</label>
   					</div>
   					<div class="col-md-6">
-  						<select class="form-control" name="history_informant" v-model="completeNursingAssessmentData.history_informant" v-validate="'required'" >
+  						<select class="form-control ls-select2" name="history_informant" v-model="completeNursingAssessmentData.history_informant" v-validate="'required'" >
   							<option value="patient" >Patient</option>
   							<option value="other" >Other</option>
   						</select>
@@ -160,7 +160,7 @@
   						<label>Patient Arrived:</label>
   					</div>
   					<div class="col-md-6">
-  						<select class="form-control" name="patient_arrived" v-model="completeNursingAssessmentData.patient_arrived" v-validate="'required'" >
+  						<select class="form-control ls-select2" name="patient_arrived" v-model="completeNursingAssessmentData.patient_arrived" v-validate="'required'" >
   							<option value="ambulatory" >Ambulatory</option>
   							<option value="wheelchair" >Wheelchair</option>
   							<option value="stretcher" >Stretcher</option>
@@ -187,7 +187,7 @@
   						<label>Patient Arrived From:</label>
   					</div>
   					<div class="col-md-6">
-  						<select class="form-control" name="patient_arrived_from" v-model="completeNursingAssessmentData.patient_arrived_from" v-validate="'required'" >
+  						<select class="form-control ls-select2" name="patient_arrived_from" v-model="completeNursingAssessmentData.patient_arrived_from" v-validate="'required'" >
   							<option value="home" >Home</option>
   							<option value="opd" >OPD</option>
   							<option value="other_hospital" >Other Hospital</option>
@@ -231,7 +231,7 @@
               <label>Pain:</label>
             </div>
             <div class="col-md-6">
-              <select class="form-control" name="pain" v-model="completeNursingAssessmentData.pain" v-validate="'required'" >
+              <select class="form-control ls-select2" name="pain" v-model="completeNursingAssessmentData.pain" v-validate="'required'" >
   							<option value="opd" >OPD</option>
   							<option value="home" >Home</option>
   						</select>
@@ -245,7 +245,7 @@
         <div class="row form-group">
           <div class="col-md-6">
             <div class="col-md-6">
-              <select class="form-control" id="temperature_type" name="temperature_type" v-model="completeNursingAssessmentData.temperature_type" >
+              <select class="form-control ls-select2" id="temperature_type" name="temperature_type" v-model="completeNursingAssessmentData.temperature_type" >
                 <option value="oral" > Oral </option>
                 <option value="rectal" > Rectal </option>
                 <option value="auxillary" > Auxillary </option>
@@ -324,7 +324,7 @@
 						<tr>
 							<th>Feeding</th>
 							<td>
-								<select class="form-control" name="feeding_usual" v-model="completeNursingAssessmentData.feeding_usual" >
+								<select class="form-control ls-select2" name="feeding_usual" v-model="completeNursingAssessmentData.feeding_usual" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -332,7 +332,7 @@
 								</select>
 							</td>
 							<td>
-								<select class="form-control" name="feeding_admission" v-model="completeNursingAssessmentData.feeding_admission" >
+								<select class="form-control ls-select2" name="feeding_admission" v-model="completeNursingAssessmentData.feeding_admission" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -349,7 +349,7 @@
 						<tr>
 							<th>Bathing</th>
 							<td>
-								<select class="form-control" name="bathing_usual" v-model="completeNursingAssessmentData.bathing_usual" >
+								<select class="form-control ls-select2" name="bathing_usual" v-model="completeNursingAssessmentData.bathing_usual" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -357,7 +357,7 @@
 								</select>
 							</td>
 							<td>
-								<select class="form-control" name="bathing_admission" v-model="completeNursingAssessmentData.bathing_admission" >
+								<select class="form-control ls-select2" name="bathing_admission" v-model="completeNursingAssessmentData.bathing_admission" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -368,7 +368,7 @@
 						<tr>
 							<th>Toileting</th>
 							<td>
-								<select class="form-control" name="toileting_usual" v-model="completeNursingAssessmentData.toileting_usual" >
+								<select class="form-control ls-select2" name="toileting_usual" v-model="completeNursingAssessmentData.toileting_usual" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -376,7 +376,7 @@
 								</select>
 							</td>
 							<td>
-								<select class="form-control" name="toileting_admission" v-model="completeNursingAssessmentData.toileting_admission" >
+								<select class="form-control ls-select2" name="toileting_admission" v-model="completeNursingAssessmentData.toileting_admission" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -387,7 +387,7 @@
 						<tr>
 							<th>General Mobility / Gait</th>
 							<td>
-								<select class="form-control" name="mobility_usual" v-model="completeNursingAssessmentData.mobility_usual" >
+								<select class="form-control ls-select2" name="mobility_usual" v-model="completeNursingAssessmentData.mobility_usual" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -395,7 +395,7 @@
 								</select>
 							</td>
 							<td>
-								<select class="form-control" name="mobility_admission" v-model="completeNursingAssessmentData.mobility_admission" >
+								<select class="form-control ls-select2" name="mobility_admission" v-model="completeNursingAssessmentData.mobility_admission" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -406,7 +406,7 @@
 						<tr>
 							<th>Dressing / Grooming</th>
 							<td>
-								<select class="form-control" name="dressing_usual" v-model="completeNursingAssessmentData.dressing_usual"  >
+								<select class="form-control ls-select2" name="dressing_usual" v-model="completeNursingAssessmentData.dressing_usual"  >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -414,7 +414,7 @@
 								</select>
 							</td>
 							<td>
-								<select class="form-control" name="dressing_admission" v-model="completeNursingAssessmentData.dressing_admission" >
+								<select class="form-control ls-select2" name="dressing_admission" v-model="completeNursingAssessmentData.dressing_admission" >
 									<option value="0" >Level 0</option>
 									<option value="1" >Level 1</option>
 									<option value="2" >Level 2</option>
@@ -553,7 +553,7 @@
   					<div class="row">
   						<label class="col control-label" for="type_of_diet">Type of Diet:</label>
   						<div class="col">
-  							<select class="form-control" name="type_of_diet" v-model="completeNursingAssessmentData.type_of_diet" v-validate="'required'" id="type_of_diet">
+  							<select class="form-control ls-select2" name="type_of_diet" v-model="completeNursingAssessmentData.type_of_diet" v-validate="'required'" id="type_of_diet">
   								<option value="veg">Veg</option>
   								<option value="non_veg">Non-veg</option>
   								<option value="jain">Jain</option>
@@ -591,7 +591,7 @@
   							<th>1</th>
   							<th>Has there been any unintentional weight loss in the last three months?</th>
   							<td>
-  								<select class="form-control" name="weight_loss" v-model="completeNursingAssessmentData.weight_loss" v-validate="'required'" id="weight_loss">
+  								<select class="form-control ls-select2" name="weight_loss" v-model="completeNursingAssessmentData.weight_loss" v-validate="'required'" id="weight_loss">
   									<option value="3">>6 Kgs</option>
   									<option value="2">3-6 Kgs</option>
   									<option value="1">0-3 Kgs (Don't Know)</option>
@@ -606,7 +606,7 @@
   							<th>2</th>
   							<th>Does the patient appear emaciated?</th>
   							<td>
-  								<select class="form-control" name="emaciated" v-model="completeNursingAssessmentData.emaciated" v-validate="'required'" id="emaciated">
+  								<select class="form-control ls-select2" name="emaciated" v-model="completeNursingAssessmentData.emaciated" v-validate="'required'" id="emaciated">
   									<option value="2">Yes</option>
   									<option value="1">No</option>
   								</select>
@@ -619,7 +619,7 @@
   							<th>3</th>
   							<th>Is the patient mentally well oriented?</th>
   							<td>
-  								<select class="form-control" name="mental_orientation" v-model="completeNursingAssessmentData.mental_orientation" v-validate="'required'" id="mental_orientation">
+  								<select class="form-control ls-select2" name="mental_orientation" v-model="completeNursingAssessmentData.mental_orientation" v-validate="'required'" id="mental_orientation">
   									<option value="2">Yes</option>
   									<option value="1">No</option>
   								</select>
@@ -632,7 +632,7 @@
   							<th>4</th>
   							<th>Patient mode of feeding :</th>
   							<td>
-  								<select class="form-control" name="mode_of_feeding" v-model="completeNursingAssessmentData.mode_of_feeding" v-validate="'required'" id="mode_of_feeding">
+  								<select class="form-control ls-select2" name="mode_of_feeding" v-model="completeNursingAssessmentData.mode_of_feeding" v-validate="'required'" id="mode_of_feeding">
   									<option value="3">Parental Nutritional / NBM</option>
   									<option value="2">External Tube Feeding</option>
   									<option value="1">Oral Feeding - Liquids</option>
@@ -810,6 +810,10 @@
            SelectPatientModal,
        },
        mounted() {
+
+                 $('.ls-select2').select2({
+                    placeholder: "Select",
+                 });
 
                  $('.ls-datepicker').datepicker({
 				            format: 'dd/mm/yyyy',

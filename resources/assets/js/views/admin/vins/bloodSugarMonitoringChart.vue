@@ -11,7 +11,7 @@
       <div class="row form-group">
         <div class="col-md-4">
           <div class="col-md-6">
-            
+
             <label>Patient's Name:</label>
           </div>
           <div class="col-md-6">
@@ -70,7 +70,7 @@
   					<label>Sex:</label>
   				</div>
   				<div class="col-md-6">
-  					<select class="form-control" name="sex" v-validate="'required'" v-model="bloodSugarMonitoringChart.sex" value="">
+  					<select class="form-control ls-select2" name="sex" v-validate="'required'" v-model="bloodSugarMonitoringChart.sex" value="">
   						<option value="Male">Male</option>
   						<option value="Female">Female</option>
   					</select>
@@ -179,6 +179,9 @@
            SelectPatientModal
        },
         mounted() {
+        $('.ls-select2').select2({
+           placeholder: "Select",
+        });
           $('.ls-datepicker').datepicker({
    				    format: 'dd/mm/yyyy',
    				    'autoclose': true
