@@ -8,7 +8,7 @@ import * as types from './mutation-types'
 import Patient from './modules/patient'
 import Users from './modules/users'
 
-// import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate'
 // import VuexPersist from 'vuex-persist';
 
 Vue.use(Vuex)
@@ -33,7 +33,7 @@ const mutations = {
 }
 export default new Vuex.Store({
   state,
-  // plugins: [createPersistedState()],
+  plugins: [createPersistedState()],
    // plugins: [vuexLocalStorage.plugin],
   actions,
   mutations,

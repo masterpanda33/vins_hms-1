@@ -207,7 +207,9 @@ export default {
   },
   createUser(userData) {
       return api.post('user/create',{'userData':userData})
-
+  },
+  saveOpdData(opdData) {
+      return api.post('opd/saveData',{'opdData':opdData})
   }
 
 

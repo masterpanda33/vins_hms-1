@@ -5,7 +5,7 @@ import moment from 'moment'
 
 // initial state
 const state = {
-	'userDetails':[]
+	'userDetails':{}
 }
 
 
