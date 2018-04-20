@@ -91,12 +91,12 @@ import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
 import opdForm from './views/admin/vins/opd_form.vue'
 import laboratory from './views/admin/vins/laboratory.vue'
 import NewUser from './views/admin/vins/newUser.vue'
-import UserList from './views/admin/vins/UserList.vue'
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
-// simport changePwd from './views/emails/ChangePwd.vue'
+
 
 import investigations from './components/investigations.vue'
+
 
 Vue.use(VueRouter)
 
@@ -133,6 +133,7 @@ const routes = [
             {
                 path: '/opd_form',
                 component: opdForm,
+                meta: { requiresAuth: true },
                 name: 'opd_form'
             },
                        // {
@@ -483,43 +484,17 @@ const routes = [
                 component: laboratory,
                 name: 'laboratory'
             },
+
             {
                 path: '/investigations',
                 component: investigations,
                 name: 'investigations'
 
             },
-            {
-                path: '/UserList',
-                component: UserList,
-                meta: { requiresAuth: true },
-                name: 'UserList'
-            },
-
-
-
-            // {
-            //     path: '/schedule_results/:tournamentslug',
-            //     component: FrontSchedule,
-            //     name: 'front_schedule'
-            // },
 
         ]
     },
 
-   /* {
-        path: '/', component: LayoutHorizontal,
-        meta: { requiresAuth: true },
-        children: [
-            {
-                path: '/',
-                component: Welcome,
-                name: 'welcome'
-            },
-        ]
-    },*/
-
-    // Admin Backend Routes For Tournaments
     {
         path: '/admin', component: LayoutLogin,
         meta: { requiresAuth: true },

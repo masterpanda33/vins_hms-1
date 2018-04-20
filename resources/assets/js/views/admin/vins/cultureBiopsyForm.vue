@@ -113,7 +113,7 @@
                 </span>
               </td>
               <td colspan="2">
-                <select class="form-control" name="cytology" v-validate="'required'" v-model="cultureBiopsyData.cytology"  value="">
+                <select class="form-control ls-select2" name="cytology" v-validate="'required'" v-model="cultureBiopsyData.cytology"  value="">
                   <option value="culture">Culture</option>
                   <option value="sensitivity">Sensitivity</option>
                 </select>
@@ -126,7 +126,7 @@
               <td class="col-md-3"><label class="control-label" for="others">Others:</label></td>
               <td class="col-md-3"><input type="text" class="form-control" name="others" v-model="cultureBiopsyData.others" id="others"></td>
               <td colspan="2">
-                <select class="form-control" name="cytology_01" v-validate="'required'" v-model="cultureBiopsyData.cytology_01"  value="">
+                <select class="form-control ls-select2" name="cytology_01" v-validate="'required'" v-model="cultureBiopsyData.cytology_01"  value="">
                   <option value="myco tb">Myco TB</option>
                   <option value="aerobic">Aerobic</option>
                   <option value="anaerobic">Anaerobic</option>
@@ -138,7 +138,7 @@
             </tr>
             <tr>
               <td colspan="2">
-                <select class="form-control" name="histopathology" v-validate="'required'" v-model="cultureBiopsyData.histopathology"  value="">
+                <select class="form-control ls-select2" name="histopathology" v-validate="'required'" v-model="cultureBiopsyData.histopathology"  value="">
                   <option value="gram stain">Gram Stain</option>
                   <option value="zn stain">ZN Stain</option>
                 </select>
@@ -166,7 +166,7 @@
     			    <td class="form-inline">
     			    	<label class="control-label" for="type_of_biopsy">Surgical Excision:</label>
     						<div class="">
-    							<select class="form-control" name="type_of_biopsy" v-validate="'required'" v-model="cultureBiopsyData.type_of_biopsy"  value="">
+    							<select class="form-control ls-select2" name="type_of_biopsy" v-validate="'required'" v-model="cultureBiopsyData.type_of_biopsy"  value="">
     								<option value="complete">Complete</option>
     								<option value="partial">Partial</option>
     								<option value="punch">Punch</option>
@@ -179,7 +179,7 @@
     						</div>
     			    </td>
       				<td>
-      					<input class="form-control" type="text" name="specimen_info" v-validate="'required'" v-model="cultureBiopsyData.specimen_info" placeholder="Specimen info here" />
+      					<input class="form-control ls-select2" type="text" name="specimen_info" v-validate="'required'" v-model="cultureBiopsyData.specimen_info" placeholder="Specimen info here" />
                 <span class="help is-danger" v-show="errors.has('specimen_info')">
                   Field is required
                 </span>
@@ -211,7 +211,7 @@
             <label>Send To : </label>
           </div>
 		  		<div class="col-md-6">
-						<select class="form-control" name="send_to" v-model="cultureBiopsyData.send_to" value="">
+						<select class="form-control ls-select2" name="send_to" v-model="cultureBiopsyData.send_to" value="">
 							<option value="toprani lab">Toprani Lab</option>
 							<option value="kadakiya lab">Kadakiya Lab</option>
 						</select>
@@ -313,6 +313,9 @@
            SelectPatientModal
        },
        mounted() {
+         $('.ls-select2').select2({
+            placeholder: "Select",
+         });
          if(this.ipd_id == 0){
                 $('#delete_modal').modal('show');
           }

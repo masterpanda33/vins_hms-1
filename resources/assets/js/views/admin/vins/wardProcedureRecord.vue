@@ -34,7 +34,7 @@
 						<th>Procedure Name</th>
 						<th>
 
-							<select required class="form-control" name="time" value="" v-model="wardProcedureRecordData.time">
+							<select required class="form-control ls-select2" name="time" value="" v-model="wardProcedureRecordData.time">
 								<option  disabled selected hidden>Select Time (Hrs)</option>
 								<option value="4_6">0400 - 0600</option>
 								<option value="6_8">0600 - 0800</option>
@@ -360,6 +360,11 @@
                 }
             }
         },
+				mounted() {
+					$('.ls-select2').select2({
+						 placeholder: "Select",
+				  });
+				},
         methods: {
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})

@@ -179,8 +179,33 @@
       </div>
 
       <hr />
+        <div id="signature-pad" class="signature-pad">
+          <div class="signature-pad--body">
+            <canvas id="myCanvas" height="500" width="600" ></canvas>
+             <!-- <canvas height="500" width="600" style="background: url('https://i.imgur.com/1bvTivk.png'); max-width:100%; max-height:100%;"></canvas> -->
+          </div>
+          <div class="signature-pad--footer">
+           
+            <div class="signature-pad--actions">
+              <div>
+                <button type="button" class="button clear btn btn-warning" data-action="clear">Clear</button>
+                <button type="button" class="button save btn btn-success" data-action="save-png">Save</button>
+                <input type="color" class="button" data-action="change-color">Change color
+                <!-- <button type="button" class="button" data-action="undo">Undo</button> -->
 
-      <div class="row form-group">
+              </div>
+              <div>
+                
+               <!--  <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
+                <button type="button" class="button save" data-action="save-svg">Save as SVG</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="row form-group" style="display: none;">
+        <img id="scream" src="/assets/img/examin.png" alt="The Scream" width="220" height="277">
+
         <canvas height="500" width="600" style="background: url('https://i.imgur.com/1bvTivk.png'); max-width:100%; max-height:100%;"></canvas>
       </div>
 
@@ -205,7 +230,7 @@
 	import User from '../../../api/users.js'
 	import addressograph from './addressograph.vue';
 	import SelectPatientModal from '../../../components/SelectPatientModal.vue';
-
+  import SignaturePad from 'signature_pad';
     export default {
         data() {
             return {
@@ -256,8 +281,90 @@
 					 SelectPatientModal
 			 },
 			 mounted() {
+        var vm =this;
+        setTimeout(function(){
+          vm.examinationChangeImage();
+ 
+        },2000)
 			 },
 				methods: {
+        examinationChangeImage() {
+
+          var wrapper = document.getElementById("signature-pad");
+          var clearButton = wrapper.querySelector("[data-action=clear]");
+          var changeColorButton = wrapper.querySelector("[data-action=change-color]");
+          var savePNGButton = wrapper.querySelector("[data-action=save-png]");
+          var canvas = document.getElementById("myCanvas");
+          var signaturePad = new SignaturePad(canvas, {
+            backgroundColor: 'rgb(255, 255, 255)',
+          });
+
+           function resizeCanvas() {
+            var ratio =  Math.max(window.devicePixelRatio || 1, 1);
+            canvas.width = canvas.offsetWidth * ratio;
+            canvas.height = canvas.offsetHeight * ratio;
+             canvas.getContext("2d").scale(ratio, ratio);
+            var  ctx = canvas.getContext('2d');
+             ctx.drawImage($('#scream').get(0), 0, 0);
+          }
+
+          // On mobile devices it might make more sense to listen to orientation change,
+          // rather than window resize events.
+          window.onresize = resizeCanvas;
+          resizeCanvas();
+
+          function download(dataURL, filename) {
+            var blob = dataURLToBlob(dataURL);
+            var url = window.URL.createObjectURL(blob);
+
+            var a = document.createElement("a");
+            a.style = "display: none";
+            a.href = url;
+            a.download = filename;
+
+            document.body.appendChild(a);
+            a.click();
+
+            window.URL.revokeObjectURL(url);
+          }
+
+          // One could simply use Canvas#toBlob method instead, but it's just to show
+          // that it can be done using result of SignaturePad#toDataURL.
+          function dataURLToBlob(dataURL) {
+            // Code taken from https://github.com/ebidel/filer.js
+            var parts = dataURL.split(';base64,');
+            var contentType = parts[0].split(":")[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+              uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], { type: contentType });
+          }
+
+          clearButton.addEventListener("click", function (event) {
+            signaturePad.clear();
+            resizeCanvas();
+          });
+          changeColorButton.addEventListener("change", function (event) {
+            signaturePad.penColor = $(this).val();
+          });
+
+          savePNGButton.addEventListener("click", function (event) {
+            if (signaturePad.isEmpty()) {
+              alert("Please provide a signature first.");
+            } else {
+              var dataURL = signaturePad.toDataURL();
+              console.log(dataURL);
+              // download(dataURL, "signature.png");
+            }
+          });
+
+
+        },
 		    GetSelectComponent(componentName) {
 		       this.$router.push({name: componentName})
 		    },
