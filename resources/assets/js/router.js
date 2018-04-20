@@ -90,12 +90,11 @@ import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChec
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
 import opdForm from './views/admin/vins/opd_form.vue'
 import laboratory from './views/admin/vins/laboratory.vue'
-import NewUser from './views/admin/vins/newUser'
-
+import NewUser from './views/admin/vins/newUser.vue'
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
 
-import changePwd from './views/emails/ChangePwd.vue'
+
 import investigations from './components/investigations.vue'
 
 
@@ -492,6 +491,7 @@ const routes = [
                 name: 'investigations'
 
             },
+
         ]
     },
 

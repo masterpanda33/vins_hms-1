@@ -56,8 +56,8 @@
 		                                <div class="form-group">
 		                                	<label class="control-label" for="sex">Gender: </label>
 											<select  class="form-control ls-select2" id = "gender" name="gender">
-					            				<option value="male">Male</option>
-								            	<option value="female">Female</option>
+					            				<option value="M">Male</option>
+								            	<option value="F">Female</option>
 								          	</select>
 								          	<span class="help is-danger" v-show="errors.has('gender')">
 								            	Field is required
