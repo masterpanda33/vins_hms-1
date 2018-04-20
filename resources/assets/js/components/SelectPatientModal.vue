@@ -38,6 +38,12 @@
                 'ipd_No'  : '',
             }
         },
+        mounted(){
+            var vm = this;
+            setTimeout(function(){
+                vm.ipdData = vm.$store.state.Patient.ipdData;
+            },3000)
+        },
         props: {
             // deleteConfirmMsg: String
         },
@@ -46,8 +52,7 @@
         },
         methods: {
             saveIpd() {
-
-            this.$store.dispatch('SetPatientData',this.ipd_No);
+                this.$store.dispatch('SetPatientData',this.ipd_No);
                 this.hideModal();
                 // this.$emit('confirmed');
             },
