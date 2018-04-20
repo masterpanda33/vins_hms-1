@@ -107,6 +107,7 @@ class UserRepository {
         'user_type'=>$data['user_type'],
         'department'=>$data['department'],
         'email' => $data['email'],
+        'address' => $data['address'],
         'password' => $data['password'],
         'mobile_no'=>$data['mobile_no'],
         'token' => $data['token'],

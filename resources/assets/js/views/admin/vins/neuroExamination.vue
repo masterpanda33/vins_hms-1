@@ -120,7 +120,7 @@
           <label for="cerebellar" class="control-label">Cerebellar Signs : </label>
         </div>
         <div class="col-md-6">
-					<select class="form-control" v-validate="'required'" id = "cerebellar" name="cerebellar" value="" :class="{'is-danger': errors.has('cerebellar') }" v-model="neuroExaminationData.cerebellar">
+					<select class="form-control ls-select2" v-validate="'required'" id = "cerebellar" name="cerebellar" value="" :class="{'is-danger': errors.has('cerebellar') }" v-model="neuroExaminationData.cerebellar">
 						<option value="no">No</option>
             <option value="truncal">Truncal</option>
             <option value="appendicular">Appendicular</option>
@@ -216,6 +216,10 @@
 					 SelectPatientModal
 			 },
 			 mounted() {
+				 $('.ls-select2').select2({
+						placeholder: "Select",
+				 });
+
 			 },
 				methods: {
 		    GetSelectComponent(componentName) {

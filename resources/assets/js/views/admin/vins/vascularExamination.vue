@@ -285,7 +285,7 @@
         setTimeout(function(){
           vm.examinationChangeImage();
  
-        },1000)
+        },2000)
 			 },
 				methods: {
         examinationChangeImage() {
@@ -294,7 +294,7 @@
           var clearButton = wrapper.querySelector("[data-action=clear]");
           var changeColorButton = wrapper.querySelector("[data-action=change-color]");
           var savePNGButton = wrapper.querySelector("[data-action=save-png]");
-          var canvas = wrapper.querySelector("canvas");
+          var canvas = document.getElementById("myCanvas");
           var signaturePad = new SignaturePad(canvas, {
             backgroundColor: 'rgb(255, 255, 255)',
           });
@@ -358,7 +358,8 @@
               alert("Please provide a signature first.");
             } else {
               var dataURL = signaturePad.toDataURL();
-              download(dataURL, "signature.png");
+              console.log(dataURL);
+              // download(dataURL, "signature.png");
             }
           });
 
