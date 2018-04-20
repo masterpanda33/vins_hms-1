@@ -156,7 +156,7 @@
 					<label for="ho_loc" class="control-label">H/O LOC</label>
 				</div>
 				<div class="col-md-6">
-					<select class="form-control" v-validate="'required'" id = "ho_loc" name="ho_loc" value="" :class="{'is-danger': errors.has('ho_loc') }" v-model="historyFormData.ho_loc">
+					<select class="form-control ls-select2" v-validate="'required'" id = "ho_loc" name="ho_loc" value="" :class="{'is-danger': errors.has('ho_loc') }" v-model="historyFormData.ho_loc">
 						<option value="no">No</option>
 						<option value="yes">Yes</option>
 					</select>
@@ -170,7 +170,7 @@
 					<label for="ho_entbleeding" class="control-label">H/O ENT Bleeding</label>
 				</div>
 				<div class="col-md-6">
-					<select class="form-control" v-validate="'required'" id = "ho_entbleeding" name="ho_entbleeding" value="" :class="{'is-danger': errors.has('ho_entbleeding') }" v-model="historyFormData.ho_entbleeding">
+					<select class="form-control ls-select2" v-validate="'required'" id = "ho_entbleeding" name="ho_entbleeding" value="" :class="{'is-danger': errors.has('ho_entbleeding') }" v-model="historyFormData.ho_entbleeding">
 						<option value="no">No</option>
 						<option value="yes">Yes</option>
 					</select>
@@ -187,7 +187,7 @@
 					<label for="ho_seizures" class="control-label">H/O Seizures</label>
 				</div>
 				<div class="col-md-6">
-					<select class="form-control" v-validate="'required'" id = "ho_seizures" name="ho_seizures" value="" :class="{'is-danger': errors.has('ho_seizures') }" v-model="historyFormData.ho_seizures">
+					<select class="form-control ls-select2" v-validate="'required'" id = "ho_seizures" name="ho_seizures" value="" :class="{'is-danger': errors.has('ho_seizures') }" v-model="historyFormData.ho_seizures">
 						<option value="no">No</option>
 						<option value="yes">Yes</option>
 					</select>
@@ -201,7 +201,7 @@
 					<label for="ho_vomiting" class="control-label">H/O Vomiting</label>
 				</div>
 				<div class="col-md-6">
-					<select class="form-control" v-validate="'required'" id = "ho_vomiting" name="ho_vomiting" value="" :class="{'is-danger': errors.has('ho_vomiting') }" v-model="historyFormData.ho_vomiting" >
+					<select class="form-control ls-select2" v-validate="'required'" id = "ho_vomiting" name="ho_vomiting" value="" :class="{'is-danger': errors.has('ho_vomiting') }" v-model="historyFormData.ho_vomiting" >
 						<option value="no">No</option>
 						<option value="yes">Yes</option>
 					</select>
@@ -279,7 +279,7 @@
 				<label for="pain" class="control-label">Pain Assessment : </label>
 			</div>
 			<div class="col-md-6">
-				<select class="form-control" v-validate="'required'" id = "pain" name="pain" value="" :class="{'is-danger': errors.has('pain') }" v-model="historyFormData.pain">
+				<select class="form-control ls-select2" v-validate="'required'" id = "pain" name="pain" value="" :class="{'is-danger': errors.has('pain') }" v-model="historyFormData.pain">
 					<option value="0">0 - No Pain</option>
 					<option value="2">2 - Pain Little Bit</option>
 					<option value="4">4 - Pain Little More</option>
@@ -444,7 +444,7 @@
           <label for="cerebellar" class="control-label">Cerebellar Signs : </label>
         </div>
         <div class="col-md-6">
-					<select class="form-control" v-validate="'required'" id = "cerebellar" name="cerebellar" value="" :class="{'is-danger': errors.has('cerebellar') }" v-model="historyFormData.cerebellar">
+					<select class="form-control ls-select2" v-validate="'required'" id = "cerebellar" name="cerebellar" value="" :class="{'is-danger': errors.has('cerebellar') }" v-model="historyFormData.cerebellar">
 						<option value="no">No</option>
             <option value="truncal">Truncal</option>
             <option value="appendicular">Appendicular</option>
@@ -566,7 +566,9 @@
 			    format: 'dd/mm/yyyy',
 			    'autoclose': true
 			});
-
+			$('.ls-select2').select2({
+				 placeholder: "Select",
+			});
 			$('.ls-timepicker').timepicker();
             let vm =this;
 			$('.ls-datepicker').datepicker().on('changeDate',function(){

@@ -67,7 +67,7 @@
 						<label class="control-label" for="sex">Gender: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control " id="sex" name="sex" v-model="patientData.gender" >
+						<select class="form-control ls-select2" id="sex" name="sex" v-model="patientData.gender" >
 							<option value="Male" >Male</option>
 							<option value="Female">Female</option>
 						</select>
@@ -136,7 +136,7 @@
 					<div class="col-md-6">
 
 						<!-- <input type="text" name=""> -->
-			      	<select class="form-control"  id="consulting_dr" name="consulting_dr"  v-model="patientData.consulting_dr">
+			      	<select class="form-control ls-select2"  id="consulting_dr" name="consulting_dr"  v-model="patientData.consulting_dr">
 
 			      		 <option :value="doctor.text" v-for="doctor in patientData.consulting_dr_option">{{doctor.text}}</option>
 
@@ -155,7 +155,7 @@
 					</div>
 					<div class="col-md-6">
 
-						<select class="form-control " id="case" name="case" value="" v-model="patientData.case">
+						<select class="form-control ls-select2 " id="case" name="case" value="" v-model="patientData.case">
 							<option value="new" selected="" >New</option>
 
 							<option value="old" >Old</option>
@@ -213,8 +213,20 @@
             }
         },
         mounted() {
-
-
+					$('.ls-select2').select2({
+						 placeholder: "Select",
+				  });
+					let vm =this;
+          $('.ls-select2').on("select2:select", function (e) {
+             vm.patientData.case = $(this).val();
+             if($(this).val() == 'old') {
+             }
+             else {
+                setTimeout(function(){
+                $('#createPatientDetail').modal('show');
+             },500)
+					 }
+				});
 
      //    	 $('.ls-select2').select2({
      //                allowClear: true,

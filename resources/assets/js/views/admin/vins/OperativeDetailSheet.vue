@@ -27,7 +27,7 @@
             <label>OT No : </label>
           </div>
           <div class="col-md-6">
-            <select class="form-control" name="ot_no" v-model="operativeDetailSheetData.ot_no" v-validate="'required'">
+            <select class="form-control ls-select2" name="ot_no" v-model="operativeDetailSheetData.ot_no" v-validate="'required'">
               <option value="1">1</option>
               <option value="2">2</option>
             </select>
@@ -180,7 +180,7 @@
             <label>Surgery Type : </label>
           </div>
           <div class="col-md-6">
-            <select class="form-control" name="surgery_type" v-model="operativeDetailSheetData.surgery_type" v-validate="'required'">
+            <select class="form-control ls-select2" name="surgery_type" v-model="operativeDetailSheetData.surgery_type" v-validate="'required'">
               <option value="elective">Elective</option>
               <option value="emergency">Emergency</option>
             </select>
@@ -405,7 +405,7 @@
             <label>Mediclaim / Cashless : </label>
           </div>
           <div class="col-md-6">
-            <select class="form-control" name="mediclaim" v-model="operativeDetailSheetData.mediclaim" v-validate="'required'">
+            <select class="form-control ls-select2" name="mediclaim" v-model="operativeDetailSheetData.mediclaim" v-validate="'required'">
               <option value="mediclaim">Mediclaim</option>
               <option value="cashless">Cashless</option>
             </select>
@@ -579,6 +579,9 @@
           SelectPatientModal
         },
         mounted() {
+          $('.ls-select2').select2({
+             placeholder: "Select",
+          });
           $('.ls-datepicker').datepicker({
             format: 'dd/mm/yyyy',
             'autoclose': true
