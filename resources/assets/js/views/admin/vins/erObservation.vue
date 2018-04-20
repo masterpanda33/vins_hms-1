@@ -37,7 +37,7 @@
 						<label for="triage_category" class="control-label">Triage Category : </label>
 					</div>
 					<div class="col-md-6">
-						<input class="form-control" type = "text" v-validate="'required'" id = "triage_category" name="triage_category" value=""  v-model="erObservationData.triage_category"/>
+						<input class="form-control" type = "text" v-validate="'required'" :id = "triage_category" name="triage_category" value=""  v-model="erObservationData.triage_category"/>
 						<span class="help is-danger" v-show="errors.has('triage_category')">
 							Field is required
 						</span>
@@ -83,7 +83,7 @@
 					<tr>
 						<th>Time </th>
 						<th v-for="ti in 3">
-							<input class="form-control ls-timepicker" type="text" id = "'time_'+ti" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
+							<input class="form-control ls-timepicker" type="text" :id = "'time_'+ti" :name="'time_'+ti" value=" " v-model="erObservationData.vitals.time[ti]" v-validate="'required'">
 							<span class="help is-danger" v-show="errors.has('time_'+ti)">
 								Field is required
 							</span>
@@ -171,10 +171,10 @@
 							<input type="text" :name="'quantity_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].quantity">
 					 </td>
 						<td>
-							<input type="text" :name="'start_time_'+m" id = "start_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].start_time">
+							<input type="text" :name="'start_time_'+m" :id = "'start_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].start_time">
 					</td>
 						<td>
-							<input type="text" :name="'end_time_'+m"  id = "'end_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].end_time">
+							<input type="text" :name="'end_time_'+m"  :id = "'end_time_'+m" class="form-control ls-timepicker" value=" " v-model="erObservationData.iv[m].end_time">
 					</td>
 						<td>
 							<input type="text" :name="'remarks_'+m" class="form-control" value=" " v-model="erObservationData.iv[m].remarks">
@@ -215,7 +215,7 @@
 							<input type="text" :name="'administration_by_'+n"  class="form-control" :id = "'administration_by_'+n"  value=" " v-model="erObservationData.medication_administration[n].administration_by">
 						</td>
 						<td>
-							<input type="text" :name="'medication_time_'+n" class="form-control ls-timepicker" id = "'medication_time_'+n" value=" " v-model="erObservationData.medication_administration[n].medication_time">
+							<input type="text" :name="'medication_time_'+n" class="form-control ls-timepicker" :id = "'medication_time_'+n" value=" " v-model="erObservationData.medication_administration[n].medication_time">
 						</td>
 				  </tr>
 				</tbody>
