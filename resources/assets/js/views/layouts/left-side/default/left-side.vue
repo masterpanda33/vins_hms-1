@@ -5,7 +5,7 @@
         <section class="sidebar">
             <div id="menu" role="navigation">
                 <div class="nav_profile">
-                    <profile></profile>
+                    <!-- <profile></profile> -->
                 </div>
                 <vmenu>
                     <vmenu-item link="/" icon="ti-desktop">
@@ -32,14 +32,14 @@ import {
     vmenuItem,
     vsubMenu
 } from './menu';
-import profile from "../left-profile/user_profile.vue"
+// import profile from "../left-profile/user_profile.vue"
 export default {
     name: "left-side",
     components: {
         vmenu,
         vsubMenu,
         vmenuItem,
-        profile
+        // profile
     },
     data() {
         return {

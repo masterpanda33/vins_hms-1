@@ -90,11 +90,10 @@ import centralLineBundleChecklist from './views/admin/vins/centralLineBundleChec
 import MARFlowSheet from './views/admin/vins/MARFlowSheet.vue'
 import opdForm from './views/admin/vins/opd_form.vue'
 import laboratory from './views/admin/vins/laboratory.vue'
-import NewUser from './views/admin/vins/newUser'
-
+import NewUser from './views/admin/vins/newUser.vue'
 import vascularExamination from './views/admin/vins/vascularExamination.vue'
 import neuroExamination from './views/admin/vins/neuroExamination.vue'
-// import changePwd from './views/emails/ChangePwd.vue'
+
 import investigations from './components/investigations.vue'
 
 
@@ -133,6 +132,7 @@ const routes = [
             {
                 path: '/opd_form',
                 component: opdForm,
+                meta: { requiresAuth: true },
                 name: 'opd_form'
             },
                        // {
@@ -473,11 +473,7 @@ const routes = [
                 component: neuroExamination,
                 name: 'neuroExamination'
             },
-            // {
-            //     path: '/changePwd',
-            //     component: changePwd,
-            //     name: 'changePwd'
-            // },
+
             {
                 path: '/laboratory',
                 component: laboratory,
@@ -490,6 +486,7 @@ const routes = [
                 name: 'investigations'
 
             },
+
         ]
     },
 
@@ -529,21 +526,21 @@ const router = new VueRouter({
     linkActiveClass: 'active'
 })
 
-// router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
 
-//     // If the next route is requires user to be Logged IN
-//     if (to.matched.some(m => m.meta.requiresAuth)){
+    // If the next route is requires user to be Logged IN
+    if (to.matched.some(m => m.meta.requiresAuth)){
 
-//         return AuthService.check().then(authenticated => {
-//             if(!authenticated){
-//                 return next({ path : '/login'})
-//             }
+        return AuthService.check().then(authenticated => {
+            if(!authenticated){
+                return next({ path : '/login'})
+            }
 
-//             return next()
-//         })
-//     }
+            return next()
+        })
+    }
 
-//     return next()
-// });
+    return next()
+});
 
 export default router

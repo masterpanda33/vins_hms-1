@@ -93,6 +93,8 @@ $api->version('v1',['middleware' => 'jwt.auth'], function ($api) {
         $api->post('patient/getDetails/{id}', '\euro_hms\Api\Controllers\PatientsDetailFormController@getDetails');
         $api->get('patient/getAll', '\euro_hms\Api\Controllers\PatientsDetailFormController@getAllPatientName');
         $api->post('user/create', '\euro_hms\Api\Controllers\UserController@createUser')->name('create.users'); 
-        $api->post('user/getDetails', '\euro_hms\Api\Controllers\UserController@getUserDetailsByID')->name('user.getUserDetails'); 
+        $api->post('user/getDetails', '\euro_hms\Api\Controllers\UserController@getUserDetailsByID')->name('user.getUserDetails');
+        $api->post('opd/saveData', '\euro_hms\Api\Controllers\opdController@saveData'); 
+        
 
 });
