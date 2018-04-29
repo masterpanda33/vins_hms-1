@@ -8,15 +8,109 @@
                     <!-- <profile></profile> -->
                 </div>
                 <vmenu>
-                    <vmenu-item link="/" icon="ti-desktop">
+                    <vmenu-item link="/" icon="fa fa-certificate">
                         &nbsp; Dashboard
                     </vmenu-item>
-                    <vmenu-item link="/NewUser" icon="ti-layout">
+
+                    <!-- <vmenu-item link="/NewUser" icon="ti-layout">
                         &nbsp; New User
-                    </vmenu-item>
-                    <vmenu-item link="/patients_detail_form" icon="ti-layout">
-                        &nbsp; Patients Detail Form
-                    </vmenu-item>
+                    </vmenu-item> -->
+                    <vsub-menu id="category-tabs" title="Emergency Patients" icon="fa fa-certificate" >
+                        <vmenu-item link="/doctorsInitialAssessment" icon="ti-layout">
+                          &nbsp; Doctors Initial Assessment
+                        </vmenu-item>
+                        <vmenu-item link="/er_observation" icon="ti-layout">
+                          &nbsp; ER Observation
+                        </vmenu-item>
+                    </vsub-menu>
+                    <vsub-menu title="Pre Admission Forms" icon="fa fa-certificate" >
+                        <vmenu-item link="/patients_detail_form" icon="ti-layout">
+                          &nbsp; Patients Detail Form
+                        </vmenu-item>
+                        <vmenu-item link="/information_form" icon="ti-layout">
+                          &nbsp; Information Form
+                        </vmenu-item>
+                        <vmenu-item link="/PatientValuableForm" icon="ti-layout">
+                          &nbsp; Patient Valuable Form
+                        </vmenu-item>
+                    </vsub-menu>
+                    <vsub-menu title="24 Hours Form" icon="fa fa-certificate" >
+                            <vmenu-item link="/counsellingForm" icon="ti-layout">
+                              &nbsp; Counselling Form
+                            </vmenu-item>
+                            <vmenu-item link="/completeNursingAssessment" icon="ti-layout">
+                              &nbsp; Complete Nursing Assessment
+                            </vmenu-item>
+                            <vmenu-item link="/NutritionalAssessmentForm" icon="ti-layout">
+                              &nbsp; Nutritional Assessment Form
+                            </vmenu-item>
+                            <vmenu-item link="/plan_of_care" icon="ti-layout">
+                              &nbsp; Plan of Care
+                            </vmenu-item>
+                            <vmenu-item link="/history_form" icon="ti-layout">
+                              &nbsp; History Form
+                            </vmenu-item>
+                    </vsub-menu>
+                    <vsub-menu title="Operation/Surgery" icon="fa fa-certificate" >
+                            <vmenu-item link="/LabSheet" icon="ti-layout">
+                              &nbsp; Lab Sheet
+                            </vmenu-item>
+                            <vmenu-item link="/codeBlueEvaluationForm" icon="ti-layout">
+                              &nbsp; Code Blue Evaluation Form
+                            </vmenu-item>
+                            <vmenu-item link="/OperativeDetailSheet" icon="ti-layout">
+                              &nbsp; Operative Detail Sheet
+                            </vmenu-item>
+                            <vmenu-item link="/surgicalSafetyChecklist" icon="ti-layout">
+                              &nbsp; Surgical Safety Checklist
+                            </vmenu-item>
+                            <vmenu-item link="/pre_anaesthesia_checkup_form" icon="ti-layout">
+                              &nbsp; Pre Anaesthesia Checkup Form
+                            </vmenu-item>
+                            <vmenu-item link="/briefOperativeNote" icon="ti-layout">
+                              &nbsp; Brief Operative Notes
+                            </vmenu-item>
+                    </vsub-menu>
+                    <vsub-menu title="Daily Ward / General" icon="fa fa-certificate" >
+                            <vmenu-item link="/bloodSugarMonitoringChart" icon="ti-layout">
+                              &nbsp; Blood Sugar Monitoring Chart
+                            </vmenu-item>
+                            <vmenu-item link="/doctorsDailyNotes" icon="ti-layout">
+                              &nbsp; Doctors Daily Notes
+                            </vmenu-item>
+                            <vmenu-item link="/ward_procedure_record" icon="ti-layout">
+                              &nbsp; Ward Procedure Record
+                            </vmenu-item>
+                            <vmenu-item link="/bloodTransfusionDetails" icon="ti-layout">
+                              &nbsp; Blood Transfusion Details
+                            </vmenu-item>
+                            <vmenu-item link="/doctors_handover" icon="ti-layout">
+                              &nbsp; Doctors Handover
+                            </vmenu-item>
+                            <vmenu-item link="/PatientDietRecord" icon="ti-layout">
+                              &nbsp; Patient Diet Record
+                            </vmenu-item>
+                    </vsub-menu>
+                    <vsub-menu title="Discharge" icon="fa fa-certificate" >
+                            <vmenu-item link="/dischargeSummary" icon="ti-layout">
+                              &nbsp; Discharge Summary
+                            </vmenu-item>
+                            <vmenu-item link="/provisional_discharge_summary" icon="ti-layout">
+                              &nbsp; Provisional Discharge Summary
+                            </vmenu-item>
+                    </vsub-menu>
+                    <vsub-menu title="Other" icon="fa fa-certificate" >
+                            <vmenu-item link="/cultureBiopsyForm" icon="ti-layout">
+                              &nbsp; Culture Biopsy Form
+                            </vmenu-item>
+                            <vmenu-item link="/centralLineBundleChecklist" icon="ti-layout">
+                              &nbsp; Central Line Bundle Checklist
+                            </vmenu-item>
+                            <vmenu-item link="/appointmentBook" icon="ti-layout">
+                              &nbsp; Appintment Book
+                            </vmenu-item>
+                    </vsub-menu>
+
 
                 </vmenu>
                 <!-- / .navigation -->

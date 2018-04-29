@@ -64,17 +64,17 @@
 				</div>
 				<div class="col-md-6">
 					<div class="col-md-6">
-						<label class="control-label" for="sex">Gender: </label>
+						<label class="control-label" for="gender">Gender: </label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control " id="sex" name="sex" v-model="patientData.gender" >
+						<select class="form-control ls-select2" id="gender" name="gender" v-model="patientData.gender" >
 							<option value="M" >Male</option>
 							<option value="F">Female</option>
 
 						</select>
-						<!--span class="help is-danger" v-show="errors.has('sex')">
-		                	Field is required
-		                </span-->
+						<span class="help is-danger" v-show="errors.has('gender')">
+            	Field is required
+            </span>
 					</div>
 				</div>
 			</div>
@@ -227,7 +227,15 @@
                 $('#createPatientDetail').modal('show');
              },500)
 					 }
-				});
+				 });
+					$('.ls-select2').select2().on('change',function(){
+						if (this.id == "gender") {
+							vm.patientData.gender = this.value;
+						}
+						if (this.id == "consulting_dr") {
+							vm.patientData.consulting_dr = this.value;
+						}
+					});
 
      //    	 $('.ls-select2').select2({
      //                allowClear: true,
@@ -288,7 +296,7 @@
 		                	} else if(response.data.code == 300) {
 		                		toastr.error('Record not found', 'Error', {timeOut: 5000});
 		                	} else{
-		                		
+
 		                	 toastr.error('Something goes wrong', 'Error', {timeOut: 5000});
 		                	}
 		                	 $("body .js-loader").addClass('d-none');

@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-    // import anime from 'animejs'
+    import anime from 'animejs'
     export default {
         props: {
             selected: Boolean,
@@ -62,9 +62,9 @@
                 this.$parent.$emit('closeall', this.index)
                 this.isActived = !this.isActived
             },
-            // cancel() {
-            //     this.anime.pause()
-            // },
+            cancel() {
+                this.anime.pause()
+            },
             before(targets) {
                 targets.removeAttribute('style')
             },
@@ -72,26 +72,26 @@
                 const height = targets.scrollHeight
                 targets.style.height = 0
                 targets.style.opacity = 0
-                // anime({
-                //     targets: targets,
-                //     duration: 377,
-                //     easing: 'easeOutExpo',
-                //     opacity: [0, 1],
-                //     height: height,
-                //     complete() {
-                //         targets.removeAttribute('style')
-                //         done()
-                //     }
-                // });
+                anime({
+                    targets: targets,
+                    duration: 377,
+                    easing: 'easeOutExpo',
+                    opacity: [0, 1],
+                    height: height,
+                    complete() {
+                        targets.removeAttribute('style')
+                        done()
+                    }
+                });
             },
             leave(targets, complete) {
-                // anime({
-                //     targets: targets,
-                //     duration: 377,
-                //     easing: 'easeOutExpo',
-                //     opacity: [1, 0],
-                //     height: 0
-                // });
+                anime({
+                    targets: targets,
+                    duration: 377,
+                    easing: 'easeOutExpo',
+                    opacity: [1, 0],
+                    height: 0
+                });
             }
         }
     }

@@ -135,11 +135,11 @@ const routes = [
                 meta: { requiresAuth: true },
                 name: 'opd_form'
             },
-                       // {
-            //     path: '/doctorsInitialAssessment',
-            //     component: doctorsInitialAssessment,
-            //     name: 'doctorsInitialAssessment'
-            // },
+                       {
+                path: '/doctorsInitialAssessment',
+                component: doctorsInitialAssessment,
+                name: 'doctorsInitialAssessment'
+            },
             {
                 path: '/patients_detail_form',
                 component: patientsDetailForm,

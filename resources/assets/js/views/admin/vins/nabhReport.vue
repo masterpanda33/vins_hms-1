@@ -393,51 +393,62 @@
                 'report' : {
 										'start_date' : '',
 										'end_date' : '',
-										'name_hospital' : '',
+										'name_hospital' : 'Vadodara Institute of Neurological Sciences',
 										'total_beds' : '',
 										'total_icu_beds' : '',
 										'total_non_icu_beds' : '',
-										'avg_doctors' : '',
+										'avg_doctors' : '11',
 										'avg_nurses' : '',
 										'total_ot' : '',
-										'avg_admissions_per_day' : '',
+										'avg_admissions_per_day' : '2',
 										'avg_patients_visiting_opd' : '',
-										'avg_patients_visiting_emergency' : '',
+										'avg_patients_visiting_emergency' : '15',
 										'avg_surgeries' : '',
 										'avg_emergency_surgeries' : '',
 										'avg_day_care_surgeries' : '',
 										'avg_units_water' : '',
 										'avg_electricity' : '',
+
 										'total_medication_error' : 0,
 										'incidence_medication_error' : 0,
 										'total_inpatient_medicationerror' : 0,
-										'units_blood_transfusion_reaction' : 0,
+
+										'units_blood_transfusion_reaction' : 3,
 										'transfusion_reaction' : 0,
-										'total_units_issued' : 0,
+										'total_units_issued' : 57,
+
 										'uninary_catheterised' : 0,
 										'cauti' : 0,
 										'uninary_catheter_days' : 0,
+
 										'total_episodes_vap' : 0,
 										'vap_rates' : 0,
 										'total_ventilator_days' : 0,
+
 										'total_crbsi' : 0,
 										'catheter_related_infection' : 0,
 										'total_central_line_days' : 0,
+
 										'total_ssi' : 0,
 										'surgical_site_infection' : 0,
 										'total_surgeries' : 0,
+
 										'total_fall_patients' : 0,
 										'fall_rate' : 0,
 										'total_inpatient_fall' : 0,
+
 										'total_bed_sores' : 0,
 										'bed_sore' : 0,
 										'total_inpatient_bedsore' : 0,
-										'total_patient_days_month' : 0,
+
+										'total_patient_days_month' : 78,
 										'bed_occupancy_rate' : 0,
-										'available_bed_days' : 0,
+										'available_bed_days' : 90,
+
 										'total_inpatient_avgStay' : 0,
 										'avg_stay' : 0,
 										'total_spearations' : '',
+
 										'reported_needle_injury' : '',
 										'total_needle_injury' : '',
 										'total_inpatient_needle' : '',
@@ -455,7 +466,7 @@
 				if(this.id == 'start_date'){
 						vm.report.start_date = this.value;
 				}
-				
+
 				if(this.id == 'end_date'){
 					vm.report.end_date = this.value;
 				}

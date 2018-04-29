@@ -8,11 +8,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                   
+
                       <label class="control-label">IPD Number</label>
                      <select class="form-control" id="ipdNumber" name="ipdNumber"  v-validate="'required'" v-model="ipd_No">
-                            <option :value="rec.id" v-for="rec in ipdData">{{rec.id}} ({{rec.patient_details.first_name}})</option>
-                           
+                            <option :value="rec.id" v-for="rec in ipdData" v-text="displayText(rec)"></option>
+
                         </select>
                         <span class="help is-danger" v-show="">
                             Field is required
@@ -51,6 +51,14 @@
             this.$store.dispatch('GetAllPatientName');
         },
         methods: {
+          displayText(rec){
+            // console.log(rec);
+            if(rec.patient_details ){
+
+              return rec.id+' ('+rec.patient_details.first_name+')';
+            }
+            // {{rec.id}} ({{rec.patient_details.first_name}})
+          },
             saveIpd() {
                 this.$store.dispatch('SetPatientData',this.ipd_No);
                 this.hideModal();
